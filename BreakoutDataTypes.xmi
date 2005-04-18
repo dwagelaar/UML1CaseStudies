@@ -1,0 +1,3037 @@
+<?xml version = '1.0' encoding = 'ISO-8859-1' ?>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Apr 18 13:00:53 CEST 2005'>
+  <XMI.header>
+    <XMI.documentation>
+      <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
+      <XMI.exporterVersion>1.0</XMI.exporterVersion>
+    </XMI.documentation>
+  </XMI.header>
+  <XMI.content>
+    <UML:Model xmi.id = 'a1' name = 'BreakoutModel' isSpecification = 'false'
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+      <UML:Namespace.ownedElement>
+        <UML:Package xmi.id = 'a2' name = 'java' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:Namespace.ownedElement>
+            <UML:Package xmi.id = 'a3' name = 'util' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id = 'a4' name = 'TreeSet' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a5' name = 'Vector' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a6' name = 'Hashtable' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a7' name = 'ArrayList' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a8' name = 'Observable' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Interface xmi.id = 'a9' name = 'Set' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Interface xmi.id = 'a10' name = 'Observer' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Interface xmi.id = 'a11' name = 'OrderedSet' visibility = 'public'
+                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Interface xmi.id = 'a12' name = 'Collection' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Interface xmi.id = 'a13' name = 'List' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+            <UML:Package xmi.id = 'a14' name = 'awt' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:Namespace.ownedElement>
+                <UML:Package xmi.id = 'a15' name = 'event' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'>
+                  <UML:Namespace.ownedElement>
+                    <UML:Class xmi.id = 'a16' name = 'MouseEvent' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                    <UML:Class xmi.id = 'a17' name = 'KeyEvent' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                    <UML:Class xmi.id = 'a18' name = 'MouseEvent' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                    <UML:Class xmi.id = 'a19' name = 'ActionEvent' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                    <UML:Class xmi.id = 'a20' name = 'WindowEvent' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                    <UML:Interface xmi.id = 'a21' name = 'MouseListener' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                    <UML:Interface xmi.id = 'a22' name = 'WindowListener' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                    <UML:Interface xmi.id = 'a23' name = 'KeyListener' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                    <UML:Interface xmi.id = 'a24' name = 'ActionListener' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                    <UML:Interface xmi.id = 'a25' name = 'MouseMotionListener' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                    <UML:Abstraction xmi.id = 'a26' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a27'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Class xmi.idref = 'a28'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Interface xmi.idref = 'a25'/>
+                      </UML:Dependency.supplier>
+                    </UML:Abstraction>
+                  </UML:Namespace.ownedElement>
+                </UML:Package>
+                <UML:Class xmi.id = 'a29' name = 'Panel' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a30' name = 'Point' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a31' name = 'Frame' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a32' name = 'Component' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a33' name = 'Graphics' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a34' name = 'Button' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a35' name = 'Dimension' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Generalization xmi.id = 'a36' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a37'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a34'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a38' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a39'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a32'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a40' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a41'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a29'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a42' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a43'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a31'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+            <UML:Package xmi.id = 'a44' name = 'lang' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:Namespace.ownedElement>
+                <UML:Package xmi.id = 'a45' name = 'reflect' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'/>
+                <UML:DataType xmi.id = 'a46' name = 'int' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'/>
+                <UML:DataType xmi.id = 'a47' name = 'void' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'/>
+                <UML:DataType xmi.id = 'a48' name = 'boolean' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:DataType xmi.id = 'a49' name = 'double' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Class xmi.id = 'a50' name = 'String' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a51' name = 'String[]' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a52' name = 'Object' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+            <UML:Dependency xmi.id = 'a53' isSpecification = 'false'>
+              <UML:Dependency.client>
+                <UML:Class xmi.idref = 'a54'/>
+              </UML:Dependency.client>
+              <UML:Dependency.supplier>
+                <UML:Package xmi.idref = 'a3'/>
+              </UML:Dependency.supplier>
+            </UML:Dependency>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+        <UML:Package xmi.id = 'a55' name = 'breakout' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Namespace.ownedElement>
+            <UML:Package xmi.id = 'a56' name = 'model' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:Namespace.ownedElement>
+                <UML:Class xmi.id = 'a57' name = 'Dimension' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                  <UML:Classifier.feature>
+                    <UML:Attribute xmi.id = 'a58' name = 'width' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a46'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Attribute xmi.id = 'a59' name = 'height' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a46'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Operation xmi.id = 'a60' name = 'setHeight' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a61'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a62' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a63' name = 'height' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a46'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a64' name = 'setWidth' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a65'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a66' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a67' name = 'width' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a46'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a68' name = 'getWidth' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a69'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a70' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a46'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a71' name = 'getHeight' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a72'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a73' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a46'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a74' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a75' language = 'java' body = 'this.height = height;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a60'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a76' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a77' language = 'java' body = 'this.width = width;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a64'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a78' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a79' language = 'java' body = 'return width;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a68'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a80' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a81' language = 'java' body = 'return height;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a71'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Class xmi.id = 'a82' name = 'Point' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                  <UML:Classifier.feature>
+                    <UML:Attribute xmi.id = 'a83' name = 'x' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a46'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Attribute xmi.id = 'a84' name = 'y' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a46'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Operation xmi.id = 'a85' name = 'setY' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a86'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a87' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a88' name = 'y' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a46'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a89' name = 'setX' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a90'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a91' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a92' name = 'x' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a46'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a93' name = 'getX' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a94'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a95' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a46'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a96' name = 'getY' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a97'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a98' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a46'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a99' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a100' language = 'java' body = 'this.y = y;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a85'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a101' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a102' language = 'java' body = 'this.x = x;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a89'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a103' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a104' language = 'java' body = 'return y;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a96'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a105' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a106' language = 'java' body = 'return x;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a93'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Class xmi.id = 'a107' name = 'Brick' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a108'/>
+                  </UML:GeneralizableElement.generalization>
+                </UML:Class>
+                <UML:Class xmi.id = 'a54' name = 'Field' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                  <UML:ModelElement.clientDependency>
+                    <UML:Dependency xmi.idref = 'a53'/>
+                  </UML:ModelElement.clientDependency>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a109'/>
+                  </UML:GeneralizableElement.generalization>
+                  <UML:Classifier.feature>
+                    <UML:Attribute xmi.id = 'a110' name = 'sprite' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:Attribute.initialValue>
+                        <UML:Expression xmi.id = 'a111' language = 'java' body = 'new java.util.ArrayList()'/>
+                      </UML:Attribute.initialValue>
+                      <UML:StructuralFeature.type>
+                        <UML:Interface xmi.idref = 'a12'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Operation xmi.id = 'a112' name = 'getSprites' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a113'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a114' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Interface xmi.idref = 'a12'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a115' name = 'newGame' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a116' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a117' name = 'removeSprite' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a118'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a119' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a120' name = 'sprite' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a121'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a122' name = 'addSprite' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a123'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a124' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a125' name = 'sprite' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a121'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a126' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a127' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a115'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a128' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a129' language = 'java' body = 'return sprite;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a112'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a130' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a131' language = 'java' body = '// Begin Observable stanza&#10;if (this.sprite.contains(sprite)) {&#10;    // Begin original body&#10;if (this.sprite.contains(sprite)) {&#10;    this.sprite.remove(sprite);&#10;    sprite.setField(null);&#10;}    // End original body&#10;    setChanged();&#10;    java.util.Hashtable e = new java.util.Hashtable();&#10;    e.put(&quot;name&quot;, &quot;Sprite&quot;);&#10;    e.put(&quot;value&quot;, sprite);&#10;    notifyObservers(e);&#10;}&#10;// End Observable stanza'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a117'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a132' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a133' language = 'java' body = '// Begin Observable stanza&#10;if (! this.sprite.contains(sprite)) {&#10;    // Begin original body&#10;if (! this.sprite.contains(sprite)) {&#10;    this.sprite.add(sprite);&#10;    sprite.setField(this);&#10;}    // End original body&#10;    setChanged();&#10;    java.util.Hashtable e = new java.util.Hashtable();&#10;    e.put(&quot;name&quot;, &quot;Sprite&quot;);&#10;    e.put(&quot;value&quot;, sprite);&#10;    notifyObservers(e);&#10;}&#10;// End Observable stanza'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a122'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Class xmi.id = 'a121' name = 'Sprite' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a134'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a135'/>
+                  </UML:GeneralizableElement.generalization>
+                  <UML:Classifier.feature>
+                    <UML:Attribute xmi.id = 'a136' name = 'size' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:Attribute.initialValue>
+                        <UML:Expression xmi.id = 'a137' language = 'java' body = 'null'/>
+                      </UML:Attribute.initialValue>
+                      <UML:StructuralFeature.type>
+                        <UML:Class xmi.idref = 'a57'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Attribute xmi.id = 'a138' name = 'field' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:Attribute.initialValue>
+                        <UML:Expression xmi.id = 'a139' language = 'java' body = 'null'/>
+                      </UML:Attribute.initialValue>
+                      <UML:StructuralFeature.type>
+                        <UML:Class xmi.idref = 'a54'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Attribute xmi.id = 'a140' name = 'position' visibility = 'private'
+                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:Attribute.initialValue>
+                        <UML:Expression xmi.id = 'a141' language = 'java' body = 'null'/>
+                      </UML:Attribute.initialValue>
+                      <UML:StructuralFeature.type>
+                        <UML:Class xmi.idref = 'a82'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Operation xmi.id = 'a142' name = 'setField' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a143'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a144' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a145' name = 'field' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a54'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a146' name = 'getSize' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a147'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a148' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a57'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a149' name = 'getField' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a150'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a151' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a54'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a152' name = 'getPosition' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a153'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a154' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a82'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a155' name = 'setPosition' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a156'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a157' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a158' name = 'position' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a82'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a159' name = 'setSize' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a160'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a161' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a162' name = 'size' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a57'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a163' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a164' language = 'java' body = 'return field;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a149'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a165' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a166' language = 'java' body = '// Begin Observable stanza&#10;if (this.position != position) {&#10;    // Begin original body&#10;this.position = position;    // End original body&#10;    setChanged();&#10;    java.util.Hashtable e = new java.util.Hashtable();&#10;    e.put(&quot;name&quot;, &quot;Position&quot;);&#10;    e.put(&quot;value&quot;, position);&#10;    notifyObservers(e);&#10;}&#10;// End Observable stanza'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a155'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a167' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a168' language = 'java' body = '// Begin Observable stanza&#10;if (this.size != size) {&#10;    // Begin original body&#10;this.size = size;    // End original body&#10;    setChanged();&#10;    java.util.Hashtable e = new java.util.Hashtable();&#10;    e.put(&quot;name&quot;, &quot;Size&quot;);&#10;    e.put(&quot;value&quot;, size);&#10;    notifyObservers(e);&#10;}&#10;// End Observable stanza'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a159'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a169' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a170' language = 'java' body = 'return position;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a152'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a171' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a172' language = 'java' body = 'return size;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a146'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a173' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a174' language = 'java' body = '// Begin Observable stanza&#10;if (this.field != field) {&#10;    // Begin original body&#10;if (this.field != field) {&#10;    if (this.field != null) this.field.removeSprite(this);&#10;    this.field = field;&#10;    if (field != null) field.addSprite(this);&#10;}    // End original body&#10;    setChanged();&#10;    java.util.Hashtable e = new java.util.Hashtable();&#10;    e.put(&quot;name&quot;, &quot;Field&quot;);&#10;    e.put(&quot;value&quot;, field);&#10;    notifyObservers(e);&#10;}&#10;// End Observable stanza'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a142'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Class xmi.id = 'a175' name = 'Paddle' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a176'/>
+                  </UML:GeneralizableElement.generalization>
+                </UML:Class>
+                <UML:Class xmi.id = 'a177' name = 'Ball' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a178'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a179'/>
+                  </UML:GeneralizableElement.generalization>
+                  <UML:Classifier.feature>
+                    <UML:Attribute xmi.id = 'a180' name = 'running' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:Attribute.initialValue>
+                        <UML:Expression xmi.id = 'a181' language = 'java' body = 'false'/>
+                      </UML:Attribute.initialValue>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a48'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Operation xmi.id = 'a182' name = 'setRunning' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a183'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a184' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a185' name = 'running' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a48'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a186' name = 'run' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a187' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a188' name = 'getRunning' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a189'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a190' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a48'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a191' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a192' language = 'java' body = '        while (running) {&#10;        }&#10;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a186'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a193' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a194' language = 'java' body = 'return running;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a188'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a195' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a196' language = 'java' body = '// Begin Observable stanza&#10;if (this.running != running) {&#10;    // Begin original body&#10;this.running = running;    // End original body&#10;    setChanged();&#10;    java.util.Hashtable e = new java.util.Hashtable();&#10;    e.put(&quot;name&quot;, &quot;Running&quot;);&#10;    e.put(&quot;value&quot;, new Boolean(running));&#10;    notifyObservers(e);&#10;}&#10;// End Observable stanza'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a182'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Dependency xmi.id = 'a118' name = 'accessor removeSprite()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a117'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a110'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a97' name = 'accessor getY()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a96'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a84'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a147' name = 'accessor getSize()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a146'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a136'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a113' name = 'accessor getSprites()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a112'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a110'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a123' name = 'accessor addSprite()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a122'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a110'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a90' name = 'accessor setX()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a89'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a83'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a153' name = 'accessor getPosition()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a152'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a140'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a143' name = 'accessor setField()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a142'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a138'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a69' name = 'accessor getWidth()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a68'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a58'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a65' name = 'accessor setWidth()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a64'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a58'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a94' name = 'accessor getX()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a93'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a83'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a61' name = 'accessor setHeight()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a60'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a59'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a183' name = 'accessor setRunning()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a182'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a180'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a150' name = 'accessor getField()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a149'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a138'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a189' name = 'accessor getRunning()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a188'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a180'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a72' name = 'accessor getHeight()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a71'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a59'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a156' name = 'accessor setPosition()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a155'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a140'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a86' name = 'accessor setY()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a85'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a84'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a160' name = 'accessor setSize()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a159'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a136'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Generalization xmi.id = 'a135' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a121'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a8'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a179' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a177'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a121'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a108' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a107'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a121'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a176' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a175'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a121'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a109' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a54'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a121'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+            <UML:Package xmi.id = 'a198' name = 'view' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'>
+              <UML:Namespace.ownedElement>
+                <UML:Package xmi.id = 'a199' name = 'awt' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'>
+                  <UML:Namespace.ownedElement>
+                    <UML:Class xmi.id = 'a43' name = 'AWTField' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a42'/>
+                      </UML:GeneralizableElement.generalization>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a37' name = 'AWTPaddle' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a36'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Operation xmi.id = 'a200' name = 'removeFromParent' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a201' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a202' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a203' language = 'java' body = '        if (getParent() != null) {&#10;            getParent().remove(this);&#10;        }&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a200'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a39' name = 'AWTBall' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a38'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Operation xmi.id = 'a204' name = 'paint' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a205' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a206' name = 'g' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a33'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a207' name = 'removeFromParent' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a208' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a209' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a210' language = 'java' body = '        if (getParent() != null) {&#10;            getParent().remove(this);&#10;        }&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a207'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a211' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a212' language = 'java' body = '        java.awt.Point pos = getLocation();&#10;        java.awt.Dimension size = getSize();&#10;        g.fillOval(pos.x, pos.y, size.width, size.height);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a204'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a213' name = 'AWTViewFactory' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                      isActive = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Abstraction xmi.idref = 'a214'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:Classifier.feature>
+                        <UML:Attribute xmi.id = 'a215' name = 'view' visibility = 'private' isSpecification = 'false'
+                          ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'a216'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Operation xmi.id = 'a217' name = 'createBallView' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a218' name = 'ball' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a177'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a219' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a220'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a221' name = 'createBrickView' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a222' name = 'brick' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a107'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a223' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a224'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a225' name = 'createPaddleView' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a226' name = 'paddle' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a175'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a227' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a228'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a229' name = 'initSpriteView' visibility = 'private'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a230' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a231' name = 'view' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a216'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a232' name = 'sprite' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a121'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a233' name = 'createSpriteView' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a234' name = 'sprite' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a121'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a235' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a216'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a236' name = 'createFieldView' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a237' name = 'field' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a54'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a238' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a239'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a240' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a241' language = 'java' body = '        initSpriteView(new AWTFieldView(), field);&#10;        ((AWTFieldView) view).init();&#10;        return (breakout.view.FieldView) view;&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a236'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a242' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a243' language = 'java' body = '        initSpriteView(new AWTBrickView(), brick);&#10;        return (breakout.view.BrickView) view;&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a221'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a244' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a245' language = 'java' body = '        this.view = view;&#10;        view.setModel(sprite);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a229'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a246' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a247' language = 'java' body = '        initSpriteView(new AWTPaddleView(), paddle);&#10;        return (breakout.view.PaddleView) view;&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a225'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a248' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a249' language = 'java' body = '        initSpriteView(new AWTBallView(), ball);&#10;        return (breakout.view.BallView) view;&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a217'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a250' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a251' language = 'java' body = '        if (sprite instanceof breakout.model.Field) {&#10;            return createFieldView((breakout.model.Field) sprite);&#10;        } else if (sprite instanceof breakout.model.Ball) {&#10;            return createBallView((breakout.model.Ball) sprite);&#10;        } else if (sprite instanceof breakout.model.Paddle) {&#10;            return createPaddleView((breakout.model.Paddle) sprite);&#10;        } else if (sprite instanceof breakout.model.Brick) {&#10;            return createBrickView((breakout.model.Brick) sprite);&#10;        } else {&#10;            return null;&#10;        }&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a233'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a252' name = 'AWTFieldView' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a253'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Attribute xmi.id = 'a254' name = 'impl' visibility = 'private' isSpecification = 'false'
+                          ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'a255' language = 'java' body = 'new AWTField()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'a43'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Operation xmi.id = 'a256' name = 'addView' visibility = 'private' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a257' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a258' name = 'view' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a216'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a259' name = 'getComponent' visibility = 'private'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a260' name = 'view' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a216'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a261' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a32'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a262' name = 'onSizeChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a263' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a264' name = 'size' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a57'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a265' name = 'onFieldChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a266' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a267' name = 'field' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a54'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a268' name = 'onPositionChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a269' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a270' name = 'pos' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a82'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a271' name = 'onSpriteChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a272' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a273' name = 'sprite' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a121'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a274' name = 'getImpl' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.clientDependency>
+                            <UML:Dependency xmi.idref = 'a275'/>
+                          </UML:ModelElement.clientDependency>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a276' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a43'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a277' name = 'setImpl' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.clientDependency>
+                            <UML:Dependency xmi.idref = 'a278'/>
+                          </UML:ModelElement.clientDependency>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a279' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a280' name = 'impl' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a43'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a281' name = 'init' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a282' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a283' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a284' language = 'java' body = '        // stub&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a265'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a285' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a286' language = 'java' body = '        breakout.model.Field field = (breakout.model.Field) getModel();&#10;        if (field.getSprites().contains(sprite)) {&#10;            breakout.view.SpriteView view = getFactory().createSpriteView(sprite);&#10;            addView(view);&#10;        }&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a271'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a287' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a288' language = 'java' body = '        getImpl().setLocation(pos.getX(), pos.getY());&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a268'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a289' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a290' language = 'java' body = '        impl.setSize(size.getWidth(), size.getHeight());&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a262'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a291' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a292' language = 'java' body = 'return impl;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a274'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a293' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a294' language = 'java' body = '        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();&#10;        breakout.model.Dimension size = new breakout.model.Dimension();&#10;        size.setWidth(screenSize.width);&#10;        size.setHeight(screenSize.height);&#10;        getModel().setSize(size);&#10;        getImpl().setVisible(true);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a281'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a295' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a296' language = 'java' body = '        java.awt.Component c = getComponent(view);&#10;        if (c == null) {&#10;            return;&#10;        }&#10;        getImpl().add(c);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a256'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a297' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a298' language = 'java' body = '        java.awt.Component c = null;&#10;        if (view instanceof AWTBallView) {&#10;            c = ((AWTBallView) view).getImpl();&#10;        } else if (view instanceof AWTBrickView) {&#10;            c = ((AWTBrickView) view).getImpl();&#10;        } else if (view instanceof AWTPaddleView) {&#10;            c = ((AWTPaddleView) view).getImpl();&#10;        }&#10;        return c;&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a259'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a299' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a300' language = 'java' body = 'this.impl = impl;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a277'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a28' name = 'AWTPaddleView' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Abstraction xmi.idref = 'a26'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a301'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Attribute xmi.id = 'a302' name = 'impl' visibility = 'private' isSpecification = 'false'
+                          ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'a303' language = 'java' body = 'new AWTPaddle()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'a37'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Operation xmi.id = 'a304' name = 'getImpl' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.clientDependency>
+                            <UML:Dependency xmi.idref = 'a305'/>
+                          </UML:ModelElement.clientDependency>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a306' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a37'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a307' name = 'setImpl' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.clientDependency>
+                            <UML:Dependency xmi.idref = 'a308'/>
+                          </UML:ModelElement.clientDependency>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a309' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a310' name = 'impl' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a37'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a311' name = 'onSizeChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a312' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a313' name = 'size' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a57'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a314' name = 'mouseDragged' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a315' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a316' name = 'e' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a18'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a317' name = 'AWTPaddleView' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.stereotype>
+                            <UML:Stereotype xmi.idref = 'a318'/>
+                          </UML:ModelElement.stereotype>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a319' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a28'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a320' name = 'onPositionChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a321' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a322' name = 'pos' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a82'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a323' name = 'onFieldChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a324' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a325' name = 'field' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a54'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a326' name = 'mouseMoved' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a327' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a328' name = 'e' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a18'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a329' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a330' language = 'java' body = '        getImpl().removeFromParent();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a323'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a331' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a332' language = 'java' body = '        impl.addMouseMotionListener(this);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a317'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a333' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a334' language = 'java' body = '        drag(e.getX());&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a314'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a335' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a336' language = 'java' body = '        impl.setLocation(pos.getX(), pos.getY());&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a320'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a337' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a338' language = 'java' body = 'return impl;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a304'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a339' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a340' language = 'java' body = 'this.impl = impl;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a307'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a341' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a342' language = 'java' body = '        impl.setSize(size.getWidth(), size.getHeight());&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a311'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a343' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a344' language = 'java' body = '        // stub&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a326'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a41' name = 'AWTBrick' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a40'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Operation xmi.id = 'a345' name = 'removeFromParent' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a346' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a347' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a348' language = 'java' body = '        if (getParent() != null) {&#10;            getParent().remove(this);&#10;        }&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a345'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a349' name = 'AWTBrickView' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a350'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Attribute xmi.id = 'a351' name = 'impl' visibility = 'private' isSpecification = 'false'
+                          ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'a352' language = 'java' body = 'new AWTBrick()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'a41'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Operation xmi.id = 'a353' name = 'onPositionChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a354' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a355' name = 'pos' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a82'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a356' name = 'onFieldChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a357' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a358' name = 'field' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a54'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a359' name = 'getImpl' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.clientDependency>
+                            <UML:Dependency xmi.idref = 'a360'/>
+                          </UML:ModelElement.clientDependency>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a361' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a41'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a362' name = 'setImpl' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.clientDependency>
+                            <UML:Dependency xmi.idref = 'a363'/>
+                          </UML:ModelElement.clientDependency>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a364' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a365' name = 'impl' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a41'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a366' name = 'onSizeChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a367' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a368' name = 'size' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a57'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a369' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a370' language = 'java' body = '        getImpl().removeFromParent();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a356'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a371' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a372' language = 'java' body = '        impl.setSize(size.getWidth(), size.getHeight());&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a366'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a373' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a374' language = 'java' body = 'this.impl = impl;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a362'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a375' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a376' language = 'java' body = 'return impl;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a359'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a377' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a378' language = 'java' body = '        impl.setLocation(pos.getX(), pos.getY());&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a353'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a379' name = 'AWTBallView' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a380'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Attribute xmi.id = 'a381' name = 'impl' visibility = 'private' isSpecification = 'false'
+                          ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'a382' language = 'java' body = 'new AWTBall()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'a39'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Operation xmi.id = 'a383' name = 'onFieldChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a384' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a385' name = 'field' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a54'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a386' name = 'setImpl' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.clientDependency>
+                            <UML:Dependency xmi.idref = 'a387'/>
+                          </UML:ModelElement.clientDependency>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a388' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a389' name = 'impl' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a39'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a390' name = 'onPositionChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a391' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a392' name = 'pos' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a82'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a393' name = 'getImpl' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.clientDependency>
+                            <UML:Dependency xmi.idref = 'a394'/>
+                          </UML:ModelElement.clientDependency>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a395' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a39'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a396' name = 'onSizeChange' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a397' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a47'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'a398' name = 'size' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a57'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a399' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a400' language = 'java' body = '        getImpl().setSize(size.getWidth(), size.getHeight());&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a396'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a401' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a402' language = 'java' body = '        impl.setLocation(pos.getX(), pos.getY());&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a390'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a403' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a404' language = 'java' body = 'return impl;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a393'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a405' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a406' language = 'java' body = '        getImpl().removeFromParent();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a383'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a407' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a408' language = 'java' body = 'this.impl = impl;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a386'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Dependency xmi.id = 'a360' name = 'accessor getImpl()' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a197'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Operation xmi.idref = 'a359'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Attribute xmi.idref = 'a351'/>
+                      </UML:Dependency.supplier>
+                    </UML:Dependency>
+                    <UML:Dependency xmi.id = 'a363' name = 'accessor setImpl()' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a197'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Operation xmi.idref = 'a362'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Attribute xmi.idref = 'a351'/>
+                      </UML:Dependency.supplier>
+                    </UML:Dependency>
+                    <UML:Dependency xmi.id = 'a275' name = 'accessor getImpl()' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a197'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Operation xmi.idref = 'a274'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Attribute xmi.idref = 'a254'/>
+                      </UML:Dependency.supplier>
+                    </UML:Dependency>
+                    <UML:Dependency xmi.id = 'a394' name = 'accessor getImpl()' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a197'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Operation xmi.idref = 'a393'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Attribute xmi.idref = 'a381'/>
+                      </UML:Dependency.supplier>
+                    </UML:Dependency>
+                    <UML:Dependency xmi.id = 'a278' name = 'accessor setImpl()' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a197'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Operation xmi.idref = 'a277'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Attribute xmi.idref = 'a254'/>
+                      </UML:Dependency.supplier>
+                    </UML:Dependency>
+                    <UML:Dependency xmi.id = 'a387' name = 'accessor setImpl()' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a197'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Operation xmi.idref = 'a386'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Attribute xmi.idref = 'a381'/>
+                      </UML:Dependency.supplier>
+                    </UML:Dependency>
+                    <UML:Dependency xmi.id = 'a305' name = 'accessor getImpl()' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a197'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Operation xmi.idref = 'a304'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Attribute xmi.idref = 'a302'/>
+                      </UML:Dependency.supplier>
+                    </UML:Dependency>
+                    <UML:Dependency xmi.id = 'a308' name = 'accessor setImpl()' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a197'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Operation xmi.idref = 'a307'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Attribute xmi.idref = 'a302'/>
+                      </UML:Dependency.supplier>
+                    </UML:Dependency>
+                    <UML:Abstraction xmi.id = 'a214' isSpecification = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a27'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Dependency.client>
+                        <UML:Class xmi.idref = 'a213'/>
+                      </UML:Dependency.client>
+                      <UML:Dependency.supplier>
+                        <UML:Interface xmi.idref = 'a409'/>
+                      </UML:Dependency.supplier>
+                    </UML:Abstraction>
+                  </UML:Namespace.ownedElement>
+                </UML:Package>
+                <UML:Class xmi.id = 'a224' name = 'BrickView' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a410'/>
+                  </UML:GeneralizableElement.generalization>
+                </UML:Class>
+                <UML:Class xmi.id = 'a220' name = 'BallView' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a411'/>
+                  </UML:GeneralizableElement.generalization>
+                </UML:Class>
+                <UML:Class xmi.id = 'a228' name = 'PaddleView' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a412'/>
+                  </UML:GeneralizableElement.generalization>
+                  <UML:Classifier.feature>
+                    <UML:Operation xmi.id = 'a413' name = 'drag' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a414' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a415' name = 'x' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a46'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a416' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a417' language = 'java' body = '        breakout.model.Sprite sprite = getModel();&#10;        breakout.model.Field field = sprite.getField();&#10;        breakout.model.Point pos = sprite.getPosition();&#10;        breakout.model.Dimension size = sprite.getSize();&#10;        int newx = pos.getX() + x - size.getWidth()/2;&#10;        if (newx &lt; 0) {&#10;            newx = 0;&#10;        }&#10;        else if (newx &gt; field.getSize().getWidth() - size.getWidth()) { &#10;            newx = field.getSize().getWidth() - size.getWidth();&#10;        }&#10;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a413'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Class xmi.id = 'a239' name = 'FieldView' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a418'/>
+                  </UML:GeneralizableElement.generalization>
+                  <UML:Classifier.feature>
+                    <UML:Attribute xmi.id = 'a419' name = 'factory' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:Attribute.initialValue>
+                        <UML:Expression xmi.id = 'a420' language = 'java' body = 'null'/>
+                      </UML:Attribute.initialValue>
+                      <UML:StructuralFeature.type>
+                        <UML:Interface xmi.idref = 'a409'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Operation xmi.id = 'a421' name = 'setFactory' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a422'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a423' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a424' name = 'factory' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Interface xmi.idref = 'a409'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a425' name = 'getFactory' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a426'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a427' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Interface xmi.idref = 'a409'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a428' name = 'onSpriteChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a429' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a430' name = 'sprite' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a121'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a431' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a432' language = 'java' body = 'return factory;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a425'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a433' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a434' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a428'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a435' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a436' language = 'java' body = 'this.factory = factory;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a421'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Class xmi.id = 'a216' name = 'SpriteView' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
+                  <UML:ModelElement.clientDependency>
+                    <UML:Abstraction xmi.idref = 'a437'/>
+                  </UML:ModelElement.clientDependency>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a438'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Classifier.feature>
+                    <UML:Attribute xmi.id = 'a439' name = 'model' visibility = 'private' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:Attribute.initialValue>
+                        <UML:Expression xmi.id = 'a440' language = 'java' body = 'null'/>
+                      </UML:Attribute.initialValue>
+                      <UML:StructuralFeature.type>
+                        <UML:Class xmi.idref = 'a121'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Operation xmi.id = 'a441' name = 'onPositionChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a442' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a443' name = 'pos' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a82'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a444' name = 'update' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a445' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a446' name = 'o' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a8'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a447' name = 'arg' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a52'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a448' name = 'onFieldChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a449' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a450' name = 'field' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a54'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a451' name = 'getModel' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a452'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a453' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a121'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a454' name = 'setModel' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Dependency xmi.idref = 'a455'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a456' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a457' name = 'model' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a121'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a458' name = 'onSizeChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a459' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'a47'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a460' name = 'size' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a57'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a461' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a462' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a448'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a463' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a464' language = 'java' body = 'return model;'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a451'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a465' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a466' language = 'java' body = '// Begin subscribe stanza&#10;if (this.model != null) this.model.deleteObserver(this);&#10;// Begin original body&#10;this.model = model;// End original body&#10;if (model != null) model.addObserver(this);&#10;// End subscribe stanza'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a454'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a467' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a468' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a441'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a469' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a470' language = 'java' body = 'if (arg instanceof java.util.Hashtable) {&#10;    java.util.Hashtable e = (java.util.Hashtable) arg;&#10;    String mName = &quot;on&quot; + ((String) e.get(&quot;name&quot;)) + &quot;Change&quot;;&#10;    Class[] parmTypes = { e.get(&quot;value&quot;).getClass() };&#10;    try {&#10;        java.lang.reflect.Method m = getClass().getDeclaredMethod(mName, parmTypes);&#10;        Object[] args = { e.get(&quot;value&quot;) };&#10;        m.invoke(this, args);&#10;    } catch (NoSuchMethodException nex) {&#10;        // no handler&#10;    } catch (Exception ex) {&#10;        // wrong handler configuration&#10;        ex.printStackTrace();&#10;    }&#10;}'/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a444'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a471' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a472' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a458'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Interface xmi.id = 'a409' name = 'ViewFactory' visibility = 'public'
+                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                  <UML:Classifier.feature>
+                    <UML:Operation xmi.id = 'a473' name = 'createFieldView' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a474' name = 'field' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a54'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a475' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a239'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a476' name = 'createBrickView' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a477' name = 'brick' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a107'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a478' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a224'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a479' name = 'createBallView' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a480' name = 'ball' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a177'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a481' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a220'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a482' name = 'createPaddleView' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a483' name = 'paddle' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a175'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a484' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a228'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a485' name = 'createSpriteView' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a486' name = 'sprite' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a121'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a487' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a216'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a488' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a489' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a476'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a490' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a491' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a479'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a492' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a493' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a485'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a494' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a495' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a482'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a496' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a497' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a473'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Interface>
+                <UML:Dependency xmi.id = 'a452' name = 'accessor getModel()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a451'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a439'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a498' isSpecification = 'false'>
+                  <UML:Dependency.client>
+                    <UML:Class xmi.idref = 'a499'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Package xmi.idref = 'a199'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a422' name = 'accessor setFactory()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a421'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a419'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a455' name = 'accessor setModel()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a454'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a439'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Dependency xmi.id = 'a426' name = 'accessor getFactory()' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a197'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Operation xmi.idref = 'a425'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Attribute xmi.idref = 'a419'/>
+                  </UML:Dependency.supplier>
+                </UML:Dependency>
+                <UML:Abstraction xmi.id = 'a437' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a27'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Class xmi.idref = 'a216'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Interface xmi.idref = 'a10'/>
+                  </UML:Dependency.supplier>
+                </UML:Abstraction>
+                <UML:Generalization xmi.id = 'a253' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a252'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a239'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a412' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a228'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a216'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a350' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a349'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a224'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a380' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a379'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a220'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a410' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a224'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a216'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a411' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a220'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a216'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a301' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a28'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a228'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a418' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a239'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a216'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+              </UML:Namespace.ownedElement>
+            </UML:Package>
+            <UML:Class xmi.id = 'a499' name = 'BreakOut' visibility = 'public' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+              <UML:ModelElement.clientDependency>
+                <UML:Dependency xmi.idref = 'a498'/>
+              </UML:ModelElement.clientDependency>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = 'a500'/>
+              </UML:ModelElement.stereotype>
+              <UML:Classifier.feature>
+                <UML:Attribute xmi.id = 'a501' name = 'viewFactory' visibility = 'private'
+                  isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
+                  <UML:Attribute.initialValue>
+                    <UML:Expression xmi.id = 'a502' language = 'java' body = 'null'/>
+                  </UML:Attribute.initialValue>
+                  <UML:StructuralFeature.type>
+                    <UML:Interface xmi.idref = 'a409'/>
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
+                <UML:Operation xmi.id = 'a503' name = 'getViewFactory' visibility = 'public'
+                  isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                  <UML:ModelElement.clientDependency>
+                    <UML:Dependency xmi.idref = 'a504'/>
+                  </UML:ModelElement.clientDependency>
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id = 'a505' name = 'return' isSpecification = 'false'
+                      kind = 'return'>
+                      <UML:Parameter.type>
+                        <UML:Interface xmi.idref = 'a409'/>
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
+                <UML:Operation xmi.id = 'a506' name = 'main' visibility = 'public' isSpecification = 'false'
+                  ownerScope = 'classifier' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'>
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id = 'a507' name = 'return' isSpecification = 'false'
+                      kind = 'return'>
+                      <UML:Parameter.type>
+                        <UML:DataType xmi.idref = 'a47'/>
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                    <UML:Parameter xmi.id = 'a508' name = 'args' isSpecification = 'false' kind = 'in'>
+                      <UML:Parameter.type>
+                        <UML:Class xmi.idref = 'a51'/>
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
+                <UML:Operation xmi.id = 'a509' name = 'BreakOut' visibility = 'public' isSpecification = 'false'
+                  ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a318'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id = 'a510' name = 'return' isSpecification = 'false'
+                      kind = 'return'>
+                      <UML:Parameter.type>
+                        <UML:Class xmi.idref = 'a499'/>
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
+                <UML:Operation xmi.id = 'a511' name = 'setViewFactory' visibility = 'public'
+                  isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                  <UML:ModelElement.clientDependency>
+                    <UML:Dependency xmi.idref = 'a512'/>
+                  </UML:ModelElement.clientDependency>
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id = 'a513' name = 'return' isSpecification = 'false'
+                      kind = 'return'>
+                      <UML:Parameter.type>
+                        <UML:DataType xmi.idref = 'a47'/>
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                    <UML:Parameter xmi.id = 'a514' name = 'viewFactory' isSpecification = 'false'
+                      kind = 'in'>
+                      <UML:Parameter.type>
+                        <UML:Interface xmi.idref = 'a409'/>
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
+                <UML:Method xmi.id = 'a515' isSpecification = 'false' isQuery = 'false'>
+                  <UML:Method.body>
+                    <UML:ProcedureExpression xmi.id = 'a516' language = 'java' body = '        viewFactory = new breakout.view.awt.AWTViewFactory();&#10;        viewFactory.createFieldView(new breakout.model.Field());&#10;'/>
+                  </UML:Method.body>
+                  <UML:Method.specification>
+                    <UML:Operation xmi.idref = 'a509'/>
+                  </UML:Method.specification>
+                </UML:Method>
+                <UML:Method xmi.id = 'a517' isSpecification = 'false' isQuery = 'false'>
+                  <UML:Method.body>
+                    <UML:ProcedureExpression xmi.id = 'a518' language = 'java' body = 'return viewFactory;'/>
+                  </UML:Method.body>
+                  <UML:Method.specification>
+                    <UML:Operation xmi.idref = 'a503'/>
+                  </UML:Method.specification>
+                </UML:Method>
+                <UML:Method xmi.id = 'a519' isSpecification = 'false' isQuery = 'false'>
+                  <UML:Method.body>
+                    <UML:ProcedureExpression xmi.id = 'a520' language = 'java' body = 'this.viewFactory = viewFactory;'/>
+                  </UML:Method.body>
+                  <UML:Method.specification>
+                    <UML:Operation xmi.idref = 'a511'/>
+                  </UML:Method.specification>
+                </UML:Method>
+                <UML:Method xmi.id = 'a521' isSpecification = 'false' isQuery = 'false'>
+                  <UML:Method.body>
+                    <UML:ProcedureExpression xmi.id = 'a522' language = 'java' body = 'new BreakOut();'/>
+                  </UML:Method.body>
+                  <UML:Method.specification>
+                    <UML:Operation xmi.idref = 'a506'/>
+                  </UML:Method.specification>
+                </UML:Method>
+              </UML:Classifier.feature>
+            </UML:Class>
+            <UML:Dependency xmi.id = 'a504' name = 'accessor getViewFactory()' isSpecification = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = 'a197'/>
+              </UML:ModelElement.stereotype>
+              <UML:Dependency.client>
+                <UML:Operation xmi.idref = 'a503'/>
+              </UML:Dependency.client>
+              <UML:Dependency.supplier>
+                <UML:Attribute xmi.idref = 'a501'/>
+              </UML:Dependency.supplier>
+            </UML:Dependency>
+            <UML:Dependency xmi.id = 'a512' name = 'accessor setViewFactory()' isSpecification = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = 'a197'/>
+              </UML:ModelElement.stereotype>
+              <UML:Dependency.client>
+                <UML:Operation xmi.idref = 'a511'/>
+              </UML:Dependency.client>
+              <UML:Dependency.supplier>
+                <UML:Attribute xmi.idref = 'a501'/>
+              </UML:Dependency.supplier>
+            </UML:Dependency>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+        <UML:Package xmi.id = 'a523' name = 'ocl' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:Namespace.ownedElement>
+            <UML:DataType xmi.id = 'a524' name = 'SequenceSet' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a525' name = 'Set' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a526' name = 'Sequence' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a527' name = 'Collection' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a528' name = 'Real' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a529' name = 'String' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a530' name = 'Boolean' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a531' name = 'Integer' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a532' name = 'OclAny' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a533' name = 'Bag' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+        <UML:Stereotype xmi.id = 'a134' name = 'Observable' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a27' name = 'realize' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Abstraction</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a534' name = 'use' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Dependency</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a535' name = 'subscribe' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Association</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a536' name = 'invariant' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Constraint</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a537' name = 'derive' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Abstraction</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a500' name = 'process' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Classifier</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a318' name = 'create' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>BehavioralFeature</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a538' name = 'implementation' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a539' name = 'extend' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Dependency</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a178' name = 'thread' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Classifier</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a197' name = 'accessor' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Dependency</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a438' name = 'Observer' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:TagDefinition xmi.id = 'a540' name = 'documentation' isSpecification = 'false'/>
+        <UML:TagDefinition xmi.id = 'a541' name = 'gentleware-initialValue' isSpecification = 'false'/>
+      </UML:Namespace.ownedElement>
+    </UML:Model>
+    <UML:Parameter xmi.id = 'a542' name = 'field' isSpecification = 'false'
+      kind = 'inout'>
+      <UML:Parameter.type>
+        <UML:Class xmi.idref = 'a54'/>
+      </UML:Parameter.type>
+    </UML:Parameter>
+    <UML:Parameter xmi.id = 'a543' name = 'field' isSpecification = 'false'
+      kind = 'inout'>
+      <UML:Parameter.type>
+        <UML:Class xmi.idref = 'a54'/>
+      </UML:Parameter.type>
+    </UML:Parameter>
+  </XMI.content>
+</XMI>

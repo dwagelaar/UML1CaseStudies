@@ -1,0 +1,190 @@
+if (arg instanceof PropertyChangeEvent) {
+            PropertyChangeEvent e = (PropertyChangeEvent) arg;
+            String mName = "on" + e.getName() + "Change";
+            Class[] parmTypes = { e.getValue().getClass() };
+            try {
+                Method m = getClass().getDeclaredMethod(mName, parmTypes);
+                Object[] args = { e.getValue() };
+                m.invoke(this, args);
+            } catch (NoSuchMethodException nex) {
+                // no handler
+            } catch (Exception ex) {
+                // wrong handler configuration
+                ex.printStackTrace();
+            }
+        }
+
+if (arg instanceof java.util.Hashtable) {
+    java.util.Hashtable e = (java.util.Hashtable) arg;
+    String mName = "on" + ((String) e.get("name")) + "Change";
+    Class[] parmTypes = { e.get("value").getClass() };
+    try {
+        Method m = getClass().getDeclaredMethod(mName, parmTypes);
+        Object[] args = { e.get("value") };
+        m.invoke(this, args);
+    } catch (NoSuchMethodException nex) {
+        // no handler
+    } catch (Exception ex) {
+        // wrong handler configuration
+        ex.printStackTrace();
+    }
+}
+
+rule AccessorProcedureExpression {
+	from s : INMODEL!ProcedureExpression (
+		s.isAccessorBody() and s.isObservableBody())
+	to t : OUTMODEL!ProcedureExpression mapsTo s (
+		language <- s.language,
+		body <- s.body + '\n' + s.attribute().name.javaNotify())
+}
+
+
+
+public void set(Object value) {
+	if (this.value != value) {
+        if (this.value != null) this.value.remove(this);
+		this.value = value;
+        if (value != null) value.add(this);
+	}
+}
+
+	   par : distinct OUTMODEL!Parameter foreach (p in s.parameter.asSequence()) (
+	   	name <- p.name,
+		behavioralFeature <- p.behavioralFeature,
+		stereotype <- p.stereotype,
+		type <- p.type,
+		kind <- p.kind,
+		isSpecification <- p.isSpecification,
+		defaultValue <- p.defaultValue)
+
+helper context String def : dataType() : INMODEL!DataType =
+	INMODEL!DataType.allInstances()->select(c|c.name=self)->first();
+
+rule AssociationEndAttribute {
+	from s : INMODEL!AssociationEnd (
+		s.isNavigable)
+	to t : OUTMODEL!Attribute (
+	   	name <- s.name,
+		owner <- s.navigableFrom(),
+		type <- s.type(),
+		visibility <- s.visibility,
+		ownerScope <- s.targetScope,
+		changeability <- s.changeability,
+		associationEnd <- s)
+--		initialValue <- v),
+--	   v : OUTMODEL!Expression (
+--	   	language <- 'java',
+--		body <- s.type().java2Instance())
+}
+
+rule OclAnyDataType {
+	from s : INMODEL!DataType (
+		s.name = 'OclAny')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='lang')->first(); }
+	to t : OUTMODEL!Class mapsTo s (
+		name <- 'Object',
+		namespace <- jpackage)
+}
+
+rule RealDataType {
+	from s : INMODEL!DataType (
+		s.name = 'Real')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='lang')->first(); }
+	to t : OUTMODEL!DataType mapsTo s (
+		name <- 'double',
+		namespace <- jpackage)
+}
+
+rule IntegerDataType {
+	from s : INMODEL!DataType (
+		s.name = 'Integer')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='lang')->first(); }
+	to t : OUTMODEL!DataType mapsTo s (
+		name <- 'int',
+		namespace <- jpackage)
+}
+
+rule StringDataType {
+	from s : INMODEL!DataType (
+		s.name = 'String')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='lang')->first(); }
+	to t : OUTMODEL!Class mapsTo s (
+		name <- 'String',
+		namespace <- jpackage)
+}
+
+rule BooleanDataType {
+	from s : INMODEL!DataType (
+		s.name = 'Boolean')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='lang')->first(); }
+	to t : OUTMODEL!DataType mapsTo s (
+		name <- 'boolean',
+		namespace <- jpackage)
+}
+
+rule CollectionDataType {
+	from s : INMODEL!DataType (
+		s.name = 'Collection')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='util')->first(); }
+	to t : OUTMODEL!Interface mapsTo s (
+		name <- 'Collection',
+		namespace <- jpackage)
+}
+
+rule SetDataType {
+	from s : INMODEL!DataType (
+		s.name = 'Set')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='util')->first(); }
+	to t : OUTMODEL!Interface mapsTo s (
+		name <- 'Set',
+		namespace <- jpackage)
+}
+
+rule BagDataType {
+	from s : INMODEL!DataType (
+		s.name = 'Bag')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='util')->first(); }
+	to t : OUTMODEL!Interface mapsTo s (
+		name <- 'Collection',
+		namespace <- jpackage)
+}
+
+rule SequenceDataType {
+	from s : INMODEL!DataType (
+		s.name = 'Sequence')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='util')->first(); }
+	to t : OUTMODEL!Interface mapsTo s (
+		name <- 'List',
+		namespace <- jpackage)
+}
+
+rule OrderedSetDataType {
+	from s : INMODEL!DataType (
+		s.name = 'OrderedSet')
+	using { jpackage : INMODEL!Class =
+		INMODEL!Class.allInstances()->select(c|c.namespace.name='java' and c.name='util')->first(); }
+	to t : OUTMODEL!Interface mapsTo s (
+		name <- 'SortedSet',
+		namespace <- jpackage)
+}
+
+rule VoidReturnParameter {
+	from s : INMODEL!Operation (
+		s.parameter->select(p|p.kind = #pdk_return)->isEmpty())
+	using { void : INMODEL!DataType =
+		INMODEL!DataType.allInstances()->select(c|c.name='void')->first(); }
+	to return : OUTMODEL!Parameter (
+	   	name <- 'return',
+		behavioralFeature <- s,
+		type <- void,
+		kind <- #pdk_return)
+}

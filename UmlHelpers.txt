@@ -1,0 +1,112 @@
+library UmlHelpers;
+
+-- ======================================================================
+-- Classifier helpers begin
+-- ======================================================================
+
+helper context INMODEL!Classifier def : isSet() : Boolean =
+	self.name = 'Set' or self.name = 'SequenceSet';
+
+helper context INMODEL!Classifier def : isCollection() : Boolean =
+	self.name = 'Collection' or self.name = 'Bag' or 
+	self.name = 'Sequence' or self.isSet();
+
+helper context INMODEL!Classifier def : javaType() : INMODEL!Classifier =
+	if self.name = 'OclAny' then
+		INMODEL!Class.allInstances()->select(c|c.name='Object')->first()
+	else if self.name = 'Real' then
+		INMODEL!DataType.allInstances()->select(c|c.name='double')->first()
+	else if self.name = 'Integer' then
+		INMODEL!DataType.allInstances()->select(c|c.name='int')->first()
+	else if self.name = 'String' then
+		INMODEL!Class.allInstances()->select(c|c.name='String')->first()
+	else if self.name = 'Boolean' then
+		INMODEL!DataType.allInstances()->select(c|c.name='boolean')->first()
+	else if self.isCollection() then
+		INMODEL!Interface.allInstances()->select(c|c.name='Vector')->first()
+	else 
+		self
+	endif endif endif endif endif endif;
+
+helper context INMODEL!Classifier def : java2Type() : INMODEL!Classifier =
+	if self.name = 'OclAny' then
+		INMODEL!Class.allInstances()->select(c|c.name='Object')->first()
+	else if self.name = 'Real' then
+		INMODEL!DataType.allInstances()->select(c|c.name='double')->first()
+	else if self.name = 'Integer' then
+		INMODEL!DataType.allInstances()->select(c|c.name='int')->first()
+	else if self.name = 'String' then
+		INMODEL!Class.allInstances()->select(c|c.name='String')->first()
+	else if self.name = 'Boolean' then
+		INMODEL!DataType.allInstances()->select(c|c.name='boolean')->first()
+	else if self.name = 'Collection' or self.name = 'Bag' then
+		INMODEL!Interface.allInstances()->select(c|c.name='Collection')->first()
+	else if self.name = 'Set' then
+		INMODEL!Interface.allInstances()->select(c|c.name='Set')->first()
+	else if self.name = 'Sequence' then
+		INMODEL!Interface.allInstances()->select(c|c.name='List')->first()
+	else if self.name = 'SequenceSet' then
+		INMODEL!Interface.allInstances()->select(c|c.name='OrderedList')->first()
+	else 
+		self
+	endif endif endif endif endif endif endif endif endif;
+
+helper context INMODEL!Classifier def : javaInstance() : String =
+	if self.isCollection() then
+		'new java.util.Vector()'
+	else
+		'null'
+	endif;
+
+helper context INMODEL!Classifier def : java2Instance() : String =
+	if self.isSet() then
+		'new java.util.TreeSet()'
+	else if self.isCollection() then
+		'new java.util.ArrayList()'
+	else
+		'null'
+	endif endif;
+
+-- ======================================================================
+-- Classifier helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- AssociationEnd helpers begin
+-- ======================================================================
+
+helper context INMODEL!AssociationEnd def : navigableFrom() : INMODEL!Classifier =
+	self.association.connection->select(x|x<>self)->first().participant;
+
+helper context INMODEL!AssociationEnd def : isSingle() : Boolean =
+	self.multiplicity.range->select(r|r.upper<>1)->isEmpty();
+
+helper context INMODEL!AssociationEnd def : isPublicSingle() : Boolean =
+	self.isNavigable and self.visibility = #vk_public and self.isSingle();
+
+helper context INMODEL!AssociationEnd def : isPublicMultiple() : Boolean =
+	self.isNavigable and self.visibility = #vk_public and not self.isSingle();
+
+helper context INMODEL!AssociationEnd def : type() : INMODEL!Classifier =
+	if self.isSingle() then
+		self.participant
+	else if self.ordering = #ok_ordered then
+		INMODEL!DataType.allInstances()->select(c|c.name='Sequence')->first()
+	else
+		INMODEL!DataType.allInstances()->select(c|c.name='Collection')->first()
+	endif;
+
+-- ======================================================================
+-- AssociationEnd helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- VisibilityKind helpers begin
+-- ======================================================================
+
+helper context INMODEL!VisibilityKind def : publicToPrivate() : INMODEL!VisibilityKind =
+	if self = #vk_public then #vk_private else self endif;
+
+-- ======================================================================
+-- VisibilityKind helpers end
+-- ======================================================================

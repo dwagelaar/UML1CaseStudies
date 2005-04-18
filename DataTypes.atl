@@ -1,0 +1,274 @@
+-- $Id$
+module DataTypes;
+
+create OUT : OUTMODEL from IN : INMODEL;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper context String def : dataType() : INMODEL!DataType =
+	INMODEL!DataType.allInstances()->select(c|c.name=self)->first();
+
+helper context String def : class() : INMODEL!Class =
+	INMODEL!Class.allInstances()->select(c|c.name=self)->first();
+
+helper context String def : interface() : INMODEL!Interface =
+	INMODEL!Interface.allInstances()->select(c|c.name=self)->first();
+
+helper context INMODEL!Classifier def : java2Type() : INMODEL!Classifier =
+	if self.name = 'OclAny' then
+		'Object'.class()
+	else if self.name = 'Real' then
+		'double'.dataType()
+	else if self.name = 'Integer' then
+		'int'.dataType()
+	else if self.name = 'String' then
+		'String'.class()
+	else if self.name = 'Boolean' then
+		'boolean'.dataType()
+	else if self.name = 'Collection' or self.name = 'Bag' then
+		'Collection'.interface()
+	else if self.name = 'Set' then
+		'Set'.interface()
+	else if self.name = 'Sequence' then
+		'List'.interface()
+	else if self.name = 'SequenceSet' then
+		'OrderedList'.interface()
+	else 
+		self
+	endif endif endif endif endif endif endif endif endif;
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- non-mapsTo rules begin
+-- ======================================================================
+
+rule VoidReturnParameter {
+	from s : INMODEL!Operation (
+		s.parameter->select(p|p.kind = #pdk_return)->isEmpty())
+	to return : OUTMODEL!Parameter (
+	   	name <- 'return',
+		behavioralFeature <- s,
+		type <- 'void'.dataType(),
+		kind <- #pdk_return)
+}
+
+-- ======================================================================
+-- non-mapsTo rules end
+-- ======================================================================
+
+-- ======================================================================
+-- mapsTo rules begin
+-- ======================================================================
+
+rule Attribute {
+	from s : INMODEL!Attribute
+	to t : OUTMODEL!Attribute mapsTo s (
+		name <- s.name,
+		owner <- s.owner,
+		stereotype <- s.stereotype,
+		type <- s.type.java2Type(),
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		changeability <- s.changeability,
+		isSpecification <- s.isSpecification,
+		associationEnd <- s.associationEnd,
+		initialValue <- s.initialValue)
+}
+
+rule Parameter {
+	from s : INMODEL!Parameter
+	to t : OUTMODEL!Parameter mapsTo s (
+		name <- s.name,
+		stereotype <- s.stereotype,
+		type <- s.type.java2Type(),
+		kind <- s.kind,
+		isSpecification <- s.isSpecification,
+		defaultValue <- s.defaultValue)
+}
+
+rule TaggedValue {
+	from s : INMODEL!TaggedValue (
+		not s.modelElement.oclIsKindOf(INMODEL!AssociationEnd))
+	to t : OUTMODEL!TaggedValue mapsTo s (
+		name <- s.name,
+		modelElement <- s.modelElement,
+		isSpecification <- s.isSpecification,
+		dataValue <- s.dataValue,
+		type <- s.type,
+		referenceValue <- s.referenceValue)
+}
+
+-- ======================================================================
+-- mapsTo rules end
+-- ======================================================================
+
+-- ======================================================================
+-- model copy begin
+-- ======================================================================
+
+rule Model {
+	from s : INMODEL!Model
+	to t : OUTMODEL!Model mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		isRoot <- s.isRoot,
+		isLeaf <- s.isLeaf,
+		isSpecification <- s.isSpecification,
+		isAbstract <- s.isAbstract)
+}
+
+rule Package {
+	from s : INMODEL!Package (s.oclIsTypeOf(INMODEL!Package))
+	to t : OUTMODEL!Package mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		isRoot <- s.isRoot,
+		isLeaf <- s.isLeaf,
+		isSpecification <- s.isSpecification,
+		isAbstract <- s.isAbstract)
+}
+
+rule DataType {
+	from s : INMODEL!DataType
+	to t : OUTMODEL!DataType mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		isRoot <- s.isRoot,
+		isLeaf <- s.isLeaf,
+		isSpecification <- s.isSpecification,
+		isAbstract <- s.isAbstract)
+}
+
+rule Stereotype {
+	from s : INMODEL!Stereotype
+	to t : OUTMODEL!Stereotype mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		visibility <- s.visibility,
+		baseClass <- s.baseClass)
+}
+
+rule TagDefinition {
+	from s : INMODEL!TagDefinition
+	to t : OUTMODEL!TagDefinition mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		owner <- s.owner,
+		tagType <- s.tagType,
+		isSpecification <- s.isSpecification,
+		multiplicity <- s.multiplicity)
+}
+
+rule Class {
+	from s : INMODEL!Class
+	to t : OUTMODEL!Class mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isRoot <- s.isRoot,
+		isLeaf <- s.isLeaf,
+		isSpecification <- s.isSpecification,
+		isAbstract <- s.isAbstract,
+		isActive <- s.isActive)
+}
+
+rule Interface {
+	from s : INMODEL!Interface
+	to t : OUTMODEL!Interface mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isRoot <- s.isRoot,
+		isLeaf <- s.isLeaf,
+		isSpecification <- s.isSpecification,
+		isAbstract <- s.isAbstract)
+}
+
+rule Expression {
+	from s : INMODEL!Expression (s.oclIsTypeOf(INMODEL!Expression))
+	to t : OUTMODEL!Expression mapsTo s (
+		language <- s.language,
+		body <- s.body)
+}
+
+rule Operation {
+	from s : INMODEL!Operation
+	to t : OUTMODEL!Operation mapsTo s (
+		name <- s.name,
+		owner <- s.owner,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isRoot <- s.isRoot,
+		isLeaf <- s.isLeaf,
+		isSpecification <- s.isSpecification,
+		isQuery <- s.isQuery,
+		isAbstract <- s.isAbstract,
+		concurrency <- s.concurrency,
+		parameter <- s.parameter)
+}
+
+rule Method {
+	from s : INMODEL!Method
+	to t : OUTMODEL!Method mapsTo s (
+		owner <- s.owner,
+		stereotype <- s.stereotype,
+		isSpecification <- s.isSpecification,
+		isQuery <- s.isQuery,
+		body <- s.body,
+		specification <- s.specification)
+}
+
+rule ProcedureExpression {
+	from s : INMODEL!ProcedureExpression
+	to t : OUTMODEL!ProcedureExpression mapsTo s (
+		language <- s.language,
+		body <- s.body)
+}
+
+rule Dependency {
+	from s : INMODEL!Dependency (s.oclIsTypeOf(INMODEL!Dependency))
+	to t : OUTMODEL!Dependency mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		isSpecification <- s.isSpecification,
+		client <- s.client,
+		supplier <- s.supplier)
+}
+
+rule Abstraction {
+	from s : INMODEL!Abstraction
+	to t : OUTMODEL!Abstraction mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		isSpecification <- s.isSpecification,
+		client <- s.client,
+		supplier <- s.supplier)
+}
+
+rule Generalization {
+	from s : INMODEL!Generalization
+	to t : OUTMODEL!Generalization mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		isSpecification <- s.isSpecification,
+		parent <- s.parent,
+		child <- s.child)
+}
+
+-- ======================================================================
+-- model copy end
+-- ======================================================================
