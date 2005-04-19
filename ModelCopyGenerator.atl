@@ -1,0 +1,112 @@
+-- $Id$
+query ModelCopyGenerator = INMODEL!Classifier.allInstances()->iterate(e; acc : String = 
+	'module ModelCopy;\n\n' +
+	'create OUT : OUTMODEL from IN : INMODEL;\n\n'|
+	acc + e.toString()).
+	writeTo('my_documents/PhD/Brainstorm/UML1CaseStudies/ModelCopy.atl');
+
+-- adapt the above 'writeTo' expression to reflect your file path
+
+helper context INMODEL!Class def : toString() : String =
+	self.toRuleString();
+
+helper context INMODEL!StructureType def : toString() : String =
+	self.toRuleString();
+
+helper context INMODEL!Association def : toString() : String =
+	'';
+
+helper context INMODEL!PrimitiveType def : toString() : String =
+	'';
+
+helper context INMODEL!EnumerationType def : toString() : String =
+	'';
+
+helper context INMODEL!CollectionType def : toString() : String =
+	'';
+
+helper context INMODEL!AliasType def : toString() : String =
+	'';
+
+helper context INMODEL!Classifier def : toRuleString() : String =
+	if self.isAbstract then
+		''
+	else
+		'rule ' + self.name + ' {\n' +
+		'    from s : INMODEL!' + self.name + self.inputConstraint() + '\n' +
+		'    to t : OUTMODEL!' + self.name + ' mapsTo s (' +
+		self.contentsToString() + ')\n' +
+		'}\n\n'
+	endif;
+
+helper context INMODEL!GeneralizableElement def : inputConstraint() : String =
+	if self.hasConcreteSubclasses() then
+		' (s.oclIsTypeOf(INMODEL!' + self.name + '))'
+	else
+		''
+	endif;
+
+helper context INMODEL!GeneralizableElement def : hasConcreteSubclasses() : Boolean =
+	not INMODEL!GeneralizableElement.allInstances()->select(e|
+		e.supertypes->includes(self) and not e.isAbstract)->isEmpty();
+
+helper context INMODEL!GeneralizableElement def : includesMember(member : INMODEL!ModelElement) : Boolean =
+	self.contents->includes(member) or
+	not self.supertypes->select(s|s.includesMember(member))->isEmpty();
+
+helper context INMODEL!GeneralizableElement def : contentsToString() : String =
+	self.referencesToString(
+		self.attributesToString(
+			self.fieldsToString('')));
+
+helper context INMODEL!GeneralizableElement def : fieldsToString(head : String) : String =
+	INMODEL!StructureField.allInstances()->select(f|self.includesMember(f))->
+		iterate(e; acc : String = head |
+		if acc.size() = 0 then
+			'\n' + e.toString()
+		else
+			acc + ',\n' + e.toString()
+		endif);
+
+helper context INMODEL!GeneralizableElement def : attributesToString(head : String) : String =
+	INMODEL!Attribute.allInstances()->select(a|self.includesMember(a))->
+		iterate(e; acc : String = head |
+		if acc.size() = 0 then
+			'\n' + e.toString()
+		else
+			acc + ',\n' + e.toString()
+		endif);
+
+helper context INMODEL!GeneralizableElement def : referencesToString(head : String) : String =
+	INMODEL!Reference.allInstances()->select(r|
+		self.includesMember(r) and
+		r.referencedEnd.otherEnd().aggregation=#none and
+		r.name<>'context')->
+			iterate(e; acc : String = head |
+			if acc.size() = 0 then
+				'\n' + e.toString()
+			else
+				acc + ',\n' + e.toString()
+			endif);
+
+helper context INMODEL!GeneralizableElement def : attributesToString(head : String) : String =
+	INMODEL!Attribute.allInstances()->select(a|self.includesMember(a))->
+		iterate(e; acc : String = head |
+		if acc.size() = 0 then
+			'\n' + e.toString()
+		else
+			acc + ',\n' + e.toString()
+		endif);
+
+helper context INMODEL!StructureField def : toString() : String =
+	'        ' + self.name + ' <- s.' + self.name;
+
+helper context INMODEL!Attribute def : toString() : String =
+	'        ' + self.name + ' <- s.' + self.name;
+
+helper context INMODEL!Reference def : toString() : String =
+	'        ' + self.name + ' <- s.' + self.name;
+
+helper context INMODEL!AssociationEnd def : otherEnd() : INMODEL!AssociationEnd =
+	self.container.contents->select(x|
+		x<>self and x.oclIsKindOf(INMODEL!AssociationEnd))->first();
