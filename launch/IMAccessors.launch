@@ -12,10 +12,10 @@
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="OUT" value="InstantMessengerAccessors"/>
+<mapEntry key="OUT" value="models/InstantMessengerAccessors"/>
 <mapEntry key="OUTMODEL" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
 <mapEntry key="INMODEL" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
-<mapEntry key="IN" value="/UML1CaseStudies/InstantMessengerAttributes.xmi"/>
+<mapEntry key="IN" value="/UML1CaseStudies/models/InstantMessengerAttributes.xmi"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="UML1CaseStudies"/>
 <mapAttribute key="Output">

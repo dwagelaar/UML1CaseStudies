@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
 <stringAttribute key="Model Handler" value="MDR"/>
-<stringAttribute key="ATL File Name" value="/UML1CaseStudies/Process.atl"/>
-<mapAttribute key="Libs"/>
+<stringAttribute key="ATL File Name" value="/UML1CaseStudies/AssociationAttributes.atl"/>
+<mapAttribute key="Libs">
+<mapEntry key="Java" value="/UML1CaseStudies/lib/Java.asm"/>
+</mapAttribute>
 <mapAttribute key="ModelType">
 <mapEntry key="OUT" value="MODELOUTPUT"/>
 <mapEntry key="OUTMODEL" value="METAMODELOUTPUT"/>
@@ -10,10 +12,10 @@
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="OUT" value="InstantMessengerProcess"/>
+<mapEntry key="OUT" value="models/BreakoutAttributes"/>
 <mapEntry key="OUTMODEL" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
 <mapEntry key="INMODEL" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
-<mapEntry key="IN" value="/UML1CaseStudies/InstantMessengerObserver.xmi"/>
+<mapEntry key="IN" value="/UML1CaseStudies/models/BreakoutModel.xmi"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="UML1CaseStudies"/>
 <mapAttribute key="Output">

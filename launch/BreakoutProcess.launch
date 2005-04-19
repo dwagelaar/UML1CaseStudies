@@ -10,10 +10,10 @@
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="OUT" value="BreakoutProcess"/>
+<mapEntry key="OUT" value="models/BreakoutProcess"/>
 <mapEntry key="OUTMODEL" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
 <mapEntry key="INMODEL" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
-<mapEntry key="IN" value="/UML1CaseStudies/BreakoutObserver.xmi"/>
+<mapEntry key="IN" value="/UML1CaseStudies/models/BreakoutObserver.xmi"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="UML1CaseStudies"/>
 <mapAttribute key="Output">
