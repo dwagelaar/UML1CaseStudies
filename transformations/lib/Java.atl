@@ -1,0 +1,195 @@
+-- $Id$
+library Java;
+
+uses strings;
+
+-- ======================================================================
+-- generic helpers begin
+-- ======================================================================
+
+helper context String def : isSequenceSet() : Boolean =
+	self = 'SequenceSet';
+
+helper context String def : isSet() : Boolean =
+	self = 'Set' or self.isSequenceSet();
+
+helper context String def : isSequence() : Boolean =
+	self = 'Sequence' or self.isSequenceSet();
+
+helper context String def : isCollection() : Boolean =
+	self = 'Collection' or self = 'Bag' or 
+	self.isSequence() or self.isSet();
+
+helper context String def : s() : String =
+	if self.isCollection() then 
+		's'
+	else
+		''
+	endif;
+
+helper context String def : javaSetter() : String =
+	'this.' + self + ' = ' + self + ';';
+
+helper context String def : javaDualSetter(otherEnd : String) : String =
+	'if (this.' + self + ' != ' + self + ') {\n' +
+	'    this.' + self + ' = ' + self + ';\n' +
+	'    ' + self + '.set' + otherEnd + '(this);\n' +
+	'}';
+
+helper context String def : javaAddRemoveSetter(otherEnd : String) : String =
+	if otherEnd <> '' then
+		'if (this.' + self + ' != ' + self + ') {\n' +
+        '    if (this.' + self + ' != null) this.' + self + '.remove' + otherEnd + '(this);\n' +
+		'    this.' + self + ' = ' + self + ';\n' +
+        '    if (' + self + ' != null) ' + self + '.add' + otherEnd + '(this);\n' +
+		'}'
+	else
+		'this.' + self + ' = ' + self + ';'
+	endif;
+
+helper context String def : javaGetter() : String =
+	'return ' + self + ';';
+
+helper context String def : java2Adder() : String =
+	'this.' + self + '.add(' + self + ');';
+	
+helper context String def : java2SetterAdder(otherEnd : String) : String =
+	'if (! this.' + self + '.contains(' + self + ')) {\n' +
+	'    this.' + self + '.add(' + self + ');\n' +
+	'    ' + self + '.set' + otherEnd + '(this);\n' +
+	'}';
+	
+helper context String def : java2DualAdder(otherEnd : String) : String =
+	'if (! this.' + self + '.contains(' + self + ')) {\n' +
+	'    this.' + self + '.add(' + self + ');\n' +
+	'    ' + self + '.add' + otherEnd + '(this);\n' +
+	'}';
+	
+helper context String def : java2Remover() : String =
+	'this.' + self + '.remove(' + self + ');';
+	
+helper context String def : java2SetterRemover(otherEnd : String) : String =
+	'if (this.' + self + '.contains(' + self + ')) {\n' +
+	'    this.' + self + '.remove(' + self + ');\n' +
+	'    ' + self + '.set' + otherEnd + '(null);\n' +
+	'}';
+	
+helper context String def : java2DualRemover(otherEnd : String) : String =
+	'if (this.' + self + '.contains(' + self + ')) {\n' +
+	'    this.' + self + '.remove(' + self + ');\n' +
+	'    ' + self + '.remove' + otherEnd + '(this);\n' +
+	'}';
+	
+helper context String def : javaType() : String =
+	if self = 'OclAny' then
+		'Object'
+	else if self = 'Real' then
+		'double'
+	else if self = 'Integer' then
+		'int'
+	else if self = 'Boolean' then
+		'boolean'
+	else if self.isCollection() then
+		'Vector'
+	else 
+		self
+	endif endif endif endif endif;
+
+helper context String def : java2Type() : String =
+	if self.isSequenceSet() then
+		'OrderedSet'
+	else if self.isSet() then
+		'Set'
+	else if self.isSequence() then
+		'List'
+	else if self.isCollection() then
+		'Collection'
+	else 
+		self.javaType()
+	endif endif endif endif;
+
+helper context String def : javaInstance() : String =
+	if self.isCollection() then
+		'new java.util.Vector()'
+	else
+		'null'
+	endif;
+
+helper context String def : java2Instance() : String =
+	if self.isSet() then
+		'new java.util.TreeSet()'
+	else if self.isCollection() then
+		'new java.util.ArrayList()'
+	else
+		'null'
+	endif endif;
+
+helper context String def : javaBoxing(type : String) : String =
+	if type = 'Boolean' then
+		'new Boolean(' + self + ')'
+	else if type = 'Integer' then
+		'new Integer(' + self + ')'
+	else if type = 'Real' then
+		'new Double(' + self + ')'
+	else
+		self
+	endif endif endif;
+
+helper context String def : javaNotifyStanza(type : String) : String =
+	'    setChanged();\n' +
+	'    java.util.Hashtable e = new java.util.Hashtable();\n' +
+	'    e.put("name", "' + self.firstToUpper() + '");\n' +
+	'    e.put("value", ' + self.javaBoxing(type) + ');\n' +
+	'    notifyObservers(e);\n';
+
+helper context String def : javaUpdater() : String =
+	'if (' + self + ' instanceof java.util.Hashtable) {\n' +
+    '    java.util.Hashtable e = (java.util.Hashtable) ' + self + ';\n' +
+    '    String mName = "on" + ((String) e.get("name")) + "Change";\n' +
+    '    Class[] parmTypes = { e.get("value").getClass() };\n' +
+    '    try {\n' +
+    '        java.lang.reflect.Method m = getClass().getDeclaredMethod(mName, parmTypes);\n' +
+    '        Object[] args = { e.get("value") };\n' +
+    '        m.invoke(this, args);\n' +
+    '    } catch (NoSuchMethodException nex) {\n' +
+    '        // no handler\n' +
+    '    } catch (Exception ex) {\n' +
+    '        // wrong handler configuration\n' +
+    '        ex.printStackTrace();\n' +
+    '    }\n' +
+    '}';
+
+helper context String def : javaSubscribeStanza() : String =
+    'if (' + self + ' != null) ' + self + '.addObserver(this);\n';
+
+helper context String def : javaUnsubscribeStanza() : String =
+    'if (this.' + self + ' != null) this.' + self + '.deleteObserver(this);\n';
+
+helper context String def : javaSetterSubscribe(body : String) : String =
+	'// Begin subscribe stanza\n' +
+    self.javaUnsubscribeStanza() +
+	'// Begin original body\n' +
+	body +
+	'// End original body\n' +
+    self.javaSubscribeStanza() +
+	'// End subscribe stanza';
+	
+helper context String def : javaAdderSubscribe(body : String) : String =
+	'// Begin subscribe stanza\n' +
+	'// Begin original body\n' +
+	body +
+	'// End original body\n' +
+    self.javaSubscribeStanza() +
+	'// End subscribe stanza';
+	
+helper context String def : javaRemoverSubscribe(body : String) : String =
+	'// Begin subscribe stanza\n' +
+    self.javaUnsubscribeStanza() +
+	'// Begin original body\n' +
+	body +
+	'// End original body\n' +
+	'// End subscribe stanza';
+
+-- ======================================================================
+-- generic helpers end
+-- ======================================================================
