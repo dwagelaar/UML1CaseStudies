@@ -16,14 +16,46 @@ public class AWTFieldView extends breakout.view.FieldView {
  * 
  * 
  * 
- * @param view 
+ * @param size 
  */
-    private void addView(breakout.view.SpriteView view) {        
-        java.awt.Component c = getComponent(view);
-        if (c == null) {
-            return;
-        }
-        getImpl().add(c);
+    public void onSizeChange(breakout.model.Dimension size) {        
+        impl.setSize(size.getWidth(), size.getHeight());
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public breakout.view.awt.AWTField getImpl() {        
+        return impl;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param field 
+ */
+    public void onFieldChange(breakout.model.Field field) {        
+        // stub
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void init() {        
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        breakout.model.Dimension size = new breakout.model.Dimension();
+        size.setWidth(screenSize.width);
+        size.setHeight(screenSize.height);
+        getModel().setSize(size);
+        getImpl().setVisible(true);
     } 
 
 /**
@@ -51,32 +83,14 @@ public class AWTFieldView extends breakout.view.FieldView {
  * 
  * 
  * 
- * @param size 
+ * @param view 
  */
-    public void onSizeChange(breakout.model.Dimension size) {        
-        impl.setSize(size.getWidth(), size.getHeight());
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param field 
- */
-    public void onFieldChange(breakout.model.Field field) {        
-        // stub
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param pos 
- */
-    public void onPositionChange(breakout.model.Point pos) {        
-        getImpl().setLocation(pos.getX(), pos.getY());
+    private void addView(breakout.view.SpriteView view) {        
+        java.awt.Component c = getComponent(view);
+        if (c == null) {
+            return;
+        }
+        getImpl().add(c);
     } 
 
 /**
@@ -99,17 +113,6 @@ public class AWTFieldView extends breakout.view.FieldView {
  * 
  * 
  * 
- * @return 
- */
-    public breakout.view.awt.AWTField getImpl() {        
-        return impl;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param impl 
  */
     public void setImpl(breakout.view.awt.AWTField impl) {        
@@ -120,13 +123,10 @@ public class AWTFieldView extends breakout.view.FieldView {
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param pos 
  */
-    public void init() {        
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        breakout.model.Dimension size = new breakout.model.Dimension();
-        size.setWidth(screenSize.width);
-        size.setHeight(screenSize.height);
-        getModel().setSize(size);
-        getImpl().setVisible(true);
+    public void onPositionChange(breakout.model.Point pos) {        
+        getImpl().setLocation(pos.getX(), pos.getY());
     } 
  }

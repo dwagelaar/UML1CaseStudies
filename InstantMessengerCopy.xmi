@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Apr 18 17:57:23 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue Apr 19 10:18:35 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -10,301 +10,279 @@
     <UML:Model xmi.id = 'a1' name = 'InstantMessengerModel' isSpecification = 'false'
       isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a2' name = 'java' isSpecification = 'false' isRoot = 'false'
+        <UML:Package xmi.id = 'a2' name = 'ocl' isSpecification = 'false' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
-            <UML:Package xmi.id = 'a3' name = 'util' isSpecification = 'false' isRoot = 'false'
+            <UML:DataType xmi.id = 'a3' name = 'Integer' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a4' name = 'Boolean' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a5' name = 'Collection' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a6' name = 'Set' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a7' name = 'Bag' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a8' name = 'Real' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a9' name = 'Sequence' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a10' name = 'OclAny' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a11' name = 'OclType' isSpecification = 'false'
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+            <UML:DataType xmi.id = 'a12' name = 'String' isSpecification = 'false' isRoot = 'false'
+              isLeaf = 'false' isAbstract = 'false'/>
+          </UML:Namespace.ownedElement>
+        </UML:Package>
+        <UML:Package xmi.id = 'a13' name = 'java' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:Namespace.ownedElement>
+            <UML:Package xmi.id = 'a14' name = 'util' isSpecification = 'false' isRoot = 'false'
               isLeaf = 'false' isAbstract = 'false'>
               <UML:Namespace.ownedElement>
-                <UML:Class xmi.id = 'a4' name = 'Observable' visibility = 'public' isSpecification = 'false'
+                <UML:Class xmi.id = 'a15' name = 'Observable' visibility = 'public' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
-                <UML:Class xmi.id = 'a5' name = 'Vector' visibility = 'public' isSpecification = 'false'
+                <UML:Class xmi.id = 'a16' name = 'Vector' visibility = 'public' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
-                <UML:Class xmi.id = 'a6' name = 'ArrayList' visibility = 'public' isSpecification = 'false'
+                <UML:Class xmi.id = 'a17' name = 'ArrayList' visibility = 'public' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
-                <UML:Interface xmi.id = 'a7' name = 'List' visibility = 'public' isSpecification = 'false'
+                <UML:Class xmi.id = 'a18' name = 'TreeSet' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Interface xmi.id = 'a19' name = 'OrderedSet' visibility = 'public'
+                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Interface xmi.id = 'a20' name = 'Set' visibility = 'public' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-                <UML:Interface xmi.id = 'a8' name = 'Observer' visibility = 'public' isSpecification = 'false'
+                <UML:Interface xmi.id = 'a21' name = 'Observer' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Interface xmi.id = 'a22' name = 'Collection' visibility = 'public'
+                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Interface xmi.id = 'a23' name = 'List' visibility = 'public' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
               </UML:Namespace.ownedElement>
             </UML:Package>
-            <UML:Package xmi.id = 'a9' name = 'lang' isSpecification = 'false' isRoot = 'false'
+            <UML:Package xmi.id = 'a24' name = 'lang' isSpecification = 'false' isRoot = 'false'
               isLeaf = 'false' isAbstract = 'false'>
               <UML:Namespace.ownedElement>
-                <UML:DataType xmi.id = 'a10' name = 'int' isSpecification = 'false' isRoot = 'false'
+                <UML:DataType xmi.id = 'a25' name = 'boolean' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:DataType xmi.id = 'a26' name = 'double' isSpecification = 'false' isRoot = 'false'
                   isLeaf = 'false' isAbstract = 'false'/>
-                <UML:DataType xmi.id = 'a11' name = 'void' isSpecification = 'false' isRoot = 'false'
+                <UML:DataType xmi.id = 'a27' name = 'void' isSpecification = 'false' isRoot = 'false'
                   isLeaf = 'false' isAbstract = 'false'/>
-                <UML:Class xmi.id = 'a12' name = 'Object' visibility = 'public' isSpecification = 'false'
+                <UML:DataType xmi.id = 'a28' name = 'int' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Class xmi.id = 'a29' name = 'String' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
+                <UML:Class xmi.id = 'a30' name = 'Object' visibility = 'public' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'/>
               </UML:Namespace.ownedElement>
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a13' name = 'ocl' isSpecification = 'false' isRoot = 'false'
+        <UML:Package xmi.id = 'a31' name = 'im' isSpecification = 'false' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
-            <UML:DataType xmi.id = 'a14' name = 'String' isSpecification = 'false' isRoot = 'false'
-              isLeaf = 'false' isAbstract = 'false'/>
-            <UML:DataType xmi.id = 'a15' name = 'OclAny' isSpecification = 'false' isRoot = 'false'
-              isLeaf = 'false' isAbstract = 'false'/>
-          </UML:Namespace.ownedElement>
-        </UML:Package>
-        <UML:Package xmi.id = 'a16' name = 'im' isSpecification = 'false' isRoot = 'false'
-          isLeaf = 'false' isAbstract = 'false'>
-          <UML:Namespace.ownedElement>
-            <UML:Package xmi.id = 'a17' name = 'model' isSpecification = 'false' isRoot = 'false'
+            <UML:Package xmi.id = 'a32' name = 'view' isSpecification = 'false' isRoot = 'false'
               isLeaf = 'false' isAbstract = 'false'>
               <UML:Namespace.ownedElement>
-                <UML:Package xmi.id = 'a18' name = 'messages' isSpecification = 'false'
-                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                  <UML:Namespace.ownedElement>
-                    <UML:Class xmi.id = 'a19' name = 'TextMessage' visibility = 'public' isSpecification = 'false'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
-                      <UML:GeneralizableElement.generalization>
-                        <UML:Generalization xmi.idref = 'a20'/>
-                      </UML:GeneralizableElement.generalization>
-                    </UML:Class>
-                    <UML:Class xmi.id = 'a21' name = 'JabberMessageFactory' visibility = 'public'
-                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                      isActive = 'false'>
-                      <UML:ModelElement.clientDependency>
-                        <UML:Abstraction xmi.idref = 'a22'/>
-                      </UML:ModelElement.clientDependency>
-                      <UML:Classifier.feature>
-                        <UML:Operation xmi.id = 'a23' name = 'messageType' visibility = 'public'
-                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'a24' name = 'return' isSpecification = 'false'
-                              kind = 'return'>
-                              <UML:Parameter.type>
-                                <UML:DataType xmi.idref = 'a14'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Operation xmi.id = 'a25' name = 'createMessage' visibility = 'public'
-                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'a26' name = 'return' isSpecification = 'false'
-                              kind = 'return'>
-                              <UML:Parameter.type>
-                                <UML:Class xmi.idref = 'a27'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'a28' isSpecification = 'false' isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'a29' language = 'java' body = ''/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'a25'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Method xmi.id = 'a30' isSpecification = 'false' isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'a31' language = 'java' body = ''/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'a23'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                      </UML:Classifier.feature>
-                    </UML:Class>
-                    <UML:Class xmi.id = 'a32' name = 'SMSMessage' visibility = 'public' isSpecification = 'false'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                      <UML:GeneralizableElement.generalization>
-                        <UML:Generalization xmi.idref = 'a33'/>
-                      </UML:GeneralizableElement.generalization>
-                    </UML:Class>
-                    <UML:Class xmi.id = 'a34' name = 'JabberMessage' visibility = 'public' isSpecification = 'false'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                      <UML:GeneralizableElement.generalization>
-                        <UML:Generalization xmi.idref = 'a35'/>
-                      </UML:GeneralizableElement.generalization>
-                    </UML:Class>
-                    <UML:Class xmi.id = 'a36' name = 'SMSMessageFactory' visibility = 'public'
-                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                      isActive = 'false'>
-                      <UML:ModelElement.clientDependency>
-                        <UML:Abstraction xmi.idref = 'a37'/>
-                      </UML:ModelElement.clientDependency>
-                      <UML:Classifier.feature>
-                        <UML:Operation xmi.id = 'a38' name = 'messageType' visibility = 'public'
-                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'a39' name = 'return' isSpecification = 'false'
-                              kind = 'return'>
-                              <UML:Parameter.type>
-                                <UML:DataType xmi.idref = 'a14'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Operation xmi.id = 'a40' name = 'createMessage' visibility = 'public'
-                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'a41' name = 'return' isSpecification = 'false'
-                              kind = 'return'>
-                              <UML:Parameter.type>
-                                <UML:Class xmi.idref = 'a27'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'a42' isSpecification = 'false' isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'a43' language = 'java' body = ''/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'a40'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Method xmi.id = 'a44' isSpecification = 'false' isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'a45' language = 'java' body = ''/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'a38'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                      </UML:Classifier.feature>
-                    </UML:Class>
-                    <UML:Generalization xmi.id = 'a35' isSpecification = 'false'>
-                      <UML:Generalization.child>
-                        <UML:Class xmi.idref = 'a34'/>
-                      </UML:Generalization.child>
-                      <UML:Generalization.parent>
-                        <UML:Class xmi.idref = 'a19'/>
-                      </UML:Generalization.parent>
-                    </UML:Generalization>
-                    <UML:Generalization xmi.id = 'a33' isSpecification = 'false'>
-                      <UML:Generalization.child>
-                        <UML:Class xmi.idref = 'a32'/>
-                      </UML:Generalization.child>
-                      <UML:Generalization.parent>
-                        <UML:Class xmi.idref = 'a19'/>
-                      </UML:Generalization.parent>
-                    </UML:Generalization>
-                  </UML:Namespace.ownedElement>
-                </UML:Package>
-                <UML:Class xmi.id = 'a46' name = 'NetworkSpecificData' visibility = 'public'
-                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'true'
-                  isActive = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a47'/>
-                    <UML:Stereotype xmi.idref = 'a48'/>
-                  </UML:ModelElement.stereotype>
-                </UML:Class>
-                <UML:Class xmi.id = 'a49' name = 'ContactList' visibility = 'public' isSpecification = 'false'
-                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a47'/>
-                    <UML:Stereotype xmi.idref = 'a48'/>
-                  </UML:ModelElement.stereotype>
-                </UML:Class>
-                <UML:Class xmi.id = 'a27' name = 'Message' visibility = 'public' isSpecification = 'false'
+                <UML:Class xmi.id = 'a33' name = 'ContactView' visibility = 'public' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
-                  <UML:GeneralizableElement.generalization>
-                    <UML:Generalization xmi.idref = 'a50'/>
-                  </UML:GeneralizableElement.generalization>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a34'/>
+                  </UML:ModelElement.stereotype>
                   <UML:Classifier.feature>
-                    <UML:Attribute xmi.id = 'a51' name = 'recipient' visibility = 'public' isSpecification = 'false'
-                      ownerScope = 'instance' changeability = 'changeable'>
-                      <UML:StructuralFeature.type>
-                        <UML:DataType xmi.idref = 'a14'/>
-                      </UML:StructuralFeature.type>
-                    </UML:Attribute>
-                    <UML:Attribute xmi.id = 'a52' name = 'content' visibility = 'public' isSpecification = 'false'
-                      ownerScope = 'instance' changeability = 'changeable'>
-                      <UML:StructuralFeature.type>
-                        <UML:DataType xmi.idref = 'a15'/>
-                      </UML:StructuralFeature.type>
-                    </UML:Attribute>
-                    <UML:Attribute xmi.id = 'a53' name = 'sender' visibility = 'public' isSpecification = 'false'
-                      ownerScope = 'instance' changeability = 'changeable'>
-                      <UML:StructuralFeature.type>
-                        <UML:DataType xmi.idref = 'a14'/>
-                      </UML:StructuralFeature.type>
-                    </UML:Attribute>
-                    <UML:Operation xmi.id = 'a54' name = 'send' visibility = 'public' isSpecification = 'false'
-                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
-                      isLeaf = 'false' isAbstract = 'false'/>
-                    <UML:Method xmi.id = 'a55' isSpecification = 'false' isQuery = 'false'>
+                    <UML:Operation xmi.id = 'a35' name = 'onListChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
+                    <UML:Operation xmi.id = 'a36' name = 'onNameChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
+                    <UML:Operation xmi.id = 'a37' name = 'onUserIdChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
+                    <UML:Method xmi.id = 'a38' isSpecification = 'false' isQuery = 'false'>
                       <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a56' language = 'java' body = '        if (network != null) {&#10;            network.send(this);&#10;        }&#10;'/>
+                        <UML:ProcedureExpression xmi.id = 'a39' language = 'java' body = ''/>
                       </UML:Method.body>
                       <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a54'/>
+                        <UML:Operation xmi.idref = 'a35'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a40' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a41' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a37'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a42' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a43' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a36'/>
                       </UML:Method.specification>
                     </UML:Method>
                   </UML:Classifier.feature>
                 </UML:Class>
-                <UML:Class xmi.id = 'a57' name = 'Contact' visibility = 'public' isSpecification = 'false'
-                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                  <UML:GeneralizableElement.generalization>
-                    <UML:Generalization xmi.idref = 'a58'/>
-                  </UML:GeneralizableElement.generalization>
+                <UML:Class xmi.id = 'a44' name = 'MessageView' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a34'/>
+                  </UML:ModelElement.stereotype>
                   <UML:Classifier.feature>
-                    <UML:Attribute xmi.id = 'a59' name = 'name' visibility = 'public' isSpecification = 'false'
-                      ownerScope = 'instance' changeability = 'changeable'>
-                      <UML:StructuralFeature.type>
-                        <UML:DataType xmi.idref = 'a14'/>
-                      </UML:StructuralFeature.type>
-                    </UML:Attribute>
-                    <UML:Attribute xmi.id = 'a60' name = 'userId' visibility = 'public' isSpecification = 'false'
-                      ownerScope = 'instance' changeability = 'changeable'>
-                      <UML:StructuralFeature.type>
-                        <UML:DataType xmi.idref = 'a14'/>
-                      </UML:StructuralFeature.type>
-                    </UML:Attribute>
+                    <UML:Operation xmi.id = 'a45' name = 'onRecipientChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
+                    <UML:Operation xmi.id = 'a46' name = 'onContentChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
+                    <UML:Operation xmi.id = 'a47' name = 'onSenderChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
+                    <UML:Method xmi.id = 'a48' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a49' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a46'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a50' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a51' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a47'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a52' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a53' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a45'/>
+                      </UML:Method.specification>
+                    </UML:Method>
                   </UML:Classifier.feature>
                 </UML:Class>
-                <UML:Interface xmi.id = 'a61' name = 'MessageFactory' visibility = 'public'
+                <UML:Class xmi.id = 'a54' name = 'ContactListView' visibility = 'public'
+                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'true'
+                  isActive = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a34'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Classifier.feature>
+                    <UML:Operation xmi.id = 'a55' name = 'onContactChange' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
+                    <UML:Method xmi.id = 'a56' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a57' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a55'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Interface xmi.id = 'a58' name = 'ViewFactory' visibility = 'public'
                   isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Classifier.feature>
-                    <UML:Operation xmi.id = 'a62' name = 'createMessage' visibility = 'public'
+                    <UML:Operation xmi.id = 'a59' name = 'createMessageView' visibility = 'public'
                       isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
                       isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
                       <UML:BehavioralFeature.parameter>
-                        <UML:Parameter xmi.id = 'a63' name = 'return' isSpecification = 'false'
-                          kind = 'return'>
+                        <UML:Parameter xmi.id = 'a60' name = 'message' isSpecification = 'false'
+                          kind = 'in'>
                           <UML:Parameter.type>
-                            <UML:Class xmi.idref = 'a27'/>
+                            <UML:Class xmi.idref = 'a61'/>
                           </UML:Parameter.type>
                         </UML:Parameter>
-                        <UML:Parameter xmi.id = 'a64' name = 'forNw' isSpecification = 'false' kind = 'in'>
+                        <UML:Parameter xmi.id = 'a62' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
                           <UML:Parameter.type>
-                            <UML:Class xmi.idref = 'a65'/>
+                            <UML:Class xmi.idref = 'a44'/>
                           </UML:Parameter.type>
                         </UML:Parameter>
                       </UML:BehavioralFeature.parameter>
                     </UML:Operation>
-                    <UML:Method xmi.id = 'a66' isSpecification = 'false' isQuery = 'false'>
+                    <UML:Operation xmi.id = 'a63' name = 'createContactListView' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a64' name = 'list' isSpecification = 'false' kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a65'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a66' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a54'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Operation xmi.id = 'a67' name = 'createContactView' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a68' name = 'contact' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a69'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a70' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a33'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
+                    <UML:Method xmi.id = 'a71' isSpecification = 'false' isQuery = 'false'>
                       <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a67' language = 'java' body = ''/>
+                        <UML:ProcedureExpression xmi.id = 'a72' language = 'java' body = ''/>
                       </UML:Method.body>
                       <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a62'/>
+                        <UML:Operation xmi.idref = 'a63'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a73' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a74' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a67'/>
+                      </UML:Method.specification>
+                    </UML:Method>
+                    <UML:Method xmi.id = 'a75' isSpecification = 'false' isQuery = 'false'>
+                      <UML:Method.body>
+                        <UML:ProcedureExpression xmi.id = 'a76' language = 'java' body = ''/>
+                      </UML:Method.body>
+                      <UML:Method.specification>
+                        <UML:Operation xmi.idref = 'a59'/>
                       </UML:Method.specification>
                     </UML:Method>
                   </UML:Classifier.feature>
                 </UML:Interface>
-                <UML:Association xmi.id = 'a68' name = 'BelongsToNetwork' isSpecification = 'false'
-                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                <UML:Association xmi.id = 'a77' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a78'/>
+                  </UML:ModelElement.stereotype>
                   <UML:Association.connection>
-                    <UML:AssociationEnd xmi.id = 'a69' name = 'network' visibility = 'public'
+                    <UML:AssociationEnd xmi.id = 'a79' name = 'model' visibility = 'public'
                       isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
                       targetScope = 'instance' changeability = 'changeable'>
                       <UML:AssociationEnd.multiplicity>
-                        <UML:Multiplicity xmi.id = 'a70'>
+                        <UML:Multiplicity xmi.id = 'a80'>
                           <UML:Multiplicity.range>
-                            <UML:MultiplicityRange xmi.id = 'a71' lower = '1' upper = '1'/>
+                            <UML:MultiplicityRange xmi.id = 'a81' lower = '1' upper = '1'/>
                           </UML:Multiplicity.range>
                         </UML:Multiplicity>
                       </UML:AssociationEnd.multiplicity>
@@ -312,568 +290,507 @@
                         <UML:Class xmi.idref = 'a65'/>
                       </UML:AssociationEnd.participant>
                     </UML:AssociationEnd>
-                    <UML:AssociationEnd xmi.id = 'a72' visibility = 'public' isSpecification = 'false'
+                    <UML:AssociationEnd xmi.id = 'a82' visibility = 'public' isSpecification = 'false'
                       isNavigable = 'false' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
                       changeability = 'changeable'>
                       <UML:AssociationEnd.multiplicity>
-                        <UML:Multiplicity xmi.id = 'a73'>
+                        <UML:Multiplicity xmi.id = 'a83'>
                           <UML:Multiplicity.range>
-                            <UML:MultiplicityRange xmi.id = 'a74' lower = '1' upper = '1'/>
+                            <UML:MultiplicityRange xmi.id = 'a84' lower = '1' upper = '1'/>
                           </UML:Multiplicity.range>
                         </UML:Multiplicity>
                       </UML:AssociationEnd.multiplicity>
                       <UML:AssociationEnd.participant>
-                        <UML:Class xmi.idref = 'a46'/>
+                        <UML:Class xmi.idref = 'a54'/>
                       </UML:AssociationEnd.participant>
                     </UML:AssociationEnd>
                   </UML:Association.connection>
                 </UML:Association>
-                <UML:Association xmi.id = 'a75' isSpecification = 'false' isRoot = 'false'
+                <UML:Association xmi.id = 'a85' name = '' isSpecification = 'false' isRoot = 'false'
                   isLeaf = 'false' isAbstract = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a76'/>
-                  </UML:ModelElement.stereotype>
                   <UML:Association.connection>
-                    <UML:AssociationEnd xmi.id = 'a77' visibility = 'public' isSpecification = 'false'
-                      isNavigable = 'false' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
-                      changeability = 'changeable'>
-                      <UML:AssociationEnd.multiplicity>
-                        <UML:Multiplicity xmi.id = 'a78'>
-                          <UML:Multiplicity.range>
-                            <UML:MultiplicityRange xmi.id = 'a79' lower = '1' upper = '1'/>
-                          </UML:Multiplicity.range>
-                        </UML:Multiplicity>
-                      </UML:AssociationEnd.multiplicity>
-                      <UML:AssociationEnd.participant>
-                        <UML:Class xmi.idref = 'a80'/>
-                      </UML:AssociationEnd.participant>
-                    </UML:AssociationEnd>
-                    <UML:AssociationEnd xmi.id = 'a81' name = 'model' visibility = 'public'
+                    <UML:AssociationEnd xmi.id = 'a86' name = 'viewFactory' visibility = 'public'
                       isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
                       targetScope = 'instance' changeability = 'changeable'>
                       <UML:AssociationEnd.multiplicity>
-                        <UML:Multiplicity xmi.id = 'a82'>
+                        <UML:Multiplicity xmi.id = 'a87'>
                           <UML:Multiplicity.range>
-                            <UML:MultiplicityRange xmi.id = 'a83' lower = '1' upper = '1'/>
+                            <UML:MultiplicityRange xmi.id = 'a88' lower = '1' upper = '1'/>
                           </UML:Multiplicity.range>
                         </UML:Multiplicity>
                       </UML:AssociationEnd.multiplicity>
                       <UML:AssociationEnd.participant>
-                        <UML:Class xmi.idref = 'a27'/>
+                        <UML:Interface xmi.idref = 'a58'/>
                       </UML:AssociationEnd.participant>
                     </UML:AssociationEnd>
-                  </UML:Association.connection>
-                </UML:Association>
-                <UML:Association xmi.id = 'a84' name = '' isSpecification = 'false' isRoot = 'false'
-                  isLeaf = 'false' isAbstract = 'false'>
-                  <UML:Association.connection>
-                    <UML:AssociationEnd xmi.id = 'a85' name = 'messageFactory' visibility = 'public'
-                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
-                      targetScope = 'instance' changeability = 'changeable'>
-                      <UML:AssociationEnd.multiplicity>
-                        <UML:Multiplicity xmi.id = 'a86'>
-                          <UML:Multiplicity.range>
-                            <UML:MultiplicityRange xmi.id = 'a87' lower = '1' upper = '-1'/>
-                          </UML:Multiplicity.range>
-                        </UML:Multiplicity>
-                      </UML:AssociationEnd.multiplicity>
-                      <UML:AssociationEnd.participant>
-                        <UML:Interface xmi.idref = 'a61'/>
-                      </UML:AssociationEnd.participant>
-                    </UML:AssociationEnd>
-                    <UML:AssociationEnd xmi.id = 'a88' visibility = 'public' isSpecification = 'false'
+                    <UML:AssociationEnd xmi.id = 'a89' visibility = 'public' isSpecification = 'false'
                       isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
                       changeability = 'changeable'>
                       <UML:AssociationEnd.multiplicity>
-                        <UML:Multiplicity xmi.id = 'a89'>
+                        <UML:Multiplicity xmi.id = 'a90'>
                           <UML:Multiplicity.range>
-                            <UML:MultiplicityRange xmi.id = 'a90' lower = '1' upper = '1'/>
+                            <UML:MultiplicityRange xmi.id = 'a91' lower = '1' upper = '1'/>
                           </UML:Multiplicity.range>
                         </UML:Multiplicity>
                       </UML:AssociationEnd.multiplicity>
                       <UML:AssociationEnd.participant>
-                        <UML:Class xmi.idref = 'a91'/>
+                        <UML:Class xmi.idref = 'a92'/>
                       </UML:AssociationEnd.participant>
                     </UML:AssociationEnd>
                   </UML:Association.connection>
                 </UML:Association>
-                <UML:Association xmi.id = 'a92' isSpecification = 'false' isRoot = 'false'
-                  isLeaf = 'false' isAbstract = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a76'/>
-                  </UML:ModelElement.stereotype>
-                  <UML:Association.connection>
-                    <UML:AssociationEnd xmi.id = 'a93' visibility = 'public' isSpecification = 'false'
-                      isNavigable = 'false' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
-                      changeability = 'changeable'>
-                      <UML:AssociationEnd.multiplicity>
-                        <UML:Multiplicity xmi.id = 'a94'>
-                          <UML:Multiplicity.range>
-                            <UML:MultiplicityRange xmi.id = 'a95' lower = '1' upper = '1'/>
-                          </UML:Multiplicity.range>
-                        </UML:Multiplicity>
-                      </UML:AssociationEnd.multiplicity>
-                      <UML:AssociationEnd.participant>
-                        <UML:Class xmi.idref = 'a96'/>
-                      </UML:AssociationEnd.participant>
-                    </UML:AssociationEnd>
-                    <UML:AssociationEnd xmi.id = 'a97' name = 'model' visibility = 'public'
-                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
-                      targetScope = 'instance' changeability = 'changeable'>
-                      <UML:AssociationEnd.multiplicity>
-                        <UML:Multiplicity xmi.id = 'a98'>
-                          <UML:Multiplicity.range>
-                            <UML:MultiplicityRange xmi.id = 'a99' lower = '1' upper = '1'/>
-                          </UML:Multiplicity.range>
-                        </UML:Multiplicity>
-                      </UML:AssociationEnd.multiplicity>
-                      <UML:AssociationEnd.participant>
-                        <UML:Class xmi.idref = 'a57'/>
-                      </UML:AssociationEnd.participant>
-                    </UML:AssociationEnd>
-                  </UML:Association.connection>
-                </UML:Association>
-                <UML:Abstraction xmi.id = 'a37' isSpecification = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a100'/>
-                  </UML:ModelElement.stereotype>
-                  <UML:Dependency.client>
-                    <UML:Class xmi.idref = 'a36'/>
-                  </UML:Dependency.client>
-                  <UML:Dependency.supplier>
-                    <UML:Interface xmi.idref = 'a61'/>
-                  </UML:Dependency.supplier>
-                </UML:Abstraction>
-                <UML:Abstraction xmi.id = 'a22' isSpecification = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a100'/>
-                  </UML:ModelElement.stereotype>
-                  <UML:Dependency.client>
-                    <UML:Class xmi.idref = 'a21'/>
-                  </UML:Dependency.client>
-                  <UML:Dependency.supplier>
-                    <UML:Interface xmi.idref = 'a61'/>
-                  </UML:Dependency.supplier>
-                </UML:Abstraction>
-                <UML:Generalization xmi.id = 'a58' isSpecification = 'false'>
-                  <UML:Generalization.child>
-                    <UML:Class xmi.idref = 'a57'/>
-                  </UML:Generalization.child>
-                  <UML:Generalization.parent>
-                    <UML:Class xmi.idref = 'a46'/>
-                  </UML:Generalization.parent>
-                </UML:Generalization>
-                <UML:Generalization xmi.id = 'a50' isSpecification = 'false'>
-                  <UML:Generalization.child>
-                    <UML:Class xmi.idref = 'a27'/>
-                  </UML:Generalization.child>
-                  <UML:Generalization.parent>
-                    <UML:Class xmi.idref = 'a46'/>
-                  </UML:Generalization.parent>
-                </UML:Generalization>
-                <UML:Generalization xmi.id = 'a20' isSpecification = 'false'>
-                  <UML:Generalization.child>
-                    <UML:Class xmi.idref = 'a19'/>
-                  </UML:Generalization.child>
-                  <UML:Generalization.parent>
-                    <UML:Class xmi.idref = 'a27'/>
-                  </UML:Generalization.parent>
-                </UML:Generalization>
               </UML:Namespace.ownedElement>
             </UML:Package>
-            <UML:Package xmi.id = 'a101' name = 'networking' isSpecification = 'false'
+            <UML:Package xmi.id = 'a93' name = 'networking' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:Namespace.ownedElement>
-                <UML:Package xmi.id = 'a102' name = 'sms' isSpecification = 'false' isRoot = 'false'
+                <UML:Package xmi.id = 'a94' name = 'jabber' isSpecification = 'false' isRoot = 'false'
                   isLeaf = 'false' isAbstract = 'false'>
                   <UML:Namespace.ownedElement>
-                    <UML:Class xmi.id = 'a103' name = 'SMS' visibility = 'public' isSpecification = 'false'
+                    <UML:Class xmi.id = 'a95' name = 'Jabber' visibility = 'public' isSpecification = 'false'
                       isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a34'/>
+                      </UML:ModelElement.stereotype>
                       <UML:GeneralizableElement.generalization>
-                        <UML:Generalization xmi.idref = 'a104'/>
+                        <UML:Generalization xmi.idref = 'a96'/>
                       </UML:GeneralizableElement.generalization>
                       <UML:Classifier.feature>
-                        <UML:Operation xmi.id = 'a105' name = 'send' visibility = 'public' isSpecification = 'false'
+                        <UML:Operation xmi.id = 'a97' name = 'send' visibility = 'public' isSpecification = 'false'
                           ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
                           isLeaf = 'false' isAbstract = 'false'>
                           <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'a106' name = 'msg' isSpecification = 'false' kind = 'in'>
+                            <UML:Parameter xmi.id = 'a98' name = 'msg' isSpecification = 'false' kind = 'in'>
                               <UML:Parameter.type>
-                                <UML:Class xmi.idref = 'a27'/>
+                                <UML:Class xmi.idref = 'a61'/>
                               </UML:Parameter.type>
                             </UML:Parameter>
                           </UML:BehavioralFeature.parameter>
                         </UML:Operation>
-                        <UML:Method xmi.id = 'a107' isSpecification = 'false' isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'a108' language = 'java' body = ''/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'a105'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                      </UML:Classifier.feature>
-                    </UML:Class>
-                  </UML:Namespace.ownedElement>
-                </UML:Package>
-                <UML:Package xmi.id = 'a109' name = 'jabber' isSpecification = 'false' isRoot = 'false'
-                  isLeaf = 'false' isAbstract = 'false'>
-                  <UML:Namespace.ownedElement>
-                    <UML:Class xmi.id = 'a110' name = 'Socket' visibility = 'public' isSpecification = 'false'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                      <UML:ModelElement.stereotype>
-                        <UML:Stereotype xmi.idref = 'a48'/>
-                        <UML:Stereotype xmi.idref = 'a111'/>
-                      </UML:ModelElement.stereotype>
-                      <UML:Classifier.feature>
-                        <UML:Attribute xmi.id = 'a112' name = 'received' visibility = 'public' isSpecification = 'false'
-                          ownerScope = 'instance' changeability = 'changeable'>
-                          <UML:StructuralFeature.type>
-                            <UML:DataType xmi.idref = 'a15'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Operation xmi.id = 'a113' name = 'sendData' visibility = 'public' isSpecification = 'false'
-                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
-                          isLeaf = 'false' isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'a114' name = 'data' isSpecification = 'false' kind = 'in'>
-                              <UML:Parameter.type>
-                                <UML:DataType xmi.idref = 'a15'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'a115' isSpecification = 'false' isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'a116' language = 'java' body = ''/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'a113'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                      </UML:Classifier.feature>
-                    </UML:Class>
-                    <UML:Class xmi.id = 'a117' name = 'Jabber' visibility = 'public' isSpecification = 'false'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                      <UML:ModelElement.stereotype>
-                        <UML:Stereotype xmi.idref = 'a118'/>
-                      </UML:ModelElement.stereotype>
-                      <UML:GeneralizableElement.generalization>
-                        <UML:Generalization xmi.idref = 'a119'/>
-                      </UML:GeneralizableElement.generalization>
-                      <UML:Classifier.feature>
-                        <UML:Operation xmi.id = 'a120' name = 'onReceivedChange' visibility = 'public'
+                        <UML:Operation xmi.id = 'a99' name = 'onReceivedChange' visibility = 'public'
                           isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
                           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-                        <UML:Operation xmi.id = 'a121' name = 'send' visibility = 'public' isSpecification = 'false'
-                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
-                          isLeaf = 'false' isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'a122' name = 'msg' isSpecification = 'false' kind = 'in'>
-                              <UML:Parameter.type>
-                                <UML:Class xmi.idref = 'a27'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'a123' isSpecification = 'false' isQuery = 'false'>
+                        <UML:Method xmi.id = 'a100' isSpecification = 'false' isQuery = 'false'>
                           <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'a124' language = 'java' body = ''/>
+                            <UML:ProcedureExpression xmi.id = 'a101' language = 'java' body = ''/>
                           </UML:Method.body>
                           <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'a121'/>
+                            <UML:Operation xmi.idref = 'a97'/>
                           </UML:Method.specification>
                         </UML:Method>
-                        <UML:Method xmi.id = 'a125' isSpecification = 'false' isQuery = 'false'>
+                        <UML:Method xmi.id = 'a102' isSpecification = 'false' isQuery = 'false'>
                           <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'a126' language = 'java' body = ''/>
+                            <UML:ProcedureExpression xmi.id = 'a103' language = 'java' body = ''/>
                           </UML:Method.body>
                           <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'a120'/>
+                            <UML:Operation xmi.idref = 'a99'/>
                           </UML:Method.specification>
                         </UML:Method>
                       </UML:Classifier.feature>
                     </UML:Class>
-                    <UML:Association xmi.id = 'a127' isSpecification = 'false' isRoot = 'false'
+                    <UML:Class xmi.id = 'a104' name = 'Socket' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:ModelElement.stereotype>
+                        <UML:Stereotype xmi.idref = 'a105'/>
+                        <UML:Stereotype xmi.idref = 'a106'/>
+                      </UML:ModelElement.stereotype>
+                      <UML:Classifier.feature>
+                        <UML:Attribute xmi.id = 'a107' name = 'received' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:StructuralFeature.type>
+                            <UML:DataType xmi.idref = 'a10'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Operation xmi.id = 'a108' name = 'sendData' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a109' name = 'data' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a10'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a110' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a111' language = 'java' body = ''/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a108'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Association xmi.id = 'a112' isSpecification = 'false' isRoot = 'false'
                       isLeaf = 'false' isAbstract = 'false'>
                       <UML:ModelElement.stereotype>
-                        <UML:Stereotype xmi.idref = 'a76'/>
+                        <UML:Stereotype xmi.idref = 'a78'/>
                       </UML:ModelElement.stereotype>
                       <UML:Association.connection>
-                        <UML:AssociationEnd xmi.id = 'a128' visibility = 'public' isSpecification = 'false'
+                        <UML:AssociationEnd xmi.id = 'a113' visibility = 'public' isSpecification = 'false'
                           isNavigable = 'false' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
                           changeability = 'changeable'>
                           <UML:AssociationEnd.multiplicity>
-                            <UML:Multiplicity xmi.id = 'a129'>
+                            <UML:Multiplicity xmi.id = 'a114'>
                               <UML:Multiplicity.range>
-                                <UML:MultiplicityRange xmi.id = 'a130' lower = '1' upper = '1'/>
+                                <UML:MultiplicityRange xmi.id = 'a115' lower = '1' upper = '1'/>
                               </UML:Multiplicity.range>
                             </UML:Multiplicity>
                           </UML:AssociationEnd.multiplicity>
                           <UML:AssociationEnd.participant>
-                            <UML:Class xmi.idref = 'a117'/>
+                            <UML:Class xmi.idref = 'a95'/>
                           </UML:AssociationEnd.participant>
                         </UML:AssociationEnd>
-                        <UML:AssociationEnd xmi.id = 'a131' name = 'socket' visibility = 'public'
+                        <UML:AssociationEnd xmi.id = 'a116' name = 'socket' visibility = 'public'
                           isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
                           targetScope = 'instance' changeability = 'changeable'>
                           <UML:AssociationEnd.multiplicity>
-                            <UML:Multiplicity xmi.id = 'a132'>
+                            <UML:Multiplicity xmi.id = 'a117'>
                               <UML:Multiplicity.range>
-                                <UML:MultiplicityRange xmi.id = 'a133' lower = '1' upper = '1'/>
+                                <UML:MultiplicityRange xmi.id = 'a118' lower = '1' upper = '1'/>
                               </UML:Multiplicity.range>
                             </UML:Multiplicity>
                           </UML:AssociationEnd.multiplicity>
                           <UML:AssociationEnd.participant>
-                            <UML:Class xmi.idref = 'a110'/>
+                            <UML:Class xmi.idref = 'a104'/>
                           </UML:AssociationEnd.participant>
                         </UML:AssociationEnd>
                       </UML:Association.connection>
                     </UML:Association>
                   </UML:Namespace.ownedElement>
                 </UML:Package>
-                <UML:Class xmi.id = 'a65' name = 'Network' visibility = 'public' isSpecification = 'false'
+                <UML:Package xmi.id = 'a119' name = 'sms' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'>
+                  <UML:Namespace.ownedElement>
+                    <UML:Class xmi.id = 'a120' name = 'SMS' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a121'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Operation xmi.id = 'a122' name = 'send' visibility = 'public' isSpecification = 'false'
+                          ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                          isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a123' name = 'msg' isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a61'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a124' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a125' language = 'java' body = ''/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a122'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                  </UML:Namespace.ownedElement>
+                </UML:Package>
+                <UML:Class xmi.id = 'a126' name = 'Network' visibility = 'public' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
                   <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a48'/>
+                    <UML:Stereotype xmi.idref = 'a105'/>
                   </UML:ModelElement.stereotype>
                   <UML:Classifier.feature>
-                    <UML:Attribute xmi.id = 'a134' name = 'received' visibility = 'public' isSpecification = 'false'
+                    <UML:Attribute xmi.id = 'a127' name = 'received' visibility = 'public' isSpecification = 'false'
                       ownerScope = 'instance' changeability = 'changeable'>
                       <UML:ModelElement.taggedValue>
-                        <UML:TaggedValue xmi.id = 'a135' isSpecification = 'false'>
+                        <UML:TaggedValue xmi.id = 'a128' isSpecification = 'false'>
                           <UML:TaggedValue.dataValue>false</UML:TaggedValue.dataValue>
                           <UML:TaggedValue.type>
-                            <UML:TagDefinition xmi.idref = 'a136'/>
+                            <UML:TagDefinition xmi.idref = 'a129'/>
                           </UML:TaggedValue.type>
                         </UML:TaggedValue>
                       </UML:ModelElement.taggedValue>
                       <UML:StructuralFeature.type>
-                        <UML:Class xmi.idref = 'a27'/>
+                        <UML:Class xmi.idref = 'a61'/>
                       </UML:StructuralFeature.type>
                     </UML:Attribute>
-                    <UML:Operation xmi.id = 'a137' name = 'send' visibility = 'public' isSpecification = 'false'
+                    <UML:Operation xmi.id = 'a130' name = 'send' visibility = 'public' isSpecification = 'false'
                       ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
                       isLeaf = 'false' isAbstract = 'true'>
                       <UML:BehavioralFeature.parameter>
-                        <UML:Parameter xmi.id = 'a138' name = 'msg' isSpecification = 'false' kind = 'in'>
+                        <UML:Parameter xmi.id = 'a131' name = 'msg' isSpecification = 'false' kind = 'in'>
                           <UML:Parameter.type>
-                            <UML:Class xmi.idref = 'a27'/>
+                            <UML:Class xmi.idref = 'a61'/>
                           </UML:Parameter.type>
                         </UML:Parameter>
                       </UML:BehavioralFeature.parameter>
                     </UML:Operation>
-                    <UML:Method xmi.id = 'a139' isSpecification = 'false' isQuery = 'false'>
+                    <UML:Method xmi.id = 'a132' isSpecification = 'false' isQuery = 'false'>
                       <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a140' language = 'java' body = ''/>
+                        <UML:ProcedureExpression xmi.id = 'a133' language = 'java' body = ''/>
                       </UML:Method.body>
                       <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a137'/>
+                        <UML:Operation xmi.idref = 'a130'/>
                       </UML:Method.specification>
                     </UML:Method>
                   </UML:Classifier.feature>
                 </UML:Class>
-                <UML:Generalization xmi.id = 'a104' isSpecification = 'false'>
+                <UML:Generalization xmi.id = 'a96' isSpecification = 'false'>
                   <UML:Generalization.child>
-                    <UML:Class xmi.idref = 'a103'/>
+                    <UML:Class xmi.idref = 'a95'/>
                   </UML:Generalization.child>
                   <UML:Generalization.parent>
-                    <UML:Class xmi.idref = 'a65'/>
+                    <UML:Class xmi.idref = 'a126'/>
                   </UML:Generalization.parent>
                 </UML:Generalization>
-                <UML:Generalization xmi.id = 'a119' isSpecification = 'false'>
+                <UML:Generalization xmi.id = 'a121' isSpecification = 'false'>
                   <UML:Generalization.child>
-                    <UML:Class xmi.idref = 'a117'/>
+                    <UML:Class xmi.idref = 'a120'/>
                   </UML:Generalization.child>
                   <UML:Generalization.parent>
-                    <UML:Class xmi.idref = 'a65'/>
+                    <UML:Class xmi.idref = 'a126'/>
                   </UML:Generalization.parent>
                 </UML:Generalization>
               </UML:Namespace.ownedElement>
             </UML:Package>
-            <UML:Package xmi.id = 'a141' name = 'view' isSpecification = 'false' isRoot = 'false'
+            <UML:Package xmi.id = 'a134' name = 'model' isSpecification = 'false' isRoot = 'false'
               isLeaf = 'false' isAbstract = 'false'>
               <UML:Namespace.ownedElement>
-                <UML:Class xmi.id = 'a96' name = 'ContactView' visibility = 'public' isSpecification = 'false'
-                  isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a118'/>
-                  </UML:ModelElement.stereotype>
-                  <UML:Classifier.feature>
-                    <UML:Operation xmi.id = 'a142' name = 'onUserIdChange' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
-                    <UML:Operation xmi.id = 'a143' name = 'onNameChange' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
-                    <UML:Operation xmi.id = 'a144' name = 'onListChange' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
-                    <UML:Method xmi.id = 'a145' isSpecification = 'false' isQuery = 'false'>
-                      <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a146' language = 'java' body = ''/>
-                      </UML:Method.body>
-                      <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a144'/>
-                      </UML:Method.specification>
-                    </UML:Method>
-                    <UML:Method xmi.id = 'a147' isSpecification = 'false' isQuery = 'false'>
-                      <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a148' language = 'java' body = ''/>
-                      </UML:Method.body>
-                      <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a143'/>
-                      </UML:Method.specification>
-                    </UML:Method>
-                    <UML:Method xmi.id = 'a149' isSpecification = 'false' isQuery = 'false'>
-                      <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a150' language = 'java' body = ''/>
-                      </UML:Method.body>
-                      <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a142'/>
-                      </UML:Method.specification>
-                    </UML:Method>
-                  </UML:Classifier.feature>
-                </UML:Class>
-                <UML:Class xmi.id = 'a151' name = 'ContactListView' visibility = 'public'
+                <UML:Package xmi.id = 'a135' name = 'messages' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                  <UML:Namespace.ownedElement>
+                    <UML:Class xmi.id = 'a136' name = 'SMSMessageFactory' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                      isActive = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Abstraction xmi.idref = 'a137'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:Classifier.feature>
+                        <UML:Operation xmi.id = 'a138' name = 'messageType' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a139' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a12'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a140' name = 'createMessage' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a141' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a61'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a142' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a143' language = 'java' body = ''/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a140'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a144' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a145' language = 'java' body = ''/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a138'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a146' name = 'JabberMessage' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                      isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a147'/>
+                      </UML:GeneralizableElement.generalization>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a148' name = 'SMSMessage' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a149'/>
+                      </UML:GeneralizableElement.generalization>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a150' name = 'JabberMessageFactory' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                      isActive = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Abstraction xmi.idref = 'a151'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:Classifier.feature>
+                        <UML:Operation xmi.id = 'a152' name = 'messageType' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a153' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'a12'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Operation xmi.id = 'a154' name = 'createMessage' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'a155' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'a61'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'a156' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a157' language = 'java' body = ''/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a154'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Method xmi.id = 'a158' isSpecification = 'false' isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'a159' language = 'java' body = ''/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'a152'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'a160' name = 'TextMessage' visibility = 'public' isSpecification = 'false'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'a161'/>
+                      </UML:GeneralizableElement.generalization>
+                    </UML:Class>
+                    <UML:Generalization xmi.id = 'a149' isSpecification = 'false'>
+                      <UML:Generalization.child>
+                        <UML:Class xmi.idref = 'a148'/>
+                      </UML:Generalization.child>
+                      <UML:Generalization.parent>
+                        <UML:Class xmi.idref = 'a160'/>
+                      </UML:Generalization.parent>
+                    </UML:Generalization>
+                    <UML:Generalization xmi.id = 'a147' isSpecification = 'false'>
+                      <UML:Generalization.child>
+                        <UML:Class xmi.idref = 'a146'/>
+                      </UML:Generalization.child>
+                      <UML:Generalization.parent>
+                        <UML:Class xmi.idref = 'a160'/>
+                      </UML:Generalization.parent>
+                    </UML:Generalization>
+                  </UML:Namespace.ownedElement>
+                </UML:Package>
+                <UML:Class xmi.id = 'a162' name = 'NetworkSpecificData' visibility = 'public'
                   isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'true'
                   isActive = 'false'>
                   <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a118'/>
+                    <UML:Stereotype xmi.idref = 'a105'/>
+                    <UML:Stereotype xmi.idref = 'a163'/>
                   </UML:ModelElement.stereotype>
-                  <UML:Classifier.feature>
-                    <UML:Operation xmi.id = 'a152' name = 'onContactChange' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
-                    <UML:Method xmi.id = 'a153' isSpecification = 'false' isQuery = 'false'>
-                      <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a154' language = 'java' body = ''/>
-                      </UML:Method.body>
-                      <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a152'/>
-                      </UML:Method.specification>
-                    </UML:Method>
-                  </UML:Classifier.feature>
                 </UML:Class>
-                <UML:Class xmi.id = 'a80' name = 'MessageView' visibility = 'public' isSpecification = 'false'
+                <UML:Class xmi.id = 'a61' name = 'Message' visibility = 'public' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'true' isActive = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a118'/>
-                  </UML:ModelElement.stereotype>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a164'/>
+                  </UML:GeneralizableElement.generalization>
                   <UML:Classifier.feature>
-                    <UML:Operation xmi.id = 'a155' name = 'onRecipientChange' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
-                    <UML:Operation xmi.id = 'a156' name = 'onContentChange' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
-                    <UML:Operation xmi.id = 'a157' name = 'onSenderChange' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'/>
-                    <UML:Method xmi.id = 'a158' isSpecification = 'false' isQuery = 'false'>
+                    <UML:Attribute xmi.id = 'a165' name = 'sender' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a12'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Attribute xmi.id = 'a166' name = 'recipient' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a12'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Attribute xmi.id = 'a167' name = 'content' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a10'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Operation xmi.id = 'a168' name = 'send' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential' isRoot = 'false'
+                      isLeaf = 'false' isAbstract = 'false'/>
+                    <UML:Method xmi.id = 'a169' isSpecification = 'false' isQuery = 'false'>
                       <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a159' language = 'java' body = ''/>
-                      </UML:Method.body>
-                      <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a156'/>
-                      </UML:Method.specification>
-                    </UML:Method>
-                    <UML:Method xmi.id = 'a160' isSpecification = 'false' isQuery = 'false'>
-                      <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a161' language = 'java' body = ''/>
-                      </UML:Method.body>
-                      <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a157'/>
-                      </UML:Method.specification>
-                    </UML:Method>
-                    <UML:Method xmi.id = 'a162' isSpecification = 'false' isQuery = 'false'>
-                      <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a163' language = 'java' body = ''/>
-                      </UML:Method.body>
-                      <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a155'/>
-                      </UML:Method.specification>
-                    </UML:Method>
-                  </UML:Classifier.feature>
-                </UML:Class>
-                <UML:Interface xmi.id = 'a164' name = 'ViewFactory' visibility = 'public'
-                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                  <UML:Classifier.feature>
-                    <UML:Operation xmi.id = 'a165' name = 'createContactView' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
-                      <UML:BehavioralFeature.parameter>
-                        <UML:Parameter xmi.id = 'a166' name = 'contact' isSpecification = 'false'
-                          kind = 'in'>
-                          <UML:Parameter.type>
-                            <UML:Class xmi.idref = 'a57'/>
-                          </UML:Parameter.type>
-                        </UML:Parameter>
-                        <UML:Parameter xmi.id = 'a167' name = 'return' isSpecification = 'false'
-                          kind = 'return'>
-                          <UML:Parameter.type>
-                            <UML:Class xmi.idref = 'a96'/>
-                          </UML:Parameter.type>
-                        </UML:Parameter>
-                      </UML:BehavioralFeature.parameter>
-                    </UML:Operation>
-                    <UML:Operation xmi.id = 'a168' name = 'createMessageView' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
-                      <UML:BehavioralFeature.parameter>
-                        <UML:Parameter xmi.id = 'a169' name = 'message' isSpecification = 'false'
-                          kind = 'in'>
-                          <UML:Parameter.type>
-                            <UML:Class xmi.idref = 'a27'/>
-                          </UML:Parameter.type>
-                        </UML:Parameter>
-                        <UML:Parameter xmi.id = 'a170' name = 'return' isSpecification = 'false'
-                          kind = 'return'>
-                          <UML:Parameter.type>
-                            <UML:Class xmi.idref = 'a80'/>
-                          </UML:Parameter.type>
-                        </UML:Parameter>
-                      </UML:BehavioralFeature.parameter>
-                    </UML:Operation>
-                    <UML:Operation xmi.id = 'a171' name = 'createContactListView' visibility = 'public'
-                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
-                      <UML:BehavioralFeature.parameter>
-                        <UML:Parameter xmi.id = 'a172' name = 'list' isSpecification = 'false' kind = 'in'>
-                          <UML:Parameter.type>
-                            <UML:Class xmi.idref = 'a49'/>
-                          </UML:Parameter.type>
-                        </UML:Parameter>
-                        <UML:Parameter xmi.id = 'a173' name = 'return' isSpecification = 'false'
-                          kind = 'return'>
-                          <UML:Parameter.type>
-                            <UML:Class xmi.idref = 'a151'/>
-                          </UML:Parameter.type>
-                        </UML:Parameter>
-                      </UML:BehavioralFeature.parameter>
-                    </UML:Operation>
-                    <UML:Method xmi.id = 'a174' isSpecification = 'false' isQuery = 'false'>
-                      <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a175' language = 'java' body = ''/>
+                        <UML:ProcedureExpression xmi.id = 'a170' language = 'java' body = '        if (network != null) {&#10;            network.send(this);&#10;        }&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'a168'/>
                       </UML:Method.specification>
                     </UML:Method>
-                    <UML:Method xmi.id = 'a176' isSpecification = 'false' isQuery = 'false'>
-                      <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'a177' language = 'java' body = ''/>
-                      </UML:Method.body>
-                      <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a171'/>
-                      </UML:Method.specification>
-                    </UML:Method>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Class xmi.id = 'a65' name = 'ContactList' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a105'/>
+                    <UML:Stereotype xmi.idref = 'a163'/>
+                  </UML:ModelElement.stereotype>
+                </UML:Class>
+                <UML:Class xmi.id = 'a69' name = 'Contact' visibility = 'public' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                  <UML:GeneralizableElement.generalization>
+                    <UML:Generalization xmi.idref = 'a171'/>
+                  </UML:GeneralizableElement.generalization>
+                  <UML:Classifier.feature>
+                    <UML:Attribute xmi.id = 'a172' name = 'userId' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a12'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                    <UML:Attribute xmi.id = 'a173' name = 'name' visibility = 'public' isSpecification = 'false'
+                      ownerScope = 'instance' changeability = 'changeable'>
+                      <UML:StructuralFeature.type>
+                        <UML:DataType xmi.idref = 'a12'/>
+                      </UML:StructuralFeature.type>
+                    </UML:Attribute>
+                  </UML:Classifier.feature>
+                </UML:Class>
+                <UML:Interface xmi.id = 'a174' name = 'MessageFactory' visibility = 'public'
+                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                  <UML:Classifier.feature>
+                    <UML:Operation xmi.id = 'a175' name = 'createMessage' visibility = 'public'
+                      isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                      isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                      <UML:BehavioralFeature.parameter>
+                        <UML:Parameter xmi.id = 'a176' name = 'return' isSpecification = 'false'
+                          kind = 'return'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a61'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                        <UML:Parameter xmi.id = 'a177' name = 'forNw' isSpecification = 'false'
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:Class xmi.idref = 'a126'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
+                      </UML:BehavioralFeature.parameter>
+                    </UML:Operation>
                     <UML:Method xmi.id = 'a178' isSpecification = 'false' isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'a179' language = 'java' body = ''/>
                       </UML:Method.body>
                       <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'a165'/>
+                        <UML:Operation xmi.idref = 'a175'/>
                       </UML:Method.specification>
                     </UML:Method>
                   </UML:Classifier.feature>
@@ -881,7 +798,7 @@
                 <UML:Association xmi.id = 'a180' isSpecification = 'false' isRoot = 'false'
                   isLeaf = 'false' isAbstract = 'false'>
                   <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a76'/>
+                    <UML:Stereotype xmi.idref = 'a78'/>
                   </UML:ModelElement.stereotype>
                   <UML:Association.connection>
                     <UML:AssociationEnd xmi.id = 'a181' name = 'model' visibility = 'public'
@@ -895,7 +812,7 @@
                         </UML:Multiplicity>
                       </UML:AssociationEnd.multiplicity>
                       <UML:AssociationEnd.participant>
-                        <UML:Class xmi.idref = 'a49'/>
+                        <UML:Class xmi.idref = 'a69'/>
                       </UML:AssociationEnd.participant>
                     </UML:AssociationEnd>
                     <UML:AssociationEnd xmi.id = 'a184' visibility = 'public' isSpecification = 'false'
@@ -909,7 +826,7 @@
                         </UML:Multiplicity>
                       </UML:AssociationEnd.multiplicity>
                       <UML:AssociationEnd.participant>
-                        <UML:Class xmi.idref = 'a151'/>
+                        <UML:Class xmi.idref = 'a33'/>
                       </UML:AssociationEnd.participant>
                     </UML:AssociationEnd>
                   </UML:Association.connection>
@@ -917,9 +834,9 @@
                 <UML:Association xmi.id = 'a187' name = '' isSpecification = 'false' isRoot = 'false'
                   isLeaf = 'false' isAbstract = 'false'>
                   <UML:Association.connection>
-                    <UML:AssociationEnd xmi.id = 'a188' name = 'viewFactory' visibility = 'public'
-                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
-                      targetScope = 'instance' changeability = 'changeable'>
+                    <UML:AssociationEnd xmi.id = 'a188' visibility = 'public' isSpecification = 'false'
+                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
+                      changeability = 'changeable'>
                       <UML:AssociationEnd.multiplicity>
                         <UML:Multiplicity xmi.id = 'a189'>
                           <UML:Multiplicity.range>
@@ -928,539 +845,677 @@
                         </UML:Multiplicity>
                       </UML:AssociationEnd.multiplicity>
                       <UML:AssociationEnd.participant>
-                        <UML:Interface xmi.idref = 'a164'/>
+                        <UML:Class xmi.idref = 'a92'/>
                       </UML:AssociationEnd.participant>
                     </UML:AssociationEnd>
-                    <UML:AssociationEnd xmi.id = 'a191' visibility = 'public' isSpecification = 'false'
-                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
-                      changeability = 'changeable'>
+                    <UML:AssociationEnd xmi.id = 'a191' name = 'messageFactory' visibility = 'public'
+                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
+                      targetScope = 'instance' changeability = 'changeable'>
                       <UML:AssociationEnd.multiplicity>
                         <UML:Multiplicity xmi.id = 'a192'>
                           <UML:Multiplicity.range>
-                            <UML:MultiplicityRange xmi.id = 'a193' lower = '1' upper = '1'/>
+                            <UML:MultiplicityRange xmi.id = 'a193' lower = '1' upper = '-1'/>
                           </UML:Multiplicity.range>
                         </UML:Multiplicity>
                       </UML:AssociationEnd.multiplicity>
                       <UML:AssociationEnd.participant>
-                        <UML:Class xmi.idref = 'a91'/>
+                        <UML:Interface xmi.idref = 'a174'/>
                       </UML:AssociationEnd.participant>
                     </UML:AssociationEnd>
                   </UML:Association.connection>
                 </UML:Association>
+                <UML:Association xmi.id = 'a194' isSpecification = 'false' isRoot = 'false'
+                  isLeaf = 'false' isAbstract = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a78'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Association.connection>
+                    <UML:AssociationEnd xmi.id = 'a195' visibility = 'public' isSpecification = 'false'
+                      isNavigable = 'false' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
+                      changeability = 'changeable'>
+                      <UML:AssociationEnd.multiplicity>
+                        <UML:Multiplicity xmi.id = 'a196'>
+                          <UML:Multiplicity.range>
+                            <UML:MultiplicityRange xmi.id = 'a197' lower = '1' upper = '1'/>
+                          </UML:Multiplicity.range>
+                        </UML:Multiplicity>
+                      </UML:AssociationEnd.multiplicity>
+                      <UML:AssociationEnd.participant>
+                        <UML:Class xmi.idref = 'a44'/>
+                      </UML:AssociationEnd.participant>
+                    </UML:AssociationEnd>
+                    <UML:AssociationEnd xmi.id = 'a198' name = 'model' visibility = 'public'
+                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
+                      targetScope = 'instance' changeability = 'changeable'>
+                      <UML:AssociationEnd.multiplicity>
+                        <UML:Multiplicity xmi.id = 'a199'>
+                          <UML:Multiplicity.range>
+                            <UML:MultiplicityRange xmi.id = 'a200' lower = '1' upper = '1'/>
+                          </UML:Multiplicity.range>
+                        </UML:Multiplicity>
+                      </UML:AssociationEnd.multiplicity>
+                      <UML:AssociationEnd.participant>
+                        <UML:Class xmi.idref = 'a61'/>
+                      </UML:AssociationEnd.participant>
+                    </UML:AssociationEnd>
+                  </UML:Association.connection>
+                </UML:Association>
+                <UML:Association xmi.id = 'a201' name = 'BelongsToNetwork' isSpecification = 'false'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                  <UML:Association.connection>
+                    <UML:AssociationEnd xmi.id = 'a202' name = 'network' visibility = 'public'
+                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
+                      targetScope = 'instance' changeability = 'changeable'>
+                      <UML:AssociationEnd.multiplicity>
+                        <UML:Multiplicity xmi.id = 'a203'>
+                          <UML:Multiplicity.range>
+                            <UML:MultiplicityRange xmi.id = 'a204' lower = '1' upper = '1'/>
+                          </UML:Multiplicity.range>
+                        </UML:Multiplicity>
+                      </UML:AssociationEnd.multiplicity>
+                      <UML:AssociationEnd.participant>
+                        <UML:Class xmi.idref = 'a126'/>
+                      </UML:AssociationEnd.participant>
+                    </UML:AssociationEnd>
+                    <UML:AssociationEnd xmi.id = 'a205' visibility = 'public' isSpecification = 'false'
+                      isNavigable = 'false' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
+                      changeability = 'changeable'>
+                      <UML:AssociationEnd.multiplicity>
+                        <UML:Multiplicity xmi.id = 'a206'>
+                          <UML:Multiplicity.range>
+                            <UML:MultiplicityRange xmi.id = 'a207' lower = '1' upper = '1'/>
+                          </UML:Multiplicity.range>
+                        </UML:Multiplicity>
+                      </UML:AssociationEnd.multiplicity>
+                      <UML:AssociationEnd.participant>
+                        <UML:Class xmi.idref = 'a162'/>
+                      </UML:AssociationEnd.participant>
+                    </UML:AssociationEnd>
+                  </UML:Association.connection>
+                </UML:Association>
+                <UML:Abstraction xmi.id = 'a137' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a208'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Class xmi.idref = 'a136'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Interface xmi.idref = 'a174'/>
+                  </UML:Dependency.supplier>
+                </UML:Abstraction>
+                <UML:Abstraction xmi.id = 'a151' isSpecification = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'a208'/>
+                  </UML:ModelElement.stereotype>
+                  <UML:Dependency.client>
+                    <UML:Class xmi.idref = 'a150'/>
+                  </UML:Dependency.client>
+                  <UML:Dependency.supplier>
+                    <UML:Interface xmi.idref = 'a174'/>
+                  </UML:Dependency.supplier>
+                </UML:Abstraction>
+                <UML:Generalization xmi.id = 'a171' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a69'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a162'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a161' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a160'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a61'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
+                <UML:Generalization xmi.id = 'a164' isSpecification = 'false'>
+                  <UML:Generalization.child>
+                    <UML:Class xmi.idref = 'a61'/>
+                  </UML:Generalization.child>
+                  <UML:Generalization.parent>
+                    <UML:Class xmi.idref = 'a162'/>
+                  </UML:Generalization.parent>
+                </UML:Generalization>
               </UML:Namespace.ownedElement>
             </UML:Package>
-            <UML:Class xmi.id = 'a91' name = 'InstantMessagingClient' visibility = 'public'
+            <UML:Class xmi.id = 'a92' name = 'InstantMessagingClient' visibility = 'public'
               isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
               isActive = 'false'>
               <UML:ModelElement.stereotype>
-                <UML:Stereotype xmi.idref = 'a194'/>
-                <UML:Stereotype xmi.idref = 'a118'/>
+                <UML:Stereotype xmi.idref = 'a34'/>
+                <UML:Stereotype xmi.idref = 'a209'/>
               </UML:ModelElement.stereotype>
               <UML:Classifier.feature>
-                <UML:Operation xmi.id = 'a195' name = 'InstantMessagingClient' visibility = 'public'
+                <UML:Operation xmi.id = 'a210' name = 'onReceivedChange' visibility = 'public'
+                  isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                <UML:Operation xmi.id = 'a211' name = 'InstantMessagingClient' visibility = 'public'
                   isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'a196'/>
+                    <UML:Stereotype xmi.idref = 'a212'/>
                   </UML:ModelElement.stereotype>
                   <UML:BehavioralFeature.parameter>
-                    <UML:Parameter xmi.id = 'a197' name = 'return' isSpecification = 'false'
+                    <UML:Parameter xmi.id = 'a213' name = 'return' isSpecification = 'false'
                       kind = 'return'>
                       <UML:Parameter.type>
-                        <UML:Class xmi.idref = 'a91'/>
+                        <UML:Class xmi.idref = 'a92'/>
                       </UML:Parameter.type>
                     </UML:Parameter>
                   </UML:BehavioralFeature.parameter>
                 </UML:Operation>
-                <UML:Operation xmi.id = 'a198' name = 'onReceivedChange' visibility = 'public'
-                  isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-                <UML:Method xmi.id = 'a199' isSpecification = 'false' isQuery = 'false'>
+                <UML:Method xmi.id = 'a214' isSpecification = 'false' isQuery = 'false'>
                   <UML:Method.body>
-                    <UML:ProcedureExpression xmi.id = 'a200' language = 'java' body = ''/>
+                    <UML:ProcedureExpression xmi.id = 'a215' language = 'java' body = ''/>
                   </UML:Method.body>
                   <UML:Method.specification>
-                    <UML:Operation xmi.idref = 'a195'/>
+                    <UML:Operation xmi.idref = 'a211'/>
                   </UML:Method.specification>
                 </UML:Method>
-                <UML:Method xmi.id = 'a201' isSpecification = 'false' isQuery = 'false'>
+                <UML:Method xmi.id = 'a216' isSpecification = 'false' isQuery = 'false'>
                   <UML:Method.body>
-                    <UML:ProcedureExpression xmi.id = 'a202' language = 'java' body = ''/>
+                    <UML:ProcedureExpression xmi.id = 'a217' language = 'java' body = ''/>
                   </UML:Method.body>
                   <UML:Method.specification>
-                    <UML:Operation xmi.idref = 'a198'/>
+                    <UML:Operation xmi.idref = 'a210'/>
                   </UML:Method.specification>
                 </UML:Method>
               </UML:Classifier.feature>
             </UML:Class>
-            <UML:Association xmi.id = 'a203' name = '' isSpecification = 'false' isRoot = 'false'
+            <UML:Association xmi.id = 'a218' name = '' isSpecification = 'false' isRoot = 'false'
               isLeaf = 'false' isAbstract = 'false'>
               <UML:Association.connection>
-                <UML:AssociationEnd xmi.id = 'a204' name = 'list' visibility = 'public'
+                <UML:AssociationEnd xmi.id = 'a219' name = 'list' visibility = 'public'
                   isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'composite'
                   targetScope = 'instance' changeability = 'changeable'>
                   <UML:AssociationEnd.multiplicity>
-                    <UML:Multiplicity xmi.id = 'a205'>
+                    <UML:Multiplicity xmi.id = 'a220'>
                       <UML:Multiplicity.range>
-                        <UML:MultiplicityRange xmi.id = 'a206' lower = '1' upper = '1'/>
+                        <UML:MultiplicityRange xmi.id = 'a221' lower = '1' upper = '1'/>
                       </UML:Multiplicity.range>
                     </UML:Multiplicity>
                   </UML:AssociationEnd.multiplicity>
                   <UML:AssociationEnd.participant>
-                    <UML:Class xmi.idref = 'a49'/>
+                    <UML:Class xmi.idref = 'a65'/>
                   </UML:AssociationEnd.participant>
                 </UML:AssociationEnd>
-                <UML:AssociationEnd xmi.id = 'a207' name = 'contact' visibility = 'public'
+                <UML:AssociationEnd xmi.id = 'a222' name = 'contact' visibility = 'public'
                   isSpecification = 'false' isNavigable = 'true' ordering = 'ordered' aggregation = 'none'
                   targetScope = 'instance' changeability = 'changeable'>
                   <UML:AssociationEnd.multiplicity>
-                    <UML:Multiplicity xmi.id = 'a208'>
+                    <UML:Multiplicity xmi.id = 'a223'>
                       <UML:Multiplicity.range>
-                        <UML:MultiplicityRange xmi.id = 'a209' lower = '0' upper = '-1'/>
+                        <UML:MultiplicityRange xmi.id = 'a224' lower = '0' upper = '-1'/>
                       </UML:Multiplicity.range>
                     </UML:Multiplicity>
                   </UML:AssociationEnd.multiplicity>
                   <UML:AssociationEnd.participant>
-                    <UML:Class xmi.idref = 'a57'/>
+                    <UML:Class xmi.idref = 'a69'/>
                   </UML:AssociationEnd.participant>
                 </UML:AssociationEnd>
               </UML:Association.connection>
             </UML:Association>
-            <UML:Association xmi.id = 'a210' name = '' isSpecification = 'false' isRoot = 'false'
+            <UML:Association xmi.id = 'a225' name = '' isSpecification = 'false' isRoot = 'false'
               isLeaf = 'false' isAbstract = 'false'>
               <UML:Association.connection>
-                <UML:AssociationEnd xmi.id = 'a211' name = 'contactList' visibility = 'public'
+                <UML:AssociationEnd xmi.id = 'a226' name = 'contactList' visibility = 'public'
                   isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
                   targetScope = 'instance' changeability = 'changeable'>
                   <UML:AssociationEnd.multiplicity>
-                    <UML:Multiplicity xmi.id = 'a212'>
+                    <UML:Multiplicity xmi.id = 'a227'>
                       <UML:Multiplicity.range>
-                        <UML:MultiplicityRange xmi.id = 'a213' lower = '1' upper = '1'/>
+                        <UML:MultiplicityRange xmi.id = 'a228' lower = '1' upper = '1'/>
                       </UML:Multiplicity.range>
                     </UML:Multiplicity>
                   </UML:AssociationEnd.multiplicity>
                   <UML:ModelElement.taggedValue>
-                    <UML:TaggedValue xmi.id = 'a214' isSpecification = 'false'>
+                    <UML:TaggedValue xmi.id = 'a229' isSpecification = 'false'>
                       <UML:TaggedValue.dataValue>new ContactList()</UML:TaggedValue.dataValue>
                       <UML:TaggedValue.type>
-                        <UML:TagDefinition xmi.idref = 'a215'/>
+                        <UML:TagDefinition xmi.idref = 'a230'/>
                       </UML:TaggedValue.type>
                     </UML:TaggedValue>
                   </UML:ModelElement.taggedValue>
                   <UML:AssociationEnd.participant>
-                    <UML:Class xmi.idref = 'a49'/>
+                    <UML:Class xmi.idref = 'a65'/>
                   </UML:AssociationEnd.participant>
                 </UML:AssociationEnd>
-                <UML:AssociationEnd xmi.id = 'a216' visibility = 'public' isSpecification = 'false'
+                <UML:AssociationEnd xmi.id = 'a231' visibility = 'public' isSpecification = 'false'
                   isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
                   changeability = 'changeable'>
                   <UML:AssociationEnd.multiplicity>
-                    <UML:Multiplicity xmi.id = 'a217'>
+                    <UML:Multiplicity xmi.id = 'a232'>
                       <UML:Multiplicity.range>
-                        <UML:MultiplicityRange xmi.id = 'a218' lower = '1' upper = '1'/>
+                        <UML:MultiplicityRange xmi.id = 'a233' lower = '1' upper = '1'/>
                       </UML:Multiplicity.range>
                     </UML:Multiplicity>
                   </UML:AssociationEnd.multiplicity>
                   <UML:AssociationEnd.participant>
-                    <UML:Class xmi.idref = 'a91'/>
+                    <UML:Class xmi.idref = 'a92'/>
                   </UML:AssociationEnd.participant>
                 </UML:AssociationEnd>
               </UML:Association.connection>
             </UML:Association>
-            <UML:Association xmi.id = 'a219' name = '' isSpecification = 'false' isRoot = 'false'
+            <UML:Association xmi.id = 'a234' name = '' isSpecification = 'false' isRoot = 'false'
               isLeaf = 'false' isAbstract = 'false'>
               <UML:ModelElement.stereotype>
-                <UML:Stereotype xmi.idref = 'a76'/>
+                <UML:Stereotype xmi.idref = 'a78'/>
               </UML:ModelElement.stereotype>
               <UML:Association.connection>
-                <UML:AssociationEnd xmi.id = 'a220' visibility = 'public' isSpecification = 'false'
-                  isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
-                  changeability = 'changeable'>
-                  <UML:AssociationEnd.multiplicity>
-                    <UML:Multiplicity xmi.id = 'a221'>
-                      <UML:Multiplicity.range>
-                        <UML:MultiplicityRange xmi.id = 'a222' lower = '1' upper = '1'/>
-                      </UML:Multiplicity.range>
-                    </UML:Multiplicity>
-                  </UML:AssociationEnd.multiplicity>
-                  <UML:AssociationEnd.participant>
-                    <UML:Class xmi.idref = 'a91'/>
-                  </UML:AssociationEnd.participant>
-                </UML:AssociationEnd>
-                <UML:AssociationEnd xmi.id = 'a223' name = 'network' visibility = 'public'
+                <UML:AssociationEnd xmi.id = 'a235' name = 'network' visibility = 'public'
                   isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
                   targetScope = 'instance' changeability = 'changeable'>
                   <UML:AssociationEnd.multiplicity>
-                    <UML:Multiplicity xmi.id = 'a224'>
+                    <UML:Multiplicity xmi.id = 'a236'>
                       <UML:Multiplicity.range>
-                        <UML:MultiplicityRange xmi.id = 'a225' lower = '0' upper = '-1'/>
+                        <UML:MultiplicityRange xmi.id = 'a237' lower = '0' upper = '-1'/>
                       </UML:Multiplicity.range>
                     </UML:Multiplicity>
                   </UML:AssociationEnd.multiplicity>
                   <UML:AssociationEnd.participant>
-                    <UML:Class xmi.idref = 'a65'/>
+                    <UML:Class xmi.idref = 'a126'/>
+                  </UML:AssociationEnd.participant>
+                </UML:AssociationEnd>
+                <UML:AssociationEnd xmi.id = 'a238' visibility = 'public' isSpecification = 'false'
+                  isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
+                  changeability = 'changeable'>
+                  <UML:AssociationEnd.multiplicity>
+                    <UML:Multiplicity xmi.id = 'a239'>
+                      <UML:Multiplicity.range>
+                        <UML:MultiplicityRange xmi.id = 'a240' lower = '1' upper = '1'/>
+                      </UML:Multiplicity.range>
+                    </UML:Multiplicity>
+                  </UML:AssociationEnd.multiplicity>
+                  <UML:AssociationEnd.participant>
+                    <UML:Class xmi.idref = 'a92'/>
                   </UML:AssociationEnd.participant>
                 </UML:AssociationEnd>
               </UML:Association.connection>
             </UML:Association>
-            <UML:Collaboration xmi.id = 'a226' name = 'SendMessage' visibility = 'public'
+            <UML:Collaboration xmi.id = 'a241' name = 'SendMessage' visibility = 'public'
               isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:Namespace.ownedElement>
-                <UML:CollaborationInstanceSet xmi.id = 'a227' name = 'Collaboration_Instance_Set_1'
+                <UML:CollaborationInstanceSet xmi.id = 'a242' name = 'Collaboration_Instance_Set_1'
                   isSpecification = 'false'>
                   <UML:CollaborationInstanceSet.interactionInstanceSet>
-                    <UML:InteractionInstanceSet xmi.id = 'a228' name = 'Collaboration_Instance_Set_2'
+                    <UML:InteractionInstanceSet xmi.id = 'a243' name = 'Collaboration_Instance_Set_2'
                       isSpecification = 'false'/>
                   </UML:CollaborationInstanceSet.interactionInstanceSet>
                   <UML:CollaborationInstanceSet.collaboration>
-                    <UML:Collaboration xmi.idref = 'a226'/>
+                    <UML:Collaboration xmi.idref = 'a241'/>
                   </UML:CollaborationInstanceSet.collaboration>
                   <UML:CollaborationInstanceSet.participatingInstance>
-                    <UML:Object xmi.idref = 'a229'/>
-                    <UML:Object xmi.idref = 'a230'/>
-                    <UML:Object xmi.idref = 'a231'/>
+                    <UML:Object xmi.idref = 'a244'/>
+                    <UML:Object xmi.idref = 'a245'/>
+                    <UML:Object xmi.idref = 'a246'/>
                   </UML:CollaborationInstanceSet.participatingInstance>
                   <UML:CollaborationInstanceSet.participatingLink>
-                    <UML:Link xmi.idref = 'a232'/>
-                    <UML:Link xmi.idref = 'a233'/>
+                    <UML:Link xmi.idref = 'a247'/>
+                    <UML:Link xmi.idref = 'a248'/>
                   </UML:CollaborationInstanceSet.participatingLink>
                 </UML:CollaborationInstanceSet>
-                <UML:Object xmi.id = 'a229' name = 'view' visibility = 'public' isSpecification = 'false'>
+                <UML:Object xmi.id = 'a244' name = 'view' visibility = 'public' isSpecification = 'false'>
                   <UML:Instance.classifier>
-                    <UML:Class xmi.idref = 'a80'/>
+                    <UML:Class xmi.idref = 'a44'/>
                   </UML:Instance.classifier>
                   <UML:Instance.linkEnd>
-                    <UML:LinkEnd xmi.idref = 'a234'/>
+                    <UML:LinkEnd xmi.idref = 'a249'/>
                   </UML:Instance.linkEnd>
+                  <UML:Instance.ownedLink>
+                    <UML:Link xmi.id = 'a248' name = '' isSpecification = 'false'>
+                      <UML:Link.connection>
+                        <UML:LinkEnd xmi.id = 'a250' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'a245'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                        <UML:LinkEnd xmi.id = 'a249' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'a244'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                      </UML:Link.connection>
+                    </UML:Link>
+                  </UML:Instance.ownedLink>
                 </UML:Object>
-                <UML:Object xmi.id = 'a230' name = 'message' visibility = 'public' isSpecification = 'false'>
+                <UML:Object xmi.id = 'a245' name = 'message' visibility = 'public' isSpecification = 'false'>
                   <UML:Instance.classifier>
-                    <UML:Class xmi.idref = 'a27'/>
+                    <UML:Class xmi.idref = 'a61'/>
                   </UML:Instance.classifier>
                   <UML:Instance.linkEnd>
-                    <UML:LinkEnd xmi.idref = 'a235'/>
-                    <UML:LinkEnd xmi.idref = 'a236'/>
+                    <UML:LinkEnd xmi.idref = 'a250'/>
+                    <UML:LinkEnd xmi.idref = 'a251'/>
                   </UML:Instance.linkEnd>
+                  <UML:Instance.ownedLink>
+                    <UML:Link xmi.id = 'a247' name = '' isSpecification = 'false'>
+                      <UML:Link.connection>
+                        <UML:LinkEnd xmi.id = 'a252' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'a246'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                        <UML:LinkEnd xmi.id = 'a251' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'a245'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                      </UML:Link.connection>
+                    </UML:Link>
+                  </UML:Instance.ownedLink>
                 </UML:Object>
-                <UML:Object xmi.id = 'a231' name = 'network' visibility = 'public' isSpecification = 'false'>
+                <UML:Object xmi.id = 'a246' name = 'network' visibility = 'public' isSpecification = 'false'>
                   <UML:Instance.classifier>
-                    <UML:Class xmi.idref = 'a65'/>
+                    <UML:Class xmi.idref = 'a126'/>
                   </UML:Instance.classifier>
                   <UML:Instance.linkEnd>
-                    <UML:LinkEnd xmi.idref = 'a237'/>
+                    <UML:LinkEnd xmi.idref = 'a252'/>
                   </UML:Instance.linkEnd>
                 </UML:Object>
-                <UML:Message xmi.id = 'a238' name = 'Message_1' isSpecification = 'false'>
+                <UML:Message xmi.id = 'a253' name = 'Message_2' isSpecification = 'false'>
                   <UML:Message.conformingStimulus>
-                    <UML:Stimulus xmi.idref = 'a239'/>
+                    <UML:Stimulus xmi.idref = 'a254'/>
                   </UML:Message.conformingStimulus>
                 </UML:Message>
-                <UML:Message xmi.id = 'a240' name = 'Message_2' isSpecification = 'false'>
+                <UML:Message xmi.id = 'a255' name = 'Message_1' isSpecification = 'false'>
                   <UML:Message.conformingStimulus>
-                    <UML:Stimulus xmi.idref = 'a241'/>
+                    <UML:Stimulus xmi.idref = 'a256'/>
                   </UML:Message.conformingStimulus>
                 </UML:Message>
-                <UML:Stimulus xmi.id = 'a239' name = 'send' isSpecification = 'false'>
+                <UML:Stimulus xmi.id = 'a257' name = 'stim_4' isSpecification = 'false'>
                   <UML:Stimulus.sender>
-                    <UML:Object xmi.idref = 'a229'/>
+                    <UML:Object xmi.idref = 'a245'/>
                   </UML:Stimulus.sender>
                   <UML:Stimulus.receiver>
-                    <UML:Object xmi.idref = 'a230'/>
+                    <UML:Object xmi.idref = 'a244'/>
                   </UML:Stimulus.receiver>
-                  <UML:Stimulus.communicationLink>
-                    <UML:Link xmi.idref = 'a232'/>
-                  </UML:Stimulus.communicationLink>
                   <UML:Stimulus.dispatchAction>
-                    <UML:CallAction xmi.idref = 'a242'/>
+                    <UML:ReturnAction xmi.idref = 'a258'/>
                   </UML:Stimulus.dispatchAction>
                 </UML:Stimulus>
-                <UML:Stimulus xmi.id = 'a241' name = 'send' isSpecification = 'false'>
+                <UML:Stimulus xmi.id = 'a259' name = 'stim_3' isSpecification = 'false'>
                   <UML:Stimulus.sender>
-                    <UML:Object xmi.idref = 'a230'/>
+                    <UML:Object xmi.idref = 'a246'/>
                   </UML:Stimulus.sender>
                   <UML:Stimulus.receiver>
-                    <UML:Object xmi.idref = 'a231'/>
+                    <UML:Object xmi.idref = 'a245'/>
                   </UML:Stimulus.receiver>
-                  <UML:Stimulus.communicationLink>
-                    <UML:Link xmi.idref = 'a233'/>
-                  </UML:Stimulus.communicationLink>
                   <UML:Stimulus.dispatchAction>
-                    <UML:CallAction xmi.idref = 'a243'/>
+                    <UML:ReturnAction xmi.idref = 'a260'/>
                   </UML:Stimulus.dispatchAction>
                 </UML:Stimulus>
-                <UML:Stimulus xmi.id = 'a244' name = 'stim_3' isSpecification = 'false'>
+                <UML:Stimulus xmi.id = 'a256' name = 'send' isSpecification = 'false'>
                   <UML:Stimulus.sender>
-                    <UML:Object xmi.idref = 'a231'/>
+                    <UML:Object xmi.idref = 'a244'/>
                   </UML:Stimulus.sender>
                   <UML:Stimulus.receiver>
-                    <UML:Object xmi.idref = 'a230'/>
+                    <UML:Object xmi.idref = 'a245'/>
                   </UML:Stimulus.receiver>
+                  <UML:Stimulus.communicationLink>
+                    <UML:Link xmi.idref = 'a248'/>
+                  </UML:Stimulus.communicationLink>
+                  <UML:Stimulus.dispatchAction>
+                    <UML:CallAction xmi.idref = 'a261'/>
+                  </UML:Stimulus.dispatchAction>
                 </UML:Stimulus>
-                <UML:Stimulus xmi.id = 'a245' name = 'stim_4' isSpecification = 'false'>
+                <UML:Stimulus xmi.id = 'a254' name = 'send' isSpecification = 'false'>
                   <UML:Stimulus.sender>
-                    <UML:Object xmi.idref = 'a230'/>
+                    <UML:Object xmi.idref = 'a245'/>
                   </UML:Stimulus.sender>
                   <UML:Stimulus.receiver>
-                    <UML:Object xmi.idref = 'a229'/>
+                    <UML:Object xmi.idref = 'a246'/>
                   </UML:Stimulus.receiver>
+                  <UML:Stimulus.communicationLink>
+                    <UML:Link xmi.idref = 'a247'/>
+                  </UML:Stimulus.communicationLink>
+                  <UML:Stimulus.dispatchAction>
+                    <UML:CallAction xmi.idref = 'a262'/>
+                  </UML:Stimulus.dispatchAction>
                 </UML:Stimulus>
-                <UML:CallAction xmi.id = 'a243' name = 'SendAction' isSpecification = 'false'
+                <UML:CallAction xmi.id = 'a262' name = 'SendAction' isSpecification = 'false'
                   isAsynchronous = 'false'>
                   <UML:Action.actualArgument>
-                    <UML:Argument xmi.id = 'a246' name = 'arg' isSpecification = 'false'>
+                    <UML:Argument xmi.id = 'a263' name = 'arg' isSpecification = 'false'>
                       <UML:Argument.value>
-                        <UML:Expression xmi.id = 'a247' language = 'java' body = 'message'/>
+                        <UML:Expression xmi.id = 'a264' language = 'java' body = 'message'/>
                       </UML:Argument.value>
                     </UML:Argument>
                   </UML:Action.actualArgument>
+                  <UML:CallAction.operation>
+                    <UML:Operation xmi.idref = 'a130'/>
+                  </UML:CallAction.operation>
                 </UML:CallAction>
-                <UML:CallAction xmi.id = 'a242' name = 'SendAction' isSpecification = 'false'
-                  isAsynchronous = 'false'/>
+                <UML:CallAction xmi.id = 'a261' name = 'SendAction' isSpecification = 'false'
+                  isAsynchronous = 'false'>
+                  <UML:CallAction.operation>
+                    <UML:Operation xmi.idref = 'a168'/>
+                  </UML:CallAction.operation>
+                </UML:CallAction>
+                <UML:ReturnAction xmi.id = 'a258' name = 'Action_4' isSpecification = 'false'
+                  isAsynchronous = 'true'/>
+                <UML:ReturnAction xmi.id = 'a260' name = 'Action_3' isSpecification = 'false'
+                  isAsynchronous = 'true'/>
               </UML:Namespace.ownedElement>
             </UML:Collaboration>
-            <UML:Collaboration xmi.id = 'a248' name = 'ReceiveMessage' visibility = 'public'
+            <UML:Collaboration xmi.id = 'a265' name = 'ReceiveMessage' visibility = 'public'
               isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:Namespace.ownedElement>
-                <UML:CollaborationInstanceSet xmi.id = 'a249' name = 'Collaboration_Instance_Set_1'
+                <UML:CollaborationInstanceSet xmi.id = 'a266' name = 'Collaboration_Instance_Set_1'
                   isSpecification = 'false'>
                   <UML:CollaborationInstanceSet.interactionInstanceSet>
-                    <UML:InteractionInstanceSet xmi.id = 'a250' name = 'Collaboration_Instance_Set_2'
+                    <UML:InteractionInstanceSet xmi.id = 'a267' name = 'Collaboration_Instance_Set_2'
                       isSpecification = 'false'/>
                   </UML:CollaborationInstanceSet.interactionInstanceSet>
                   <UML:CollaborationInstanceSet.collaboration>
-                    <UML:Collaboration xmi.idref = 'a248'/>
+                    <UML:Collaboration xmi.idref = 'a265'/>
                   </UML:CollaborationInstanceSet.collaboration>
                   <UML:CollaborationInstanceSet.participatingInstance>
-                    <UML:Object xmi.idref = 'a251'/>
-                    <UML:Object xmi.idref = 'a252'/>
-                    <UML:Object xmi.idref = 'a253'/>
+                    <UML:Object xmi.idref = 'a268'/>
+                    <UML:Object xmi.idref = 'a269'/>
+                    <UML:Object xmi.idref = 'a270'/>
                   </UML:CollaborationInstanceSet.participatingInstance>
                   <UML:CollaborationInstanceSet.participatingLink>
-                    <UML:Link xmi.idref = 'a254'/>
-                    <UML:Link xmi.idref = 'a255'/>
+                    <UML:Link xmi.idref = 'a271'/>
+                    <UML:Link xmi.idref = 'a272'/>
                   </UML:CollaborationInstanceSet.participatingLink>
                 </UML:CollaborationInstanceSet>
-                <UML:Object xmi.id = 'a251' name = 'client' visibility = 'public' isSpecification = 'false'>
+                <UML:Object xmi.id = 'a268' name = 'network' visibility = 'public' isSpecification = 'false'>
                   <UML:Instance.classifier>
-                    <UML:Class xmi.idref = 'a91'/>
+                    <UML:Class xmi.idref = 'a126'/>
                   </UML:Instance.classifier>
                   <UML:Instance.linkEnd>
-                    <UML:LinkEnd xmi.idref = 'a256'/>
-                    <UML:LinkEnd xmi.idref = 'a257'/>
+                    <UML:LinkEnd xmi.idref = 'a273'/>
                   </UML:Instance.linkEnd>
+                  <UML:Instance.ownedLink>
+                    <UML:Link xmi.id = 'a271' name = '' isSpecification = 'false'>
+                      <UML:Link.connection>
+                        <UML:LinkEnd xmi.id = 'a274' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'a270'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                        <UML:LinkEnd xmi.id = 'a273' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'a268'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                      </UML:Link.connection>
+                    </UML:Link>
+                  </UML:Instance.ownedLink>
                 </UML:Object>
-                <UML:Object xmi.id = 'a252' name = 'network' visibility = 'public' isSpecification = 'false'>
+                <UML:Object xmi.id = 'a269' name = 'viewFactory' visibility = 'public' isSpecification = 'false'>
                   <UML:Instance.classifier>
-                    <UML:Class xmi.idref = 'a65'/>
+                    <UML:Interface xmi.idref = 'a58'/>
                   </UML:Instance.classifier>
                   <UML:Instance.linkEnd>
-                    <UML:LinkEnd xmi.idref = 'a258'/>
+                    <UML:LinkEnd xmi.idref = 'a275'/>
                   </UML:Instance.linkEnd>
                 </UML:Object>
-                <UML:Object xmi.id = 'a253' name = 'viewFactory' visibility = 'public' isSpecification = 'false'>
+                <UML:Object xmi.id = 'a270' name = 'client' visibility = 'public' isSpecification = 'false'>
                   <UML:Instance.classifier>
-                    <UML:Interface xmi.idref = 'a164'/>
+                    <UML:Class xmi.idref = 'a92'/>
                   </UML:Instance.classifier>
                   <UML:Instance.linkEnd>
-                    <UML:LinkEnd xmi.idref = 'a259'/>
+                    <UML:LinkEnd xmi.idref = 'a276'/>
+                    <UML:LinkEnd xmi.idref = 'a274'/>
                   </UML:Instance.linkEnd>
+                  <UML:Instance.ownedLink>
+                    <UML:Link xmi.id = 'a272' name = '' isSpecification = 'false'>
+                      <UML:Link.connection>
+                        <UML:LinkEnd xmi.id = 'a275' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'a269'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                        <UML:LinkEnd xmi.id = 'a276' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'a270'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                      </UML:Link.connection>
+                    </UML:Link>
+                  </UML:Instance.ownedLink>
                 </UML:Object>
-                <UML:Message xmi.id = 'a260' name = 'Message_1' isSpecification = 'false'>
+                <UML:Message xmi.id = 'a277' name = 'Message_3' isSpecification = 'false'>
                   <UML:Message.conformingStimulus>
-                    <UML:Stimulus xmi.idref = 'a261'/>
+                    <UML:Stimulus xmi.idref = 'a278'/>
                   </UML:Message.conformingStimulus>
                 </UML:Message>
-                <UML:Message xmi.id = 'a262' name = 'Message_3' isSpecification = 'false'>
+                <UML:Message xmi.id = 'a279' name = 'Message_1' isSpecification = 'false'>
                   <UML:Message.conformingStimulus>
-                    <UML:Stimulus xmi.idref = 'a263'/>
+                    <UML:Stimulus xmi.idref = 'a280'/>
                   </UML:Message.conformingStimulus>
                 </UML:Message>
-                <UML:Stimulus xmi.id = 'a264' name = 'stim_2' isSpecification = 'false'>
+                <UML:Stimulus xmi.id = 'a281' name = 'stim_2' isSpecification = 'false'>
                   <UML:Stimulus.sender>
-                    <UML:Object xmi.idref = 'a251'/>
+                    <UML:Object xmi.idref = 'a270'/>
                   </UML:Stimulus.sender>
                   <UML:Stimulus.receiver>
-                    <UML:Object xmi.idref = 'a252'/>
+                    <UML:Object xmi.idref = 'a268'/>
                   </UML:Stimulus.receiver>
                   <UML:Stimulus.dispatchAction>
-                    <UML:CallAction xmi.idref = 'a265'/>
+                    <UML:CallAction xmi.idref = 'a282'/>
                   </UML:Stimulus.dispatchAction>
                 </UML:Stimulus>
-                <UML:Stimulus xmi.id = 'a261' name = 'onReceivedChange' isSpecification = 'false'>
+                <UML:Stimulus xmi.id = 'a280' name = 'onReceivedChange' isSpecification = 'false'>
                   <UML:Stimulus.sender>
-                    <UML:Object xmi.idref = 'a252'/>
+                    <UML:Object xmi.idref = 'a268'/>
                   </UML:Stimulus.sender>
                   <UML:Stimulus.receiver>
-                    <UML:Object xmi.idref = 'a251'/>
-                  </UML:Stimulus.receiver>
-                  <UML:Stimulus.communicationLink>
-                    <UML:Link xmi.idref = 'a254'/>
-                  </UML:Stimulus.communicationLink>
-                  <UML:Stimulus.dispatchAction>
-                    <UML:CallAction xmi.idref = 'a266'/>
-                  </UML:Stimulus.dispatchAction>
-                </UML:Stimulus>
-                <UML:Stimulus xmi.id = 'a263' name = 'createMessageView' isSpecification = 'false'>
-                  <UML:Stimulus.sender>
-                    <UML:Object xmi.idref = 'a251'/>
-                  </UML:Stimulus.sender>
-                  <UML:Stimulus.receiver>
-                    <UML:Object xmi.idref = 'a253'/>
+                    <UML:Object xmi.idref = 'a270'/>
                   </UML:Stimulus.receiver>
                   <UML:Stimulus.communicationLink>
-                    <UML:Link xmi.idref = 'a255'/>
+                    <UML:Link xmi.idref = 'a271'/>
                   </UML:Stimulus.communicationLink>
                   <UML:Stimulus.dispatchAction>
-                    <UML:CallAction xmi.idref = 'a267'/>
+                    <UML:CallAction xmi.idref = 'a283'/>
                   </UML:Stimulus.dispatchAction>
                 </UML:Stimulus>
-                <UML:CallAction xmi.id = 'a266' name = 'OnReceivedChangeAction' isSpecification = 'false'
-                  isAsynchronous = 'false'/>
-                <UML:CallAction xmi.id = 'a267' name = 'CreateMessageViewAction' isSpecification = 'false'
+                <UML:Stimulus xmi.id = 'a278' name = 'createMessageView' isSpecification = 'false'>
+                  <UML:Stimulus.sender>
+                    <UML:Object xmi.idref = 'a270'/>
+                  </UML:Stimulus.sender>
+                  <UML:Stimulus.receiver>
+                    <UML:Object xmi.idref = 'a269'/>
+                  </UML:Stimulus.receiver>
+                  <UML:Stimulus.communicationLink>
+                    <UML:Link xmi.idref = 'a272'/>
+                  </UML:Stimulus.communicationLink>
+                  <UML:Stimulus.dispatchAction>
+                    <UML:CallAction xmi.idref = 'a284'/>
+                  </UML:Stimulus.dispatchAction>
+                </UML:Stimulus>
+                <UML:CallAction xmi.id = 'a283' name = 'OnReceivedChangeAction' isSpecification = 'false'
+                  isAsynchronous = 'false'>
+                  <UML:CallAction.operation>
+                    <UML:Operation xmi.idref = 'a210'/>
+                  </UML:CallAction.operation>
+                </UML:CallAction>
+                <UML:CallAction xmi.id = 'a284' name = 'CreateMessageViewAction' isSpecification = 'false'
                   isAsynchronous = 'false'>
                   <UML:Action.actualArgument>
-                    <UML:Argument xmi.id = 'a268' name = 'arg' isSpecification = 'false'>
+                    <UML:Argument xmi.id = 'a285' name = 'arg' isSpecification = 'false'>
                       <UML:Argument.value>
-                        <UML:Expression xmi.id = 'a269' language = 'java' body = 'network.received'/>
+                        <UML:Expression xmi.id = 'a286' language = 'java' body = 'network.received'/>
                       </UML:Argument.value>
                     </UML:Argument>
-                    <UML:Argument xmi.id = 'a270' name = 'arg' isSpecification = 'false'>
+                    <UML:Argument xmi.id = 'a287' name = 'arg' isSpecification = 'false'>
                       <UML:Argument.value>
-                        <UML:Expression xmi.id = 'a271' language = 'java' body = 'view'/>
+                        <UML:Expression xmi.id = 'a288' language = 'java' body = 'view'/>
                       </UML:Argument.value>
                     </UML:Argument>
                   </UML:Action.actualArgument>
+                  <UML:CallAction.operation>
+                    <UML:Operation xmi.idref = 'a59'/>
+                  </UML:CallAction.operation>
                 </UML:CallAction>
-                <UML:CallAction xmi.id = 'a265' name = 'Action_2' isSpecification = 'false'
+                <UML:CallAction xmi.id = 'a282' name = 'Action_2' isSpecification = 'false'
                   isAsynchronous = 'false'/>
               </UML:Namespace.ownedElement>
             </UML:Collaboration>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Stereotype xmi.id = 'a47' name = 'ValueObject' visibility = 'public'
-          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
-        </UML:Stereotype>
-        <UML:Stereotype xmi.id = 'a48' name = 'Observable' visibility = 'public'
-          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
-        </UML:Stereotype>
-        <UML:Stereotype xmi.id = 'a272' name = 'postcondition' isSpecification = 'false'
-          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-          <UML:Stereotype.baseClass>Constraint</UML:Stereotype.baseClass>
-        </UML:Stereotype>
-        <UML:Stereotype xmi.id = 'a111' name = 'Socket' visibility = 'public' isSpecification = 'false'
-          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
-        </UML:Stereotype>
-        <UML:Stereotype xmi.id = 'a100' name = 'realize' isSpecification = 'false'
+        <UML:Stereotype xmi.id = 'a208' name = 'realize' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Stereotype.baseClass>Abstraction</UML:Stereotype.baseClass>
         </UML:Stereotype>
-        <UML:Stereotype xmi.id = 'a273' name = 'invariant' isSpecification = 'false'
-          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-          <UML:Stereotype.baseClass>Constraint</UML:Stereotype.baseClass>
-        </UML:Stereotype>
-        <UML:Stereotype xmi.id = 'a194' name = 'process' visibility = 'public' isSpecification = 'false'
-          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-          <UML:Stereotype.baseClass>Classifier</UML:Stereotype.baseClass>
-        </UML:Stereotype>
-        <UML:Stereotype xmi.id = 'a196' name = 'create' isSpecification = 'false'
-          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Stereotype xmi.id = 'a118' name = 'Observer' visibility = 'public'
+        <UML:Stereotype xmi.id = 'a105' name = 'Observable' visibility = 'public'
           isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
         </UML:Stereotype>
-        <UML:Stereotype xmi.id = 'a76' name = 'subscribe' visibility = 'public'
+        <UML:Stereotype xmi.id = 'a289' name = 'invariant' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Constraint</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a78' name = 'subscribe' visibility = 'public'
           isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Stereotype.baseClass>Association</UML:Stereotype.baseClass>
         </UML:Stereotype>
-        <UML:TagDefinition xmi.id = 'a136' name = 'transient' isSpecification = 'false'>
+        <UML:Stereotype xmi.id = 'a290' name = 'postcondition' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Constraint</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a212' name = 'create' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+        <UML:Stereotype xmi.id = 'a163' name = 'ValueObject' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a106' name = 'Socket' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a34' name = 'Observer' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:Stereotype xmi.id = 'a209' name = 'process' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Classifier</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:TagDefinition xmi.id = 'a230' name = 'gentleware-initialValue' isSpecification = 'false'>
           <UML:TagDefinition.multiplicity>
-            <UML:Multiplicity xmi.id = 'a274'>
+            <UML:Multiplicity xmi.id = 'a291'>
               <UML:Multiplicity.range>
-                <UML:MultiplicityRange xmi.id = 'a275' lower = '1' upper = '1'/>
+                <UML:MultiplicityRange xmi.id = 'a292' lower = '1' upper = '1'/>
               </UML:Multiplicity.range>
             </UML:Multiplicity>
           </UML:TagDefinition.multiplicity>
         </UML:TagDefinition>
-        <UML:TagDefinition xmi.id = 'a215' name = 'gentleware-initialValue' isSpecification = 'false'>
+        <UML:TagDefinition xmi.id = 'a129' name = 'transient' isSpecification = 'false'>
           <UML:TagDefinition.multiplicity>
-            <UML:Multiplicity xmi.id = 'a276'>
+            <UML:Multiplicity xmi.id = 'a293'>
               <UML:Multiplicity.range>
-                <UML:MultiplicityRange xmi.id = 'a277' lower = '1' upper = '1'/>
+                <UML:MultiplicityRange xmi.id = 'a294' lower = '1' upper = '1'/>
               </UML:Multiplicity.range>
             </UML:Multiplicity>
           </UML:TagDefinition.multiplicity>
         </UML:TagDefinition>
-        <UML:Association xmi.id = 'a278' isSpecification = 'false' isRoot = 'false'
+        <UML:Association xmi.id = 'a295' isSpecification = 'false' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false'>
           <UML:Association.connection>
-            <UML:AssociationEnd xmi.id = 'a279' visibility = 'public' isSpecification = 'false'
-              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
-              changeability = 'changeable'>
-              <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a280'>
-                  <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a281' lower = '1' upper = '1'/>
-                  </UML:Multiplicity.range>
-                </UML:Multiplicity>
-              </UML:AssociationEnd.multiplicity>
-            </UML:AssociationEnd>
-            <UML:AssociationEnd xmi.id = 'a282' visibility = 'public' isSpecification = 'false'
-              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
-              changeability = 'changeable'>
-              <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a283'>
-                  <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a284' lower = '1' upper = '1'/>
-                  </UML:Multiplicity.range>
-                </UML:Multiplicity>
-              </UML:AssociationEnd.multiplicity>
-            </UML:AssociationEnd>
-          </UML:Association.connection>
-        </UML:Association>
-        <UML:Association xmi.id = 'a285' isSpecification = 'false' isRoot = 'false'
-          isLeaf = 'false' isAbstract = 'false'>
-          <UML:Association.connection>
-            <UML:AssociationEnd xmi.id = 'a286' visibility = 'public' isSpecification = 'false'
-              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
-              changeability = 'changeable'>
-              <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a287'>
-                  <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a288' lower = '1' upper = '1'/>
-                  </UML:Multiplicity.range>
-                </UML:Multiplicity>
-              </UML:AssociationEnd.multiplicity>
-            </UML:AssociationEnd>
-            <UML:AssociationEnd xmi.id = 'a289' visibility = 'public' isSpecification = 'false'
-              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
-              changeability = 'changeable'>
-              <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a290'>
-                  <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a291' lower = '1' upper = '1'/>
-                  </UML:Multiplicity.range>
-                </UML:Multiplicity>
-              </UML:AssociationEnd.multiplicity>
-            </UML:AssociationEnd>
-          </UML:Association.connection>
-        </UML:Association>
-        <UML:Association xmi.id = 'a292' isSpecification = 'false' isRoot = 'false'
-          isLeaf = 'false' isAbstract = 'false'>
-          <UML:Association.connection>
-            <UML:AssociationEnd xmi.id = 'a293' visibility = 'public' isSpecification = 'false'
-              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
-              changeability = 'changeable'>
-              <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a294'>
-                  <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a295' lower = '1' upper = '1'/>
-                  </UML:Multiplicity.range>
-                </UML:Multiplicity>
-              </UML:AssociationEnd.multiplicity>
-            </UML:AssociationEnd>
             <UML:AssociationEnd xmi.id = 'a296' visibility = 'public' isSpecification = 'false'
               isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
               changeability = 'changeable'>
@@ -1471,12 +1526,10 @@
                   </UML:Multiplicity.range>
                 </UML:Multiplicity>
               </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:UseCase xmi.idref = 'a299'/>
+              </UML:AssociationEnd.participant>
             </UML:AssociationEnd>
-          </UML:Association.connection>
-        </UML:Association>
-        <UML:Association xmi.id = 'a299' isSpecification = 'false' isRoot = 'false'
-          isLeaf = 'false' isAbstract = 'false'>
-          <UML:Association.connection>
             <UML:AssociationEnd xmi.id = 'a300' visibility = 'public' isSpecification = 'false'
               isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
               changeability = 'changeable'>
@@ -1487,131 +1540,216 @@
                   </UML:Multiplicity.range>
                 </UML:Multiplicity>
               </UML:AssociationEnd.multiplicity>
-            </UML:AssociationEnd>
-            <UML:AssociationEnd xmi.id = 'a303' visibility = 'public' isSpecification = 'false'
-              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
-              changeability = 'changeable'>
-              <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a304'>
-                  <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a305' lower = '1' upper = '1'/>
-                  </UML:Multiplicity.range>
-                </UML:Multiplicity>
-              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:Actor xmi.idref = 'a303'/>
+              </UML:AssociationEnd.participant>
             </UML:AssociationEnd>
           </UML:Association.connection>
         </UML:Association>
-        <UML:Association xmi.id = 'a306' isSpecification = 'false' isRoot = 'false'
+        <UML:Association xmi.id = 'a304' isSpecification = 'false' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false'>
           <UML:Association.connection>
-            <UML:AssociationEnd xmi.id = 'a307' visibility = 'public' isSpecification = 'false'
+            <UML:AssociationEnd xmi.id = 'a305' visibility = 'public' isSpecification = 'false'
               isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
               changeability = 'changeable'>
               <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a308'>
+                <UML:Multiplicity xmi.id = 'a306'>
                   <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a309' lower = '1' upper = '1'/>
+                    <UML:MultiplicityRange xmi.id = 'a307' lower = '1' upper = '1'/>
                   </UML:Multiplicity.range>
                 </UML:Multiplicity>
               </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:Actor xmi.idref = 'a308'/>
+              </UML:AssociationEnd.participant>
             </UML:AssociationEnd>
-            <UML:AssociationEnd xmi.id = 'a310' visibility = 'public' isSpecification = 'false'
+            <UML:AssociationEnd xmi.id = 'a309' visibility = 'public' isSpecification = 'false'
               isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
               changeability = 'changeable'>
               <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a311'>
+                <UML:Multiplicity xmi.id = 'a310'>
                   <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a312' lower = '1' upper = '1'/>
+                    <UML:MultiplicityRange xmi.id = 'a311' lower = '1' upper = '1'/>
                   </UML:Multiplicity.range>
                 </UML:Multiplicity>
               </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:UseCase xmi.idref = 'a299'/>
+              </UML:AssociationEnd.participant>
             </UML:AssociationEnd>
           </UML:Association.connection>
         </UML:Association>
-        <UML:Association xmi.id = 'a313' isSpecification = 'false' isRoot = 'false'
+        <UML:Association xmi.id = 'a312' isSpecification = 'false' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false'>
           <UML:Association.connection>
-            <UML:AssociationEnd xmi.id = 'a314' visibility = 'public' isSpecification = 'false'
+            <UML:AssociationEnd xmi.id = 'a313' visibility = 'public' isSpecification = 'false'
               isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
               changeability = 'changeable'>
               <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a315'>
+                <UML:Multiplicity xmi.id = 'a314'>
                   <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a316' lower = '1' upper = '1'/>
+                    <UML:MultiplicityRange xmi.id = 'a315' lower = '1' upper = '1'/>
                   </UML:Multiplicity.range>
                 </UML:Multiplicity>
               </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:Actor xmi.idref = 'a308'/>
+              </UML:AssociationEnd.participant>
             </UML:AssociationEnd>
-            <UML:AssociationEnd xmi.id = 'a317' visibility = 'public' isSpecification = 'false'
+            <UML:AssociationEnd xmi.id = 'a316' visibility = 'public' isSpecification = 'false'
               isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
               changeability = 'changeable'>
               <UML:AssociationEnd.multiplicity>
-                <UML:Multiplicity xmi.id = 'a318'>
+                <UML:Multiplicity xmi.id = 'a317'>
                   <UML:Multiplicity.range>
-                    <UML:MultiplicityRange xmi.id = 'a319' lower = '1' upper = '1'/>
+                    <UML:MultiplicityRange xmi.id = 'a318' lower = '1' upper = '1'/>
                   </UML:Multiplicity.range>
                 </UML:Multiplicity>
               </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:UseCase xmi.idref = 'a319'/>
+              </UML:AssociationEnd.participant>
             </UML:AssociationEnd>
           </UML:Association.connection>
         </UML:Association>
+        <UML:Association xmi.id = 'a320' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:Association.connection>
+            <UML:AssociationEnd xmi.id = 'a321' visibility = 'public' isSpecification = 'false'
+              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
+              changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = 'a322'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = 'a323' lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:UseCase xmi.idref = 'a324'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+            <UML:AssociationEnd xmi.id = 'a325' visibility = 'public' isSpecification = 'false'
+              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
+              changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = 'a326'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = 'a327' lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:Actor xmi.idref = 'a308'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+          </UML:Association.connection>
+        </UML:Association>
+        <UML:Association xmi.id = 'a328' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:Association.connection>
+            <UML:AssociationEnd xmi.id = 'a329' visibility = 'public' isSpecification = 'false'
+              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
+              changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = 'a330'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = 'a331' lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:Actor xmi.idref = 'a303'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+            <UML:AssociationEnd xmi.id = 'a332' visibility = 'public' isSpecification = 'false'
+              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
+              changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = 'a333'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = 'a334' lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:UseCase xmi.idref = 'a324'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+          </UML:Association.connection>
+        </UML:Association>
+        <UML:Association xmi.id = 'a335' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'>
+          <UML:Association.connection>
+            <UML:AssociationEnd xmi.id = 'a336' visibility = 'public' isSpecification = 'false'
+              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
+              changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = 'a337'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = 'a338' lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:Actor xmi.idref = 'a308'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+            <UML:AssociationEnd xmi.id = 'a339' visibility = 'public' isSpecification = 'false'
+              isNavigable = 'true' ordering = 'unordered' aggregation = 'none' targetScope = 'instance'
+              changeability = 'changeable'>
+              <UML:AssociationEnd.multiplicity>
+                <UML:Multiplicity xmi.id = 'a340'>
+                  <UML:Multiplicity.range>
+                    <UML:MultiplicityRange xmi.id = 'a341' lower = '1' upper = '1'/>
+                  </UML:Multiplicity.range>
+                </UML:Multiplicity>
+              </UML:AssociationEnd.multiplicity>
+              <UML:AssociationEnd.participant>
+                <UML:UseCase xmi.idref = 'a342'/>
+              </UML:AssociationEnd.participant>
+            </UML:AssociationEnd>
+          </UML:Association.connection>
+        </UML:Association>
+        <UML:Actor xmi.id = 'a303' name = 'Network' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+        <UML:Actor xmi.id = 'a308' name = 'User' visibility = 'public' isSpecification = 'false'
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+        <UML:UseCase xmi.id = 'a343' name = 'Update contact list' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+        <UML:UseCase xmi.id = 'a299' name = 'Send message' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+        <UML:UseCase xmi.id = 'a319' name = 'Add contact' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:UseCase.include>
+            <UML:Include xmi.idref = 'a344'/>
+          </UML:UseCase.include>
+        </UML:UseCase>
+        <UML:UseCase xmi.id = 'a324' name = 'Receive message' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+        <UML:UseCase xmi.id = 'a342' name = 'Remove contact' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+          <UML:UseCase.include>
+            <UML:Include xmi.idref = 'a345'/>
+          </UML:UseCase.include>
+        </UML:UseCase>
+        <UML:Include xmi.id = 'a345' isSpecification = 'false'>
+          <UML:Include.addition>
+            <UML:UseCase xmi.idref = 'a343'/>
+          </UML:Include.addition>
+          <UML:Include.base>
+            <UML:UseCase xmi.idref = 'a342'/>
+          </UML:Include.base>
+        </UML:Include>
+        <UML:Include xmi.id = 'a344' isSpecification = 'false'>
+          <UML:Include.addition>
+            <UML:UseCase xmi.idref = 'a343'/>
+          </UML:Include.addition>
+          <UML:Include.base>
+            <UML:UseCase xmi.idref = 'a319'/>
+          </UML:Include.base>
+        </UML:Include>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Link xmi.id = 'a254' name = '' isSpecification = 'false'>
-      <UML:Link.connection>
-        <UML:LinkEnd xmi.id = 'a257' isSpecification = 'false'>
-          <UML:LinkEnd.instance>
-            <UML:Object xmi.idref = 'a251'/>
-          </UML:LinkEnd.instance>
-        </UML:LinkEnd>
-        <UML:LinkEnd xmi.id = 'a258' isSpecification = 'false'>
-          <UML:LinkEnd.instance>
-            <UML:Object xmi.idref = 'a252'/>
-          </UML:LinkEnd.instance>
-        </UML:LinkEnd>
-      </UML:Link.connection>
-    </UML:Link>
-    <UML:Link xmi.id = 'a255' name = '' isSpecification = 'false'>
-      <UML:Link.connection>
-        <UML:LinkEnd xmi.id = 'a256' isSpecification = 'false'>
-          <UML:LinkEnd.instance>
-            <UML:Object xmi.idref = 'a251'/>
-          </UML:LinkEnd.instance>
-        </UML:LinkEnd>
-        <UML:LinkEnd xmi.id = 'a259' isSpecification = 'false'>
-          <UML:LinkEnd.instance>
-            <UML:Object xmi.idref = 'a253'/>
-          </UML:LinkEnd.instance>
-        </UML:LinkEnd>
-      </UML:Link.connection>
-    </UML:Link>
-    <UML:Link xmi.id = 'a232' name = '' isSpecification = 'false'>
-      <UML:Link.connection>
-        <UML:LinkEnd xmi.id = 'a234' isSpecification = 'false'>
-          <UML:LinkEnd.instance>
-            <UML:Object xmi.idref = 'a229'/>
-          </UML:LinkEnd.instance>
-        </UML:LinkEnd>
-        <UML:LinkEnd xmi.id = 'a236' isSpecification = 'false'>
-          <UML:LinkEnd.instance>
-            <UML:Object xmi.idref = 'a230'/>
-          </UML:LinkEnd.instance>
-        </UML:LinkEnd>
-      </UML:Link.connection>
-    </UML:Link>
-    <UML:Link xmi.id = 'a233' name = '' isSpecification = 'false'>
-      <UML:Link.connection>
-        <UML:LinkEnd xmi.id = 'a235' isSpecification = 'false'>
-          <UML:LinkEnd.instance>
-            <UML:Object xmi.idref = 'a230'/>
-          </UML:LinkEnd.instance>
-        </UML:LinkEnd>
-        <UML:LinkEnd xmi.id = 'a237' isSpecification = 'false'>
-          <UML:LinkEnd.instance>
-            <UML:Object xmi.idref = 'a231'/>
-          </UML:LinkEnd.instance>
-        </UML:LinkEnd>
-      </UML:Link.connection>
-    </UML:Link>
   </XMI.content>
 </XMI>

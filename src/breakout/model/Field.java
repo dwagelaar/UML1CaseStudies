@@ -16,20 +16,20 @@ public class Field extends breakout.model.Sprite {
  * <p>Does ...</p>
  * 
  * 
- * 
- * @return 
  */
-    public java.util.Collection getSprites() {        
-        return sprite;
+    public void newGame() {        
+        // your code here
     } 
 
 /**
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @return 
  */
-    public void newGame() {        
-        // your code here
+    public java.util.Collection getSprites() {        
+        return sprite;
     } 
 
 /**

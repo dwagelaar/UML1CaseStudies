@@ -1,6 +1,12 @@
 -- $Id$
 library Java;
 
+uses strings;
+
+-- ======================================================================
+-- generic helpers begin
+-- ======================================================================
+
 helper context String def : isSequenceSet() : Boolean =
 	self = 'SequenceSet';
 
@@ -183,3 +189,7 @@ helper context String def : javaRemoverSubscribe(body : String) : String =
 	body +
 	'// End original body\n' +
 	'// End subscribe stanza';
+
+-- ======================================================================
+-- generic helpers end
+-- ======================================================================

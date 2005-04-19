@@ -9,23 +9,12 @@ public class Dimension {
 /**
  * <p>Represents ...</p>
  */
-    private int width;
+    private int height;
 
 /**
  * <p>Represents ...</p>
  */
-    private int height;
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param height 
- */
-    public void setHeight(int height) {        
-        this.height = height;
-    } 
+    private int width;
 
 /**
  * <p>Does ...</p>
@@ -47,6 +36,17 @@ public class Dimension {
  */
     public int getWidth() {        
         return width;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param height 
+ */
+    public void setHeight(int height) {        
+        this.height = height;
     } 
 
 /**

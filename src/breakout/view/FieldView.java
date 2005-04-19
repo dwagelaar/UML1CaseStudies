@@ -27,18 +27,18 @@ public abstract class FieldView extends breakout.view.SpriteView {
  * 
  * 
  * 
- * @return 
+ * @param sprite 
  */
-    public breakout.view.ViewFactory getFactory() {        
-        return factory;
-    } 
+    public abstract void onSpriteChange(breakout.model.Sprite sprite);
 
 /**
  * <p>Does ...</p>
  * 
  * 
  * 
- * @param sprite 
+ * @return 
  */
-    public abstract void onSpriteChange(breakout.model.Sprite sprite);
+    public breakout.view.ViewFactory getFactory() {        
+        return factory;
+    } 
  }

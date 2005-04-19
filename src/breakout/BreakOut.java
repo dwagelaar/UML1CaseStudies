@@ -16,6 +16,27 @@ public class BreakOut {
  * <p>Does ...</p>
  * 
  * 
+ */
+    public  BreakOut() {        
+        viewFactory = new breakout.view.awt.AWTViewFactory();
+        viewFactory.createFieldView(new breakout.model.Field());
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param viewFactory 
+ */
+    public void setViewFactory(breakout.view.ViewFactory viewFactory) {        
+        this.viewFactory = viewFactory;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
  * 
  * @return 
  */
@@ -32,26 +53,5 @@ public class BreakOut {
  */
     public static void main(String[] args) {        
         new BreakOut();
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public  BreakOut() {        
-        viewFactory = new breakout.view.awt.AWTViewFactory();
-        viewFactory.createFieldView(new breakout.model.Field());
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param viewFactory 
- */
-    public void setViewFactory(breakout.view.ViewFactory viewFactory) {        
-        this.viewFactory = viewFactory;
     } 
  }

@@ -27,17 +27,6 @@ public class AWTPaddleView extends breakout.view.PaddleView implements java.awt.
  * 
  * 
  * 
- * @param impl 
- */
-    public void setImpl(breakout.view.awt.AWTPaddle impl) {        
-        this.impl = impl;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param size 
  */
     public void onSizeChange(breakout.model.Dimension size) {        
@@ -48,20 +37,20 @@ public class AWTPaddleView extends breakout.view.PaddleView implements java.awt.
  * <p>Does ...</p>
  * 
  * 
- * 
- * @param e 
  */
-    public void mouseDragged(java.awt.event.MouseEvent e) {        
-        drag(e.getX());
+    public  AWTPaddleView() {        
+        impl.addMouseMotionListener(this);
     } 
 
 /**
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param e 
  */
-    public  AWTPaddleView() {        
-        impl.addMouseMotionListener(this);
+    public void mouseMoved(java.awt.event.MouseEvent e) {        
+        // stub
     } 
 
 /**
@@ -91,9 +80,20 @@ public class AWTPaddleView extends breakout.view.PaddleView implements java.awt.
  * 
  * 
  * 
+ * @param impl 
+ */
+    public void setImpl(breakout.view.awt.AWTPaddle impl) {        
+        this.impl = impl;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param e 
  */
-    public void mouseMoved(java.awt.event.MouseEvent e) {        
-        // stub
+    public void mouseDragged(java.awt.event.MouseEvent e) {        
+        drag(e.getX());
     } 
  }

@@ -3,7 +3,6 @@ module Accessors;
 
 create OUT : OUTMODEL from IN : INMODEL;
 
-uses strings;
 uses Java;
 
 -- ======================================================================
@@ -465,6 +464,196 @@ rule Generalization {
 		isSpecification <- s.isSpecification,
 		parent <- s.parent,
 		child <- s.child)
+}
+
+rule Collaboration {
+	from s : INMODEL!Collaboration
+	to t : OUTMODEL!Collaboration mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isRoot <- s.isRoot,
+		isLeaf <- s.isLeaf,
+		isSpecification <- s.isSpecification,
+		isAbstract <- s.isAbstract)
+}
+
+rule CollaborationInstanceSet {
+	from s : INMODEL!CollaborationInstanceSet
+	to t : OUTMODEL!CollaborationInstanceSet mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		collaboration <- s.collaboration,
+		interactionInstanceSet <- s.interactionInstanceSet,
+		participatingInstance <- s.participatingInstance,
+		participatingLink <- s.participatingLink,
+		stereotype <- s.stereotype,
+		isSpecification <- s.isSpecification)
+}
+
+rule InteractionInstanceSet {
+	from s : INMODEL!InteractionInstanceSet
+	to t : OUTMODEL!InteractionInstanceSet mapsTo s (
+		name <- s.name,
+		stereotype <- s.stereotype,
+		isSpecification <- s.isSpecification)
+}
+
+rule Object {
+	from s : INMODEL!Object
+	to t : OUTMODEL!Object mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		classifier <- s.classifier,
+		linkEnd <- s.linkEnd,
+		ownedLink <- s.ownedLink,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isSpecification <- s.isSpecification)
+}
+
+rule Link {
+	from s : INMODEL!Link
+	to t : OUTMODEL!Link mapsTo s (
+		name <- s.name,
+		association <- s.association,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isSpecification <- s.isSpecification)
+}
+
+rule LinkEnd {
+	from s : INMODEL!LinkEnd
+	to t : OUTMODEL!LinkEnd mapsTo s (
+		name <- s.name,
+		link <- s.link,
+		instance <- s.instance,
+		associationEnd <- s.associationEnd,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isSpecification <- s.isSpecification)
+}
+
+rule Message {
+	from s : INMODEL!Message
+	to t : OUTMODEL!Message mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		conformingStimulus <- s.conformingStimulus,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isSpecification <- s.isSpecification)
+}
+
+rule Stimulus {
+	from s : INMODEL!Stimulus
+	to t : OUTMODEL!Stimulus mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		sender <- s.sender,
+		receiver <- s.receiver,
+		communicationLink <- s.communicationLink,
+		dispatchAction <- s.dispatchAction,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isSpecification <- s.isSpecification)
+}
+
+rule CallAction {
+	from s : INMODEL!CallAction
+	to t : OUTMODEL!CallAction mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		actualArgument <- s.actualArgument,
+		isAsynchronous <- s.isAsynchronous,
+		operation <- s.operation,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isSpecification <- s.isSpecification)
+}
+
+rule ReturnAction {
+	from s : INMODEL!ReturnAction
+	to t : OUTMODEL!ReturnAction mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		actualArgument <- s.actualArgument,
+		isAsynchronous <- s.isAsynchronous,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isSpecification <- s.isSpecification)
+}
+
+rule Argument {
+	from s : INMODEL!Argument
+	to t : OUTMODEL!Argument mapsTo s (
+		name <- s.name,
+		value <- s.value,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isSpecification <- s.isSpecification)
+}
+
+rule Actor {
+	from s : INMODEL!Actor
+	to t : OUTMODEL!Actor mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isRoot <- s.isRoot,
+		isLeaf <- s.isLeaf,
+		isSpecification <- s.isSpecification,
+		isAbstract <- s.isAbstract)
+}
+
+rule UseCase {
+	from s : INMODEL!UseCase
+	to t : OUTMODEL!UseCase mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		stereotype <- s.stereotype,
+		visibility <- s.visibility,
+		isRoot <- s.isRoot,
+		isLeaf <- s.isLeaf,
+		isSpecification <- s.isSpecification,
+		isAbstract <- s.isAbstract)
+}
+
+rule Include {
+	from s : INMODEL!Include
+	to t : OUTMODEL!Include mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		base <- s.base,
+		addition <- s.addition,
+		stereotype <- s.stereotype,
+		isSpecification <- s.isSpecification)
+}
+
+rule Extend {
+	from s : INMODEL!Extend
+	to t : OUTMODEL!Extend mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		base <- s.base,
+		extension <- s.extension,
+		extensionPoint <- s.extensionPoint,
+		condition <- s.condition,
+		stereotype <- s.stereotype,
+		isSpecification <- s.isSpecification)
+}
+
+rule ExtensionPoint {
+	from s : INMODEL!ExtensionPoint
+	to t : OUTMODEL!ExtensionPoint mapsTo s (
+		name <- s.name,
+		namespace <- s.namespace,
+		location <- s.location,
+		useCase <- s.useCase,
+		stereotype <- s.stereotype,
+		isSpecification <- s.isSpecification)
 }
 
 -- ======================================================================

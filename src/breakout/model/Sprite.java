@@ -9,17 +9,39 @@ public abstract class Sprite extends java.util.Observable {
 /**
  * <p>Represents ...</p>
  */
-    private breakout.model.Dimension size = null;
-
-/**
- * <p>Represents ...</p>
- */
     private breakout.model.Field field = null;
 
 /**
  * <p>Represents ...</p>
  */
+    private breakout.model.Dimension size = null;
+
+/**
+ * <p>Represents ...</p>
+ */
     private breakout.model.Point position = null;
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public breakout.model.Field getField() {        
+        return field;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public breakout.model.Dimension getSize() {        
+        return size;
+    } 
 
 /**
  * <p>Does ...</p>
@@ -51,32 +73,20 @@ public abstract class Sprite extends java.util.Observable {
  * 
  * 
  * 
- * @return 
+ * @param size 
  */
-    public breakout.model.Dimension getSize() {        
-        return size;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public breakout.model.Field getField() {        
-        return field;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public breakout.model.Point getPosition() {        
-        return position;
+    public void setSize(breakout.model.Dimension size) {        
+        // Begin Observable stanza
+        if (this.size != size) {
+            // Begin original body
+        this.size = size;    // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Size");
+            e.put("value", size);
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -105,19 +115,9 @@ public abstract class Sprite extends java.util.Observable {
  * 
  * 
  * 
- * @param size 
+ * @return 
  */
-    public void setSize(breakout.model.Dimension size) {        
-        // Begin Observable stanza
-        if (this.size != size) {
-            // Begin original body
-        this.size = size;    // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Size");
-            e.put("value", size);
-            notifyObservers(e);
-        }
-        // End Observable stanza
+    public breakout.model.Point getPosition() {        
+        return position;
     } 
  }

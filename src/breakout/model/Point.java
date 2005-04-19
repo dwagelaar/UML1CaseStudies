@@ -21,17 +21,6 @@ public class Point {
  * 
  * 
  * 
- * @param y 
- */
-    public void setY(int y) {        
-        this.y = y;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param x 
  */
     public void setX(int x) {        
@@ -45,8 +34,19 @@ public class Point {
  * 
  * @return 
  */
-    public int getX() {        
-        return x;
+    public int getY() {        
+        return y;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param y 
+ */
+    public void setY(int y) {        
+        this.y = y;
     } 
 
 /**
@@ -56,7 +56,7 @@ public class Point {
  * 
  * @return 
  */
-    public int getY() {        
-        return y;
+    public int getX() {        
+        return x;
     } 
  }
