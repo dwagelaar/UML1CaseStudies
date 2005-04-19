@@ -25,10 +25,10 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @param received 
+ * @return 
  */
-    public void setReceived(im.model.Message received) {        
-        this.received = received;
+    public im.model.Message getReceived() {        
+        return received;
     } 
 
 /**
@@ -36,9 +36,9 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @return 
+ * @param received 
  */
-    public im.model.Message getReceived() {        
-        return received;
+    public void setReceived(im.model.Message received) {        
+        this.received = received;
     } 
  }

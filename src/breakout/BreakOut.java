@@ -1,6 +1,5 @@
 
 package breakout;
-import breakout.view.awt.*;
 
 /**
  * <p></p>
@@ -27,10 +26,10 @@ public class BreakOut {
  * 
  * 
  * 
- * @param viewFactory 
+ * @param args 
  */
-    public void setViewFactory(breakout.view.ViewFactory viewFactory) {        
-        this.viewFactory = viewFactory;
+    public static void main(String[] args) {        
+        new BreakOut();
     } 
 
 /**
@@ -49,9 +48,9 @@ public class BreakOut {
  * 
  * 
  * 
- * @param args 
+ * @param viewFactory 
  */
-    public static void main(String[] args) {        
-        new BreakOut();
+    public void setViewFactory(breakout.view.ViewFactory viewFactory) {        
+        this.viewFactory = viewFactory;
     } 
  }

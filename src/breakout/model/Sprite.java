@@ -14,34 +14,12 @@ public abstract class Sprite extends java.util.Observable {
 /**
  * <p>Represents ...</p>
  */
-    private breakout.model.Dimension size = null;
+    private breakout.model.Point position = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private breakout.model.Point position = null;
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public breakout.model.Field getField() {        
-        return field;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public breakout.model.Dimension getSize() {        
-        return size;
-    } 
+    private breakout.model.Dimension size = null;
 
 /**
  * <p>Does ...</p>
@@ -66,6 +44,17 @@ public abstract class Sprite extends java.util.Observable {
             notifyObservers(e);
         }
         // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public breakout.model.Point getPosition() {        
+        return position;
     } 
 
 /**
@@ -117,7 +106,18 @@ public abstract class Sprite extends java.util.Observable {
  * 
  * @return 
  */
-    public breakout.model.Point getPosition() {        
-        return position;
+    public breakout.model.Dimension getSize() {        
+        return size;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public breakout.model.Field getField() {        
+        return field;
     } 
  }

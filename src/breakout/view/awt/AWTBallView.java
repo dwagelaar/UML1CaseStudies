@@ -16,10 +16,21 @@ public class AWTBallView extends breakout.view.BallView {
  * 
  * 
  * 
- * @param impl 
+ * @param field 
  */
-    public void setImpl(breakout.view.awt.AWTBall impl) {        
-        this.impl = impl;
+    public void onFieldChange(breakout.model.Field field) {        
+        getImpl().removeFromParent();
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public breakout.view.awt.AWTBall getImpl() {        
+        return impl;
     } 
 
 /**
@@ -49,20 +60,9 @@ public class AWTBallView extends breakout.view.BallView {
  * 
  * 
  * 
- * @return 
+ * @param impl 
  */
-    public breakout.view.awt.AWTBall getImpl() {        
-        return impl;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param field 
- */
-    public void onFieldChange(breakout.model.Field field) {        
-        getImpl().removeFromParent();
+    public void setImpl(breakout.view.awt.AWTBall impl) {        
+        this.impl = impl;
     } 
  }

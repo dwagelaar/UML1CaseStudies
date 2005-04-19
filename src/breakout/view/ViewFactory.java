@@ -9,24 +9,6 @@ public interface ViewFactory {
  * 
  * 
  * 
- * @param field 
- * @return 
- */
-    public abstract breakout.view.FieldView createFieldView(breakout.model.Field field);
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param paddle 
- * @return 
- */
-    public abstract breakout.view.PaddleView createPaddleView(breakout.model.Paddle paddle);
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param brick 
  * @return 
  */
@@ -45,10 +27,28 @@ public interface ViewFactory {
  * 
  * 
  * 
+ * @param field 
+ * @return 
+ */
+    public abstract breakout.view.FieldView createFieldView(breakout.model.Field field);
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param ball 
  * @return 
  */
     public abstract breakout.view.BallView createBallView(breakout.model.Ball ball);
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param paddle 
+ * @return 
+ */
+    public abstract breakout.view.PaddleView createPaddleView(breakout.model.Paddle paddle);
 }
 
 

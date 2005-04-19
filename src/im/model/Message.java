@@ -9,11 +9,6 @@ public abstract class Message extends im.model.NetworkSpecificData {
 /**
  * <p>Represents ...</p>
  */
-    private String sender;
-
-/**
- * <p>Represents ...</p>
- */
     private String recipient;
 
 /**
@@ -22,36 +17,19 @@ public abstract class Message extends im.model.NetworkSpecificData {
     private Object content;
 
 /**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
+ * <p>Represents ...</p>
  */
-    public String getRecipient() {        
-        return recipient;
-    } 
+    private String sender;
 
 /**
  * <p>Does ...</p>
  * 
  * 
- * 
- * @return 
  */
-    public Object getContent() {        
-        return content;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public String getSender() {        
-        return sender;
+    public void send() {        
+        if (getNetwork() != null) {
+            getNetwork().send(this);
+        }
     } 
 
 /**
@@ -70,6 +48,17 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
+ * @return 
+ */
+    public Object getContent() {        
+        return content;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param sender 
  */
     public void setSender(String sender) {        
@@ -80,11 +69,11 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @return 
  */
-    public void send() {        
-        if (network != null) {
-            network.send(this);
-        }
+    public String getSender() {        
+        return sender;
     } 
 
 /**
@@ -96,5 +85,16 @@ public abstract class Message extends im.model.NetworkSpecificData {
  */
     public void setContent(Object content) {        
         this.content = content;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getRecipient() {        
+        return recipient;
     } 
  }

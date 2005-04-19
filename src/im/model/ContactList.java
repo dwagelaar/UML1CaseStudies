@@ -16,17 +16,6 @@ public class ContactList extends java.util.Observable {
  * 
  * 
  * 
- * @return 
- */
-    public java.util.List getContacts() {        
-        return contact;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param contact 
  */
     public void removeContact(im.model.Contact contact) {        
@@ -48,5 +37,16 @@ public class ContactList extends java.util.Observable {
             this.contact.add(contact);
             contact.setList(this);
         }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public java.util.List getContacts() {        
+        return contact;
     } 
  }

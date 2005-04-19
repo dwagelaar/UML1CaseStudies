@@ -9,19 +9,19 @@ public interface ViewFactory {
  * 
  * 
  * 
- * @param message 
+ * @param contact 
  * @return 
  */
-    public abstract im.view.MessageView createMessageView(im.model.Message message);
+    public abstract im.view.ContactView createContactView(im.model.Contact contact);
 /**
  * <p>Does ...</p>
  * 
  * 
  * 
- * @param contact 
+ * @param message 
  * @return 
  */
-    public abstract im.view.ContactView createContactView(im.model.Contact contact);
+    public abstract im.view.MessageView createMessageView(im.model.Message message);
 /**
  * <p>Does ...</p>
  * 

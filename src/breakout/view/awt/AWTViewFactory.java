@@ -16,33 +16,6 @@ public class AWTViewFactory implements breakout.view.ViewFactory {
  * 
  * 
  * 
- * @param brick 
- * @return 
- */
-    public breakout.view.BrickView createBrickView(breakout.model.Brick brick) {        
-        initSpriteView(new AWTBrickView(), brick);
-        return (breakout.view.BrickView) view;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param field 
- * @return 
- */
-    public breakout.view.FieldView createFieldView(breakout.model.Field field) {        
-        initSpriteView(new AWTFieldView(), field);
-        ((AWTFieldView) view).init();
-        return (breakout.view.FieldView) view;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param sprite 
  * @return 
  */
@@ -65,19 +38,6 @@ public class AWTViewFactory implements breakout.view.ViewFactory {
  * 
  * 
  * 
- * @param ball 
- * @return 
- */
-    public breakout.view.BallView createBallView(breakout.model.Ball ball) {        
-        initSpriteView(new AWTBallView(), ball);
-        return (breakout.view.BallView) view;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param view 
  * @param sprite 
  */
@@ -91,11 +51,51 @@ public class AWTViewFactory implements breakout.view.ViewFactory {
  * 
  * 
  * 
+ * @param ball 
+ * @return 
+ */
+    public breakout.view.BallView createBallView(breakout.model.Ball ball) {        
+        initSpriteView(new AWTBallView(), ball);
+        return (breakout.view.BallView) view;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param field 
+ * @return 
+ */
+    public breakout.view.FieldView createFieldView(breakout.model.Field field) {        
+        initSpriteView(new AWTFieldView(), field);
+        ((AWTFieldView) view).init();
+        return (breakout.view.FieldView) view;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param paddle 
  * @return 
  */
     public breakout.view.PaddleView createPaddleView(breakout.model.Paddle paddle) {        
         initSpriteView(new AWTPaddleView(), paddle);
         return (breakout.view.PaddleView) view;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param brick 
+ * @return 
+ */
+    public breakout.view.BrickView createBrickView(breakout.model.Brick brick) {        
+        initSpriteView(new AWTBrickView(), brick);
+        return (breakout.view.BrickView) view;
     } 
  }

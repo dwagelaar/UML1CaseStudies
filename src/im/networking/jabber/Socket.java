@@ -27,10 +27,10 @@ public class Socket extends java.util.Observable {
  * 
  * 
  * 
- * @return 
+ * @param data 
  */
-    public Object getReceived() {        
-        return received;
+    public void sendData(Object data) {        
+        // your code here
     } 
 
 /**
@@ -38,9 +38,9 @@ public class Socket extends java.util.Observable {
  * 
  * 
  * 
- * @param data 
+ * @return 
  */
-    public void sendData(Object data) {        
-        // your code here
+    public Object getReceived() {        
+        return received;
     } 
  }

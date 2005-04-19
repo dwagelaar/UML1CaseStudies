@@ -16,10 +16,10 @@ public class AWTBrickView extends breakout.view.BrickView {
  * 
  * 
  * 
- * @param impl 
+ * @param size 
  */
-    public void setImpl(breakout.view.awt.AWTBrick impl) {        
-        this.impl = impl;
+    public void onSizeChange(breakout.model.Dimension size) {        
+        impl.setSize(size.getWidth(), size.getHeight());
     } 
 
 /**
@@ -27,10 +27,10 @@ public class AWTBrickView extends breakout.view.BrickView {
  * 
  * 
  * 
- * @return 
+ * @param impl 
  */
-    public breakout.view.awt.AWTBrick getImpl() {        
-        return impl;
+    public void setImpl(breakout.view.awt.AWTBrick impl) {        
+        this.impl = impl;
     } 
 
 /**
@@ -49,10 +49,10 @@ public class AWTBrickView extends breakout.view.BrickView {
  * 
  * 
  * 
- * @param size 
+ * @return 
  */
-    public void onSizeChange(breakout.model.Dimension size) {        
-        impl.setSize(size.getWidth(), size.getHeight());
+    public breakout.view.awt.AWTBrick getImpl() {        
+        return impl;
     } 
 
 /**

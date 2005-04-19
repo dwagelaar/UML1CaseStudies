@@ -9,16 +9,6 @@ public class InstantMessagingClient implements java.util.Observer {
 /**
  * <p>Represents ...</p>
  */
-    private java.util.Collection messageFactory = new java.util.ArrayList();
-
-/**
- * <p>Represents ...</p>
- */
-    private im.model.ContactList contactList = new ContactList();
-
-/**
- * <p>Represents ...</p>
- */
     private im.view.ViewFactory viewFactory = null;
 
 /**
@@ -27,66 +17,14 @@ public class InstantMessagingClient implements java.util.Observer {
     private java.util.Collection network = new java.util.ArrayList();
 
 /**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param network 
+ * <p>Represents ...</p>
  */
-    public void addNetwork(im.networking.Network network) {        
-        this.network.add(network);
-    } 
+    private im.model.ContactList contactList = new im.model.ContactList();
 
 /**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param contactList 
+ * <p>Represents ...</p>
  */
-    public void setContactList(im.model.ContactList contactList) {        
-        this.contactList = contactList;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param network 
- */
-    public void removeNetwork(im.networking.Network network) {        
-        this.network.remove(network);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param messageFactory 
- */
-    public void removeMessageFactory(im.model.MessageFactory messageFactory) {        
-        this.messageFactory.remove(messageFactory);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public void onReceivedChange() {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public  InstantMessagingClient() {        
-        // your code here
-    } 
+    private java.util.Collection messageFactory = new java.util.ArrayList();
 
 /**
  * <p>Does ...</p>
@@ -104,21 +42,10 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @return 
+ * @param messageFactory 
  */
-    public java.util.Collection getMessageFactorys() {        
-        return messageFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public java.util.Collection getNetworks() {        
-        return network;
+    public void removeMessageFactory(im.model.MessageFactory messageFactory) {        
+        this.messageFactory.remove(messageFactory);
     } 
 
 /**
@@ -154,8 +81,28 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * @return 
  */
-    public im.view.ViewFactory getViewFactory() {        
-        return viewFactory;
+    public java.util.Collection getNetworks() {        
+        return network;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void onReceivedChange() {        
+        // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param network 
+ */
+    public void removeNetwork(im.networking.Network network) {        
+        this.network.remove(network);
     } 
 
 /**
@@ -174,10 +121,32 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @param messageFactory 
+ * @param args 
  */
-    public void addMessageFactory(im.model.MessageFactory messageFactory) {        
-        this.messageFactory.add(messageFactory);
+    public static void main(String[] args) {        
+        new InstantMessagingClient();
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public java.util.Collection getMessageFactorys() {        
+        return messageFactory;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param network 
+ */
+    public void addNetwork(im.networking.Network network) {        
+        this.network.add(network);
     } 
 
 /**
@@ -185,7 +154,40 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  */
-    public static void main( args) {        
-        new InstantMessagingClient();
+    public  InstantMessagingClient() {        
+        // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param contactList 
+ */
+    public void setContactList(im.model.ContactList contactList) {        
+        this.contactList = contactList;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.view.ViewFactory getViewFactory() {        
+        return viewFactory;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param messageFactory 
+ */
+    public void addMessageFactory(im.model.MessageFactory messageFactory) {        
+        this.messageFactory.add(messageFactory);
     } 
  }

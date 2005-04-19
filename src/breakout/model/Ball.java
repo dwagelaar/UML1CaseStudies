@@ -15,10 +15,21 @@ public class Ball extends breakout.model.Sprite {
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param running 
  */
-    public void run() {        
-        while (running) {
+    public void setRunning(boolean running) {        
+        // Begin Observable stanza
+        if (this.running != running) {
+            // Begin original body
+        this.running = running;    // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Running");
+            e.put("value", new Boolean(running));
+            notifyObservers(e);
         }
+        // End Observable stanza
     } 
 
 /**
@@ -36,20 +47,9 @@ public class Ball extends breakout.model.Sprite {
  * <p>Does ...</p>
  * 
  * 
- * 
- * @param running 
  */
-    public void setRunning(boolean running) {        
-        // Begin Observable stanza
-        if (this.running != running) {
-            // Begin original body
-        this.running = running;    // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Running");
-            e.put("value", new Boolean(running));
-            notifyObservers(e);
+    public void run() {        
+        while (running) {
         }
-        // End Observable stanza
     } 
  }

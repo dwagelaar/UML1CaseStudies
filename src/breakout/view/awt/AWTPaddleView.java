@@ -16,30 +16,10 @@ public class AWTPaddleView extends breakout.view.PaddleView implements java.awt.
  * 
  * 
  * 
- * @return 
+ * @param e 
  */
-    public breakout.view.awt.AWTPaddle getImpl() {        
-        return impl;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param size 
- */
-    public void onSizeChange(breakout.model.Dimension size) {        
-        impl.setSize(size.getWidth(), size.getHeight());
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public  AWTPaddleView() {        
-        impl.addMouseMotionListener(this);
+    public void mouseDragged(java.awt.event.MouseEvent e) {        
+        drag(e.getX());
     } 
 
 /**
@@ -57,11 +37,9 @@ public class AWTPaddleView extends breakout.view.PaddleView implements java.awt.
  * <p>Does ...</p>
  * 
  * 
- * 
- * @param pos 
  */
-    public void onPositionChange(breakout.model.Point pos) {        
-        impl.setLocation(pos.getX(), pos.getY());
+    public  AWTPaddleView() {        
+        impl.addMouseMotionListener(this);
     } 
 
 /**
@@ -80,10 +58,10 @@ public class AWTPaddleView extends breakout.view.PaddleView implements java.awt.
  * 
  * 
  * 
- * @param impl 
+ * @param size 
  */
-    public void setImpl(breakout.view.awt.AWTPaddle impl) {        
-        this.impl = impl;
+    public void onSizeChange(breakout.model.Dimension size) {        
+        impl.setSize(size.getWidth(), size.getHeight());
     } 
 
 /**
@@ -91,9 +69,31 @@ public class AWTPaddleView extends breakout.view.PaddleView implements java.awt.
  * 
  * 
  * 
- * @param e 
+ * @return 
  */
-    public void mouseDragged(java.awt.event.MouseEvent e) {        
-        drag(e.getX());
+    public breakout.view.awt.AWTPaddle getImpl() {        
+        return impl;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param pos 
+ */
+    public void onPositionChange(breakout.model.Point pos) {        
+        impl.setLocation(pos.getX(), pos.getY());
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param impl 
+ */
+    public void setImpl(breakout.view.awt.AWTPaddle impl) {        
+        this.impl = impl;
     } 
  }

@@ -16,26 +16,6 @@ public class Jabber extends im.networking.Network implements java.util.Observer 
  * 
  * 
  * 
- * @param socket 
- */
-    public void setSocket(im.networking.jabber.Socket socket) {        
-        this.socket = socket;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public void onReceivedChange() {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param o 
  * @param arg 
  */
@@ -61,6 +41,15 @@ public class Jabber extends im.networking.Network implements java.util.Observer 
  * <p>Does ...</p>
  * 
  * 
+ */
+    public void onReceivedChange() {        
+        // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
  * 
  * @return 
  */
@@ -77,5 +66,16 @@ public class Jabber extends im.networking.Network implements java.util.Observer 
  */
     public void send(im.model.Message msg) {        
         // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param socket 
+ */
+    public void setSocket(im.networking.jabber.Socket socket) {        
+        this.socket = socket;
     } 
  }

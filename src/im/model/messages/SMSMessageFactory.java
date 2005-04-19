@@ -11,11 +11,13 @@ public class SMSMessageFactory implements im.model.MessageFactory {
  * 
  * 
  * 
+ * @param forNw 
  * @return 
  */
-    public im.model.Message createMessage() {        
-        // your code here
-        return null;
+    public im.model.Message createMessage(im.networking.Network forNw) {        
+        SMSMessage msg = new SMSMessage();
+        msg.setNetwork(forNw);
+        return msg;
     } 
 
 /**

@@ -30,18 +30,11 @@ public abstract class MessageView implements java.util.Observer {
  * 
  * 
  * 
- * @return 
+ * @param model 
  */
-    public im.model.Message getModel() {        
-        return model;
+    public void setModel(im.model.Message model) {        
+        this.model = model;
     } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public abstract void onRecipientChange();
 
 /**
  * <p>Does ...</p>
@@ -73,10 +66,17 @@ public abstract class MessageView implements java.util.Observer {
  * <p>Does ...</p>
  * 
  * 
- * 
- * @param model 
  */
-    public void setModel(im.model.Message model) {        
-        this.model = model;
+    public abstract void onRecipientChange();
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.model.Message getModel() {        
+        return model;
     } 
  }

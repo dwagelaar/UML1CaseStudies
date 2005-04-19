@@ -11,11 +11,13 @@ public class JabberMessageFactory implements im.model.MessageFactory {
  * 
  * 
  * 
+ * @param forNw 
  * @return 
  */
-    public String messageType() {        
-        // your code here
-        return null;
+    public im.model.Message createMessage(im.networking.Network forNw) {        
+        JabberMessage msg = new JabberMessage();
+        msg.setNetwork(forNw);
+        return msg;
     } 
 
 /**
@@ -25,7 +27,7 @@ public class JabberMessageFactory implements im.model.MessageFactory {
  * 
  * @return 
  */
-    public im.model.Message createMessage() {        
+    public String messageType() {        
         // your code here
         return null;
     } 
