@@ -86,7 +86,3 @@ helper context INMODEL!Attribute def : toString() : String =
 
 helper context INMODEL!Reference def : toString() : String =
 	'        ' + self.name + ' <- s.' + self.name;
-
---helper context INMODEL!AssociationEnd def : otherEnd() : INMODEL!AssociationEnd =
---	self.container.contents->select(x|
---		x<>self and x.oclIsKindOf(INMODEL!AssociationEnd))->first();
