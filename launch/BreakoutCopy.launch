@@ -11,7 +11,7 @@
 </mapAttribute>
 <mapAttribute key="Path">
 <mapEntry key="OUT" value="models/BreakoutCopy"/>
-<mapEntry key="OUTMODEL" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="OUTMODEL" value="/UML1CaseStudies/metamodels/M2_ActionUML_Interchange_Metamodel_FTF.xmi"/>
 <mapEntry key="INMODEL" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
 <mapEntry key="IN" value="/UML1CaseStudies/models/BreakoutModel.xmi"/>
 </mapAttribute>
