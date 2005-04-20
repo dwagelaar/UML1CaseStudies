@@ -16,15 +16,6 @@ public abstract class SpriteView implements java.util.Observer {
  * 
  * 
  * 
- * @param pos 
- */
-    public abstract void onPositionChange(breakout.model.Point pos);
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param o 
  * @param arg 
  */
@@ -45,24 +36,6 @@ public abstract class SpriteView implements java.util.Observer {
             }
         }
     } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param size 
- */
-    public abstract void onSizeChange(breakout.model.Dimension size);
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param field 
- */
-    public abstract void onFieldChange(breakout.model.Field field);
 
 /**
  * <p>Does ...</p>
@@ -90,4 +63,31 @@ public abstract class SpriteView implements java.util.Observer {
     public breakout.model.Sprite getModel() {        
         return model;
     } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param pos 
+ */
+    public abstract void onPositionChange(breakout.model.Point pos);
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param size 
+ */
+    public abstract void onSizeChange(breakout.model.Dimension size);
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param field 
+ */
+    public abstract void onFieldChange(breakout.model.Field field);
  }

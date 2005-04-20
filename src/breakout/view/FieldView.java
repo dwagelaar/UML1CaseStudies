@@ -16,9 +16,11 @@ public abstract class FieldView extends breakout.view.SpriteView {
  * 
  * 
  * 
- * @param sprite 
+ * @param factory 
  */
-    public abstract void onSpriteChange(breakout.model.Sprite sprite);
+    public void setFactory(breakout.view.ViewFactory factory) {        
+        this.factory = factory;
+    } 
 
 /**
  * <p>Does ...</p>
@@ -36,9 +38,7 @@ public abstract class FieldView extends breakout.view.SpriteView {
  * 
  * 
  * 
- * @param factory 
+ * @param sprite 
  */
-    public void setFactory(breakout.view.ViewFactory factory) {        
-        this.factory = factory;
-    } 
+    public abstract void onSpriteChange(breakout.model.Sprite sprite);
  }

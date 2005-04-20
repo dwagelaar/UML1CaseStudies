@@ -15,49 +15,6 @@ public abstract class ContactView implements java.util.Observer {
  * <p>Does ...</p>
  * 
  * 
- */
-    public abstract void onListChange();
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.Contact getModel() {        
-        return model;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param model 
- */
-    public void setModel(im.model.Contact model) {        
-        this.model = model;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public abstract void onNameChange();
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public abstract void onUserIdChange();
-
-/**
- * <p>Does ...</p>
- * 
- * 
  * 
  * @param o 
  * @param arg 
@@ -79,4 +36,47 @@ public abstract class ContactView implements java.util.Observer {
             }
         }
     } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param model 
+ */
+    public void setModel(im.model.Contact model) {        
+        this.model = model;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.model.Contact getModel() {        
+        return model;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public abstract void onListChange();
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public abstract void onUserIdChange();
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public abstract void onNameChange();
  }

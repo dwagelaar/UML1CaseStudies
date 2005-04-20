@@ -16,10 +16,10 @@ public abstract class NetworkSpecificData extends java.util.Observable {
  * 
  * 
  * 
- * @return 
+ * @param network 
  */
-    public im.networking.Network getNetwork() {        
-        return network;
+    public void setNetwork(im.networking.Network network) {        
+        this.network = network;
     } 
 
 /**
@@ -27,9 +27,9 @@ public abstract class NetworkSpecificData extends java.util.Observable {
  * 
  * 
  * 
- * @param network 
+ * @return 
  */
-    public void setNetwork(im.networking.Network network) {        
-        this.network = network;
+    public im.networking.Network getNetwork() {        
+        return network;
     } 
  }

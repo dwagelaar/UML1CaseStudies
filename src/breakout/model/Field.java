@@ -50,15 +50,6 @@ public class Field extends breakout.model.Sprite {
  * <p>Does ...</p>
  * 
  * 
- */
-    public void newGame() {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
  * 
  * @param sprite 
  */
@@ -77,5 +68,14 @@ public class Field extends breakout.model.Sprite {
             notifyObservers(e);
         }
         // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void newGame() {        
+        // your code here
     } 
  }

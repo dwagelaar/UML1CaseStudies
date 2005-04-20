@@ -16,6 +16,28 @@ public class AWTFieldView extends breakout.view.FieldView {
  * 
  * 
  * 
+ * @param impl 
+ */
+    public void setImpl(breakout.view.awt.AWTField impl) {        
+        this.impl = impl;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public breakout.view.awt.AWTField getImpl() {        
+        return impl;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param view 
  */
     private void addView(breakout.view.SpriteView view) {        
@@ -24,28 +46,6 @@ public class AWTFieldView extends breakout.view.FieldView {
             return;
         }
         getImpl().add(c);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param field 
- */
-    public void onFieldChange(breakout.model.Field field) {        
-        // stub
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param size 
- */
-    public void onSizeChange(breakout.model.Dimension size) {        
-        impl.setSize(size.getWidth(), size.getHeight());
     } 
 
 /**
@@ -82,21 +82,19 @@ public class AWTFieldView extends breakout.view.FieldView {
  * 
  * 
  * 
- * @param impl 
- */
-    public void setImpl(breakout.view.awt.AWTField impl) {        
-        this.impl = impl;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
+ * @param view 
  * @return 
  */
-    public breakout.view.awt.AWTField getImpl() {        
-        return impl;
+    private java.awt.Component getComponent(breakout.view.SpriteView view) {        
+        java.awt.Component c = null;
+        if (view instanceof AWTBallView) {
+            c = ((AWTBallView) view).getImpl();
+        } else if (view instanceof AWTBrickView) {
+            c = ((AWTBrickView) view).getImpl();
+        } else if (view instanceof AWTPaddleView) {
+            c = ((AWTPaddleView) view).getImpl();
+        }
+        return c;
     } 
 
 /**
@@ -115,18 +113,20 @@ public class AWTFieldView extends breakout.view.FieldView {
  * 
  * 
  * 
- * @param view 
- * @return 
+ * @param size 
  */
-    private java.awt.Component getComponent(breakout.view.SpriteView view) {        
-        java.awt.Component c = null;
-        if (view instanceof AWTBallView) {
-            c = ((AWTBallView) view).getImpl();
-        } else if (view instanceof AWTBrickView) {
-            c = ((AWTBrickView) view).getImpl();
-        } else if (view instanceof AWTPaddleView) {
-            c = ((AWTPaddleView) view).getImpl();
-        }
-        return c;
+    public void onSizeChange(breakout.model.Dimension size) {        
+        impl.setSize(size.getWidth(), size.getHeight());
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param field 
+ */
+    public void onFieldChange(breakout.model.Field field) {        
+        // stub
     } 
  }

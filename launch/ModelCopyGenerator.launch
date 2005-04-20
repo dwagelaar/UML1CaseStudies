@@ -9,7 +9,7 @@
 </mapAttribute>
 <mapAttribute key="Path">
 <mapEntry key="INMODEL" value="/UML1CaseStudies/metamodels/M3_MOF_1.4.xmi"/>
-<mapEntry key="IN" value="/UML1CaseStudies/metamodels/M2_ActionUML_Interchange_Metamodel_FTF.xmi"/>
+<mapEntry key="IN" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="UML1CaseStudies"/>
 <mapAttribute key="Output"/>

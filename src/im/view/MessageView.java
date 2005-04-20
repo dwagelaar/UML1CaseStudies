@@ -15,31 +15,6 @@ public abstract class MessageView implements java.util.Observer {
  * <p>Does ...</p>
  * 
  * 
- */
-    public abstract void onSenderChange();
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public abstract void onContentChange();
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param model 
- */
-    public void setModel(im.model.Message model) {        
-        this.model = model;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
  * 
  * @param o 
  * @param arg 
@@ -66,8 +41,12 @@ public abstract class MessageView implements java.util.Observer {
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param model 
  */
-    public abstract void onRecipientChange();
+    public void setModel(im.model.Message model) {        
+        this.model = model;
+    } 
 
 /**
  * <p>Does ...</p>
@@ -79,4 +58,25 @@ public abstract class MessageView implements java.util.Observer {
     public im.model.Message getModel() {        
         return model;
     } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public abstract void onSenderChange();
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public abstract void onRecipientChange();
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public abstract void onContentChange();
  }

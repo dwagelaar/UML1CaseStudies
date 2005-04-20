@@ -21,21 +21,10 @@ public class Point {
  * 
  * 
  * 
- * @return 
+ * @param x 
  */
-    public int getY() {        
-        return y;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public int getX() {        
-        return x;
+    public void setX(int x) {        
+        this.x = x;
     } 
 
 /**
@@ -54,9 +43,20 @@ public class Point {
  * 
  * 
  * 
- * @param x 
+ * @return 
  */
-    public void setX(int x) {        
-        this.x = x;
+    public int getX() {        
+        return x;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public int getY() {        
+        return y;
     } 
  }

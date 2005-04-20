@@ -9,15 +9,6 @@ public interface ViewFactory {
  * 
  * 
  * 
- * @param brick 
- * @return 
- */
-    public abstract breakout.view.BrickView createBrickView(breakout.model.Brick brick);
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param sprite 
  * @return 
  */
@@ -49,6 +40,15 @@ public interface ViewFactory {
  * @return 
  */
     public abstract breakout.view.PaddleView createPaddleView(breakout.model.Paddle paddle);
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param brick 
+ * @return 
+ */
+    public abstract breakout.view.BrickView createBrickView(breakout.model.Brick brick);
 }
 
 

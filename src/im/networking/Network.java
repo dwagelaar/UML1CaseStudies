@@ -16,9 +16,11 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @param msg 
+ * @param received 
  */
-    public abstract void send(im.model.Message msg);
+    public void setReceived(im.model.Message received) {        
+        this.received = received;
+    } 
 
 /**
  * <p>Does ...</p>
@@ -36,9 +38,7 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @param received 
+ * @param msg 
  */
-    public void setReceived(im.model.Message received) {        
-        this.received = received;
-    } 
+    public abstract void send(im.model.Message msg);
  }

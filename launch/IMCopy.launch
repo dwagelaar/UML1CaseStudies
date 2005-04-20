@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
 <stringAttribute key="Model Handler" value="MDR"/>
-<stringAttribute key="ATL File Name" value="/UML1CaseStudies/CopyModel.atl"/>
+<stringAttribute key="ATL File Name" value="/UML1CaseStudies/ModelCopy.atl"/>
 <mapAttribute key="Libs"/>
 <mapAttribute key="ModelType">
 <mapEntry key="OUT" value="MODELOUTPUT"/>

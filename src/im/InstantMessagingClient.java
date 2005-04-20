@@ -9,11 +9,6 @@ public class InstantMessagingClient implements java.util.Observer {
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ViewFactory viewFactory = null;
-
-/**
- * <p>Represents ...</p>
- */
     private java.util.Collection network = new java.util.ArrayList();
 
 /**
@@ -27,25 +22,19 @@ public class InstantMessagingClient implements java.util.Observer {
     private java.util.Collection messageFactory = new java.util.ArrayList();
 
 /**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param viewFactory 
+ * <p>Represents ...</p>
  */
-    public void setViewFactory(im.view.ViewFactory viewFactory) {        
-        this.viewFactory = viewFactory;
-    } 
+    private im.view.ViewFactory viewFactory = null;
 
 /**
  * <p>Does ...</p>
  * 
  * 
  * 
- * @param messageFactory 
+ * @param args 
  */
-    public void removeMessageFactory(im.model.MessageFactory messageFactory) {        
-        this.messageFactory.remove(messageFactory);
+    public static void main(String[] args) {        
+        new InstantMessagingClient();
     } 
 
 /**
@@ -79,83 +68,10 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @return 
+ * @param viewFactory 
  */
-    public java.util.Collection getNetworks() {        
-        return network;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public void onReceivedChange() {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param network 
- */
-    public void removeNetwork(im.networking.Network network) {        
-        this.network.remove(network);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.ContactList getContactList() {        
-        return contactList;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param args 
- */
-    public static void main(String[] args) {        
-        new InstantMessagingClient();
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public java.util.Collection getMessageFactorys() {        
-        return messageFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param network 
- */
-    public void addNetwork(im.networking.Network network) {        
-        this.network.add(network);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public  InstantMessagingClient() {        
-        // your code here
+    public void setViewFactory(im.view.ViewFactory viewFactory) {        
+        this.viewFactory = viewFactory;
     } 
 
 /**
@@ -185,9 +101,93 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
+ * @return 
+ */
+    public java.util.Collection getNetworks() {        
+        return network;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.model.ContactList getContactList() {        
+        return contactList;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public java.util.Collection getMessageFactorys() {        
+        return messageFactory;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param network 
+ */
+    public void addNetwork(im.networking.Network network) {        
+        this.network.add(network);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param messageFactory 
  */
     public void addMessageFactory(im.model.MessageFactory messageFactory) {        
         this.messageFactory.add(messageFactory);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param network 
+ */
+    public void removeNetwork(im.networking.Network network) {        
+        this.network.remove(network);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param messageFactory 
+ */
+    public void removeMessageFactory(im.model.MessageFactory messageFactory) {        
+        this.messageFactory.remove(messageFactory);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public  InstantMessagingClient() {        
+        // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void onReceivedChange() {        
+        // your code here
     } 
  }

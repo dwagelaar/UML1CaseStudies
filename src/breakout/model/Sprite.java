@@ -9,17 +9,38 @@ public abstract class Sprite extends java.util.Observable {
 /**
  * <p>Represents ...</p>
  */
-    private breakout.model.Field field = null;
-
-/**
- * <p>Represents ...</p>
- */
     private breakout.model.Point position = null;
 
 /**
  * <p>Represents ...</p>
  */
+    private breakout.model.Field field = null;
+
+/**
+ * <p>Represents ...</p>
+ */
     private breakout.model.Dimension size = null;
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param position 
+ */
+    public void setPosition(breakout.model.Point position) {        
+        // Begin Observable stanza
+        if (this.position != position) {
+            // Begin original body
+        this.position = position;    // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Position");
+            e.put("value", position);
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
 
 /**
  * <p>Does ...</p>
@@ -51,17 +72,6 @@ public abstract class Sprite extends java.util.Observable {
  * 
  * 
  * 
- * @return 
- */
-    public breakout.model.Point getPosition() {        
-        return position;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param size 
  */
     public void setSize(breakout.model.Dimension size) {        
@@ -83,31 +93,10 @@ public abstract class Sprite extends java.util.Observable {
  * 
  * 
  * 
- * @param position 
- */
-    public void setPosition(breakout.model.Point position) {        
-        // Begin Observable stanza
-        if (this.position != position) {
-            // Begin original body
-        this.position = position;    // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Position");
-            e.put("value", position);
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @return 
  */
-    public breakout.model.Dimension getSize() {        
-        return size;
+    public breakout.model.Point getPosition() {        
+        return position;
     } 
 
 /**
@@ -119,5 +108,16 @@ public abstract class Sprite extends java.util.Observable {
  */
     public breakout.model.Field getField() {        
         return field;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public breakout.model.Dimension getSize() {        
+        return size;
     } 
  }

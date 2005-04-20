@@ -41,9 +41,11 @@ public class Jabber extends im.networking.Network implements java.util.Observer 
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param socket 
  */
-    public void onReceivedChange() {        
-        // your code here
+    public void setSocket(im.networking.jabber.Socket socket) {        
+        this.socket = socket;
     } 
 
 /**
@@ -72,10 +74,8 @@ public class Jabber extends im.networking.Network implements java.util.Observer 
  * <p>Does ...</p>
  * 
  * 
- * 
- * @param socket 
  */
-    public void setSocket(im.networking.jabber.Socket socket) {        
-        this.socket = socket;
+    public void onReceivedChange() {        
+        // your code here
     } 
  }

@@ -16,6 +16,19 @@ public class AWTViewFactory implements breakout.view.ViewFactory {
  * 
  * 
  * 
+ * @param view 
+ * @param sprite 
+ */
+    private void initSpriteView(breakout.view.SpriteView view, breakout.model.Sprite sprite) {        
+        this.view = view;
+        view.setModel(sprite);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param sprite 
  * @return 
  */
@@ -38,12 +51,13 @@ public class AWTViewFactory implements breakout.view.ViewFactory {
  * 
  * 
  * 
- * @param view 
- * @param sprite 
+ * @param field 
+ * @return 
  */
-    private void initSpriteView(breakout.view.SpriteView view, breakout.model.Sprite sprite) {        
-        this.view = view;
-        view.setModel(sprite);
+    public breakout.view.FieldView createFieldView(breakout.model.Field field) {        
+        initSpriteView(new AWTFieldView(), field);
+        ((AWTFieldView) view).init();
+        return (breakout.view.FieldView) view;
     } 
 
 /**
@@ -57,20 +71,6 @@ public class AWTViewFactory implements breakout.view.ViewFactory {
     public breakout.view.BallView createBallView(breakout.model.Ball ball) {        
         initSpriteView(new AWTBallView(), ball);
         return (breakout.view.BallView) view;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param field 
- * @return 
- */
-    public breakout.view.FieldView createFieldView(breakout.model.Field field) {        
-        initSpriteView(new AWTFieldView(), field);
-        ((AWTFieldView) view).init();
-        return (breakout.view.FieldView) view;
     } 
 
 /**

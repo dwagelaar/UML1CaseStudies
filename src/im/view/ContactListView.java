@@ -15,35 +15,6 @@ public abstract class ContactListView implements java.util.Observer {
  * <p>Does ...</p>
  * 
  * 
- */
-    public abstract void onContactChange();
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.ContactList getModel() {        
-        return model;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param model 
- */
-    public void setModel(im.model.ContactList model) {        
-        this.model = model;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
  * 
  * @param o 
  * @param arg 
@@ -65,4 +36,33 @@ public abstract class ContactListView implements java.util.Observer {
             }
         }
     } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param model 
+ */
+    public void setModel(im.model.ContactList model) {        
+        this.model = model;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.model.ContactList getModel() {        
+        return model;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public abstract void onContactChange();
  }

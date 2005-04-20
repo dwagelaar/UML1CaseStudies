@@ -16,17 +16,6 @@ public class AWTBrickView extends breakout.view.BrickView {
  * 
  * 
  * 
- * @param size 
- */
-    public void onSizeChange(breakout.model.Dimension size) {        
-        impl.setSize(size.getWidth(), size.getHeight());
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param impl 
  */
     public void setImpl(breakout.view.awt.AWTBrick impl) {        
@@ -38,10 +27,10 @@ public class AWTBrickView extends breakout.view.BrickView {
  * 
  * 
  * 
- * @param pos 
+ * @return 
  */
-    public void onPositionChange(breakout.model.Point pos) {        
-        impl.setLocation(pos.getX(), pos.getY());
+    public breakout.view.awt.AWTBrick getImpl() {        
+        return impl;
     } 
 
 /**
@@ -49,10 +38,21 @@ public class AWTBrickView extends breakout.view.BrickView {
  * 
  * 
  * 
- * @return 
+ * @param size 
  */
-    public breakout.view.awt.AWTBrick getImpl() {        
-        return impl;
+    public void onSizeChange(breakout.model.Dimension size) {        
+        impl.setSize(size.getWidth(), size.getHeight());
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param pos 
+ */
+    public void onPositionChange(breakout.model.Point pos) {        
+        impl.setLocation(pos.getX(), pos.getY());
     } 
 
 /**
