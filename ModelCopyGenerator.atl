@@ -8,8 +8,13 @@ query ModelCopyGenerator = INMODEL!Class.allInstances()->iterate(e; acc : String
 
 -- adapt the above 'writeTo' expression to reflect your file path
 
+helper context INMODEL!Class def : exclusionCondition() : Boolean =
+	self.container.name='Diagram_Interchange';
+
+-- adapt the above exclusion condition for your specific model
+
 helper context INMODEL!Class def : toString() : String =
-	if self.isAbstract then
+	if self.isAbstract or self.exclusionCondition() then
 		''
 	else
 		'rule ' + self.name + ' {\n' +
@@ -35,54 +40,38 @@ helper context INMODEL!GeneralizableElement def : includesMember(member : INMODE
 	not self.supertypes->select(s|s.includesMember(member))->isEmpty();
 
 helper context INMODEL!GeneralizableElement def : contentsToString() : String =
-	self.referencesToString(
-		self.attributesToString(
-			self.fieldsToString('')));
-
-helper context INMODEL!GeneralizableElement def : fieldsToString(head : String) : String =
-	INMODEL!StructureField.allInstances()->select(f|self.includesMember(f))->
-		iterate(e; acc : String = head |
-		if acc.size() = 0 then
-			'\n' + e.toString()
-		else
-			acc + ',\n' + e.toString()
-		endif);
+	self.referencesToString(self.attributesToString(''));
 
 helper context INMODEL!GeneralizableElement def : attributesToString(head : String) : String =
-	INMODEL!Attribute.allInstances()->select(a|self.includesMember(a))->
-		iterate(e; acc : String = head |
-		if acc.size() = 0 then
-			'\n' + e.toString()
-		else
-			acc + ',\n' + e.toString()
-		endif);
+	self.featuresToString(head, INMODEL!Attribute.allInstances());
 
 helper context INMODEL!GeneralizableElement def : referencesToString(head : String) : String =
-	INMODEL!Reference.allInstances()->select(r|
-		self.includesMember(r) and
-		r.referencedEnd.aggregation=#none and
-		r.name<>'context')->
-			iterate(e; acc : String = head |
-			if acc.size() = 0 then
-				'\n' + e.toString()
-			else
-				acc + ',\n' + e.toString()
-			endif);
+	self.featuresToString(head, INMODEL!Reference.allInstances()->
+		select(r|r.referencedEnd.aggregation=#none));
 
-helper context INMODEL!GeneralizableElement def : attributesToString(head : String) : String =
-	INMODEL!Attribute.allInstances()->select(a|self.includesMember(a))->
-		iterate(e; acc : String = head |
+helper context INMODEL!GeneralizableElement def : featuresToString(head : String, feature : Sequence(INMODEL!StructuralFeature)) : String =
+	feature->select(f|self.includesMember(f))->iterate(e; acc : String = head |
 		if acc.size() = 0 then
 			'\n' + e.toString()
 		else
 			acc + ',\n' + e.toString()
 		endif);
 
-helper context INMODEL!StructureField def : toString() : String =
-	'        ' + self.name + ' <- s.' + self.name;
+helper context INMODEL!ModelElement def : toAssignString() : String =
+	if self.name.isKeyword() then
+		'        "' + self.name + '" <- s."' + self.name + '"'
+	else
+		'        ' + self.name + ' <- s.' + self.name
+	endif;
 
 helper context INMODEL!Attribute def : toString() : String =
-	'        ' + self.name + ' <- s.' + self.name;
+	self.toAssignString();
 
 helper context INMODEL!Reference def : toString() : String =
-	'        ' + self.name + ' <- s.' + self.name;
+	self.toAssignString();
+
+helper context String def : isKeyword() : Boolean =
+	Set{'module', 'create', 'from', 'rule', 'to', 'using', 'helper', 'context',
+		'def', 'and', 'or', 'not', 'if', 'then', 'else', 'endif', 'query',
+		'library', 'mapsTo', 'String', 'Boolean', 'Integer', 'Real', 'Bag',
+		'Set', 'OrderedSet', 'Sequence'}->includes(self);
