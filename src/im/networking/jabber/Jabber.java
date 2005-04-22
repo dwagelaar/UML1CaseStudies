@@ -67,15 +67,17 @@ public class Jabber extends im.networking.Network implements java.util.Observer 
  * @param msg 
  */
     public void send(im.model.Message msg) {        
-        // your code here
+        getSocket().sendData(msg);
     } 
 
 /**
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param msg 
  */
-    public void onReceivedChange() {        
-        // your code here
+    public void onReceivedChange(im.model.Message msg) {        
+        setReceived(msg);
     } 
  }

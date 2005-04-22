@@ -63,20 +63,26 @@ public abstract class MessageView implements java.util.Observer {
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param sender 
  */
-    public abstract void onSenderChange();
+    public abstract void onSenderChange(String sender);
 
 /**
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param recipient 
  */
-    public abstract void onRecipientChange();
+    public abstract void onRecipientChange(String recipient);
 
 /**
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param content 
  */
-    public abstract void onContentChange();
+    public abstract void onContentChange(Object content);
  }

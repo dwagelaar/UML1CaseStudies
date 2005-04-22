@@ -63,20 +63,26 @@ public abstract class ContactView implements java.util.Observer {
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param uid 
  */
-    public abstract void onListChange();
+    public abstract void onUserIdChange(String uid);
 
 /**
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param name 
  */
-    public abstract void onUserIdChange();
+    public abstract void onNameChange(String name);
 
 /**
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param list 
  */
-    public abstract void onNameChange();
+    public abstract void onListChange(im.model.ContactList list);
  }

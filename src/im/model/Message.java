@@ -26,6 +26,17 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
+ * @param content 
+ */
+    public void setContent(Object content) {        
+        this.content = content;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param recipient 
  */
     public void setRecipient(String recipient) {        
@@ -48,10 +59,10 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param content 
+ * @return 
  */
-    public void setContent(Object content) {        
-        this.content = content;
+    public Object getContent() {        
+        return content;
     } 
 
 /**
@@ -74,17 +85,6 @@ public abstract class Message extends im.model.NetworkSpecificData {
  */
     public String getSender() {        
         return sender;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public Object getContent() {        
-        return content;
     } 
 
 /**

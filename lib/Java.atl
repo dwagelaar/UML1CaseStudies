@@ -50,6 +50,12 @@ helper context String def : javaAddRemoveSetter(otherEnd : String) : String =
 helper context String def : javaGetter() : String =
 	'return ' + self + ';';
 
+helper context String def : javaGetAt() : String =
+	'return ' + self + '.elementAt(index);';
+
+helper context String def : java2GetAt() : String =
+	'return ' + self + '.get(index);';
+
 helper context String def : java2Adder() : String =
 	'this.' + self + '.add(' + self + ');';
 	

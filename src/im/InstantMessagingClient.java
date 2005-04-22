@@ -9,11 +9,6 @@ public class InstantMessagingClient implements java.util.Observer {
 /**
  * <p>Represents ...</p>
  */
-    private java.util.Collection network = new java.util.ArrayList();
-
-/**
- * <p>Represents ...</p>
- */
     private im.model.ContactList contactList = new im.model.ContactList();
 
 /**
@@ -25,6 +20,11 @@ public class InstantMessagingClient implements java.util.Observer {
  * <p>Represents ...</p>
  */
     private im.view.ViewFactory viewFactory = null;
+
+/**
+ * <p>Represents ...</p>
+ */
+    private java.util.Collection network = new java.util.ArrayList();
 
 /**
  * <p>Does ...</p>
@@ -68,17 +68,6 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @param viewFactory 
- */
-    public void setViewFactory(im.view.ViewFactory viewFactory) {        
-        this.viewFactory = viewFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param contactList 
  */
     public void setContactList(im.model.ContactList contactList) {        
@@ -90,21 +79,10 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @return 
+ * @param viewFactory 
  */
-    public im.view.ViewFactory getViewFactory() {        
-        return viewFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public java.util.Collection getNetworks() {        
-        return network;
+    public void setViewFactory(im.view.ViewFactory viewFactory) {        
+        this.viewFactory = viewFactory;
     } 
 
 /**
@@ -125,8 +103,30 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * @return 
  */
+    public java.util.Collection getNetworks() {        
+        return network;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
     public java.util.Collection getMessageFactorys() {        
         return messageFactory;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.view.ViewFactory getViewFactory() {        
+        return viewFactory;
     } 
 
 /**
@@ -179,7 +179,8 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  */
     public  InstantMessagingClient() {        
-        // your code here
+        viewFactory = new im.view.awt.AWTViewFactory();
+        viewFactory.createContactListView(contactList);
     } 
 
 /**

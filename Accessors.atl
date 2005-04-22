@@ -9,6 +9,9 @@ uses Java;
 -- model-specific helpers begin
 -- ======================================================================
 
+helper context String def : dataType() : INMODEL!DataType =
+	INMODEL!DataType.allInstances()->select(c|c.name=self)->first();
+
 helper context String def : stereotype() : INMODEL!Stereotype =
 	INMODEL!Stereotype.allInstances()->select(s|s.name=self)->first();
 
@@ -147,6 +150,42 @@ rule PublicAttributeGetter {
 		specification <- op),
 	   dep : OUTMODEL!Dependency (
 	   	name <- 'accessor ' + 'get' + s.name.firstToUpper() + s.type.name.s() + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- 'accessor'.stereotype(),
+		client <- op,
+		supplier <- s)
+}
+
+rule PublicAttributeGetAt {
+	from s : INMODEL!Attribute (
+		s.visibility = #vk_public and
+		s.type.isSequence())
+	to op : OUTMODEL!Operation (
+	   	name <- 'get' + s.name.firstToUpper() + 'At',
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   par1 : OUTMODEL!Parameter (
+	   	name <- 'index',
+		behavioralFeature <- op,
+		type <- 'Integer'.dataType(),
+		kind <- #pdk_in),
+	   par2 : OUTMODEL!Parameter (
+	   	name <- 'return',
+		behavioralFeature <- op,
+		type <- s.originalType(),
+		kind <- #pdk_return),
+	   mbody : OUTMODEL!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.name.java2GetAt()),
+	   meth : OUTMODEL!Method (
+	   	owner <- s.owner,
+		body <- mbody,
+		specification <- op),
+	   dep : OUTMODEL!Dependency (
+	   	name <- 'accessor ' + 'get' + s.name.firstToUpper() + 'At()',
 		namespace <- s.owner.namespace,
 		stereotype <- 'accessor'.stereotype(),
 		client <- op,

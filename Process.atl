@@ -13,6 +13,16 @@ helper context String def : class() : INMODEL!Class =
 helper context INMODEL!GeneralizableElement def : isProcessType() : Boolean =
 	not self.stereotype->select(s|s.name='process')->isEmpty();
 
+helper context INMODEL!GeneralizableElement def : isSingleton() : Boolean =
+	not self.stereotype->select(s|s.name='Singleton')->isEmpty();
+
+helper context INMODEL!GeneralizableElement def : mainBody() : Boolean =
+	if self.isSingleton() then
+		'getInstance();'
+	else
+		'new ' + s.name + '();'
+	endif;
+
 -- ======================================================================
 -- model-specific helpers end
 -- ======================================================================
@@ -37,7 +47,7 @@ rule ProcessClass {
 		kind <- #pdk_in),
 	   mbody : OUTMODEL!ProcedureExpression (
 	   	language <- 'java',
-		body <- 'new ' + s.name + '();'),
+		body <- s.mainBody()),
 	   meth : OUTMODEL!Method (
 	   	owner <- s,
 		body <- mbody,
