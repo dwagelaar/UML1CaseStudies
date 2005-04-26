@@ -12,6 +12,11 @@ public abstract class ContactView implements java.util.Observer {
     private im.model.Contact model = null;
 
 /**
+ * <p>Represents ...</p>
+ */
+    private im.view.ContactListView listView = null;
+
+/**
  * <p>Does ...</p>
  * 
  * 
@@ -23,7 +28,7 @@ public abstract class ContactView implements java.util.Observer {
         if (arg instanceof java.util.Hashtable) {
             java.util.Hashtable e = (java.util.Hashtable) arg;
             String mName = "on" + ((String) e.get("name")) + "Change";
-            Class[] parmTypes = { e.get("value").getClass() };
+            Class[] parmTypes = { (Class) e.get("class") };
             try {
                 java.lang.reflect.Method m = getClass().getDeclaredMethod(mName, parmTypes);
                 Object[] args = { e.get("value") };
@@ -42,10 +47,41 @@ public abstract class ContactView implements java.util.Observer {
  * 
  * 
  * 
+ * @param listView 
+ */
+    public void setListView(im.view.ContactListView listView) {        
+        if (this.listView != listView) {
+            if (this.listView != null) this.listView.removeContactView(this);
+            this.listView = listView;
+            if (listView != null) listView.addContactView(this);
+        }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param model 
  */
     public void setModel(im.model.Contact model) {        
-        this.model = model;
+        // Begin subscribe stanza
+        if (this.model != null) this.model.deleteObserver(this);
+        // Begin original body
+        this.model = model;// End original body
+        if (model != null) model.addObserver(this);
+        // End subscribe stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.view.ContactListView getListView() {        
+        return listView;
     } 
 
 /**

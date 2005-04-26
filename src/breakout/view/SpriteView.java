@@ -23,7 +23,7 @@ public abstract class SpriteView implements java.util.Observer {
         if (arg instanceof java.util.Hashtable) {
             java.util.Hashtable e = (java.util.Hashtable) arg;
             String mName = "on" + ((String) e.get("name")) + "Change";
-            Class[] parmTypes = { e.get("value").getClass() };
+            Class[] parmTypes = { (Class) e.get("class") };
             try {
                 java.lang.reflect.Method m = getClass().getDeclaredMethod(mName, parmTypes);
                 Object[] args = { e.get("value") };

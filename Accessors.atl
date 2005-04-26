@@ -64,11 +64,27 @@ helper context INMODEL!Attribute def : dualAdder() : String =
 		self.name.java2DualAdder(self.associationEnd().otherEnd().name.firstToUpper())
 	endif endif;
 	
+helper context INMODEL!Attribute def : dualInsert() : String =
+	if not self.associationEnd().otherEnd().isNavigable then
+		self.name.java2Insert()
+	else if self.associationEnd().otherEnd().isSingle() then
+		self.name.java2SetterInsert(self.associationEnd().otherEnd().name.firstToUpper())
+	else
+		self.name.java2DualInsert(self.associationEnd().otherEnd().name.firstToUpper())
+	endif endif;
+	
 helper context INMODEL!Attribute def : adder() : String =
 	if self.hasAssociationEnd() then
 		self.dualAdder()
 	else
 		self.name.java2Adder()
+	endif;
+
+helper context INMODEL!Attribute def : insert() : String =
+	if self.hasAssociationEnd() then
+		self.dualInsert()
+	else
+		self.name.java2Insert()
 	endif;
 
 helper context INMODEL!Attribute def : dualRemover() : String =
@@ -85,6 +101,17 @@ helper context INMODEL!Attribute def : remover() : String =
 		self.dualRemover()
 	else
 		self.name.java2Remover()
+	endif;
+
+helper context INMODEL!ModelElement def : isInPackage() : Boolean =
+	not INMODEL!Package.allInstances()->select(p|
+		p=self.namespace and p.oclIsTypeOf(INMODEL!Package))->isEmpty();
+
+helper context INMODEL!ModelElement def : qName() : String =
+	if self.isInPackage() then
+		self.namespace.qName() + '.' + self.name
+	else
+		self.name
 	endif;
 
 -- ======================================================================
@@ -159,7 +186,7 @@ rule PublicAttributeGetter {
 rule PublicAttributeGetAt {
 	from s : INMODEL!Attribute (
 		s.visibility = #vk_public and
-		s.type.isSequence())
+		s.type.name.isSequence())
 	to op : OUTMODEL!Operation (
 	   	name <- 'get' + s.name.firstToUpper() + 'At',
 		owner <- s.owner,
@@ -179,7 +206,7 @@ rule PublicAttributeGetAt {
 		kind <- #pdk_return),
 	   mbody : OUTMODEL!ProcedureExpression (
 	   	language <- 'java',
-		body <- s.name.java2GetAt()),
+		body <- s.name.java2GetAt(s.originalType().qName())),
 	   meth : OUTMODEL!Method (
 	   	owner <- s.owner,
 		body <- mbody,
@@ -217,6 +244,42 @@ rule PublicAttributeAdder {
 		specification <- op),
 	   dep : OUTMODEL!Dependency (
 	   	name <- 'accessor ' + 'add' + s.name.firstToUpper() + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- 'accessor'.stereotype(),
+		client <- op,
+		supplier <- s)
+}
+
+rule PublicAttributeInsert {
+	from s : INMODEL!Attribute (
+		s.visibility = #vk_public and
+		s.type.name.isSequence())
+	to op : OUTMODEL!Operation (
+	   	name <- 'insert' + s.name.firstToUpper(),
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   par1 : OUTMODEL!Parameter (
+	   	name <- s.name,
+		behavioralFeature <- op,
+		type <- s.originalType(),
+		kind <- #pdk_in),
+	   par2 : OUTMODEL!Parameter (
+	   	name <- 'index',
+		behavioralFeature <- op,
+		type <- 'Integer'.dataType(),
+		kind <- #pdk_in),
+	   mbody : OUTMODEL!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.insert()),
+	   meth : OUTMODEL!Method (
+	   	owner <- s.owner,
+		body <- mbody,
+		specification <- op),
+	   dep : OUTMODEL!Dependency (
+	   	name <- 'accessor ' + 'insert' + s.name.firstToUpper() + '()',
 		namespace <- s.owner.namespace,
 		stereotype <- 'accessor'.stereotype(),
 		client <- op,

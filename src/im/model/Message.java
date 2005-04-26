@@ -29,18 +29,21 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * @param content 
  */
     public void setContent(Object content) {        
+        // Begin Observable stanza
+        if (this.content != content) {
+            // Begin original body
         this.content = content;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param recipient 
- */
-    public void setRecipient(String recipient) {        
-        this.recipient = recipient;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Content");
+            e.put("class", Object.class);
+            if (content != null) {
+                e.put("value", content);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -51,7 +54,46 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * @param sender 
  */
     public void setSender(String sender) {        
+        // Begin Observable stanza
+        if (this.sender != sender) {
+            // Begin original body
         this.sender = sender;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Sender");
+            e.put("class", String.class);
+            if (sender != null) {
+                e.put("value", sender);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param recipient 
+ */
+    public void setRecipient(String recipient) {        
+        // Begin Observable stanza
+        if (this.recipient != recipient) {
+            // Begin original body
+        this.recipient = recipient;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Recipient");
+            e.put("class", String.class);
+            if (recipient != null) {
+                e.put("value", recipient);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -72,8 +114,8 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getRecipient() {        
-        return recipient;
+    public String getSender() {        
+        return sender;
     } 
 
 /**
@@ -83,8 +125,8 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getSender() {        
-        return sender;
+    public String getRecipient() {        
+        return recipient;
     } 
 
 /**

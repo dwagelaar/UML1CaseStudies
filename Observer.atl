@@ -14,8 +14,8 @@ helper context INMODEL!Attribute def : javaSetterNotify(body : String) : String 
 	'if (this.' + self.name + ' != ' + self.name + ') {\n' +
 	'    // Begin original body\n' +
 	body +
-	'    // End original body\n' +
-	self.name.javaNotifyStanza(self.type.name) +
+	'\n    // End original body\n' +
+	self.name.javaNotifyStanza(self.originalType().qName()) +
 	'}\n' +
 	'// End Observable stanza';
 	
@@ -24,8 +24,8 @@ helper context INMODEL!Attribute def : javaAdderNotify(body : String) : String =
 	'if (! this.' + self.name + '.contains(' + self.name + ')) {\n' +
 	'    // Begin original body\n' +
 	body +
-	'    // End original body\n' +
-	self.name.javaNotifyStanza(self.type.name) +
+	'\n    // End original body\n' +
+	self.name.javaNotifyStanza(self.originalType().qName()) +
 	'}\n' +
 	'// End Observable stanza';
 	
@@ -34,8 +34,8 @@ helper context INMODEL!Attribute def : javaRemoverNotify(body : String) : String
 	'if (this.' + self.name + '.contains(' + self.name + ')) {\n' +
 	'    // Begin original body\n' +
 	body +
-	'    // End original body\n' +
-	self.name.javaNotifyStanza(self.type.name) +
+	'\n    // End original body\n' +
+	self.name.javaNotifyStanza(self.originalType().qName()) +
 	'}\n' +
 	'// End Observable stanza';
 
@@ -62,15 +62,25 @@ helper context INMODEL!Attribute def : associationEnd() : INMODEL!AssociationEnd
 	INMODEL!AssociationEnd.allInstances()->select(a|
 		a.name=self.name and a.navigableFrom()=self.owner)->first();
 
+helper context INMODEL!Attribute def : originalType() : INMODEL!Classifier =
+	if self.hasAssociationEnd() then
+		self.associationEnd().participant
+	else
+		self.type
+	endif;
+
 helper context INMODEL!Dependency def : isAccessorDependency() : Boolean =
 	not self.stereotype->select(s|s.name='accessor')->isEmpty();
 	
 helper context INMODEL!Operation def : isAccessor() : Boolean =
 	not self.clientDependency->select(d|d.isAccessorDependency())->isEmpty();
 
+helper context INMODEL!Operation def : accessorDependency() : INMODEL!Dependency =
+	self.clientDependency->select(d|d.isAccessorDependency())->first();
+
 helper context INMODEL!Operation def : accessorFor() : INMODEL!Attribute =
-	self.clientDependency->select(d|d.isAccessorDependency())->first()
-		.supplier->select(a|a.oclIsKindOf(INMODEL!Attribute))->first();
+	self.accessorDependency().supplier->select(a|
+		a.oclIsKindOf(INMODEL!Attribute))->first();
 
 helper context INMODEL!Operation def : isSubscriber() : Boolean =
 	if self.isAccessor() then
@@ -113,7 +123,7 @@ helper context INMODEL!ProcedureExpression def : method() : INMODEL!Method =
 helper context INMODEL!Operation def : javaNotify(body : String) : String =
 	if self.name.startsWith('remove') then
 		self.accessorFor().javaRemoverNotify(body)
-	else if self.name.startsWith('add') then
+	else if self.name.startsWith('add') or self.name.startsWith('insert') then
 		self.accessorFor().javaAdderNotify(body)
 	else if self.name.startsWith('set') then
 		self.accessorFor().javaSetterNotify(body)
@@ -124,13 +134,24 @@ helper context INMODEL!Operation def : javaNotify(body : String) : String =
 helper context INMODEL!Operation def : javaSubscribe(body : String) : String =
 	if self.name.startsWith('remove') then
 		self.accessorFor().name.javaRemoverSubscribe(body)
-	else if self.name.startsWith('add') then
+	else if self.name.startsWith('add') or self.name.startsWith('insert') then
 		self.accessorFor().name.javaAdderSubscribe(body)
 	else if self.name.startsWith('set') then
 		self.accessorFor().name.javaSetterSubscribe(body)
 	else
 		body
 	endif endif endif;
+
+helper context INMODEL!ModelElement def : isInPackage() : Boolean =
+	not INMODEL!Package.allInstances()->select(p|
+		p=self.namespace and p.oclIsTypeOf(INMODEL!Package))->isEmpty();
+
+helper context INMODEL!ModelElement def : qName() : String =
+	if self.isInPackage() then
+		self.namespace.qName() + '.' + self.name
+	else
+		self.name
+	endif;
 
 -- ======================================================================
 -- model-specific helpers end

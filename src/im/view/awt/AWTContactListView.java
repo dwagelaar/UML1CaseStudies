@@ -4,7 +4,12 @@ package im.view.awt;
 /**
  * <p></p>
  */
-public class AWTContactListView extends im.view.ContactListView implements java.awt.event.WindowListener {
+public class AWTContactListView extends im.view.ContactListView {
+
+/**
+ * <p>Represents ...</p>
+ */
+    private im.view.awt.AWTNewContactDialog newContactDlg = null;
 
 /**
  * <p>Represents ...</p>
@@ -12,24 +17,14 @@ public class AWTContactListView extends im.view.ContactListView implements java.
     private im.view.awt.AWTContactList impl = new AWTContactList();
 
 /**
- * <p>Represents ...</p>
- */
-    private im.view.awt.AWTViewFactory factory = null;
-
-/**
- * <p>Represents ...</p>
- */
-    private java.util.Vector contactCache = new java.util.Vector();
-
-/**
  * <p>Does ...</p>
  * 
  * 
  * 
- * @param factory 
+ * @param newContactDlg 
  */
-    public void setFactory(im.view.awt.AWTViewFactory factory) {        
-        this.factory = factory;
+    public void setNewContactDlg(im.view.awt.AWTNewContactDialog newContactDlg) {        
+        this.newContactDlg = newContactDlg;
     } 
 
 /**
@@ -50,8 +45,8 @@ public class AWTContactListView extends im.view.ContactListView implements java.
  * 
  * @return 
  */
-    public im.view.awt.AWTViewFactory getFactory() {        
-        return factory;
+    public im.view.awt.AWTNewContactDialog getNewContactDlg() {        
+        return newContactDlg;
     } 
 
 /**
@@ -71,7 +66,27 @@ public class AWTContactListView extends im.view.ContactListView implements java.
  * 
  */
     public  AWTContactListView() {        
-        getImpl().addWindowListener(this);
+        getImpl().addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                onWindowClosing();
+            }
+        });
+        getImpl().addAddActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                onAddBtnClicked();
+            }
+        });
+        getImpl().addRemoveActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                onRemoveBtnClicked();
+            }
+        });
+        getImpl().addContactActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                onContactDoubleClicked();
+            }
+        });
+        getImpl().setVisible(true);
     } 
 
 /**
@@ -82,24 +97,76 @@ public class AWTContactListView extends im.view.ContactListView implements java.
  * @param contact 
  */
     public void onContactChange(im.model.Contact contact) {        
-        int index;
-        if (getModel().getContacts().contains(contact)) {
-            index = getModel().getContacts().indexOf(contact);
-            im.view.ContactView view = getFactory().createContactView(contact);
+        int index = getModel().getContacts().indexOf(contact);
+        if (index > -1) {
+            AWTContactView view = (AWTContactView)
+                im.InstantMessagingClient.getInstance().getViewFactory().createContactView(contact);
+            view.setImpl(getImpl());
             getImpl().addContact(contact.getName(), index);
-            try {
-                contactCache.insertElementAt(contact, index);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                e.printStackTrace();
-            }
+            insertContactView(view, index);
         } else {
-            index = contactCache.indexOf(contact);
+            index = getContactViewIndex(contact);
             getImpl().removeContact(index);
-            try {
-                contactCache.removeElementAt(index);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                e.printStackTrace();
+            removeContactView(getContactViewAt(index));
+        }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void onAddBtnClicked() {        
+        AWTNewContactDialog dlg = new AWTNewContactDialog(getImpl());
+        setNewContactDlg(dlg);
+        dlg.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent e) {
+                onNewContactDlgClose();
             }
+        });
+        dlg.setModal(true);
+        dlg.setVisible(true);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void onRemoveBtnClicked() {        
+        int index = getImpl().getSelectedIndex();
+        if (index > -1) {
+            getModel().removeContact(getModel().getContactAt(index));
+        }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void onContactDoubleClicked() {        
+        int index = getImpl().getSelectedIndex();
+        if (index > -1) {
+            im.model.Contact c = getContactViewAt(index).getModel();
+            // 1. new message dialog, in which message type gets chosen
+            // 2. new message gets created, along with view
+        }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void onNewContactDlgClose() {        
+        AWTNewContactDialog dlg = getNewContactDlg();
+        if (dlg.getOkClicked()) {
+            im.model.Contact c = new im.model.Contact();
+            c.setNetwork(dlg.getNetwork());
+            c.setUserId(dlg.getUid());
+            c.setName(dlg.getName());
+            getModel().addContact(c);
         }
     } 
 
@@ -108,74 +175,14 @@ public class AWTContactListView extends im.view.ContactListView implements java.
  * 
  * 
  * 
- * @param e 
+ * @param contact 
+ * @return 
  */
-    public void windowActivated(java.awt.event.WindowEvent e) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param e 
- */
-    public void windowClosed(java.awt.event.WindowEvent e) {        
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param e 
- */
-    public void windowClosing(java.awt.event.WindowEvent e) {        
-        System.exit(0);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param e 
- */
-    public void windowDeactivated(java.awt.event.WindowEvent e) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param e 
- */
-    public void windowDeiconified(java.awt.event.WindowEvent e) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param e 
- */
-    public void windowIconified(java.awt.event.WindowEvent e) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param e 
- */
-    public void windowOpened(java.awt.event.WindowEvent e) {        
-        // your code here
+    public int getContactViewIndex(im.model.Contact contact) {        
+        for (int i = 0; i < getContactViews().size(); i++) {
+            if (getContactViewAt(i).getModel() == contact)
+                return i;
+        }
+        return -1;
     } 
  }

@@ -50,70 +50,96 @@ helper context String def : javaAddRemoveSetter(otherEnd : String) : String =
 helper context String def : javaGetter() : String =
 	'return ' + self + ';';
 
-helper context String def : javaGetAt() : String =
-	'return ' + self + '.elementAt(index);';
+helper context String def : javaGetAt(type : String) : String =
+	'try {\n' +
+	'    return (' + type + ') ' + self + '.elementAt(index);\n' +
+	'} catch (ArrayIndexOutOfBoundsException e) {\n' +
+	'    return null;\n' +
+	'}';
+	
+helper context String def : java2GetAt(type : String) : String =
+	'try {\n' +
+	'    return (' + type + ') ' + self + '.get(index);\n' +
+	'} catch (IndexOutOfBoundsException e) {\n' +
+	'    return null;\n' +
+	'}';
 
-helper context String def : java2GetAt() : String =
-	'return ' + self + '.get(index);';
-
+helper context String def : javaAdder() : String =
+	'this.' + self + '.addElement(' + self + ');';
+	
 helper context String def : java2Adder() : String =
 	'this.' + self + '.add(' + self + ');';
 	
-helper context String def : java2SetterAdder(otherEnd : String) : String =
+helper context String def : javaInsert() : String =
+	'try {\n' +
+	'    this.' + self + '.insertElementAt(' + self + ', index);' +
+	'} catch (ArrayIndexOutOfBoundsException e) {\n' +
+	'    ' + self.javaAdder() + '\n' +
+	'};';
+	
+helper context String def : java2Insert() : String =
+	'try {\n' +
+	'    this.' + self + '.add(index, ' + self + ');\n' +
+	'} catch (IndexOutOfBoundsException e) {\n' +
+	'    ' + self.java2Adder() + '\n' +
+	'};';
+		
+helper context String def : javaNotContainsCheck(body : String) : String =
 	'if (! this.' + self + '.contains(' + self + ')) {\n' +
-	'    this.' + self + '.add(' + self + ');\n' +
-	'    ' + self + '.set' + otherEnd + '(this);\n' +
-	'}';
+	body + '\n}';
+
+helper context String def : javaContainsCheck(body : String) : String =
+	'if (this.' + self + '.contains(' + self + ')) {\n' +
+	body + '\n}';
+
+helper context String def : javaOtherEndSetter(otherEnd : String) : String =
+	self + '.set' + otherEnd + '(this);';
+
+helper context String def : javaOtherEndAdder(otherEnd : String) : String =
+	self + '.add' + otherEnd + '(this);';
+
+helper context String def : javaOtherEndResetter(otherEnd : String) : String =
+	self + '.set' + otherEnd + '(null);';
+
+helper context String def : javaOtherEndRemover(otherEnd : String) : String =
+	self + '.remove' + otherEnd + '(this);';
+
+helper context String def : java2SetterAdder(otherEnd : String) : String =
+	self.javaNotContainsCheck(
+	'    ' + self.java2Adder() + '\n' +
+	'    ' + self.javaOtherEndSetter(otherEnd));
+	
+helper context String def : java2SetterInsert(otherEnd : String) : String =
+	self.javaNotContainsCheck(
+	'    ' + self.java2Insert() + '\n' +
+	'    ' + self.javaOtherEndSetter(otherEnd));
 	
 helper context String def : java2DualAdder(otherEnd : String) : String =
-	'if (! this.' + self + '.contains(' + self + ')) {\n' +
-	'    this.' + self + '.add(' + self + ');\n' +
-	'    ' + self + '.add' + otherEnd + '(this);\n' +
-	'}';
+	self.javaNotContainsCheck(
+	'    ' + self.java2Adder() + '\n' +
+	'    ' + self.javaOtherEndAdder(otherEnd));
+	
+helper context String def : java2DualInsert(otherEnd : String) : String =
+	self.javaNotContainsCheck(
+	'    ' + self.java2Insert() + '\n' +
+	'    ' + self.javaOtherEndAdder(otherEnd));
+	
+helper context String def : javaRemover() : String =
+	'this.' + self + '.removeElement(' + self + ');';
 	
 helper context String def : java2Remover() : String =
 	'this.' + self + '.remove(' + self + ');';
 	
 helper context String def : java2SetterRemover(otherEnd : String) : String =
-	'if (this.' + self + '.contains(' + self + ')) {\n' +
-	'    this.' + self + '.remove(' + self + ');\n' +
-	'    ' + self + '.set' + otherEnd + '(null);\n' +
-	'}';
+	self.javaContainsCheck(
+	'    ' + self.java2Remover() + '\n' +
+	'    ' + self.javaOtherEndResetter(otherEnd));
 	
 helper context String def : java2DualRemover(otherEnd : String) : String =
-	'if (this.' + self + '.contains(' + self + ')) {\n' +
-	'    this.' + self + '.remove(' + self + ');\n' +
-	'    ' + self + '.remove' + otherEnd + '(this);\n' +
-	'}';
+	self.javaContainsCheck(
+	'    ' + self.java2Remover() + '\n' +
+	'    ' + self.javaOtherEndRemover(otherEnd));
 	
-helper context String def : javaType() : String =
-	if self = 'OclAny' then
-		'Object'
-	else if self = 'Real' then
-		'double'
-	else if self = 'Integer' then
-		'int'
-	else if self = 'Boolean' then
-		'boolean'
-	else if self.isCollection() then
-		'Vector'
-	else 
-		self
-	endif endif endif endif endif;
-
-helper context String def : java2Type() : String =
-	if self.isSequenceSet() then
-		'OrderedSet'
-	else if self.isSet() then
-		'Set'
-	else if self.isSequence() then
-		'List'
-	else if self.isCollection() then
-		'Collection'
-	else 
-		self.javaType()
-	endif endif endif endif;
-
 helper context String def : javaInstance() : String =
 	if self.isCollection() then
 		'new java.util.Vector()'
@@ -130,6 +156,22 @@ helper context String def : java2Instance() : String =
 		'null'
 	endif endif;
 
+helper context String def : removeOcl() : String =
+	if self.startsWith('ocl.') then
+		self.substring(5, self.size())
+	else
+		self
+	endif;
+
+helper context String def : javaBoxedType() : String =
+	if self = 'OclAny' then
+		'Object'
+	else if self = 'Real' then
+		'Double'
+	else 
+		self
+	endif endif;
+
 helper context String def : javaBoxing(type : String) : String =
 	if type = 'Boolean' then
 		'new Boolean(' + self + ')'
@@ -144,15 +186,24 @@ helper context String def : javaBoxing(type : String) : String =
 helper context String def : javaNotifyStanza(type : String) : String =
 	'    setChanged();\n' +
 	'    java.util.Hashtable e = new java.util.Hashtable();\n' +
-	'    e.put("name", "' + self.firstToUpper() + '");\n' +
-	'    e.put("value", ' + self.javaBoxing(type) + ');\n' +
-	'    notifyObservers(e);\n';
-
+	if self = self.javaBoxing(type.removeOcl()) then
+		'    e.put("name", "' + self.firstToUpper() + '");\n' +
+		'    e.put("class", ' + type.removeOcl().javaBoxedType() + '.class);\n' +
+		'    if (' + self + ' != null) {\n' +
+		'        e.put("value", ' + self + ');\n' +
+		'    }\n'
+	else
+		'    e.put("name", "' + self.firstToUpper() + '");\n' +
+		'    e.put("class", ' + type.removeOcl().javaBoxedType() + '.class);\n' +
+		'    e.put("value", ' + self.javaBoxing(type.removeOcl()) + ');\n'
+	endif
+	+ '    notifyObservers(e);\n';
+	
 helper context String def : javaUpdater() : String =
 	'if (' + self + ' instanceof java.util.Hashtable) {\n' +
     '    java.util.Hashtable e = (java.util.Hashtable) ' + self + ';\n' +
     '    String mName = "on" + ((String) e.get("name")) + "Change";\n' +
-    '    Class[] parmTypes = { e.get("value").getClass() };\n' +
+    '    Class[] parmTypes = { (Class) e.get("class") };\n' +
     '    try {\n' +
     '        java.lang.reflect.Method m = getClass().getDeclaredMethod(mName, parmTypes);\n' +
     '        Object[] args = { e.get("value") };\n' +
@@ -170,6 +221,9 @@ helper context String def : javaSubscribeStanza() : String =
 
 helper context String def : javaUnsubscribeStanza() : String =
     'if (this.' + self + ' != null) this.' + self + '.deleteObserver(this);\n';
+
+helper context String def : javaRemoveUnsubscribeStanza() : String =
+    'if (' + self + ' != null) ' + self + '.deleteObserver(this);\n';
 
 helper context String def : javaSetterSubscribe(body : String) : String =
 	'// Begin subscribe stanza\n' +
@@ -190,11 +244,17 @@ helper context String def : javaAdderSubscribe(body : String) : String =
 	
 helper context String def : javaRemoverSubscribe(body : String) : String =
 	'// Begin subscribe stanza\n' +
-    self.javaUnsubscribeStanza() +
+    self.javaRemoveUnsubscribeStanza() +
 	'// Begin original body\n' +
 	body +
 	'// End original body\n' +
 	'// End subscribe stanza';
+
+helper context String def : singletonBody() : String =
+	'if (instance == null) {\n' +
+	'    instance = new ' + self + '();\n' +
+	'}\n' +
+	'return instance;';
 
 -- ======================================================================
 -- generic helpers end

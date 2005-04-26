@@ -23,7 +23,7 @@ public class Jabber extends im.networking.Network implements java.util.Observer 
         if (arg instanceof java.util.Hashtable) {
             java.util.Hashtable e = (java.util.Hashtable) arg;
             String mName = "on" + ((String) e.get("name")) + "Change";
-            Class[] parmTypes = { e.get("value").getClass() };
+            Class[] parmTypes = { (Class) e.get("class") };
             try {
                 java.lang.reflect.Method m = getClass().getDeclaredMethod(mName, parmTypes);
                 Object[] args = { e.get("value") };
@@ -45,7 +45,26 @@ public class Jabber extends im.networking.Network implements java.util.Observer 
  * @param socket 
  */
     public void setSocket(im.networking.jabber.Socket socket) {        
-        this.socket = socket;
+        // Begin Observable stanza
+        if (this.socket != socket) {
+            // Begin original body
+        // Begin subscribe stanza
+        if (this.socket != null) this.socket.deleteObserver(this);
+        // Begin original body
+        this.socket = socket;// End original body
+        if (socket != null) socket.addObserver(this);
+        // End subscribe stanza
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Socket");
+            e.put("class", im.networking.jabber.Socket.class);
+            if (socket != null) {
+                e.put("value", socket);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -57,6 +76,15 @@ public class Jabber extends im.networking.Network implements java.util.Observer 
  */
     public im.networking.jabber.Socket getSocket() {        
         return socket;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public  Jabber() {        
+        setName("Jabber");
     } 
 
 /**

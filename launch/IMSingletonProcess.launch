@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
 <stringAttribute key="Model Handler" value="MDR"/>
-<stringAttribute key="ATL File Name" value="/UML1CaseStudies/Process.atl"/>
-<mapAttribute key="Libs"/>
+<stringAttribute key="ATL File Name" value="/UML1CaseStudies/SingletonProcess.atl"/>
+<mapAttribute key="Libs">
+<mapEntry key="Java" value="/UML1CaseStudies/lib/Java.asm"/>
+</mapAttribute>
 <mapAttribute key="ModelType">
 <mapEntry key="OUT" value="MODELOUTPUT"/>
 <mapEntry key="OUTMODEL" value="METAMODELOUTPUT"/>

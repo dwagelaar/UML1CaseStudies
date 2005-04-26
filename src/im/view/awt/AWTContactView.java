@@ -9,17 +9,17 @@ public class AWTContactView extends im.view.ContactView {
 /**
  * <p>Represents ...</p>
  */
-    private im.view.awt.AWTContactList window = null;
+    private im.view.awt.AWTContactList impl = null;
 
 /**
  * <p>Does ...</p>
  * 
  * 
  * 
- * @param window 
+ * @param impl 
  */
-    public void setWindow(im.view.awt.AWTContactList window) {        
-        this.window = window;
+    public void setImpl(im.view.awt.AWTContactList impl) {        
+        this.impl = impl;
     } 
 
 /**
@@ -29,8 +29,8 @@ public class AWTContactView extends im.view.ContactView {
  * 
  * @return 
  */
-    public im.view.awt.AWTContactList getWindow() {        
-        return window;
+    public im.view.awt.AWTContactList getImpl() {        
+        return impl;
     } 
 
 /**
@@ -63,6 +63,10 @@ public class AWTContactView extends im.view.ContactView {
  * @param name 
  */
     public void onNameChange(String name) {        
-        // your code here
+        int index = getListView().getContactViews().indexOf(this);
+        if (index > -1) {
+            getImpl().removeContact(index);
+            getImpl().addContact(getModel().getName(), index);
+        }
     } 
  }

@@ -1,3 +1,31 @@
+helper context String def : javaType() : String =
+	if self = 'OclAny' then
+		'Object'
+	else if self = 'Real' then
+		'double'
+	else if self = 'Integer' then
+		'int'
+	else if self = 'Boolean' then
+		'boolean'
+	else if self.isCollection() then
+		'Vector'
+	else 
+		self
+	endif endif endif endif endif;
+
+helper context String def : java2Type() : String =
+	if self.isSequenceSet() then
+		'OrderedSet'
+	else if self.isSet() then
+		'Set'
+	else if self.isSequence() then
+		'List'
+	else if self.isCollection() then
+		'Collection'
+	else 
+		self.javaType()
+	endif endif endif endif;
+
 if (arg instanceof PropertyChangeEvent) {
             PropertyChangeEvent e = (PropertyChangeEvent) arg;
             String mName = "on" + e.getName() + "Change";

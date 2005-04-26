@@ -41,7 +41,6 @@ public class AWTContactList extends java.awt.Frame {
         btnPanel.add(removeContactBtn);
         add(btnPanel, BorderLayout.SOUTH);
         pack();
-        setVisible(true);
     } 
 
 /**
@@ -65,5 +64,49 @@ public class AWTContactList extends java.awt.Frame {
  */
     public void removeContact(int index) {        
         list.remove(index);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param listener 
+ */
+    public void addAddActionListener(java.awt.event.ActionListener listener) {        
+        addContactBtn.addActionListener(listener);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param listener 
+ */
+    public void addRemoveActionListener(java.awt.event.ActionListener listener) {        
+        removeContactBtn.addActionListener(listener);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param listener 
+ */
+    public void addContactActionListener(java.awt.event.ActionListener listener) {        
+        list.addActionListener(listener);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public int getSelectedIndex() {        
+        return list.getSelectedIndex();
     } 
  }

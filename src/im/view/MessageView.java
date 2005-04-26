@@ -23,7 +23,7 @@ public abstract class MessageView implements java.util.Observer {
         if (arg instanceof java.util.Hashtable) {
             java.util.Hashtable e = (java.util.Hashtable) arg;
             String mName = "on" + ((String) e.get("name")) + "Change";
-            Class[] parmTypes = { e.get("value").getClass() };
+            Class[] parmTypes = { (Class) e.get("class") };
             try {
                 java.lang.reflect.Method m = getClass().getDeclaredMethod(mName, parmTypes);
                 Object[] args = { e.get("value") };
@@ -45,7 +45,12 @@ public abstract class MessageView implements java.util.Observer {
  * @param model 
  */
     public void setModel(im.model.Message model) {        
-        this.model = model;
+        // Begin subscribe stanza
+        if (this.model != null) this.model.deleteObserver(this);
+        // Begin original body
+        this.model = model;// End original body
+        if (model != null) model.addObserver(this);
+        // End subscribe stanza
     } 
 
 /**

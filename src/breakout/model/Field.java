@@ -36,11 +36,15 @@ public class Field extends breakout.model.Sprite {
         if (! this.sprite.contains(sprite)) {
             this.sprite.add(sprite);
             sprite.setField(this);
-        }    // End original body
+        }
+            // End original body
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
             e.put("name", "Sprite");
-            e.put("value", sprite);
+            e.put("class", breakout.model.Sprite.class);
+            if (sprite != null) {
+                e.put("value", sprite);
+            }
             notifyObservers(e);
         }
         // End Observable stanza
@@ -60,11 +64,15 @@ public class Field extends breakout.model.Sprite {
         if (this.sprite.contains(sprite)) {
             this.sprite.remove(sprite);
             sprite.setField(null);
-        }    // End original body
+        }
+            // End original body
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
             e.put("name", "Sprite");
-            e.put("value", sprite);
+            e.put("class", breakout.model.Sprite.class);
+            if (sprite != null) {
+                e.put("value", sprite);
+            }
             notifyObservers(e);
         }
         // End Observable stanza

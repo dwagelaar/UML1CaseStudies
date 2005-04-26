@@ -7,11 +7,6 @@ package im.view.awt;
 public class AWTViewFactory implements im.view.ViewFactory {
 
 /**
- * <p>Represents ...</p>
- */
-    private im.view.awt.AWTContactList window = null;
-
-/**
  * <p>Does ...</p>
  * 
  * 
@@ -22,7 +17,6 @@ public class AWTViewFactory implements im.view.ViewFactory {
     public im.view.ContactListView createContactListView(im.model.ContactList list) {        
         AWTContactListView view = new AWTContactListView();
         view.setModel(list);
-        this.window = view.getImpl();
         return view;
     } 
 
@@ -37,7 +31,6 @@ public class AWTViewFactory implements im.view.ViewFactory {
     public im.view.ContactView createContactView(im.model.Contact contact) {        
         AWTContactView view = new AWTContactView();
         view.setModel(contact);
-        view.setWindow(this.window);
         return view;
     } 
 

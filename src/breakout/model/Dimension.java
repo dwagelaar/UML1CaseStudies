@@ -21,17 +21,6 @@ public class Dimension {
  * 
  * 
  * 
- * @param width 
- */
-    public void setWidth(int width) {        
-        this.width = width;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param height 
  */
     public void setHeight(int height) {        
@@ -43,10 +32,10 @@ public class Dimension {
  * 
  * 
  * 
- * @return 
+ * @param width 
  */
-    public int getWidth() {        
-        return width;
+    public void setWidth(int width) {        
+        this.width = width;
     } 
 
 /**
@@ -58,5 +47,16 @@ public class Dimension {
  */
     public int getHeight() {        
         return height;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public int getWidth() {        
+        return width;
     } 
  }

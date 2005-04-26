@@ -19,7 +19,21 @@ public class Socket extends java.util.Observable {
  * @param received 
  */
     public void setReceived(Object received) {        
+        // Begin Observable stanza
+        if (this.received != received) {
+            // Begin original body
         this.received = received;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Received");
+            e.put("class", Object.class);
+            if (received != null) {
+                e.put("value", received);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**

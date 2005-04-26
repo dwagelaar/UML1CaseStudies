@@ -16,4 +16,13 @@ public class SMS extends im.networking.Network {
     public void send(im.model.Message msg) {        
         // your code here
     } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public  SMS() {        
+        setName("SMS");
+    } 
  }
