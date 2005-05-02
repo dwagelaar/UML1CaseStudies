@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jardesc>
+<jar path="/home/dennis/my_documents/PhD/Brainstorm/UML1CaseStudies/runtime/im.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/UML1CaseStudies/runtime/build-im.jardesc" exportErrors="true" exportWarnings="true" overwrite="false" saveDescription="true" useSourceFolders="false"/>
+<manifest generateManifest="false" mainClassHandleIdentifier="=UML1CaseStudies/src&lt;im{InstantMessagingClient.java[InstantMessagingClient" manifestLocation="/UML1CaseStudies/runtime/manifest.mf" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
+<sealing sealJar="false">
+<packagesToSeal/>
+<packagesToUnSeal/>
+</sealing>
+</manifest>
+<selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.networking.jabber"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.model.messages"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.view"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.networking"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.model"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.networking.sms"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.view.awt"/>
+</selectedElements>
+</jardesc>
