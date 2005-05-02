@@ -230,7 +230,7 @@ helper context String def : javaSetterSubscribe(body : String) : String =
     self.javaUnsubscribeStanza() +
 	'// Begin original body\n' +
 	body +
-	'// End original body\n' +
+	'\n// End original body\n' +
     self.javaSubscribeStanza() +
 	'// End subscribe stanza';
 	
@@ -238,7 +238,7 @@ helper context String def : javaAdderSubscribe(body : String) : String =
 	'// Begin subscribe stanza\n' +
 	'// Begin original body\n' +
 	body +
-	'// End original body\n' +
+	'\n// End original body\n' +
     self.javaSubscribeStanza() +
 	'// End subscribe stanza';
 	
@@ -247,12 +247,13 @@ helper context String def : javaRemoverSubscribe(body : String) : String =
     self.javaRemoveUnsubscribeStanza() +
 	'// Begin original body\n' +
 	body +
-	'// End original body\n' +
+	'\n// End original body\n' +
 	'// End subscribe stanza';
 
 helper context String def : singletonBody() : String =
 	'if (instance == null) {\n' +
 	'    instance = new ' + self + '();\n' +
+	'    instance.init();\n' +
 	'}\n' +
 	'return instance;';
 

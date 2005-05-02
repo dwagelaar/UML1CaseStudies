@@ -1,6 +1,7 @@
 
 package im.view.awt;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * <p></p>
@@ -93,18 +94,18 @@ public class AWTNewContactDialog extends java.awt.Dialog {
  */
     public  AWTNewContactDialog(java.awt.Frame owner) {        
         super(owner);
-        this.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
                 onCancel();
             }
         });
-        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
+        cancelBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
         });
-        okBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent e) {
+        okBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 onOk();
             }
         });
@@ -169,7 +170,7 @@ public class AWTNewContactDialog extends java.awt.Dialog {
  * 
  * 
  */
-    public void onOk() {        
+    private void onOk() {        
         setOkClicked(true);
         setVisible(false);
     } 
@@ -179,7 +180,7 @@ public class AWTNewContactDialog extends java.awt.Dialog {
  * 
  * 
  */
-    public void onCancel() {        
+    private void onCancel() {        
         setOkClicked(false);
         setVisible(false);
     } 

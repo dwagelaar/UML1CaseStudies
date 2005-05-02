@@ -48,7 +48,8 @@ public abstract class MessageView implements java.util.Observer {
         // Begin subscribe stanza
         if (this.model != null) this.model.deleteObserver(this);
         // Begin original body
-        this.model = model;// End original body
+        this.model = model;
+        // End original body
         if (model != null) model.addObserver(this);
         // End subscribe stanza
     } 

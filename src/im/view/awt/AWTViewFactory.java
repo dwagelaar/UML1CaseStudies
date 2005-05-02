@@ -39,12 +39,12 @@ public class AWTViewFactory implements im.view.ViewFactory {
  * 
  * 
  * 
- * @param message 
+ * @param conversation 
  * @return 
  */
-    public im.view.MessageView createMessageView(im.model.Message message) {        
-        AWTMessageView view = new AWTMessageView();
-        view.setModel(message);
+    public im.view.ConversationView createConversationView(im.model.Conversation conversation) {        
+        AWTConversationView view = new AWTConversationView();
+        view.setModel(conversation);
         return view;
     } 
  }

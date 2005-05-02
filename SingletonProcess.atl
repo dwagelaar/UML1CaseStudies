@@ -12,6 +12,9 @@ uses Java;
 helper context String def : class() : INMODEL!Class =
 	INMODEL!Class.allInstances()->select(c|c.name=self)->first();
 
+helper context String def : stereotype() : INMODEL!Stereotype =
+	INMODEL!Stereotype.allInstances()->select(s|s.name=self)->first();
+
 helper context INMODEL!GeneralizableElement def : isProcessType() : Boolean =
 	not self.stereotype->select(s|s.name='process')->isEmpty();
 
@@ -97,7 +100,7 @@ rule SingletonClass {
 
 rule NewPrivateConstructor {
 	from s : INMODEL!Class (s.isSingleton() and s.hasNoConstructor())
-	to t : OUTMODEL!Operation (
+	to op : OUTMODEL!Operation (
 	   	name <- s.name,
 		owner <- s,
 		stereotype <- Sequence{'create'.stereotype()},

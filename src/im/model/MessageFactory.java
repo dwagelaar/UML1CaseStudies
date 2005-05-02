@@ -10,9 +10,17 @@ public interface MessageFactory {
  * 
  * 
  * @return 
- * @param forNw 
  */
-    public abstract im.model.Message createMessage(im.networking.Network forNw);
+    public abstract im.model.Message createMessage();
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param c 
+ * @return 
+ */
+    public abstract boolean isValidContent(Object c);
 }
 
 

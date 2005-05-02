@@ -2,5 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry sourcepath="src/JabberWookie_Lib_Src-20050124-164011GMT.zip" kind="lib" path="runtime/JabberWookie.jar"/>
+	<classpathentry kind="lib" path="runtime/SSTTR-Crypto.jar"/>
+	<classpathentry kind="lib" path="runtime/SSTTR-Util.jar"/>
+	<classpathentry kind="lib" path="runtime/SSTTR-XML.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

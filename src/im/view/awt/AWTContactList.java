@@ -48,10 +48,21 @@ public class AWTContactList extends java.awt.Frame {
  * 
  * 
  * 
- * @param name 
+ * @param contact 
  * @param index 
  */
-    public void addContact(String name, int index) {        
+    public void addContact(im.model.Contact contact, int index) {        
+        String name = contact.getName();
+        String status = contact.getStatus();
+        if (contact instanceof im.model.Identity) {
+            name = "* " + name;
+        } else {
+            name = "  " + name;
+        }
+        if (status == null) {
+        	status = "offline";
+        }
+        name += " (" + status + ")";
         list.add(name, index);
     } 
 

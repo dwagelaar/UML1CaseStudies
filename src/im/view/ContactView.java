@@ -47,28 +47,14 @@ public abstract class ContactView implements java.util.Observer {
  * 
  * 
  * 
- * @param listView 
- */
-    public void setListView(im.view.ContactListView listView) {        
-        if (this.listView != listView) {
-            if (this.listView != null) this.listView.removeContactView(this);
-            this.listView = listView;
-            if (listView != null) listView.addContactView(this);
-        }
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param model 
  */
     public void setModel(im.model.Contact model) {        
         // Begin subscribe stanza
         if (this.model != null) this.model.deleteObserver(this);
         // Begin original body
-        this.model = model;// End original body
+        this.model = model;
+        // End original body
         if (model != null) model.addObserver(this);
         // End subscribe stanza
     } 
@@ -78,10 +64,14 @@ public abstract class ContactView implements java.util.Observer {
  * 
  * 
  * 
- * @return 
+ * @param listView 
  */
-    public im.view.ContactListView getListView() {        
-        return listView;
+    public void setListView(im.view.ContactListView listView) {        
+        if (this.listView != listView) {
+            if (this.listView != null) this.listView.removeContactView(this);
+            this.listView = listView;
+            if (listView != null) listView.addContactView(this);
+        }
     } 
 
 /**
@@ -100,25 +90,27 @@ public abstract class ContactView implements java.util.Observer {
  * 
  * 
  * 
- * @param uid 
+ * @return 
  */
-    public abstract void onUserIdChange(String uid);
+    public im.view.ContactListView getListView() {        
+        return listView;
+    } 
 
 /**
  * <p>Does ...</p>
  * 
  * 
  * 
- * @param name 
+ * @param n 
  */
-    public abstract void onNameChange(String name);
+    public abstract void onNameChange(String n);
 
 /**
  * <p>Does ...</p>
  * 
  * 
  * 
- * @param list 
+ * @param s 
  */
-    public abstract void onListChange(im.model.ContactList list);
+    public abstract void onStatusChange(String s);
  }

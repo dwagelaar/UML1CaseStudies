@@ -2,5 +2,6 @@
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="im.InstantMessagingClient"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="UML1CaseStudies"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:UML1CaseStudies/runtime}"/>
 <booleanAttribute key="org.eclipse.debug.core.appendEnvironmentVariables" value="true"/>
 </launchConfiguration>

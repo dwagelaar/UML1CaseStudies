@@ -14,7 +14,7 @@ public class InstantMessagingClient implements java.util.Observer {
 /**
  * <p>Represents ...</p>
  */
-    private java.util.Collection messageFactory = new java.util.ArrayList();
+    private java.util.List conversation = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
@@ -25,6 +25,11 @@ public class InstantMessagingClient implements java.util.Observer {
  * <p>Represents ...</p>
  */
     private im.view.ViewFactory viewFactory = null;
+
+/**
+ * <p>Represents ...</p>
+ */
+    private java.util.List messageFactory = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
@@ -52,8 +57,18 @@ public class InstantMessagingClient implements java.util.Observer {
     public static im.InstantMessagingClient getInstance() {        
         if (instance == null) {
             instance = new InstantMessagingClient();
+            instance.init();
         }
         return instance;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    private  InstantMessagingClient() {        
+        // your code here
     } 
 
 /**
@@ -87,17 +102,6 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @param contactList 
- */
-    public void setContactList(im.model.ContactList contactList) {        
-        this.contactList = contactList;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param viewFactory 
  */
     public void setViewFactory(im.view.ViewFactory viewFactory) {        
@@ -109,10 +113,32 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
+ * @param contactList 
+ */
+    public void setContactList(im.model.ContactList contactList) {        
+        this.contactList = contactList;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @return 
  */
-    public java.util.Collection getMessageFactorys() {        
+    public java.util.List getMessageFactorys() {        
         return messageFactory;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.view.ViewFactory getViewFactory() {        
+        return viewFactory;
     } 
 
 /**
@@ -144,8 +170,24 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * @return 
  */
-    public im.view.ViewFactory getViewFactory() {        
-        return viewFactory;
+    public java.util.List getConversations() {        
+        return conversation;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param index 
+ * @return 
+ */
+    public im.model.MessageFactory getMessageFactoryAt(int index) {        
+        try {
+            return (im.model.MessageFactory) messageFactory.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     } 
 
 /**
@@ -159,6 +201,22 @@ public class InstantMessagingClient implements java.util.Observer {
     public im.networking.Network getNetworkAt(int index) {        
         try {
             return (im.networking.Network) network.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param index 
+ * @return 
+ */
+    public im.model.Conversation getConversationAt(int index) {        
+        try {
+            return (im.model.Conversation) conversation.get(index);
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
@@ -185,9 +243,37 @@ public class InstantMessagingClient implements java.util.Observer {
     public void addNetwork(im.networking.Network network) {        
         // Begin subscribe stanza
         // Begin original body
-        this.network.add(network);// End original body
+        this.network.add(network);
+        // End original body
         if (network != null) network.addObserver(this);
         // End subscribe stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param conversation 
+ */
+    public void addConversation(im.model.Conversation conversation) {        
+        this.conversation.add(conversation);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param messageFactory 
+ * @param index 
+ */
+    public void insertMessageFactory(im.model.MessageFactory messageFactory, int index) {        
+        try {
+            this.messageFactory.add(index, messageFactory);
+        } catch (IndexOutOfBoundsException e) {
+            this.messageFactory.add(messageFactory);
+        };
     } 
 
 /**
@@ -205,9 +291,26 @@ public class InstantMessagingClient implements java.util.Observer {
             this.network.add(index, network);
         } catch (IndexOutOfBoundsException e) {
             this.network.add(network);
-        };// End original body
+        };
+        // End original body
         if (network != null) network.addObserver(this);
         // End subscribe stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param conversation 
+ * @param index 
+ */
+    public void insertConversation(im.model.Conversation conversation, int index) {        
+        try {
+            this.conversation.add(index, conversation);
+        } catch (IndexOutOfBoundsException e) {
+            this.conversation.add(conversation);
+        };
     } 
 
 /**
@@ -232,7 +335,8 @@ public class InstantMessagingClient implements java.util.Observer {
         // Begin subscribe stanza
         if (network != null) network.deleteObserver(this);
         // Begin original body
-        this.network.remove(network);// End original body
+        this.network.remove(network);
+        // End original body
         // End subscribe stanza
     } 
 
@@ -240,10 +344,11 @@ public class InstantMessagingClient implements java.util.Observer {
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param conversation 
  */
-    private  InstantMessagingClient() {        
-        viewFactory = new im.view.awt.AWTViewFactory();
-        viewFactory.createContactListView(contactList);
+    public void removeConversation(im.model.Conversation conversation) {        
+        this.conversation.remove(conversation);
     } 
 
 /**
@@ -251,7 +356,226 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  */
-    public void onReceivedChange() {        
-        // your code here
+    private void init() {        
+        	try {
+                java.util.Properties settings = new java.util.Properties();
+                settings.load(new java.io.FileInputStream("im.properties"));
+                // ViewFactory
+                setViewFactory((im.view.ViewFactory) Class.forName(
+                    settings.getProperty("im.view.ViewFactory")).newInstance());
+                // Network
+                java.util.StringTokenizer networks = new java.util.StringTokenizer(
+                    settings.getProperty("im.networking.Network"), ",");
+                while (networks.hasMoreTokens()) {
+                    addNetwork((im.networking.Network) Class.forName(
+                        networks.nextToken()).newInstance());
+                }
+                // MessageFactory
+                java.util.StringTokenizer msgFactories = new java.util.StringTokenizer(
+                    settings.getProperty("im.model.MessageFactory"), ",");
+                while (msgFactories.hasMoreTokens()) {
+                    addMessageFactory((im.model.MessageFactory) Class.forName(
+                        msgFactories.nextToken()).newInstance());
+                }
+                // Create and register view
+                getViewFactory().createContactListView(contactList);
+                // Identity
+                java.util.StringTokenizer identities = new java.util.StringTokenizer(
+                    settings.getProperty("im.model.Identity"), ";");
+                while (identities.hasMoreTokens()) {
+                    java.util.StringTokenizer identity = new java.util.StringTokenizer(
+                        identities.nextToken(), ",");
+                    im.model.Identity id = new im.model.Identity();
+                    id.setUserId(identity.nextToken());
+                    id.setName(identity.nextToken());
+                    String networkName = identity.nextToken();
+                    for (int i = 0; i < getNetworks().size(); i++) {
+                        if (getNetworkAt(i).getClass().getName().equals(networkName)) {
+                            id.setNetwork(getNetworkAt(i));
+                        }
+                    }
+                    if (id.getNetwork() == null) {
+                        throw new ClassNotFoundException("Could not find network " + networkName + " for " + id.getUserId());
+                    }
+                    id.setPassword(identity.nextToken());
+                    contactList.addContact(id);
+                }
+                // Contact
+                java.util.StringTokenizer contacts = new java.util.StringTokenizer(
+                    settings.getProperty("im.model.Contact"), ";");
+                while (contacts.hasMoreTokens()) {
+                    java.util.StringTokenizer contact = new java.util.StringTokenizer(
+                        contacts.nextToken(), ",");
+                    im.model.Contact c = new im.model.Contact();
+                    c.setUserId(contact.nextToken());
+                    c.setName(contact.nextToken());
+                    String networkName = contact.nextToken();
+                    for (int i = 0; i < getNetworks().size(); i++) {
+                        if (getNetworkAt(i).getClass().getName().equals(networkName)) {
+                            c.setNetwork(getNetworkAt(i));
+                        }
+                    }
+                    if (c.getNetwork() == null) {
+                        throw new ClassNotFoundException("Could not find network " + networkName + " for " + c.getUserId());
+                    }
+                    contactList.addContact(c);
+                }
+                // login
+                for (int i = 0; i < getNetworks().size(); i++) {
+                	im.model.Identity id = getContactList().getIdentity(getNetworkAt(i));
+                    if (id == null) {
+                        throw new NullPointerException("Could not find identity for " + getNetworkAt(i).getClass().getName());
+                    }
+                    id.getNetwork().login(id.getUserId(), id.getPassword());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param r 
+ */
+    public void onRecvMsgChange(im.model.Message r) {        
+        for (int i = 0; i < getConversations().size(); i++) {
+            String contact = getConversationAt(i).getContact().getUserId();
+            im.model.MessageFactory mf = getConversationAt(i).getFactory();
+            if (contact.equals(r.getSender()) && (mf == getMessageFactory(r.getContent()))) {
+                getConversationAt(i).addMessage(r);
+                return;
+            }
+        }
+        // create new conversation
+        im.model.Conversation conv = new im.model.Conversation();
+        getViewFactory().createConversationView(conv);
+        addConversation(conv);
+        for (int i = 0; i < getMessageFactorys().size(); i++) {
+            if (getMessageFactoryAt(i).isValidContent(r.getContent())) {
+                conv.setFactory(getMessageFactoryAt(i));
+                break;
+            }
+        }
+        for (int i = 0; i < getContactList().getContacts().size(); i++) {
+            if (getContactList().getContactAt(i).getUserId().equals(r.getSender())) {
+                conv.setContact(getContactList().getContactAt(i));
+                break;
+            }
+        }
+        if (conv.getContact() == null) {
+            conv.setContact(new im.model.Contact());
+            conv.getContact().setUserId(r.getSender());
+        }
+        conv.addMessage(r);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param c 
+ */
+    public void onRecvContactChange(im.model.Contact c) {        
+        for (int i = 0; i < getContactList().getContacts().size(); i++) {
+            if (getContactList().getContactAt(i).getUserId().equals(c.getUserId())) {
+                getContactList().getContactAt(i).setStatus(c.getStatus());
+                return;
+            }
+        }
+        getContactList().addContact(c);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param c 
+ * @return 
+ */
+    public im.model.MessageFactory getMessageFactory(Object c) {        
+        for (int i = 0; i < getMessageFactorys().size(); i++) {
+            if (getMessageFactoryAt(i).isValidContent(c)) {
+                return getMessageFactoryAt(i);
+            }
+        }
+        return null;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void exit() {        
+        	for (int i = 0; i < getNetworks().size(); i++) {
+                getNetworkAt(i).logout();
+        	}
+        	saveSettings();
+            System.exit(0);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    private void saveSettings() {        
+        try {
+            java.util.Properties settings = new java.util.Properties();
+            // ViewFactory
+            settings.setProperty("im.view.ViewFactory", getViewFactory().getClass().getName());
+            // Network
+            StringBuffer networks = new StringBuffer();
+            for (int i = 0; i < getNetworks().size(); i++) {
+                if (i > 0) networks.append(',');
+             	networks.append(getNetworkAt(i).getClass().getName());
+            }
+            settings.setProperty("im.networking.Network", networks.toString());
+            // MessageFactory
+            StringBuffer msgFactories = new StringBuffer();
+            for (int i = 0; i < getMessageFactorys().size(); i++) {
+                if (i > 0) msgFactories.append(',');
+                msgFactories.append(getMessageFactoryAt(i).getClass().getName());
+            }
+            settings.setProperty("im.model.MessageFactory", msgFactories.toString());
+            // Identity
+            StringBuffer identities = new StringBuffer();
+            for (int i = 0; i < getNetworks().size(); i++) {
+                if (identities.length() > 0) identities.append(';');
+                im.model.Identity id = getContactList().getIdentity(getNetworkAt(i));
+                identities.append(id.getUserId());
+                identities.append(',');
+                identities.append(id.getName());
+                identities.append(',');
+                identities.append(id.getNetwork().getClass().getName());
+                identities.append(',');
+                identities.append(id.getPassword());
+            }
+            settings.setProperty("im.model.Identity", identities.toString());
+            // Contact
+            StringBuffer contacts = new StringBuffer();
+            for (int i = 0; i < getContactList().getContacts().size(); i++) {
+                if (contacts.length() > 0) contacts.append(';');
+                im.model.Contact c = getContactList().getContactAt(i);
+                if (!(c instanceof im.model.Identity)) {
+                    contacts.append(c.getUserId());
+                    contacts.append(',');
+                    contacts.append(c.getName());
+                    contacts.append(',');
+                    contacts.append(c.getNetwork().getClass().getName());
+                }
+            }
+            settings.setProperty("im.model.Contact", contacts.toString());
+            // save
+            settings.save(new java.io.FileOutputStream("im.properties"),
+                "Instant Messenger settings");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     } 
  }

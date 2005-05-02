@@ -53,7 +53,8 @@ public abstract class ContactListView implements java.util.Observer {
         // Begin subscribe stanza
         if (this.model != null) this.model.deleteObserver(this);
         // Begin original body
-        this.model = model;// End original body
+        this.model = model;
+        // End original body
         if (model != null) model.addObserver(this);
         // End subscribe stanza
     } 
@@ -148,9 +149,9 @@ public abstract class ContactListView implements java.util.Observer {
  * 
  * 
  * 
- * @param contact 
+ * @param c 
  */
-    public abstract void onContactChange(im.model.Contact contact);
+    public abstract void onContactChange(im.model.Contact c);
 
 /**
  * <p>Does ...</p>
@@ -158,6 +159,6 @@ public abstract class ContactListView implements java.util.Observer {
  * 
  */
     public void onWindowClosing() {        
-        System.exit(0);
+        im.InstantMessagingClient.getInstance().exit();
     } 
  }

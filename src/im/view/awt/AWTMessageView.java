@@ -37,11 +37,25 @@ public class AWTMessageView extends im.view.MessageView {
  * <p>Does ...</p>
  * 
  * 
+ */
+    public  AWTMessageView() {        
+        getImpl().addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent e) {
+                onViewClose();
+            }
+        });
+        getImpl().setVisible(true);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
  * 
  * @param sender 
  */
     public void onSenderChange(String sender) {        
-        // your code here
+        onSenderRecipientChange();
     } 
 
 /**
@@ -52,7 +66,7 @@ public class AWTMessageView extends im.view.MessageView {
  * @param recipient 
  */
     public void onRecipientChange(String recipient) {        
-        // your code here
+        onSenderRecipientChange();
     } 
 
 /**
@@ -63,6 +77,28 @@ public class AWTMessageView extends im.view.MessageView {
  * @param content 
  */
     public void onContentChange(Object content) {        
-        // your code here
+        getImpl().setContent(content);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void onSenderRecipientChange() {        
+        getImpl().setTitle(getModel().getSender() + " -> " + getModel().getRecipient());
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void onViewClose() {
+        if (getImpl().getSendClicked()) {
+        	System.out.println("send clicked; sending message...");
+            getModel().setContent(getImpl().getContent());
+            getModel().send();
+        }
     } 
  }

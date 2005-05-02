@@ -22,6 +22,61 @@ public class Contact extends im.model.NetworkSpecificData {
     private String name;
 
 /**
+ * <p>Represents ...</p>
+ */
+    private String status;
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param status 
+ */
+    public void setStatus(String status) {        
+        // Begin Observable stanza
+        if (this.status != status) {
+            // Begin original body
+        this.status = status;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Status");
+            e.put("class", String.class);
+            if (status != null) {
+                e.put("value", status);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param name 
+ */
+    public void setName(String name) {        
+        // Begin Observable stanza
+        if (this.name != name) {
+            // Begin original body
+        this.name = name;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Name");
+            e.put("class", String.class);
+            if (name != null) {
+                e.put("value", name);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
+
+/**
  * <p>Does ...</p>
  * 
  * 
@@ -80,24 +135,21 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param name 
+ * @return 
  */
-    public void setName(String name) {        
-        // Begin Observable stanza
-        if (this.name != name) {
-            // Begin original body
-        this.name = name;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Name");
-            e.put("class", String.class);
-            if (name != null) {
-                e.put("value", name);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
+    public String getStatus() {        
+        return status;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getName() {        
+        return name;
     } 
 
 /**
@@ -120,16 +172,5 @@ public class Contact extends im.model.NetworkSpecificData {
  */
     public String getUserId() {        
         return userId;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public String getName() {        
-        return name;
     } 
  }

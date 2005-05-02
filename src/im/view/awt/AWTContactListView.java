@@ -9,12 +9,12 @@ public class AWTContactListView extends im.view.ContactListView {
 /**
  * <p>Represents ...</p>
  */
-    private im.view.awt.AWTNewContactDialog newContactDlg = null;
+    private im.view.awt.AWTContactList impl = new AWTContactList();
 
 /**
  * <p>Represents ...</p>
  */
-    private im.view.awt.AWTContactList impl = new AWTContactList();
+    private im.view.awt.AWTNewContactDialog newContactDlg = null;
 
 /**
  * <p>Does ...</p>
@@ -99,10 +99,12 @@ public class AWTContactListView extends im.view.ContactListView {
     public void onContactChange(im.model.Contact contact) {        
         int index = getModel().getContacts().indexOf(contact);
         if (index > -1) {
-            AWTContactView view = (AWTContactView)
+            im.view.ContactView view =
                 im.InstantMessagingClient.getInstance().getViewFactory().createContactView(contact);
-            view.setImpl(getImpl());
-            getImpl().addContact(contact.getName(), index);
+            if (view instanceof AWTContactView) {
+                ((AWTContactView) view).setImpl(getImpl());
+            }
+            getImpl().addContact(contact, index);
             insertContactView(view, index);
         } else {
             index = getContactViewIndex(contact);
@@ -136,7 +138,10 @@ public class AWTContactListView extends im.view.ContactListView {
     public void onRemoveBtnClicked() {        
         int index = getImpl().getSelectedIndex();
         if (index > -1) {
-            getModel().removeContact(getModel().getContactAt(index));
+            im.model.Contact c = getModel().getContactAt(index);
+            if (!(c instanceof im.model.Identity)) {
+                getModel().removeContact(c);
+            }
         }
     } 
 
@@ -149,8 +154,19 @@ public class AWTContactListView extends im.view.ContactListView {
         int index = getImpl().getSelectedIndex();
         if (index > -1) {
             im.model.Contact c = getContactViewAt(index).getModel();
-            // 1. new message dialog, in which message type gets chosen
-            // 2. new message gets created, along with view
+            im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();
+            im.model.Conversation conv = new im.model.Conversation();
+            client.getViewFactory().createConversationView(conv);
+            client.addConversation(conv);
+            conv.setContact(c);
+            if (client.getMessageFactorys().size() == 1) {
+                conv.setFactory(client.getMessageFactoryAt(0));
+            } else {
+                System.out.println("TODO: multiple message kind handling");
+                conv.setFactory(client.getMessageFactoryAt(0));
+                // 1. new message dialog, in which message type gets chosen
+                // 2. new message gets created, along with view
+            }
         }
     } 
 

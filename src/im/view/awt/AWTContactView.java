@@ -38,35 +38,33 @@ public class AWTContactView extends im.view.ContactView {
  * 
  * 
  * 
- * @param list 
- */
-    public void onListChange(im.model.ContactList list) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param uid 
- */
-    public void onUserIdChange(String uid) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param name 
  */
     public void onNameChange(String name) {        
+        onChange();
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param s 
+ */
+    public void onStatusChange(String s) {        
+        onChange();
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void onChange() {        
         int index = getListView().getContactViews().indexOf(this);
         if (index > -1) {
             getImpl().removeContact(index);
-            getImpl().addContact(getModel().getName(), index);
+            getImpl().addContact(getModel(), index);
         }
     } 
  }

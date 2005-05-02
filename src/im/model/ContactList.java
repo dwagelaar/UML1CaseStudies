@@ -126,4 +126,37 @@ public class ContactList extends java.util.Observable {
         }
         // End Observable stanza
     } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param forNw 
+ * @return 
+ */
+    public im.model.Identity getIdentity(im.networking.Network forNw) {        
+        for (int i = 0; i < getContacts().size(); i ++) {
+            Contact contact = getContactAt(i);
+            if ((contact instanceof Identity) && (contact.getNetwork() == forNw))
+                return (Identity) contact;
+        }
+        return null;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param userId 
+ * @return 
+ */
+    public String getUserName(String userId) {        
+        for (int i = 0; i < getContacts().size(); i ++) {
+            if (getContactAt(i).getUserId().equals(userId))
+                return getContactAt(i).getName();
+        }
+        return userId;
+    } 
  }
