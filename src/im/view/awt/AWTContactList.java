@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * <p></p>
  */
-public class AWTContactList extends java.awt.Frame {
+public class AWTContactList extends java.awt.Panel {
 
 /**
  * <p>Represents ...</p>
@@ -33,14 +33,12 @@ public class AWTContactList extends java.awt.Frame {
  * 
  */
     public  AWTContactList() {        
-        setTitle("Instant Messenger");
         setLayout(new BorderLayout());
         add(list, BorderLayout.CENTER);
         btnPanel.setLayout(new FlowLayout());
         btnPanel.add(addContactBtn);
         btnPanel.add(removeContactBtn);
         add(btnPanel, BorderLayout.SOUTH);
-        pack();
     } 
 
 /**
@@ -58,6 +56,9 @@ public class AWTContactList extends java.awt.Frame {
             name = "* " + name;
         } else {
             name = "  " + name;
+        }
+        if (contact.getNetwork() != null) {
+            name += " - " + contact.getNetwork().getName();
         }
         if (status == null) {
         	status = "offline";

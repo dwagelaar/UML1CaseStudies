@@ -31,31 +31,6 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param recipient 
- */
-    public void setRecipient(String recipient) {        
-        // Begin Observable stanza
-        if (this.recipient != recipient) {
-            // Begin original body
-        this.recipient = recipient;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Recipient");
-            e.put("class", String.class);
-            if (recipient != null) {
-                e.put("value", recipient);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param conversation 
  */
     public void setConversation(im.model.Conversation conversation) {        
@@ -110,6 +85,31 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
+ * @param recipient 
+ */
+    public void setRecipient(String recipient) {        
+        // Begin Observable stanza
+        if (this.recipient != recipient) {
+            // Begin original body
+        this.recipient = recipient;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Recipient");
+            e.put("class", String.class);
+            if (recipient != null) {
+                e.put("value", recipient);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param content 
  */
     public void setContent(Object content) {        
@@ -137,17 +137,6 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getRecipient() {        
-        return recipient;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
     public im.model.Conversation getConversation() {        
         return conversation;
     } 
@@ -161,6 +150,17 @@ public abstract class Message extends im.model.NetworkSpecificData {
  */
     public String getSender() {        
         return sender;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getRecipient() {        
+        return recipient;
     } 
 
 /**

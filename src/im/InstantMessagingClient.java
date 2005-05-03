@@ -4,7 +4,7 @@ package im;
 /**
  * <p></p>
  */
-public class InstantMessagingClient implements java.util.Observer {
+public class InstantMessagingClient extends java.applet.Applet implements java.util.Observer {
 
 /**
  * <p>Represents ...</p>
@@ -14,17 +14,17 @@ public class InstantMessagingClient implements java.util.Observer {
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List conversation = new java.util.ArrayList();
-
-/**
- * <p>Represents ...</p>
- */
     private im.model.ContactList contactList = new im.model.ContactList();
 
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ViewFactory viewFactory = null;
+    private java.util.List network = new java.util.ArrayList();
+
+/**
+ * <p>Represents ...</p>
+ */
+    private java.util.List conversation = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
@@ -34,18 +34,7 @@ public class InstantMessagingClient implements java.util.Observer {
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List network = new java.util.ArrayList();
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param args 
- */
-    public static void main(String[] args) {        
-        getInstance();
-    } 
+    private im.view.ViewFactory viewFactory = null;
 
 /**
  * <p>Does ...</p>
@@ -57,18 +46,8 @@ public class InstantMessagingClient implements java.util.Observer {
     public static im.InstantMessagingClient getInstance() {        
         if (instance == null) {
             instance = new InstantMessagingClient();
-            instance.init();
         }
         return instance;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    private  InstantMessagingClient() {        
-        // your code here
     } 
 
 /**
@@ -102,17 +81,6 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @param viewFactory 
- */
-    public void setViewFactory(im.view.ViewFactory viewFactory) {        
-        this.viewFactory = viewFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param contactList 
  */
     public void setContactList(im.model.ContactList contactList) {        
@@ -124,32 +92,10 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @return 
+ * @param viewFactory 
  */
-    public java.util.List getMessageFactorys() {        
-        return messageFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.view.ViewFactory getViewFactory() {        
-        return viewFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.ContactList getContactList() {        
-        return contactList;
+    public void setViewFactory(im.view.ViewFactory viewFactory) {        
+        this.viewFactory = viewFactory;
     } 
 
 /**
@@ -179,15 +125,32 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @param index 
  * @return 
  */
-    public im.model.MessageFactory getMessageFactoryAt(int index) {        
-        try {
-            return (im.model.MessageFactory) messageFactory.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
+    public im.model.ContactList getContactList() {        
+        return contactList;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.view.ViewFactory getViewFactory() {        
+        return viewFactory;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public java.util.List getMessageFactorys() {        
+        return messageFactory;
     } 
 
 /**
@@ -227,10 +190,15 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * 
- * @param messageFactory 
+ * @param index 
+ * @return 
  */
-    public void addMessageFactory(im.model.MessageFactory messageFactory) {        
-        this.messageFactory.add(messageFactory);
+    public im.model.MessageFactory getMessageFactoryAt(int index) {        
+        try {
+            return (im.model.MessageFactory) messageFactory.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     } 
 
 /**
@@ -266,14 +234,9 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * @param messageFactory 
- * @param index 
  */
-    public void insertMessageFactory(im.model.MessageFactory messageFactory, int index) {        
-        try {
-            this.messageFactory.add(index, messageFactory);
-        } catch (IndexOutOfBoundsException e) {
-            this.messageFactory.add(messageFactory);
-        };
+    public void addMessageFactory(im.model.MessageFactory messageFactory) {        
+        this.messageFactory.add(messageFactory);
     } 
 
 /**
@@ -319,9 +282,14 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  * @param messageFactory 
+ * @param index 
  */
-    public void removeMessageFactory(im.model.MessageFactory messageFactory) {        
-        this.messageFactory.remove(messageFactory);
+    public void insertMessageFactory(im.model.MessageFactory messageFactory, int index) {        
+        try {
+            this.messageFactory.add(index, messageFactory);
+        } catch (IndexOutOfBoundsException e) {
+            this.messageFactory.add(messageFactory);
+        };
     } 
 
 /**
@@ -355,82 +323,45 @@ public class InstantMessagingClient implements java.util.Observer {
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param messageFactory 
  */
-    private void init() {        
-        	try {
-                java.util.Properties settings = new java.util.Properties();
-                settings.load(new java.io.FileInputStream("im.properties"));
-                // ViewFactory
-                setViewFactory((im.view.ViewFactory) Class.forName(
-                    settings.getProperty("im.view.ViewFactory")).newInstance());
-                // Network
-                java.util.StringTokenizer networks = new java.util.StringTokenizer(
-                    settings.getProperty("im.networking.Network"), ",");
-                while (networks.hasMoreTokens()) {
-                    addNetwork((im.networking.Network) Class.forName(
-                        networks.nextToken()).newInstance());
-                }
-                // MessageFactory
-                java.util.StringTokenizer msgFactories = new java.util.StringTokenizer(
-                    settings.getProperty("im.model.MessageFactory"), ",");
-                while (msgFactories.hasMoreTokens()) {
-                    addMessageFactory((im.model.MessageFactory) Class.forName(
-                        msgFactories.nextToken()).newInstance());
-                }
-                // Create and register view
-                getViewFactory().createContactListView(contactList);
-                // Identity
-                java.util.StringTokenizer identities = new java.util.StringTokenizer(
-                    settings.getProperty("im.model.Identity"), ";");
-                while (identities.hasMoreTokens()) {
-                    java.util.StringTokenizer identity = new java.util.StringTokenizer(
-                        identities.nextToken(), ",");
-                    im.model.Identity id = new im.model.Identity();
-                    id.setUserId(identity.nextToken());
-                    id.setName(identity.nextToken());
-                    String networkName = identity.nextToken();
+    public void removeMessageFactory(im.model.MessageFactory messageFactory) {        
+        this.messageFactory.remove(messageFactory);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void init() {        
+        instance = this;
+        setLayout(new java.awt.BorderLayout());
+                loadSettings();
+                try {
+                    // login
                     for (int i = 0; i < getNetworks().size(); i++) {
-                        if (getNetworkAt(i).getClass().getName().equals(networkName)) {
-                            id.setNetwork(getNetworkAt(i));
+                    	im.model.Identity id = getContactList().getIdentity(getNetworkAt(i));
+                        if (id == null) {
+                            throw new NullPointerException("Could not find identity for " + getNetworkAt(i).getClass().getName());
                         }
+                        id.getNetwork().login(id.getUserId(), id.getPassword());
                     }
-                    if (id.getNetwork() == null) {
-                        throw new ClassNotFoundException("Could not find network " + networkName + " for " + id.getUserId());
-                    }
-                    id.setPassword(identity.nextToken());
-                    contactList.addContact(id);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                // Contact
-                java.util.StringTokenizer contacts = new java.util.StringTokenizer(
-                    settings.getProperty("im.model.Contact"), ";");
-                while (contacts.hasMoreTokens()) {
-                    java.util.StringTokenizer contact = new java.util.StringTokenizer(
-                        contacts.nextToken(), ",");
-                    im.model.Contact c = new im.model.Contact();
-                    c.setUserId(contact.nextToken());
-                    c.setName(contact.nextToken());
-                    String networkName = contact.nextToken();
-                    for (int i = 0; i < getNetworks().size(); i++) {
-                        if (getNetworkAt(i).getClass().getName().equals(networkName)) {
-                            c.setNetwork(getNetworkAt(i));
-                        }
-                    }
-                    if (c.getNetwork() == null) {
-                        throw new ClassNotFoundException("Could not find network " + networkName + " for " + c.getUserId());
-                    }
-                    contactList.addContact(c);
-                }
-                // login
-                for (int i = 0; i < getNetworks().size(); i++) {
-                	im.model.Identity id = getContactList().getIdentity(getNetworkAt(i));
-                    if (id == null) {
-                        throw new NullPointerException("Could not find identity for " + getNetworkAt(i).getClass().getName());
-                    }
-                    id.getNetwork().login(id.getUserId(), id.getPassword());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void destroy() {        
+        for (int i = 0; i < getNetworks().size(); i++) {
+            getNetworkAt(i).logout();
+        }
     } 
 
 /**
@@ -511,69 +442,70 @@ public class InstantMessagingClient implements java.util.Observer {
  * 
  * 
  */
-    public void exit() {        
-        	for (int i = 0; i < getNetworks().size(); i++) {
-                getNetworkAt(i).logout();
-        	}
-        	saveSettings();
-            System.exit(0);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    private void saveSettings() {        
+    private void loadSettings() {        
         try {
             java.util.Properties settings = new java.util.Properties();
+            settings.load(InstantMessagingClient.class.getResourceAsStream("InstantMessagingClient.properties"));
             // ViewFactory
-            settings.setProperty("im.view.ViewFactory", getViewFactory().getClass().getName());
+            setViewFactory((im.view.ViewFactory) Class.forName(
+                settings.getProperty("im.view.ViewFactory")).newInstance());
             // Network
-            StringBuffer networks = new StringBuffer();
-            for (int i = 0; i < getNetworks().size(); i++) {
-                if (i > 0) networks.append(',');
-             	networks.append(getNetworkAt(i).getClass().getName());
+            java.util.StringTokenizer networks = new java.util.StringTokenizer(
+                settings.getProperty("im.networking.Network"), ",");
+            while (networks.hasMoreTokens()) {
+                addNetwork((im.networking.Network) Class.forName(
+                    networks.nextToken()).newInstance());
             }
-            settings.setProperty("im.networking.Network", networks.toString());
             // MessageFactory
-            StringBuffer msgFactories = new StringBuffer();
-            for (int i = 0; i < getMessageFactorys().size(); i++) {
-                if (i > 0) msgFactories.append(',');
-                msgFactories.append(getMessageFactoryAt(i).getClass().getName());
+            java.util.StringTokenizer msgFactories = new java.util.StringTokenizer(
+                settings.getProperty("im.model.MessageFactory"), ",");
+            while (msgFactories.hasMoreTokens()) {
+                addMessageFactory((im.model.MessageFactory) Class.forName(
+                    msgFactories.nextToken()).newInstance());
             }
-            settings.setProperty("im.model.MessageFactory", msgFactories.toString());
+            // Create and register view
+            getViewFactory().createContactListView(contactList);
             // Identity
-            StringBuffer identities = new StringBuffer();
-            for (int i = 0; i < getNetworks().size(); i++) {
-                if (identities.length() > 0) identities.append(';');
-                im.model.Identity id = getContactList().getIdentity(getNetworkAt(i));
-                identities.append(id.getUserId());
-                identities.append(',');
-                identities.append(id.getName());
-                identities.append(',');
-                identities.append(id.getNetwork().getClass().getName());
-                identities.append(',');
-                identities.append(id.getPassword());
-            }
-            settings.setProperty("im.model.Identity", identities.toString());
-            // Contact
-            StringBuffer contacts = new StringBuffer();
-            for (int i = 0; i < getContactList().getContacts().size(); i++) {
-                if (contacts.length() > 0) contacts.append(';');
-                im.model.Contact c = getContactList().getContactAt(i);
-                if (!(c instanceof im.model.Identity)) {
-                    contacts.append(c.getUserId());
-                    contacts.append(',');
-                    contacts.append(c.getName());
-                    contacts.append(',');
-                    contacts.append(c.getNetwork().getClass().getName());
+            java.util.StringTokenizer identities = new java.util.StringTokenizer(
+                getParameter("Identities"), ";");
+            while (identities.hasMoreTokens()) {
+                java.util.StringTokenizer identity = new java.util.StringTokenizer(
+                    identities.nextToken(), ",");
+                im.model.Identity id = new im.model.Identity();
+                id.setUserId(identity.nextToken());
+                id.setName(identity.nextToken());
+                String networkName = identity.nextToken();
+                for (int i = 0; i < getNetworks().size(); i++) {
+                    if (getNetworkAt(i).getName().equals(networkName)) {
+                        id.setNetwork(getNetworkAt(i));
+                    }
                 }
+                if (id.getNetwork() == null) {
+                    throw new ClassNotFoundException("Could not find network " + networkName + " for " + id.getUserId());
+                }
+                id.setPassword(identity.nextToken());
+                contactList.addContact(id);
             }
-            settings.setProperty("im.model.Contact", contacts.toString());
-            // save
-            settings.save(new java.io.FileOutputStream("im.properties"),
-                "Instant Messenger settings");
+            // Contact
+            java.util.StringTokenizer contacts = new java.util.StringTokenizer(
+                getParameter("Contacts"), ";");
+            while (contacts.hasMoreTokens()) {
+                java.util.StringTokenizer contact = new java.util.StringTokenizer(
+                    contacts.nextToken(), ",");
+                im.model.Contact c = new im.model.Contact();
+                c.setUserId(contact.nextToken());
+                c.setName(contact.nextToken());
+                String networkName = contact.nextToken();
+                for (int i = 0; i < getNetworks().size(); i++) {
+                    if (getNetworkAt(i).getName().equals(networkName)) {
+                        c.setNetwork(getNetworkAt(i));
+                    }
+                }
+                if (c.getNetwork() == null) {
+                    throw new ClassNotFoundException("Could not find network " + networkName + " for " + c.getUserId());
+                }
+                contactList.addContact(c);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

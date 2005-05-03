@@ -8,17 +8,17 @@ import java.net.*;
 /**
  * <p></p>
  */
-public class Jabber extends im.networking.Network implements com.jabberwookie.IQListener, com.jabberwookie.MessageListener, com.jabberwookie.PresenceListener {
-
-/**
- * <p>Represents ...</p>
- */
-    private com.jabberwookie.Client2Server connection;
+public class Jabber extends im.networking.Network implements com.jabberwookie.PresenceListener, com.jabberwookie.MessageListener, com.jabberwookie.IQListener {
 
 /**
  * <p>Represents ...</p>
  */
     private java.net.Socket socket = null;
+
+/**
+ * <p>Represents ...</p>
+ */
+    private com.jabberwookie.Client2Server connection;
 
 /**
  * <p>Represents ...</p>
@@ -183,7 +183,7 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
             pres.setFrom(uid);
             getConnection().send(pres);
             incomingPresence(pres);
-            getConnection().send(IQRoster.createGetRequest(), 30000);
+            getConnection().send(IQRoster.createGetRequest());
             return true;
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -268,12 +268,16 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
             System.out.println(presence.getFrom() + " wants to unsubscribe to your presence, allowing.");
         } else if (type.equals(Const.UNAVAILABLE)) {
             im.model.Contact c = new im.model.Contact();
+            c.setNetwork(this);
             c.setUserId(presence.getFrom());
+            c.setName(presence.getFrom());
             setRecvContact(c);
             return;
         } else {
             im.model.Contact c = new im.model.Contact();
+            c.setNetwork(this);
             c.setUserId(presence.getFrom());
+            c.setName(presence.getFrom());
             if (presence.getShow() != null)
             	c.setStatus(presence.getShow());
             else

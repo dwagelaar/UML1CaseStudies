@@ -9,12 +9,12 @@ public class AWTContactListView extends im.view.ContactListView {
 /**
  * <p>Represents ...</p>
  */
-    private im.view.awt.AWTContactList impl = new AWTContactList();
+    private im.view.awt.AWTNewContactDialog newContactDlg = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.view.awt.AWTNewContactDialog newContactDlg = null;
+    private im.view.awt.AWTContactList impl = new AWTContactList();
 
 /**
  * <p>Does ...</p>
@@ -66,11 +66,6 @@ public class AWTContactListView extends im.view.ContactListView {
  * 
  */
     public  AWTContactListView() {        
-        getImpl().addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                onWindowClosing();
-            }
-        });
         getImpl().addAddActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
                 onAddBtnClicked();
@@ -86,7 +81,7 @@ public class AWTContactListView extends im.view.ContactListView {
                 onContactDoubleClicked();
             }
         });
-        getImpl().setVisible(true);
+        im.InstantMessagingClient.getInstance().add(getImpl());
     } 
 
 /**
@@ -126,7 +121,6 @@ public class AWTContactListView extends im.view.ContactListView {
                 onNewContactDlgClose();
             }
         });
-        dlg.setModal(true);
         dlg.setVisible(true);
     } 
 

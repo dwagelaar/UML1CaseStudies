@@ -152,13 +152,4 @@ public abstract class ContactListView implements java.util.Observer {
  * @param c 
  */
     public abstract void onContactChange(im.model.Contact c);
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public void onWindowClosing() {        
-        im.InstantMessagingClient.getInstance().exit();
-    } 
  }

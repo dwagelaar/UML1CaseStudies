@@ -6,7 +6,12 @@ import java.awt.event.*;
 /**
  * <p></p>
  */
-public class AWTNewContactDialog extends java.awt.Dialog {
+public class AWTNewContactDialog extends java.awt.Frame {
+
+/**
+ * <p>Represents ...</p>
+ */
+    private java.awt.Component owner = null;
 
 /**
  * <p>Represents ...</p>
@@ -92,8 +97,9 @@ public class AWTNewContactDialog extends java.awt.Dialog {
  * 
  * @param owner 
  */
-    public  AWTNewContactDialog(java.awt.Frame owner) {        
-        super(owner);
+    public  AWTNewContactDialog(java.awt.Component owner) {        
+        this.owner = owner;
+        owner.setEnabled(false);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 onCancel();
@@ -173,6 +179,7 @@ public class AWTNewContactDialog extends java.awt.Dialog {
     private void onOk() {        
         setOkClicked(true);
         setVisible(false);
+        owner.setEnabled(true);
     } 
 
 /**
@@ -183,5 +190,6 @@ public class AWTNewContactDialog extends java.awt.Dialog {
     private void onCancel() {        
         setOkClicked(false);
         setVisible(false);
+        owner.setEnabled(true);
     } 
  }

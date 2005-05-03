@@ -250,12 +250,15 @@ helper context String def : javaRemoverSubscribe(body : String) : String =
 	'\n// End original body\n' +
 	'// End subscribe stanza';
 
-helper context String def : singletonBody() : String =
+helper context String def : javaSingletonBody() : String =
 	'if (instance == null) {\n' +
 	'    instance = new ' + self + '();\n' +
-	'    instance.init();\n' +
 	'}\n' +
 	'return instance;';
+
+helper def : javaAppletInitBody() : String =
+	'instance = this;\n' +
+	'setLayout(new java.awt.BorderLayout());';
 
 -- ======================================================================
 -- generic helpers end

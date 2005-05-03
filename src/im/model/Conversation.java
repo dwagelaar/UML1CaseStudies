@@ -9,17 +9,17 @@ public class Conversation extends java.util.Observable {
 /**
  * <p>Represents ...</p>
  */
+    private im.model.MessageFactory factory = null;
+
+/**
+ * <p>Represents ...</p>
+ */
     private im.model.Contact contact = null;
 
 /**
  * <p>Represents ...</p>
  */
     private java.util.List message = new java.util.ArrayList();
-
-/**
- * <p>Represents ...</p>
- */
-    private im.model.MessageFactory factory = null;
 
 /**
  * <p>Does ...</p>
@@ -78,6 +78,17 @@ public class Conversation extends java.util.Observable {
  * 
  * @return 
  */
+    public java.util.List getMessages() {        
+        return message;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
     public im.model.MessageFactory getFactory() {        
         return factory;
     } 
@@ -91,17 +102,6 @@ public class Conversation extends java.util.Observable {
  */
     public im.model.Contact getContact() {        
         return contact;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public java.util.List getMessages() {        
-        return message;
     } 
 
 /**

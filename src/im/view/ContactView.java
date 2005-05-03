@@ -47,23 +47,6 @@ public abstract class ContactView implements java.util.Observer {
  * 
  * 
  * 
- * @param model 
- */
-    public void setModel(im.model.Contact model) {        
-        // Begin subscribe stanza
-        if (this.model != null) this.model.deleteObserver(this);
-        // Begin original body
-        this.model = model;
-        // End original body
-        if (model != null) model.addObserver(this);
-        // End subscribe stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param listView 
  */
     public void setListView(im.view.ContactListView listView) {        
@@ -79,10 +62,16 @@ public abstract class ContactView implements java.util.Observer {
  * 
  * 
  * 
- * @return 
+ * @param model 
  */
-    public im.model.Contact getModel() {        
-        return model;
+    public void setModel(im.model.Contact model) {        
+        // Begin subscribe stanza
+        if (this.model != null) this.model.deleteObserver(this);
+        // Begin original body
+        this.model = model;
+        // End original body
+        if (model != null) model.addObserver(this);
+        // End subscribe stanza
     } 
 
 /**
@@ -101,9 +90,11 @@ public abstract class ContactView implements java.util.Observer {
  * 
  * 
  * 
- * @param n 
+ * @return 
  */
-    public abstract void onNameChange(String n);
+    public im.model.Contact getModel() {        
+        return model;
+    } 
 
 /**
  * <p>Does ...</p>
