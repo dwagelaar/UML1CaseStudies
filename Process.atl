@@ -1,9 +1,7 @@
--- $Id: SingletonProcess.atl 988 2005-05-02 20:03:54Z dwagelaa $
-module SingletonApplet;
+-- $Id$
+module Process;
 
 create OUT : OUTMODEL from IN : INMODEL;
-
-uses Java;
 
 -- ======================================================================
 -- model-specific helpers begin
@@ -15,26 +13,28 @@ helper context String def : class() : INMODEL!Class =
 helper context String def : stereotype() : INMODEL!Stereotype =
 	INMODEL!Stereotype.allInstances()->select(s|s.name=self)->first();
 
-helper context INMODEL!GeneralizableElement def : isApplet() : Boolean =
-	not self.stereotype->select(s|s.name='Applet')->isEmpty();
+helper context INMODEL!GeneralizableElement def : isProcessType() : Boolean =
+	not self.stereotype->select(s|s.name='process')->isEmpty();
 
 helper context INMODEL!GeneralizableElement def : isSingleton() : Boolean =
 	not self.stereotype->select(s|s.name='Singleton')->isEmpty();
 
-helper context INMODEL!Feature def : isConstructor() : Boolean =
-	not self.stereotype->select(s|s.name='create')->isEmpty();
-
-helper context INMODEL!Classifier def : hasNoConstructor() : Boolean =
-	self.feature->select(f|f.isConstructor())->isEmpty();
+helper context INMODEL!GeneralizableElement def : mainBody() : String =
+	if self.isSingleton() then
+		if self.hasNoInitOperation() then
+			'getInstance();'
+		else
+			'getInstance().init();'
+		endif
+	else
+		'new ' + self.name + '();'
+	endif;
 
 helper context INMODEL!Feature def : isInitOperation() : Boolean =
 	self.name='init' and self.oclIsKindOf(INMODEL!Operation);
 
 helper context INMODEL!Classifier def : hasNoInitOperation() : Boolean =
 	self.feature->select(f|f.isInitOperation())->isEmpty();
-
-helper context INMODEL!ProcedureExpression def : method() : INMODEL!Method =
-	INMODEL!Method.allInstances()->select(m|m.body=self)->first();
 
 -- ======================================================================
 -- model-specific helpers end
@@ -44,75 +44,23 @@ helper context INMODEL!ProcedureExpression def : method() : INMODEL!Method =
 -- non-mapsTo rules begin
 -- ======================================================================
 
-rule AppletClass {
-	from s : INMODEL!Class (s.isApplet())
-	to g : OUTMODEL!Generalization (
-	   	namespace <- s.namespace,
-		parent <- 'Applet'.class(),
-		child <- s)
-}
-
-rule SingletonClass {
-	from s : INMODEL!Class (s.isSingleton())
+rule ProcessClass {
+	from s : INMODEL!Class (s.isProcessType())
 	to op : OUTMODEL!Operation (
-	   	name <- 'getInstance',
+	   	name <- 'main',
 		owner <- s,
 		visibility <- #vk_public,
 		ownerScope <- #sk_classifier,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   par : OUTMODEL!Parameter (
-	   	name <- 'return',
+	   args : OUTMODEL!Parameter (
+	   	name <- 'args',
 		behavioralFeature <- op,
-		type <- s,
-		kind <- #pdk_return),
+		type <- 'String[]'.class(),
+		kind <- #pdk_in),
 	   mbody : OUTMODEL!ProcedureExpression (
 	   	language <- 'java',
-		body <- s.name.javaSingletonBody()),
-	   meth : OUTMODEL!Method (
-	   	owner <- s,
-		body <- mbody,
-		specification <- op),
-	   instance : OUTMODEL!Attribute (
-	   	name <- 'instance',
-		owner <- s,
-		type <- s,
-		visibility <- #vk_private,
-		ownerScope <- #sk_classifier,
-		changeability <- #ck_changeable)
-}
-
-rule NewPrivateConstructor {
-	from s : INMODEL!Class (s.isSingleton() and
-		s.hasNoConstructor() and not s.isApplet())
-	to op : OUTMODEL!Operation (
-	   	name <- s.name,
-		owner <- s,
-		stereotype <- Sequence{'create'.stereotype()},
-		visibility <- #vk_private,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential),
-	   par : OUTMODEL!Parameter (
-	   	name <- 'return',
-		behavioralFeature <- op,
-		type <- s,
-		kind <- #pdk_return)
-}
-
-rule NewAppletInitOperation {
-	from s : INMODEL!Class (s.isSingleton() and
-		s.hasNoInitOperation() and s.isApplet())
-	to op : OUTMODEL!Operation (
-	   	name <- 'init',
-		owner <- s,
-		visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential),
-	   mbody : OUTMODEL!ProcedureExpression (
-	   	language <- 'java',
-		body <- thisModule.javaAppletInitBody()),
+		body <- s.mainBody()),
 	   meth : OUTMODEL!Method (
 	   	owner <- s,
 		body <- mbody,
@@ -121,34 +69,6 @@ rule NewAppletInitOperation {
 
 -- ======================================================================
 -- non-mapsTo rules end
--- ======================================================================
-
--- ======================================================================
--- mapsTo rules begin
--- ======================================================================
-
-rule AppletInitProcedureExpression {
-    from s : INMODEL!ProcedureExpression (
-    	s.method().owner.isSingleton() and
-    	s.method().owner.isApplet() and
-		s.method().specification.name = 'init')
-    to t : OUTMODEL!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- thisModule.javaAppletInitBody() + '\n' + s.body)
-}
-
-rule ProcedureExpression {
-    from s : INMODEL!ProcedureExpression (not (
-    	s.method().owner.isSingleton() and
-    	s.method().owner.isApplet() and
-		s.method().specification.name = 'init'))
-    to t : OUTMODEL!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- s.body)
-}
-
--- ======================================================================
--- mapsTo rules end
 -- ======================================================================
 
 -- ======================================================================
@@ -944,6 +864,13 @@ rule Extend {
         clientDependency <- s.clientDependency,
         sourceFlow <- s.sourceFlow,
         base <- s.base)
+}
+
+rule ProcedureExpression {
+    from s : INMODEL!ProcedureExpression
+    to t : OUTMODEL!ProcedureExpression mapsTo s (
+        language <- s.language,
+        body <- s.body)
 }
 
 rule LinkEnd {

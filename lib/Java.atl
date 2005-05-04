@@ -256,9 +256,13 @@ helper context String def : javaSingletonBody() : String =
 	'}\n' +
 	'return instance;';
 
-helper def : javaAppletInitBody() : String =
-	'instance = this;\n' +
-	'setLayout(new java.awt.BorderLayout());';
+helper context Boolean def : javaAppletInitBody() : String =
+	if self then
+		'instance = this;\n' +
+		'setLayout(new java.awt.BorderLayout());'
+	else
+		'setLayout(new java.awt.BorderLayout());'
+	endif;
 
 -- ======================================================================
 -- generic helpers end

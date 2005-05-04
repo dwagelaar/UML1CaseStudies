@@ -9,12 +9,13 @@
 </sealing>
 </manifest>
 <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im"/>
 <javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.networking.jabber"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.edit"/>
 <javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.model.messages"/>
 <javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.view"/>
-<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.networking"/>
 <javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.model"/>
+<javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.networking"/>
 <javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.networking.sms"/>
 <javaElement handleIdentifier="=UML1CaseStudies/src&lt;im.view.awt"/>
 </selectedElements>

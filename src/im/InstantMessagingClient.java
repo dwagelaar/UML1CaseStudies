@@ -24,17 +24,17 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List conversation = new java.util.ArrayList();
-
-/**
- * <p>Represents ...</p>
- */
     private java.util.List messageFactory = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
  */
     private im.view.ViewFactory viewFactory = null;
+
+/**
+ * <p>Represents ...</p>
+ */
+    private java.util.List conversation = new java.util.ArrayList();
 
 /**
  * <p>Does ...</p>
@@ -81,17 +81,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param contactList 
- */
-    public void setContactList(im.model.ContactList contactList) {        
-        this.contactList = contactList;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param viewFactory 
  */
     public void setViewFactory(im.view.ViewFactory viewFactory) {        
@@ -103,10 +92,10 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @return 
+ * @param contactList 
  */
-    public java.util.List getNetworks() {        
-        return network;
+    public void setContactList(im.model.ContactList contactList) {        
+        this.contactList = contactList;
     } 
 
 /**
@@ -127,8 +116,8 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * @return 
  */
-    public im.model.ContactList getContactList() {        
-        return contactList;
+    public java.util.List getNetworks() {        
+        return network;
     } 
 
 /**
@@ -149,8 +138,8 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * @return 
  */
-    public java.util.List getMessageFactorys() {        
-        return messageFactory;
+    public im.model.ContactList getContactList() {        
+        return contactList;
     } 
 
 /**
@@ -158,15 +147,10 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param index 
  * @return 
  */
-    public im.networking.Network getNetworkAt(int index) {        
-        try {
-            return (im.networking.Network) network.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
+    public java.util.List getMessageFactorys() {        
+        return messageFactory;
     } 
 
 /**
@@ -193,12 +177,39 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * @param index 
  * @return 
  */
+    public im.networking.Network getNetworkAt(int index) {        
+        try {
+            return (im.networking.Network) network.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param index 
+ * @return 
+ */
     public im.model.MessageFactory getMessageFactoryAt(int index) {        
         try {
             return (im.model.MessageFactory) messageFactory.get(index);
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param conversation 
+ */
+    public void addConversation(im.model.Conversation conversation) {        
+        this.conversation.add(conversation);
     } 
 
 /**
@@ -222,10 +233,10 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param conversation 
+ * @param messageFactory 
  */
-    public void addConversation(im.model.Conversation conversation) {        
-        this.conversation.add(conversation);
+    public void addMessageFactory(im.model.MessageFactory messageFactory) {        
+        this.messageFactory.add(messageFactory);
     } 
 
 /**
@@ -233,10 +244,15 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param messageFactory 
+ * @param conversation 
+ * @param index 
  */
-    public void addMessageFactory(im.model.MessageFactory messageFactory) {        
-        this.messageFactory.add(messageFactory);
+    public void insertConversation(im.model.Conversation conversation, int index) {        
+        try {
+            this.conversation.add(index, conversation);
+        } catch (IndexOutOfBoundsException e) {
+            this.conversation.add(conversation);
+        };
     } 
 
 /**
@@ -265,22 +281,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param conversation 
- * @param index 
- */
-    public void insertConversation(im.model.Conversation conversation, int index) {        
-        try {
-            this.conversation.add(index, conversation);
-        } catch (IndexOutOfBoundsException e) {
-            this.conversation.add(conversation);
-        };
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param messageFactory 
  * @param index 
  */
@@ -297,6 +297,17 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
+ * @param conversation 
+ */
+    public void removeConversation(im.model.Conversation conversation) {        
+        this.conversation.remove(conversation);
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param network 
  */
     public void removeNetwork(im.networking.Network network) {        
@@ -306,17 +317,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
         this.network.remove(network);
         // End original body
         // End subscribe stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param conversation 
- */
-    public void removeConversation(im.model.Conversation conversation) {        
-        this.conversation.remove(conversation);
     } 
 
 /**
@@ -382,7 +382,7 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
         }
         // create new conversation
         im.model.Conversation conv = new im.model.Conversation();
-        getViewFactory().createConversationView(conv);
+        new im.edit.ConversationEdit(conv);
         addConversation(conv);
         for (int i = 0; i < getMessageFactorys().size(); i++) {
             if (getMessageFactoryAt(i).isValidContent(r.getContent())) {
@@ -401,6 +401,7 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
             conv.getContact().setUserId(r.getSender());
         }
         conv.addMessage(r);
+        play(getClass().getResource("pop.wav"));
     } 
 
 /**
@@ -412,8 +413,21 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  */
     public void onRecvContactChange(im.model.Contact c) {        
         for (int i = 0; i < getContactList().getContacts().size(); i++) {
-            if (getContactList().getContactAt(i).getUserId().equals(c.getUserId())) {
-                getContactList().getContactAt(i).setStatus(c.getStatus());
+        	im.model.Contact listed = getContactList().getContactAt(i);
+            if (listed.getUserId().equals(c.getUserId())) {
+            	if (c.getStatus() != null) {
+            		if (c.getStatus().equals("offline")) {
+            			play(getClass().getResource("leave.wav"));
+            		} else if (listed.getStatus() == null) {
+            			play(getClass().getResource("arrive.wav"));
+            		} else if (listed.getStatus().equals("offline")) {
+            			play(getClass().getResource("arrive.wav"));
+            		}
+            		listed.setStatus(c.getStatus());
+            	}
+            	if (c.getName() != null) {
+            		listed.setName(c.getName());
+            	}
                 return;
             }
         }
@@ -463,8 +477,8 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
                 addMessageFactory((im.model.MessageFactory) Class.forName(
                     msgFactories.nextToken()).newInstance());
             }
-            // Create and register view
-            getViewFactory().createContactListView(contactList);
+            // Create and register edit/view
+            new im.edit.ContactListEdit(contactList);
             // Identity
             java.util.StringTokenizer identities = new java.util.StringTokenizer(
                 getParameter("Identities"), ";");
