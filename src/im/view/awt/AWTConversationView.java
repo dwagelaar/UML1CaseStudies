@@ -133,18 +133,6 @@ public class AWTConversationView extends java.awt.Frame implements im.view.Conve
  * 
  * 
  * 
- * @param listener 
- */
-    public void addSendActionListener(java.awt.event.ActionListener listener) {        
-        messageField.addActionListener(listener);
-        sendBtn.addActionListener(listener);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param l 
  */
     public void addListener(im.view.ConversationViewListener l) {        

@@ -1,5 +1,5 @@
 
-package im.model;
+package im.model.messages;
 /**
  * <p></p>
  */
@@ -11,7 +11,7 @@ public interface MessageFactory {
  * 
  * @return 
  */
-    public abstract im.model.Message createMessage();
+    public abstract im.model.messages.Message createMessage();
 /**
  * <p>Does ...</p>
  * 

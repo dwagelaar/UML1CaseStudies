@@ -4,7 +4,7 @@ package im.model.messages;
 /**
  * <p></p>
  */
-public class TextMessageFactory implements im.model.MessageFactory {
+public class TextMessageFactory implements im.model.messages.MessageFactory {
 
 /**
  * <p>Does ...</p>
@@ -13,7 +13,7 @@ public class TextMessageFactory implements im.model.MessageFactory {
  * 
  * @return 
  */
-    public im.model.Message createMessage() {        
+    public im.model.messages.Message createMessage() {        
         return new TextMessage();
     } 
 

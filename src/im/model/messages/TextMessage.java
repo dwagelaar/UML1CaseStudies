@@ -4,7 +4,7 @@ package im.model.messages;
 /**
  * <p></p>
  */
-public class TextMessage extends im.model.Message {
+public class TextMessage extends im.model.messages.Message {
 
 /**
  * <p>Does ...</p>

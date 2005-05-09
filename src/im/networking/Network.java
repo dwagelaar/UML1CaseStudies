@@ -14,7 +14,7 @@ public abstract class Network extends java.util.Observable {
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Message recvMsg;
+    private im.model.messages.Message recvMsg;
 
 /**
  * <p>Represents ...</p>
@@ -28,7 +28,7 @@ public abstract class Network extends java.util.Observable {
  * 
  * @param recvMsg 
  */
-    public void setRecvMsg(im.model.Message recvMsg) {        
+    public void setRecvMsg(im.model.messages.Message recvMsg) {        
         // Begin Observable stanza
         if (this.recvMsg != recvMsg) {
             // Begin original body
@@ -37,7 +37,7 @@ public abstract class Network extends java.util.Observable {
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
             e.put("name", "RecvMsg");
-            e.put("class", im.model.Message.class);
+            e.put("class", im.model.messages.Message.class);
             if (recvMsg != null) {
                 e.put("value", recvMsg);
             }
@@ -103,7 +103,7 @@ public abstract class Network extends java.util.Observable {
  * 
  * @return 
  */
-    public im.model.Message getRecvMsg() {        
+    public im.model.messages.Message getRecvMsg() {        
         return recvMsg;
     } 
 
@@ -136,7 +136,7 @@ public abstract class Network extends java.util.Observable {
  * 
  * @param msg 
  */
-    public abstract void send(im.model.Message msg);
+    public abstract void send(im.model.messages.Message msg);
 
 /**
  * <p>Does ...</p>

@@ -13,12 +13,12 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Pr
 /**
  * <p>Represents ...</p>
  */
-    private com.jabberwookie.Client2Server connection;
+    private java.net.Socket socket = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private java.net.Socket socket = null;
+    private com.jabberwookie.Client2Server connection;
 
 /**
  * <p>Represents ...</p>
@@ -118,7 +118,7 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Pr
  * 
  * @param msg 
  */
-    public void send(im.model.Message msg) {        
+    public void send(im.model.messages.Message msg) {        
         try {
             if (getConnection() == null) {
                 throw new java.io.IOException("Cannot send message: connection not established");
@@ -271,10 +271,10 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Pr
  */
     public void incomingMessage(com.jabberwookie.ns.jabber.Message message) {        
         im.InstantMessagingClient c = im.InstantMessagingClient.getInstance();
-        im.model.MessageFactory mf = c.getMessageFactory(message.getBody());
+        im.model.messages.MessageFactory mf = c.getMessageFactory(message.getBody());
         if (mf != null) {
             System.out.println("Message: " + message);
-            im.model.Message msg = mf.createMessage();
+            im.model.messages.Message msg = mf.createMessage();
             msg.setSender(stripResource(message.getFrom()));
             msg.setRecipient(message.getTo());
             msg.setContent(message.getBody());

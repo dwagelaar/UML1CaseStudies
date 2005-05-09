@@ -9,7 +9,7 @@ public class Conversation extends java.util.Observable {
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Contact contact = null;
+    private im.model.messages.MessageFactory factory = null;
 
 /**
  * <p>Represents ...</p>
@@ -19,32 +19,7 @@ public class Conversation extends java.util.Observable {
 /**
  * <p>Represents ...</p>
  */
-    private im.model.MessageFactory factory = null;
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param factory 
- */
-    public void setFactory(im.model.MessageFactory factory) {        
-        // Begin Observable stanza
-        if (this.factory != factory) {
-            // Begin original body
-        this.factory = factory;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Factory");
-            e.put("class", im.model.MessageFactory.class);
-            if (factory != null) {
-                e.put("value", factory);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
+    private im.model.Contact contact = null;
 
 /**
  * <p>Does ...</p>
@@ -76,10 +51,24 @@ public class Conversation extends java.util.Observable {
  * 
  * 
  * 
- * @return 
+ * @param factory 
  */
-    public im.model.MessageFactory getFactory() {        
-        return factory;
+    public void setFactory(im.model.messages.MessageFactory factory) {        
+        // Begin Observable stanza
+        if (this.factory != factory) {
+            // Begin original body
+        this.factory = factory;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Factory");
+            e.put("class", im.model.messages.MessageFactory.class);
+            if (factory != null) {
+                e.put("value", factory);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -109,12 +98,23 @@ public class Conversation extends java.util.Observable {
  * 
  * 
  * 
+ * @return 
+ */
+    public im.model.messages.MessageFactory getFactory() {        
+        return factory;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param index 
  * @return 
  */
-    public im.model.Message getMessageAt(int index) {        
+    public im.model.messages.Message getMessageAt(int index) {        
         try {
-            return (im.model.Message) message.get(index);
+            return (im.model.messages.Message) message.get(index);
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
@@ -127,7 +127,7 @@ public class Conversation extends java.util.Observable {
  * 
  * @param message 
  */
-    public void addMessage(im.model.Message message) {        
+    public void addMessage(im.model.messages.Message message) {        
         // Begin Observable stanza
         if (! this.message.contains(message)) {
             // Begin original body
@@ -139,7 +139,7 @@ public class Conversation extends java.util.Observable {
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
             e.put("name", "Message");
-            e.put("class", im.model.Message.class);
+            e.put("class", im.model.messages.Message.class);
             if (message != null) {
                 e.put("value", message);
             }
@@ -156,7 +156,7 @@ public class Conversation extends java.util.Observable {
  * @param message 
  * @param index 
  */
-    public void insertMessage(im.model.Message message, int index) {        
+    public void insertMessage(im.model.messages.Message message, int index) {        
         // Begin Observable stanza
         if (! this.message.contains(message)) {
             // Begin original body
@@ -172,7 +172,7 @@ public class Conversation extends java.util.Observable {
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
             e.put("name", "Message");
-            e.put("class", im.model.Message.class);
+            e.put("class", im.model.messages.Message.class);
             if (message != null) {
                 e.put("value", message);
             }
@@ -188,7 +188,7 @@ public class Conversation extends java.util.Observable {
  * 
  * @param message 
  */
-    public void removeMessage(im.model.Message message) {        
+    public void removeMessage(im.model.messages.Message message) {        
         // Begin Observable stanza
         if (this.message.contains(message)) {
             // Begin original body
@@ -200,7 +200,7 @@ public class Conversation extends java.util.Observable {
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
             e.put("name", "Message");
-            e.put("class", im.model.Message.class);
+            e.put("class", im.model.messages.Message.class);
             if (message != null) {
                 e.put("value", message);
             }

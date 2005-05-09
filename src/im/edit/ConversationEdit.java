@@ -4,17 +4,17 @@ package im.edit;
 /**
  * <p></p>
  */
-public class ConversationEdit implements java.util.Observer, im.view.ConversationViewListener {
-
-/**
- * <p>Represents ...</p>
- */
-    private im.model.Conversation model = null;
+public class ConversationEdit implements im.view.ConversationViewListener, java.util.Observer {
 
 /**
  * <p>Represents ...</p>
  */
     private im.view.ConversationView view = null;
+
+/**
+ * <p>Represents ...</p>
+ */
+    private im.model.Conversation model = null;
 
 /**
  * <p>Does ...</p>
@@ -113,7 +113,7 @@ public class ConversationEdit implements java.util.Observer, im.view.Conversatio
  * 
  * @param m 
  */
-    public void onMessageChange(im.model.Message m) {        
+    public void onMessageChange(im.model.messages.Message m) {        
         if (getModel().getMessages().contains(m)) {
             if (m.getContent() instanceof String) {
                 im.model.ContactList list =
@@ -144,7 +144,7 @@ public class ConversationEdit implements java.util.Observer, im.view.Conversatio
  * 
  * @param f 
  */
-    public void onFactoryChange(im.model.MessageFactory f) {        
+    public void onFactoryChange(im.model.messages.MessageFactory f) {        
         if (f.isValidContent(new String())) {
             getView().setTextEnabled(true);
         } else {
@@ -169,7 +169,7 @@ public class ConversationEdit implements java.util.Observer, im.view.Conversatio
     public void onConversationSend() {        
         im.model.Contact recipient = getModel().getContact();
         im.model.Contact sender = getSender(recipient);
-        im.model.Message msg = getModel().getFactory().createMessage();
+        im.model.messages.Message msg = getModel().getFactory().createMessage();
         msg.setNetwork(recipient.getNetwork());
         msg.setSender(sender.getUserId());
         msg.setRecipient(recipient.getUserId());

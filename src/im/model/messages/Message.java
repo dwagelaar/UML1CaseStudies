@@ -1,5 +1,5 @@
 
-package im.model;
+package im.model.messages;
 
 /**
  * <p></p>
@@ -31,20 +31,20 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param recipient 
+ * @param content 
  */
-    public void setRecipient(String recipient) {        
+    public void setContent(Object content) {        
         // Begin Observable stanza
-        if (this.recipient != recipient) {
+        if (this.content != content) {
             // Begin original body
-        this.recipient = recipient;
+        this.content = content;
             // End original body
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Recipient");
-            e.put("class", String.class);
-            if (recipient != null) {
-                e.put("value", recipient);
+            e.put("name", "Content");
+            e.put("class", Object.class);
+            if (content != null) {
+                e.put("value", content);
             }
             notifyObservers(e);
         }
@@ -85,31 +85,6 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param content 
- */
-    public void setContent(Object content) {        
-        // Begin Observable stanza
-        if (this.content != content) {
-            // Begin original body
-        this.content = content;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Content");
-            e.put("class", Object.class);
-            if (content != null) {
-                e.put("value", content);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param sender 
  */
     public void setSender(String sender) {        
@@ -135,21 +110,24 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @return 
+ * @param recipient 
  */
-    public String getRecipient() {        
-        return recipient;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.Conversation getConversation() {        
-        return conversation;
+    public void setRecipient(String recipient) {        
+        // Begin Observable stanza
+        if (this.recipient != recipient) {
+            // Begin original body
+        this.recipient = recipient;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Recipient");
+            e.put("class", String.class);
+            if (recipient != null) {
+                e.put("value", recipient);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -170,8 +148,30 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
+    public im.model.Conversation getConversation() {        
+        return conversation;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
     public String getSender() {        
         return sender;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getRecipient() {        
+        return recipient;
     } 
 
 /**
