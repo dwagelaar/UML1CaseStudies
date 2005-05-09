@@ -4,6 +4,7 @@ module Accessors;
 create OUT : OUTMODEL from IN : INMODEL;
 
 uses Java;
+uses strings;
 
 -- ======================================================================
 -- model-specific helpers begin
