@@ -8,20 +8,54 @@ query ModelCopyGenerator = INMODEL!Class.allInstances()->iterate(e; acc : String
 
 -- adapt the above 'writeTo' expression to reflect your file path
 
-helper context INMODEL!Class def : exclusionCondition() : Boolean =
-	self.container.name='Diagram_Interchange';
+helper context INMODEL!Class def : inclusionCondition() : Boolean =
+    self.name = 'Abstraction' or
+    self.name = 'Actor' or
+    self.name = 'Argument' or
+    self.name = 'AssociationEnd' or
+    self.name = 'Association' or
+    self.name = 'Attribute' or
+    self.name = 'CallAction' or
+    self.name = 'Class' or
+    self.name = 'CollaborationInstanceSet' or
+    self.name = 'Collaboration' or
+    self.name = 'DataType' or
+    self.name = 'Dependency' or
+    self.name = 'Expression' or
+    self.name = 'Generalization' or
+    self.name = 'Include' or
+    self.name = 'InteractionInstanceSet' or
+    self.name = 'Interface' or
+    self.name = 'LinkEnd' or
+    self.name = 'Link' or
+    self.name = 'Message' or
+    self.name = 'Method' or
+    self.name = 'Model' or
+    self.name = 'Multiplicity' or
+    self.name = 'MultiplicityRange' or
+    self.name = 'Object' or
+    self.name = 'Operation' or
+    self.name = 'Package' or
+    self.name = 'Parameter' or
+    self.name = 'ProcedureExpression' or
+    self.name = 'ReturnAction' or
+    self.name = 'Stereotype' or
+    self.name = 'Stimulus' or
+    self.name = 'TagDefinition' or
+    self.name = 'TaggedValue' or
+    self.name = 'UseCase';
 
--- adapt the above exclusion condition for your specific model
+-- adapt the above inclusion condition for your specific model
 
 helper context INMODEL!Class def : toString() : String =
-	if self.isAbstract or self.exclusionCondition() then
-		''
-	else
+	if not self.isAbstract and self.inclusionCondition() then
 		'rule ' + self.name + ' {\n' +
 		'    from s : INMODEL!' + self.name + self.inputConstraint() + '\n' +
 		'    to t : OUTMODEL!' + self.name + ' mapsTo s (' +
 		self.contentsToString() + ')\n' +
 		'}\n\n'
+	else
+		''
 	endif;
 
 helper context INMODEL!GeneralizableElement def : inputConstraint() : String =
