@@ -5049,23 +5049,6 @@
         </Model:Import>
         <Model:Class xmi.id = 'a395' name = 'Signal' annotation = '' isRoot = 'false'
           isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' isSingleton = 'false'>
-          <Model:Namespace.contents>
-            <Model:Reference xmi.id = 'b001' name = 'context' annotation = '' scope = 'instance_level'
-              visibility = 'public_vis' isChangeable = 'true'>
-              <Model:StructuralFeature.multiplicity>
-                <XMI.field>0</XMI.field>
-                <XMI.field>-1</XMI.field>
-                <XMI.field>false</XMI.field>
-                <XMI.field>true</XMI.field>
-              </Model:StructuralFeature.multiplicity>
-              <Model:TypedElement.type>
-                <Model:Class xmi.idref = 'a579'/>
-              </Model:TypedElement.type>
-              <Model:Reference.referencedEnd>
-                <Model:AssociationEnd xmi.idref = 'a627'/>
-              </Model:Reference.referencedEnd>
-            </Model:Reference>
-          </Model:Namespace.contents>
           <Model:GeneralizableElement.supertypes>
             <Model:Class xmi.idref = 'a132'/>
           </Model:GeneralizableElement.supertypes>
