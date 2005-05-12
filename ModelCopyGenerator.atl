@@ -21,6 +21,7 @@ helper context INMODEL!Class def : inclusionCondition() : Boolean =
     self.name = 'Collaboration' or
     self.name = 'DataType' or
     self.name = 'Dependency' or
+    self.name = 'Exception' or
     self.name = 'Expression' or
     self.name = 'Generalization' or
     self.name = 'Include' or
