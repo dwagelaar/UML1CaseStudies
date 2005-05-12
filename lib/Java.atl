@@ -7,6 +7,13 @@ uses strings;
 -- generic helpers begin
 -- ======================================================================
 
+helper context String def : endsWith(end : String) : Boolean =
+	if (self.size() < end.size()) then
+		false
+	else
+		self.substring(self.size() - end.size() + 1, self.size()) = end
+	endif;
+
 helper context String def : isSequenceSet() : Boolean =
 	self = 'SequenceSet';
 
@@ -104,9 +111,19 @@ helper context String def : javaOtherEndResetter(otherEnd : String) : String =
 helper context String def : javaOtherEndRemover(otherEnd : String) : String =
 	self + '.remove' + otherEnd + '(this);';
 
+helper context String def : javaSetterAdder(otherEnd : String) : String =
+	self.javaNotContainsCheck(
+	'    ' + self.javaAdder() + '\n' +
+	'    ' + self.javaOtherEndSetter(otherEnd));
+	
 helper context String def : java2SetterAdder(otherEnd : String) : String =
 	self.javaNotContainsCheck(
 	'    ' + self.java2Adder() + '\n' +
+	'    ' + self.javaOtherEndSetter(otherEnd));
+	
+helper context String def : javaSetterInsert(otherEnd : String) : String =
+	self.javaNotContainsCheck(
+	'    ' + self.javaInsert() + '\n' +
 	'    ' + self.javaOtherEndSetter(otherEnd));
 	
 helper context String def : java2SetterInsert(otherEnd : String) : String =
@@ -114,9 +131,19 @@ helper context String def : java2SetterInsert(otherEnd : String) : String =
 	'    ' + self.java2Insert() + '\n' +
 	'    ' + self.javaOtherEndSetter(otherEnd));
 	
+helper context String def : javaDualAdder(otherEnd : String) : String =
+	self.javaNotContainsCheck(
+	'    ' + self.javaAdder() + '\n' +
+	'    ' + self.javaOtherEndAdder(otherEnd));
+	
 helper context String def : java2DualAdder(otherEnd : String) : String =
 	self.javaNotContainsCheck(
 	'    ' + self.java2Adder() + '\n' +
+	'    ' + self.javaOtherEndAdder(otherEnd));
+	
+helper context String def : javaDualInsert(otherEnd : String) : String =
+	self.javaNotContainsCheck(
+	'    ' + self.javaInsert() + '\n' +
 	'    ' + self.javaOtherEndAdder(otherEnd));
 	
 helper context String def : java2DualInsert(otherEnd : String) : String =
@@ -130,10 +157,20 @@ helper context String def : javaRemover() : String =
 helper context String def : java2Remover() : String =
 	'this.' + self + '.remove(' + self + ');';
 	
+helper context String def : javaSetterRemover(otherEnd : String) : String =
+	self.javaContainsCheck(
+	'    ' + self.javaRemover() + '\n' +
+	'    ' + self.javaOtherEndResetter(otherEnd));
+	
 helper context String def : java2SetterRemover(otherEnd : String) : String =
 	self.javaContainsCheck(
 	'    ' + self.java2Remover() + '\n' +
 	'    ' + self.javaOtherEndResetter(otherEnd));
+	
+helper context String def : javaDualRemover(otherEnd : String) : String =
+	self.javaContainsCheck(
+	'    ' + self.javaRemover() + '\n' +
+	'    ' + self.javaOtherEndRemover(otherEnd));
 	
 helper context String def : java2DualRemover(otherEnd : String) : String =
 	self.javaContainsCheck(
@@ -183,6 +220,41 @@ helper context String def : javaBoxing(type : String) : String =
 		self
 	endif endif endif;
 
+helper context String def : javaUnboxing(type : String) : String =
+	if type = 'Boolean' then
+		'(' + self + ').booleanValue()'
+	else if type = 'Integer' then
+		'(' + self + ').intValue()'
+	else if type = 'Real' then
+		'(' + self + ').doubleValue()'
+	else
+		self
+	endif endif endif;
+
+helper context String def : javaTypedValue(type : String) : String =
+	'(' + type.removeOcl().javaBoxedType() + ') ' + self;
+
+helper context String def : javaUnboxValue(type : String) : String =
+	self.javaTypedValue(type).javaUnboxing(type.removeOcl());
+
+helper context String def : javaNotifyObservers() : String =
+	'for (int i = 0; i < observers.size(); i++) {\n' +
+	'    ((observer.Observer) observers.elementAt(i)).update(' + self + ');\n' +
+	'}';
+
+helper context String def : notifyStanza(type : String) : String =
+	'    java.util.Hashtable e = new java.util.Hashtable();\n' +
+	if self = self.javaBoxing(type.removeOcl()) then
+		'    e.put("name", "' + self.firstToUpper() + '");\n' +
+		'    if (' + self + ' != null) {\n' +
+		'        e.put("value", ' + self + ');\n' +
+		'    }\n'
+	else
+		'    e.put("name", "' + self.firstToUpper() + '");\n' +
+		'    e.put("value", ' + self.javaBoxing(type.removeOcl()) + ');\n'
+	endif
+	+ '    notifyObservers(e);\n';
+	
 helper context String def : javaNotifyStanza(type : String) : String =
 	'    setChanged();\n' +
 	'    java.util.Hashtable e = new java.util.Hashtable();\n' +
@@ -263,6 +335,19 @@ helper context Boolean def : javaAppletInitBody() : String =
 	else
 		'setLayout(new java.awt.BorderLayout());'
 	endif;
+
+helper context Boolean def : javaMIDletInitBody() : String =
+	if self then
+		'instance = this;'
+	else
+		''
+	endif;
+
+helper def : javaMIDletStartAppBody() : String =
+	'if (!initialized) {\n' +
+	'    init();\n' +
+	'}\n' +
+	'start();';
 
 -- ======================================================================
 -- generic helpers end
