@@ -1,0 +1,1053 @@
+-- $Id: Accessors.atl 1092 2005-05-09 14:11:58Z dwagelaa $
+module Java2Accessors;
+
+create OUT : OUTMODEL from IN : INMODEL;
+
+uses Java;
+uses strings;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper context String def : dataType() : INMODEL!DataType =
+	INMODEL!DataType.allInstances()->select(c|c.name=self)->first();
+
+helper context String def : stereotype() : INMODEL!Stereotype =
+	INMODEL!Stereotype.allInstances()->select(s|s.name=self)->first();
+
+helper context INMODEL!AssociationEnd def : isSingle() : Boolean =
+	self.multiplicity.range->select(r|r.upper<>1)->isEmpty();
+
+helper context INMODEL!AssociationEnd def : otherEnd() : INMODEL!AssociationEnd =
+	self.association.connection->select(x|x<>self)->first();
+
+helper context INMODEL!AssociationEnd def : navigableFrom() : INMODEL!Classifier =
+	self.otherEnd().participant;
+
+helper context INMODEL!Attribute def : hasAssociationEnd() : Boolean =
+	not INMODEL!AssociationEnd.allInstances()->select(a|
+		a.name=self.name and a.navigableFrom()=self.owner)->isEmpty();
+
+helper context INMODEL!Attribute def : associationEnd() : INMODEL!AssociationEnd =
+	INMODEL!AssociationEnd.allInstances()->select(a|
+		a.name=self.name and a.navigableFrom()=self.owner)->first();
+
+helper context INMODEL!Attribute def : originalType() : INMODEL!Classifier =
+	if self.hasAssociationEnd() then
+		self.associationEnd().participant
+	else
+		self.type
+	endif;
+
+helper context INMODEL!Attribute def : dualSetter() : String =
+	if not self.associationEnd().otherEnd().isNavigable then
+		self.name.javaSetter()
+	else if self.associationEnd().otherEnd().isSingle() then
+		self.name.javaDualSetter(self.associationEnd().otherEnd().name.firstToUpper())
+	else
+		self.name.javaAddRemoveSetter(self.associationEnd().otherEnd().name.firstToUpper())
+	endif endif;
+	
+helper context INMODEL!Attribute def : setter() : String =
+	if self.hasAssociationEnd() then
+		self.dualSetter()
+	else
+		self.name.javaSetter()
+	endif;
+
+helper context INMODEL!Attribute def : dualAdder() : String =
+	if not self.associationEnd().otherEnd().isNavigable then
+		self.name.java2Adder()
+	else if self.associationEnd().otherEnd().isSingle() then
+		self.name.java2SetterAdder(self.associationEnd().otherEnd().name.firstToUpper())
+	else
+		self.name.java2DualAdder(self.associationEnd().otherEnd().name.firstToUpper())
+	endif endif;
+	
+helper context INMODEL!Attribute def : dualInsert() : String =
+	if not self.associationEnd().otherEnd().isNavigable then
+		self.name.java2Insert()
+	else if self.associationEnd().otherEnd().isSingle() then
+		self.name.java2SetterInsert(self.associationEnd().otherEnd().name.firstToUpper())
+	else
+		self.name.java2DualInsert(self.associationEnd().otherEnd().name.firstToUpper())
+	endif endif;
+	
+helper context INMODEL!Attribute def : adder() : String =
+	if self.hasAssociationEnd() then
+		self.dualAdder()
+	else
+		self.name.java2Adder()
+	endif;
+
+helper context INMODEL!Attribute def : insert() : String =
+	if self.hasAssociationEnd() then
+		self.dualInsert()
+	else
+		self.name.java2Insert()
+	endif;
+
+helper context INMODEL!Attribute def : dualRemover() : String =
+	if not self.associationEnd().otherEnd().isNavigable then
+		self.name.java2Remover()
+	else if self.associationEnd().otherEnd().isSingle() then
+		self.name.java2SetterRemover(self.associationEnd().otherEnd().name.firstToUpper())
+	else
+		self.name.java2DualRemover(self.associationEnd().otherEnd().name.firstToUpper())
+	endif endif;
+	
+helper context INMODEL!Attribute def : remover() : String =
+	if self.hasAssociationEnd() then
+		self.dualRemover()
+	else
+		self.name.java2Remover()
+	endif;
+
+helper context INMODEL!ModelElement def : isInPackage() : Boolean =
+	not INMODEL!Package.allInstances()->select(p|
+		p=self.namespace and p.oclIsTypeOf(INMODEL!Package))->isEmpty();
+
+helper context INMODEL!ModelElement def : qName() : String =
+	if self.isInPackage() then
+		self.namespace.qName() + '.' + self.name
+	else
+		self.name
+	endif;
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+	
+-- ======================================================================
+-- non-mapsTo rules begin
+-- ======================================================================
+
+rule PublicAttributeSetter {
+	from s : INMODEL!Attribute (
+		s.visibility = #vk_public and
+		not s.type.name.isCollection())
+	to op : OUTMODEL!Operation (
+	   	name <- 'set' + s.name.firstToUpper(),
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   par : OUTMODEL!Parameter (
+	   	name <- s.name,
+		behavioralFeature <- op,
+		type <- s.type,
+		kind <- #pdk_in),
+	   mbody : OUTMODEL!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.setter()),
+	   meth : OUTMODEL!Method (
+	   	owner <- s.owner,
+		body <- mbody,
+		specification <- op),
+	   dep : OUTMODEL!Dependency (
+	   	name <- 'accessor ' + 'set' + s.name.firstToUpper() + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- 'accessor'.stereotype(),
+		client <- op,
+		supplier <- s)
+}
+
+rule PublicAttributeGetter {
+	from s : INMODEL!Attribute (
+		s.visibility = #vk_public)
+	to op : OUTMODEL!Operation (
+	   	name <- 'get' + s.name.firstToUpper() + s.type.name.s(),
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   par : OUTMODEL!Parameter (
+	   	name <- 'return',
+		behavioralFeature <- op,
+		type <- s.type,
+		kind <- #pdk_return),
+	   mbody : OUTMODEL!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.name.javaGetter()),
+	   meth : OUTMODEL!Method (
+	   	owner <- s.owner,
+		body <- mbody,
+		specification <- op),
+	   dep : OUTMODEL!Dependency (
+	   	name <- 'accessor ' + 'get' + s.name.firstToUpper() + s.type.name.s() + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- 'accessor'.stereotype(),
+		client <- op,
+		supplier <- s)
+}
+
+rule PublicAttributeGetAt {
+	from s : INMODEL!Attribute (
+		s.visibility = #vk_public and
+		s.type.name.isSequence())
+	to op : OUTMODEL!Operation (
+	   	name <- 'get' + s.name.firstToUpper() + 'At',
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   par1 : OUTMODEL!Parameter (
+	   	name <- 'index',
+		behavioralFeature <- op,
+		type <- 'Integer'.dataType(),
+		kind <- #pdk_in),
+	   par2 : OUTMODEL!Parameter (
+	   	name <- 'return',
+		behavioralFeature <- op,
+		type <- s.originalType(),
+		kind <- #pdk_return),
+	   mbody : OUTMODEL!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.name.java2GetAt(s.originalType().qName())),
+	   meth : OUTMODEL!Method (
+	   	owner <- s.owner,
+		body <- mbody,
+		specification <- op),
+	   dep : OUTMODEL!Dependency (
+	   	name <- 'accessor ' + 'get' + s.name.firstToUpper() + 'At()',
+		namespace <- s.owner.namespace,
+		stereotype <- 'accessor'.stereotype(),
+		client <- op,
+		supplier <- s)
+}
+
+rule PublicAttributeAdder {
+	from s : INMODEL!Attribute (
+		s.visibility = #vk_public and
+		s.type.name.isCollection())
+	to op : OUTMODEL!Operation (
+	   	name <- 'add' + s.name.firstToUpper(),
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   par : OUTMODEL!Parameter (
+	   	name <- s.name,
+		behavioralFeature <- op,
+		type <- s.originalType(),
+		kind <- #pdk_in),
+	   mbody : OUTMODEL!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.adder()),
+	   meth : OUTMODEL!Method (
+	   	owner <- s.owner,
+		body <- mbody,
+		specification <- op),
+	   dep : OUTMODEL!Dependency (
+	   	name <- 'accessor ' + 'add' + s.name.firstToUpper() + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- 'accessor'.stereotype(),
+		client <- op,
+		supplier <- s)
+}
+
+rule PublicAttributeInsert {
+	from s : INMODEL!Attribute (
+		s.visibility = #vk_public and
+		s.type.name.isSequence())
+	to op : OUTMODEL!Operation (
+	   	name <- 'insert' + s.name.firstToUpper(),
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   par1 : OUTMODEL!Parameter (
+	   	name <- s.name,
+		behavioralFeature <- op,
+		type <- s.originalType(),
+		kind <- #pdk_in),
+	   par2 : OUTMODEL!Parameter (
+	   	name <- 'index',
+		behavioralFeature <- op,
+		type <- 'Integer'.dataType(),
+		kind <- #pdk_in),
+	   mbody : OUTMODEL!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.insert()),
+	   meth : OUTMODEL!Method (
+	   	owner <- s.owner,
+		body <- mbody,
+		specification <- op),
+	   dep : OUTMODEL!Dependency (
+	   	name <- 'accessor ' + 'insert' + s.name.firstToUpper() + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- 'accessor'.stereotype(),
+		client <- op,
+		supplier <- s)
+}
+
+rule PublicAttributeRemover {
+	from s : INMODEL!Attribute (
+		s.visibility = #vk_public and
+		s.type.name.isCollection())
+	to op : OUTMODEL!Operation (
+	   	name <- 'remove' + s.name.firstToUpper(),
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   par : OUTMODEL!Parameter (
+	   	name <- s.name,
+		behavioralFeature <- op,
+		type <- s.originalType(),
+		kind <- #pdk_in),
+	   mbody : OUTMODEL!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.remover()),
+	   meth : OUTMODEL!Method (
+	   	owner <- s.owner,
+		body <- mbody,
+		specification <- op),
+	   dep : OUTMODEL!Dependency (
+	   	name <- 'accessor ' + 'remove' + s.name.firstToUpper() + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- 'accessor'.stereotype(),
+		client <- op,
+		supplier <- s)
+}
+
+-- ======================================================================
+-- non-mapsTo rules end
+-- ======================================================================
+
+-- ======================================================================
+-- mapsTo rules begin
+-- ======================================================================
+
+rule Attribute {
+    from s : INMODEL!Attribute
+	using { vis : INMODEL!VisibilityKind =
+		if s.visibility = #vk_public then #vk_private else s.visibility	endif; }
+    to t : OUTMODEL!Attribute mapsTo s (
+        multiplicity <- s.multiplicity,
+        initialValue <- s.initialValue,
+        changeability <- s.changeability,
+        name <- s.name,
+        ordering <- s.ordering,
+        visibility <- vis,
+        isSpecification <- s.isSpecification,
+        targetScope <- s.targetScope,
+        ownerScope <- s.ownerScope,
+        stereotype <- s.stereotype,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        type <- s.type,
+        sourceFlow <- s.sourceFlow)
+}
+
+-- ======================================================================
+-- mapsTo rules end
+-- ======================================================================
+
+-- ======================================================================
+-- model copy begin
+-- ======================================================================
+-- Generated by: ModelCopyGenerator.atl 1101 2005-05-12 10:35:43Z dwagelaa
+
+rule Generalization {
+    from s : INMODEL!Generalization
+    to t : OUTMODEL!Generalization mapsTo s (
+        discriminator <- s.discriminator,
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        child <- s.child,
+        constraint <- s.constraint,
+        parent <- s.parent,
+        stereotype <- s.stereotype,
+        powertype <- s.powertype,
+        comment <- s.comment)
+}
+
+rule Abstraction {
+    from s : INMODEL!Abstraction
+    to t : OUTMODEL!Abstraction mapsTo s (
+        name <- s.name,
+        mapping <- s.mapping,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        supplier <- s.supplier,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        client <- s.client,
+        comment <- s.comment)
+}
+
+rule InteractionInstanceSet {
+    from s : INMODEL!InteractionInstanceSet
+    to t : OUTMODEL!InteractionInstanceSet mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        participatingStimulus <- s.participatingStimulus,
+        interaction <- s.interaction)
+}
+
+rule Operation {
+    from s : INMODEL!Operation
+    to t : OUTMODEL!Operation mapsTo s (
+        ownerScope <- s.ownerScope,
+        isQuery <- s.isQuery,
+        specification <- s.specification,
+        isLeaf <- s.isLeaf,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        isRoot <- s.isRoot,
+        concurrency <- s.concurrency,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        parameter <- s.parameter,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment)
+}
+
+rule Association {
+    from s : INMODEL!Association (s.oclIsTypeOf(INMODEL!Association))
+    to t : OUTMODEL!Association mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        connection <- s.connection,
+        generalization <- s.generalization,
+        comment <- s.comment)
+}
+
+rule Exception {
+    from s : INMODEL!Exception
+    to t : OUTMODEL!Exception mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        powertypeRange <- s.powertypeRange,
+        "context" <- s."context",
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        feature <- s.feature,
+        stereotype <- s.stereotype,
+        generalization <- s.generalization,
+        comment <- s.comment)
+}
+
+rule Interface {
+    from s : INMODEL!Interface
+    to t : OUTMODEL!Interface mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        powertypeRange <- s.powertypeRange,
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        feature <- s.feature,
+        stereotype <- s.stereotype,
+        generalization <- s.generalization,
+        comment <- s.comment)
+}
+
+rule UseCase {
+    from s : INMODEL!UseCase
+    to t : OUTMODEL!UseCase mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        extensionPoint <- s.extensionPoint,
+        powertypeRange <- s.powertypeRange,
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        feature <- s.feature,
+        stereotype <- s.stereotype,
+        generalization <- s.generalization,
+        comment <- s.comment,
+        extend <- s.extend,
+        include <- s.include)
+}
+
+rule Argument {
+    from s : INMODEL!Argument
+    to t : OUTMODEL!Argument mapsTo s (
+        value <- s.value,
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment)
+}
+
+rule TaggedValue {
+    from s : INMODEL!TaggedValue
+    to t : OUTMODEL!TaggedValue mapsTo s (
+        dataValue <- s.dataValue,
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        referenceValue <- s.referenceValue,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        type <- s.type)
+}
+
+rule ReturnAction {
+    from s : INMODEL!ReturnAction
+    to t : OUTMODEL!ReturnAction mapsTo s (
+        recurrence <- s.recurrence,
+        name <- s.name,
+        target <- s.target,
+        script <- s.script,
+        isAsynchronous <- s.isAsynchronous,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        actualArgument <- s.actualArgument)
+}
+
+rule Expression {
+    from s : INMODEL!Expression (s.oclIsTypeOf(INMODEL!Expression))
+    to t : OUTMODEL!Expression mapsTo s (
+        body <- s.body,
+        language <- s.language)
+}
+
+rule CallAction {
+    from s : INMODEL!CallAction
+    to t : OUTMODEL!CallAction mapsTo s (
+        recurrence <- s.recurrence,
+        name <- s.name,
+        target <- s.target,
+        script <- s.script,
+        isAsynchronous <- s.isAsynchronous,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        operation <- s.operation,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        actualArgument <- s.actualArgument)
+}
+
+rule AssociationEnd {
+    from s : INMODEL!AssociationEnd (s.oclIsTypeOf(INMODEL!AssociationEnd))
+    to t : OUTMODEL!AssociationEnd mapsTo s (
+        targetScope <- s.targetScope,
+        isNavigable <- s.isNavigable,
+        name <- s.name,
+        aggregation <- s.aggregation,
+        changeability <- s.changeability,
+        ordering <- s.ordering,
+        visibility <- s.visibility,
+        multiplicity <- s.multiplicity,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        participant <- s.participant,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        specification <- s.specification,
+        qualifier <- s.qualifier)
+}
+
+rule Dependency {
+    from s : INMODEL!Dependency (s.oclIsTypeOf(INMODEL!Dependency))
+    to t : OUTMODEL!Dependency mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        supplier <- s.supplier,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        client <- s.client,
+        comment <- s.comment)
+}
+
+rule Package {
+    from s : INMODEL!Package (s.oclIsTypeOf(INMODEL!Package))
+    to t : OUTMODEL!Package mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        elementImport <- s.elementImport,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        generalization <- s.generalization,
+        comment <- s.comment)
+}
+
+rule TagDefinition {
+    from s : INMODEL!TagDefinition
+    to t : OUTMODEL!TagDefinition mapsTo s (
+        multiplicity <- s.multiplicity,
+        name <- s.name,
+        tagType <- s.tagType,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment)
+}
+
+rule Method {
+    from s : INMODEL!Method
+    to t : OUTMODEL!Method mapsTo s (
+        ownerScope <- s.ownerScope,
+        isQuery <- s.isQuery,
+        name <- s.name,
+        body <- s.body,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        specification <- s.specification,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        parameter <- s.parameter,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment)
+}
+
+rule MultiplicityRange {
+    from s : INMODEL!MultiplicityRange
+    to t : OUTMODEL!MultiplicityRange mapsTo s (
+        lower <- s.lower,
+        upper <- s.upper)
+}
+
+rule LinkEnd {
+    from s : INMODEL!LinkEnd
+    to t : OUTMODEL!LinkEnd mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        associationEnd <- s.associationEnd,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        instance <- s.instance,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        qualifiedValue <- s.qualifiedValue)
+}
+
+rule CollaborationInstanceSet {
+    from s : INMODEL!CollaborationInstanceSet
+    to t : OUTMODEL!CollaborationInstanceSet mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        participatingLink <- s.participatingLink,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        participatingInstance <- s.participatingInstance,
+        templateParameter <- s.templateParameter,
+        interactionInstanceSet <- s.interactionInstanceSet,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        constrainingElement <- s.constrainingElement,
+        comment <- s.comment,
+        collaboration <- s.collaboration)
+}
+
+rule Stimulus {
+    from s : INMODEL!Stimulus
+    to t : OUTMODEL!Stimulus mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        sender <- s.sender,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        communicationLink <- s.communicationLink,
+        dispatchAction <- s.dispatchAction,
+        comment <- s.comment,
+        argument <- s.argument,
+        receiver <- s.receiver)
+}
+
+rule Link {
+    from s : INMODEL!Link (s.oclIsTypeOf(INMODEL!Link))
+    to t : OUTMODEL!Link mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        connection <- s.connection,
+        templateParameter <- s.templateParameter,
+        association <- s.association,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment)
+}
+
+rule ProcedureExpression {
+    from s : INMODEL!ProcedureExpression
+    to t : OUTMODEL!ProcedureExpression mapsTo s (
+        body <- s.body,
+        language <- s.language)
+}
+
+rule Model {
+    from s : INMODEL!Model
+    to t : OUTMODEL!Model mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        elementImport <- s.elementImport,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        generalization <- s.generalization,
+        comment <- s.comment)
+}
+
+rule Object {
+    from s : INMODEL!Object (s.oclIsTypeOf(INMODEL!Object))
+    to t : OUTMODEL!Object mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        ownedInstance <- s.ownedInstance,
+        sourceFlow <- s.sourceFlow,
+        ownedLink <- s.ownedLink,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        classifier <- s.classifier,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        componentInstance <- s.componentInstance,
+        linkEnd <- s.linkEnd,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        slot <- s.slot)
+}
+
+rule Class {
+    from s : INMODEL!Class (s.oclIsTypeOf(INMODEL!Class))
+    to t : OUTMODEL!Class mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isActive <- s.isActive,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        powertypeRange <- s.powertypeRange,
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        feature <- s.feature,
+        stereotype <- s.stereotype,
+        generalization <- s.generalization,
+        comment <- s.comment)
+}
+
+rule Parameter {
+    from s : INMODEL!Parameter
+    to t : OUTMODEL!Parameter mapsTo s (
+        name <- s.name,
+        kind <- s.kind,
+        defaultValue <- s.defaultValue,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        type <- s.type)
+}
+
+rule Message {
+    from s : INMODEL!Message
+    to t : OUTMODEL!Message mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        action <- s.action,
+        activator <- s.activator,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        receiver <- s.receiver,
+        sender <- s.sender,
+        predecessor <- s.predecessor,
+        templateParameter <- s.templateParameter,
+        conformingStimulus <- s.conformingStimulus,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        communicationConnection <- s.communicationConnection)
+}
+
+rule Stereotype {
+    from s : INMODEL!Stereotype
+    to t : OUTMODEL!Stereotype mapsTo s (
+        isRoot <- s.isRoot,
+        icon <- s.icon,
+        name <- s.name,
+        baseClass <- s.baseClass,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        stereotypeConstraint <- s.stereotypeConstraint,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        definedTag <- s.definedTag,
+        generalization <- s.generalization,
+        comment <- s.comment)
+}
+
+rule Collaboration {
+    from s : INMODEL!Collaboration
+    to t : OUTMODEL!Collaboration mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        usedCollaboration <- s.usedCollaboration,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        interaction <- s.interaction,
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        constrainingElement <- s.constrainingElement,
+        representedClassifier <- s.representedClassifier,
+        stereotype <- s.stereotype,
+        generalization <- s.generalization,
+        comment <- s.comment,
+        representedOperation <- s.representedOperation)
+}
+
+rule DataType {
+    from s : INMODEL!DataType (s.oclIsTypeOf(INMODEL!DataType))
+    to t : OUTMODEL!DataType mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        powertypeRange <- s.powertypeRange,
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        feature <- s.feature,
+        stereotype <- s.stereotype,
+        generalization <- s.generalization,
+        comment <- s.comment)
+}
+
+rule Multiplicity {
+    from s : INMODEL!Multiplicity
+    to t : OUTMODEL!Multiplicity mapsTo s (
+        range <- s.range)
+}
+
+rule Include {
+    from s : INMODEL!Include
+    to t : OUTMODEL!Include mapsTo s (
+        name <- s.name,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        templateParameter <- s.templateParameter,
+        base <- s.base,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype,
+        comment <- s.comment,
+        addition <- s.addition)
+}
+
+rule Actor {
+    from s : INMODEL!Actor
+    to t : OUTMODEL!Actor mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        powertypeRange <- s.powertypeRange,
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        feature <- s.feature,
+        stereotype <- s.stereotype,
+        generalization <- s.generalization,
+        comment <- s.comment)
+}
+
+-- ======================================================================
+-- model copy end
+-- ======================================================================
