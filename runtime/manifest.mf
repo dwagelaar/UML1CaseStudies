@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: sun.applet.AppletViewer
-Class-Path: JabberWookie.jar SSTTR-Crypto.jar SSTTR-Util.jar SSTTR-XML.jar
