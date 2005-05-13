@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu May 12 11:51:24 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 13 09:40:21 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -318,12 +318,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                     <UML:TagDefinition xmi.idref = 'Im2cb8f81bm103a15f60fdmm6587'/>
                   </UML:TaggedValue.type>
                 </UML:TaggedValue>
-                <UML:TaggedValue xmi.id = 'Im2cb8f81bm103a15f60fdmm6580' isSpecification = 'false'>
-                  <UML:TaggedValue.dataValue>{{&quot;Identities&quot;,&quot;&lt;uid, name, network, password&gt;&quot;,&quot;semi-colon separated list of identity items&quot;},{&quot;Contacts&quot;,&quot;&lt;uid, name, network&gt;&quot;,&quot;semi-colon separated list of contact items&quot;}}</UML:TaggedValue.dataValue>
-                  <UML:TaggedValue.type>
-                    <UML:TagDefinition xmi.idref = 'Im2cb8f81bm103a15f60fdmm6583'/>
-                  </UML:TaggedValue.type>
-                </UML:TaggedValue>
               </UML:ModelElement.taggedValue>
               <UML:Classifier.feature>
                 <UML:Operation xmi.id = 'Im19d38ba1m1038378dc94mm6ba4' name = 'init' visibility = 'public'
@@ -597,7 +591,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im2d596f98m10363d93b95mm3922' language = 'java'
-                          body = '        int index = getModel().getContacts().indexOf(c);&#10;        if (index &gt; -1) {&#10;            ContactEdit edit = new ContactEdit(c);&#10;            getView().addContact(c, index);&#10;            insertContactEdit(edit, index);&#10;            if (c instanceof im.model.Identity) {&#10;                im.model.Identity id = (im.model.Identity) c;&#10;                id.getNetwork().login(id.getUserId(), id.getPassword());&#10;            } else {&#10;                c.getNetwork().addContact(c);&#10;            }&#10;        } else {&#10;            index = getContactEditIndex(c);&#10;            getView().removeContact(index);&#10;            removeContactEdit(getContactEditAt(index));&#10;            if (c instanceof im.model.Identity) {&#10;                im.model.Identity id = (im.model.Identity) c;&#10;                id.getNetwork().logout();&#10;            } else {&#10;                c.getNetwork().removeContact(c);&#10;            }&#10;        }&#10;'/>
+                          body = '        int index = getModel().getContacts().indexOf(c);&#10;        if (index &gt; -1) {&#10;            ContactEdit edit = new ContactEdit(c);&#10;            getView().addContact(c, index);&#10;            insertContactEdit(edit, index);&#10;        } else {&#10;            index = getContactEditIndex(c);&#10;            getView().removeContact(index);&#10;            removeContactEdit(getContactEditAt(index));&#10;        }&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im2d596f98m10363d93b95mm3924'/>
@@ -625,7 +619,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im2040183cm103a707e832mm44fa' language = 'java'
-                          body = '        int index = getView().getSelectedContact();&#10;        if (index &gt; -1) {&#10;            im.model.Contact c = getModel().getContactAt(index);&#10;            getModel().removeContact(c);&#10;        }&#10;'/>
+                          body = '        int index = getView().getSelectedContact();&#10;        if (index &gt; -1) {&#10;            im.model.Contact c = getModel().getContactAt(index);&#10;            if (c instanceof im.model.Identity) {&#10;                im.model.Identity id = (im.model.Identity) c;&#10;                id.getNetwork().logout();&#10;            } else {&#10;                c.getNetwork().removeContact(c);&#10;            }&#10;            getModel().removeContact(c);&#10;        }&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im2040183cm103a707e832mm44fb'/>
@@ -668,7 +662,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im2040183cm103a707e832mm4470' language = 'java'
-                          body = '        if (okClicked) {&#10;            im.model.Contact c;&#10;            if (dlg.getPassword().length() &gt; 0) {&#10;                im.model.Identity id = new im.model.Identity();&#10;                id.setNetwork(dlg.getNetwork());&#10;                id.setUserId(dlg.getUid());&#10;                id.setName(dlg.getName());&#10;                id.setPassword(dlg.getPassword());&#10;                c = id;&#10;            } else {&#10;                c = new im.model.Contact();&#10;                c.setNetwork(dlg.getNetwork());&#10;                c.setUserId(dlg.getUid());&#10;                c.setName(dlg.getName());&#10;            }&#10;            getModel().addContact(c);&#10;        }&#10;        getView().setEnabled(true);&#10;'/>
+                          body = '        if (okClicked) {&#10;            im.model.Contact c;&#10;            if (dlg.getPassword().length() &gt; 0) {&#10;                im.model.Identity id = new im.model.Identity();&#10;                id.setNetwork(dlg.getNetwork());&#10;                id.setUserId(dlg.getUid());&#10;                id.setName(dlg.getName());&#10;                id.setPassword(dlg.getPassword());&#10;                c = id;&#10;                getModel().addContact(c);&#10;                id.getNetwork().login(id.getUserId(), id.getPassword());&#10;            } else {&#10;                c = new im.model.Contact();&#10;                c.setNetwork(dlg.getNetwork());&#10;                c.setUserId(dlg.getUid());&#10;                c.setName(dlg.getName());&#10;                getModel().addContact(c);&#10;                c.getNetwork().addContact(c);&#10;            }&#10;        }&#10;        getView().setEnabled(true);&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im2040183cm103a707e832mm4471'/>
@@ -4304,7 +4298,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           isQuery = 'false'>
                           <UML:Method.body>
                             <UML:ProcedureExpression xmi.id = 'Im19d38ba1m1038378dc94mm5286' language = 'java'
-                              body = '        im.InstantMessagingClient.getInstance().play(getClass().getResource(&quot;pop.wav&quot;));&#10;        if (content instanceof String) {&#10;            textConvField.append(content.toString() + &quot;\n&quot;);&#10;        } else if (content instanceof Image) {&#10;            Image im = (Image) content;&#10;            convPanel.setSize(im.getWidth(convPanel), im.getHeight(convPanel));&#10;            Graphics g = convPanel.getGraphics();&#10;            g.drawImage(im, 1, 1, convPanel);&#10;            g.finalize();&#10;        }&#10;'/>
+                              body = '        if (content instanceof String) {&#10;            textConvField.append(content.toString() + &quot;\n&quot;);&#10;        } else if (content instanceof Image) {&#10;            Image im = (Image) content;&#10;            convPanel.setSize(im.getWidth(convPanel), im.getHeight(convPanel));&#10;            Graphics g = convPanel.getGraphics();&#10;            g.drawImage(im, 1, 1, convPanel);&#10;            g.finalize();&#10;        }&#10;'/>
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'Im19d38ba1m1038378dc94mm5287'/>
@@ -4391,6 +4385,55 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'Im2040183cm103a707e832mm30ed'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm203f' name = 'setVisible'
+                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I10c3af31m103d4bb57famm2027' name = 'visible' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm366c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I10c3af31m103d4bb57famm203d' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm203e' language = 'java'
+                              body = '        if (!isShowing() &amp;&amp; visible) {&#10;            pop();&#10;        }&#10;        super.setVisible(visible);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm203f'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm1fff' name = 'toFront' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                        <UML:Method xmi.id = 'I10c3af31m103d4bb57famm1ffd' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm1ffe' language = 'java'
+                              body = '        if (!isActive()) {&#10;            pop();&#10;        }&#10;        super.toFront();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1fff'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm1fda' name = 'pop' visibility = 'private'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                        <UML:Method xmi.id = 'I10c3af31m103d4bb57famm1fd8' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm1fd9' language = 'java'
+                              body = '        im.InstantMessagingClient.getInstance().play(getClass().getResource(&quot;pop.wav&quot;));&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1fda'/>
                           </UML:Method.specification>
                         </UML:Method>
                       </UML:Classifier.feature>
@@ -4529,7 +4572,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           isQuery = 'false'>
                           <UML:Method.body>
                             <UML:ProcedureExpression xmi.id = 'I6dcbb290m103cd3a30f0mm5482' language = 'java'
-                              body = '        // fail factory creation if Swing not available&#10;        javax.swing.UIManager.getLookAndFeel();&#10;'/>
+                              body = '        // fail factory creation if Swing not available&#10;        Class.forName(&quot;javax.swing.UIManager&quot;);&#10;'/>
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm5483'/>
@@ -5375,7 +5418,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           isQuery = 'false'>
                           <UML:Method.body>
                             <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm4f04' language = 'java'
-                              body = '        im.InstantMessagingClient.getInstance().play(getClass().getResource(&quot;pop.wav&quot;));&#10;        if (content instanceof String) {&#10;            textConvField.setText(textConvField.getText() + content.toString() + &quot;\n&quot;);&#10;        } else if (content instanceof Image) {&#10;            Image im = (Image) content;&#10;            convPanel.setSize(im.getWidth(convPanel), im.getHeight(convPanel));&#10;            Graphics g = convPanel.getGraphics();&#10;            g.drawImage(im, 1, 1, convPanel);&#10;            g.finalize();&#10;        }&#10;'/>
+                              body = '        if (content instanceof String) {&#10;            textConvField.setText(textConvField.getText() + content.toString() + &quot;\n&quot;);&#10;        } else if (content instanceof Image) {&#10;            Image im = (Image) content;&#10;            convPanel.setSize(im.getWidth(convPanel), im.getHeight(convPanel));&#10;            Graphics g = convPanel.getGraphics();&#10;            g.drawImage(im, 1, 1, convPanel);&#10;            g.finalize();&#10;        }&#10;'/>
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm4f01'/>
@@ -5453,6 +5496,55 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm4e77'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm1f9a' name = 'setVisible'
+                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I10c3af31m103d4bb57famm1f9b' name = 'visible' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm366c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I10c3af31m103d4bb57famm1f9c' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm1f9d' language = 'java'
+                              body = '        if (!isShowing() &amp;&amp; visible) {&#10;            pop();&#10;        }&#10;        super.setVisible(visible);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1f9a'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm1f79' name = 'toFront' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                        <UML:Method xmi.id = 'I10c3af31m103d4bb57famm1f7a' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm1f7b' language = 'java'
+                              body = '        if (!isActive()) {&#10;            pop();&#10;        }&#10;        super.toFront();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1f79'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm1f68' name = 'pop' visibility = 'private'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                        <UML:Method xmi.id = 'I10c3af31m103d4bb57famm1f69' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm1f6a' language = 'java'
+                              body = '        im.InstantMessagingClient.getInstance().play(getClass().getResource(&quot;pop.wav&quot;));&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1f68'/>
                           </UML:Method.specification>
                         </UML:Method>
                       </UML:Classifier.feature>
