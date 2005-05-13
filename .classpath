@@ -2,10 +2,10 @@
 <classpath>
 	<classpathentry output="breakout/awt/bin" kind="src" path="breakout/awt/src"/>
 	<classpathentry output="instantmessenger/awt/bin" kind="src" path="instantmessenger/awt/resources"/>
-	<classpathentry output="instantmessenger/awt/bin" kind="src" path="instantmessenger/awt/src"/>
+	<classpathentry excluding="**" output="instantmessenger/awt/bin" kind="src" path="instantmessenger/awt/src"/>
 	<classpathentry excluding="**" output="instantmessenger/midp/bin" kind="src" path="instantmessenger/midp/src"/>
 	<classpathentry output="instantmessenger/swing/bin" kind="src" path="instantmessenger/swing/resources"/>
-	<classpathentry excluding="**" output="instantmessenger/swing/bin" kind="src" path="instantmessenger/swing/src"/>
+	<classpathentry output="instantmessenger/swing/bin" kind="src" path="instantmessenger/swing/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry sourcepath="src/JabberWookie_Lib_Src-20050124-164011GMT.zip" kind="lib" path="runtime/JabberWookie.jar"/>
 	<classpathentry kind="lib" path="runtime/SSTTR-Crypto.jar"/>
