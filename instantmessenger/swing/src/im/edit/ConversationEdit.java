@@ -134,7 +134,7 @@ public class ConversationEdit implements im.view.ConversationViewListener, java.
  * 
  * @param c 
  */
-    public void onContactChange(im.model.Contact c) {        
+    public void onContactChange(im.model.Contact c) {
         getView().setTitle(getModel().getContact().getName());
         getView().toFront();
     } 

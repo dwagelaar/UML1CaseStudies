@@ -180,19 +180,7 @@ public class AWTConversationView extends java.awt.Frame implements im.view.Conve
  * 
  * 
  */
-    public void toFront() {        
-        if (!isActive()) {
-            pop();
-        }
-        super.toFront();
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
     private void pop() {        
-        im.InstantMessagingClient.getInstance().play(getClass().getResource("pop.wav"));
+        im.InstantMessagingClient.getInstance().play(getClass().getResource("pop.au"));
     } 
  }

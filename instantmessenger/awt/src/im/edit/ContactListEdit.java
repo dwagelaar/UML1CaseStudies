@@ -260,6 +260,7 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
                 im.model.messages.MessageFactory mf = 
                     client.getConversationAt(i).getFactory();
                 if (contact.equals(c) && (mf.equals(currentMf))) {
+                    client.getConversationAt(i).setContact(new im.model.Contact());
                     client.getConversationAt(i).setContact(c);
                     return;
                 }

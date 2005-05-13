@@ -261,6 +261,7 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
                 im.model.messages.MessageFactory mf = 
                     client.getConversationAt(i).getFactory();
                 if (contact.equals(c) && (mf.equals(currentMf))) {
+                    client.getConversationAt(i).setContact(new im.model.Contact());
                     client.getConversationAt(i).setContact(c);
                     return;
                 }

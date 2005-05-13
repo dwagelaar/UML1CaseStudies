@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 13 09:40:21 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 13 16:54:03 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -633,7 +633,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im2040183cm103a707e832mm44b5' language = 'java'
-                          body = '        int index = getView().getSelectedContact();&#10;        if (index &gt; -1) {&#10;            im.model.Contact c = getModel().getContactAt(index);&#10;            im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#10;            im.model.messages.MessageFactory currentMf;&#10;            if (client.getMessageFactorys().size() == 1) {&#10;                currentMf = client.getMessageFactoryAt(0);&#10;            } else {&#10;                System.out.println(&quot;TODO: multiple message kind handling&quot;);&#10;                currentMf = client.getMessageFactoryAt(0);&#10;                // 1. new message dialog, in which message type gets chosen&#10;                // 2. new message gets created, along with view&#10;            }&#10;            // reuse existing conversation, if any&#10;            for (int i = 0; i &lt; client.getConversations().size(); i++) {&#10;                im.model.Contact contact = client.getConversationAt(i).getContact();&#10;                im.model.messages.MessageFactory mf = &#10;                    client.getConversationAt(i).getFactory();&#10;                if (contact.equals(c) &amp;&amp; (mf.equals(currentMf))) {&#10;                    client.getConversationAt(i).setContact(c);&#10;                    return;&#10;                }&#10;            }&#10;            // else new conversation&#10;            im.model.Conversation conv = new im.model.Conversation();&#10;            new ConversationEdit(conv);&#10;            client.addConversation(conv);&#10;            conv.setContact(c);&#10;            conv.setFactory(currentMf);&#10;        }&#10;'/>
+                          body = '        int index = getView().getSelectedContact();&#10;        if (index &gt; -1) {&#10;            im.model.Contact c = getModel().getContactAt(index);&#10;            im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#10;            im.model.messages.MessageFactory currentMf;&#10;            if (client.getMessageFactorys().size() == 1) {&#10;                currentMf = client.getMessageFactoryAt(0);&#10;            } else {&#10;                System.out.println(&quot;TODO: multiple message kind handling&quot;);&#10;                currentMf = client.getMessageFactoryAt(0);&#10;                // 1. new message dialog, in which message type gets chosen&#10;                // 2. new message gets created, along with view&#10;            }&#10;            // reuse existing conversation, if any&#10;            for (int i = 0; i &lt; client.getConversations().size(); i++) {&#10;                im.model.Contact contact = client.getConversationAt(i).getContact();&#10;                im.model.messages.MessageFactory mf = &#10;                    client.getConversationAt(i).getFactory();&#10;                if (contact.equals(c) &amp;&amp; (mf.equals(currentMf))) {&#10;                    client.getConversationAt(i).setContact(new im.model.Contact());&#10;                    client.getConversationAt(i).setContact(c);&#10;                    return;&#10;                }&#10;            }&#10;            // else new conversation&#10;            im.model.Conversation conv = new im.model.Conversation();&#10;            new ConversationEdit(conv);&#10;            client.addConversation(conv);&#10;            conv.setContact(c);&#10;            conv.setFactory(currentMf);&#10;        }&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im2040183cm103a707e832mm44b6'/>
@@ -4410,19 +4410,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                             <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm203f'/>
                           </UML:Method.specification>
                         </UML:Method>
-                        <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm1fff' name = 'toFront' visibility = 'public'
-                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-                        <UML:Method xmi.id = 'I10c3af31m103d4bb57famm1ffd' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm1ffe' language = 'java'
-                              body = '        if (!isActive()) {&#10;            pop();&#10;        }&#10;        super.toFront();&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1fff'/>
-                          </UML:Method.specification>
-                        </UML:Method>
                         <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm1fda' name = 'pop' visibility = 'private'
                           isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
                           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
@@ -4430,7 +4417,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           isQuery = 'false'>
                           <UML:Method.body>
                             <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm1fd9' language = 'java'
-                              body = '        im.InstantMessagingClient.getInstance().play(getClass().getResource(&quot;pop.wav&quot;));&#10;'/>
+                              body = '        im.InstantMessagingClient.getInstance().play(getClass().getResource(&quot;pop.au&quot;));&#10;'/>
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1fda'/>
@@ -5519,19 +5506,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1f9a'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm1f79' name = 'toFront' visibility = 'public'
-                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-                        <UML:Method xmi.id = 'I10c3af31m103d4bb57famm1f7a' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm1f7b' language = 'java'
-                              body = '        if (!isActive()) {&#10;            pop();&#10;        }&#10;        super.toFront();&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1f79'/>
                           </UML:Method.specification>
                         </UML:Method>
                         <UML:Operation xmi.id = 'I10c3af31m103d4bb57famm1f68' name = 'pop' visibility = 'private'
@@ -7713,12 +7687,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
       </UML:Namespace.ownedElement>
     </UML:Model>
     <UML:A_context_raisedSignal>
-      <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm54b2'/>
-      <UML:Exception xmi.idref = 'I659e1adfm103d045fb1emm5442'/>
-      <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm5483'/>
-      <UML:Exception xmi.idref = 'I659e1adfm103d045fb1emm5443'/>
       <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm5454'/>
       <UML:Exception xmi.idref = 'I659e1adfm103d045fb1emm5441'/>
+      <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm5483'/>
+      <UML:Exception xmi.idref = 'I659e1adfm103d045fb1emm5443'/>
+      <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm54b2'/>
+      <UML:Exception xmi.idref = 'I659e1adfm103d045fb1emm5442'/>
     </UML:A_context_raisedSignal>
   </XMI.content>
 </XMI>
