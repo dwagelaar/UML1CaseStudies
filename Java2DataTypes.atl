@@ -217,27 +217,6 @@ rule Operation {
         comment <- s.comment)
 }
 
-rule Association {
-    from s : INMODEL!Association (s.oclIsTypeOf(INMODEL!Association))
-    to t : OUTMODEL!Association mapsTo s (
-        isRoot <- s.isRoot,
-        name <- s.name,
-        isAbstract <- s.isAbstract,
-        visibility <- s.visibility,
-        isSpecification <- s.isSpecification,
-        isLeaf <- s.isLeaf,
-        taggedValue <- s.taggedValue,
-        sourceFlow <- s.sourceFlow,
-        targetFlow <- s.targetFlow,
-        clientDependency <- s.clientDependency,
-        templateParameter <- s.templateParameter,
-        constraint <- s.constraint,
-        stereotype <- s.stereotype,
-        connection <- s.connection,
-        generalization <- s.generalization,
-        comment <- s.comment)
-}
-
 rule Exception {
     from s : INMODEL!Exception
     to t : OUTMODEL!Exception mapsTo s (
@@ -378,31 +357,6 @@ rule CallAction {
         actualArgument <- s.actualArgument)
 }
 
-rule AssociationEnd {
-    from s : INMODEL!AssociationEnd (s.oclIsTypeOf(INMODEL!AssociationEnd))
-    to t : OUTMODEL!AssociationEnd mapsTo s (
-        targetScope <- s.targetScope,
-        isNavigable <- s.isNavigable,
-        name <- s.name,
-        aggregation <- s.aggregation,
-        changeability <- s.changeability,
-        ordering <- s.ordering,
-        visibility <- s.visibility,
-        multiplicity <- s.multiplicity,
-        isSpecification <- s.isSpecification,
-        taggedValue <- s.taggedValue,
-        sourceFlow <- s.sourceFlow,
-        targetFlow <- s.targetFlow,
-        clientDependency <- s.clientDependency,
-        templateParameter <- s.templateParameter,
-        participant <- s.participant,
-        constraint <- s.constraint,
-        stereotype <- s.stereotype,
-        comment <- s.comment,
-        specification <- s.specification,
-        qualifier <- s.qualifier)
-}
-
 rule Dependency {
     from s : INMODEL!Dependency (s.oclIsTypeOf(INMODEL!Dependency))
     to t : OUTMODEL!Dependency mapsTo s (
@@ -480,13 +434,6 @@ rule Method {
         constraint <- s.constraint,
         stereotype <- s.stereotype,
         comment <- s.comment)
-}
-
-rule MultiplicityRange {
-    from s : INMODEL!MultiplicityRange
-    to t : OUTMODEL!MultiplicityRange mapsTo s (
-        lower <- s.lower,
-        upper <- s.upper)
 }
 
 rule LinkEnd {
@@ -737,12 +684,6 @@ rule DataType {
         stereotype <- s.stereotype,
         generalization <- s.generalization,
         comment <- s.comment)
-}
-
-rule Multiplicity {
-    from s : INMODEL!Multiplicity
-    to t : OUTMODEL!Multiplicity mapsTo s (
-        range <- s.range)
 }
 
 rule Include {
