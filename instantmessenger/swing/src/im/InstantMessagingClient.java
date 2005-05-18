@@ -352,18 +352,38 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
                 loadSettings();
     } 
 
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public void destroy() {        
+    //TODO: add to model
+    public void stop() {
         for (int i = 0; i < getNetworks().size(); i++) {
             if (getContactList().getIdentity(getNetworkAt(i)) != null) {
                 getNetworkAt(i).logout();
             }
         }
-    } 
+    }
+    
+    //TODO: add to model
+    public void start() {
+        for (int i = 0; i < getNetworks().size(); i++) {
+            im.model.Identity id = getContactList().getIdentity(getNetworkAt(i));
+            if (id != null) {
+                getNetworkAt(i).login(id.getUserId(), id.getPassword());
+            }
+        }
+    }
+    
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    //TODO: remove from model
+//    public void destroy() {        
+//        for (int i = 0; i < getNetworks().size(); i++) {
+//            if (getContactList().getIdentity(getNetworkAt(i)) != null) {
+//                getNetworkAt(i).logout();
+//            }
+//        }
+//    } 
 
 /**
  * <p>Does ...</p>
