@@ -68,7 +68,8 @@ public class SwingConversationView extends javax.swing.JFrame implements im.view
             }
         });
         setTitle("Message");
-        setLayout(new BorderLayout());
+        //TODO: change in model
+        getContentPane().setLayout(new BorderLayout());
         textConvField.setEditable(false);
         textConvScroll.setPreferredSize(new Dimension(500, 300));
         textConvScroll.getViewport().setView(textConvField);

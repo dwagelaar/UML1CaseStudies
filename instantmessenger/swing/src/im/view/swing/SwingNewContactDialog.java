@@ -98,7 +98,8 @@ public class SwingNewContactDialog extends javax.swing.JFrame implements im.view
             }
         });
         setTitle("Add new contact");
-        setLayout(new BorderLayout());
+        //TODO: change in model
+        getContentPane().setLayout(new BorderLayout());
         im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();
         for (int i = 0; i < client.getNetworks().size(); i++) {
             networkField.addItem(makeObject(client.getNetworkAt(i).getName()));
