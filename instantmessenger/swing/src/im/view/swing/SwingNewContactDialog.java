@@ -113,11 +113,13 @@ public class SwingNewContactDialog extends javax.swing.JFrame implements im.view
         dlgPanel.add(nameField);
         dlgPanel.add(password);
         dlgPanel.add(passwordField);
-        add(dlgPanel, BorderLayout.CENTER);
+        //TODO: change in model
+        getContentPane().add(dlgPanel, BorderLayout.CENTER);
         btnPanel.setLayout(new FlowLayout());
         btnPanel.add(okBtn);
         btnPanel.add(cancelBtn);
-        add(btnPanel, BorderLayout.SOUTH);
+        //TODO: change in model
+        getContentPane().add(btnPanel, BorderLayout.SOUTH);
         pack();
         setVisible(true);
     } 
