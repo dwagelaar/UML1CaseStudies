@@ -209,4 +209,4 @@ public class AWTNewContactDialog extends java.awt.Frame implements im.view.NewCo
             ((NewContactDialogListener) listeners.elementAt(i)).onNewContactDialogClose(okClicked, this);
         }
     } 
- }
+}

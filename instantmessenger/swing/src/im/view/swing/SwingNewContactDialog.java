@@ -98,7 +98,6 @@ public class SwingNewContactDialog extends javax.swing.JFrame implements im.view
             }
         });
         setTitle("Add new contact");
-        //TODO: change in model
         getContentPane().setLayout(new BorderLayout());
         im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();
         for (int i = 0; i < client.getNetworks().size(); i++) {
@@ -113,12 +112,10 @@ public class SwingNewContactDialog extends javax.swing.JFrame implements im.view
         dlgPanel.add(nameField);
         dlgPanel.add(password);
         dlgPanel.add(passwordField);
-        //TODO: change in model
         getContentPane().add(dlgPanel, BorderLayout.CENTER);
         btnPanel.setLayout(new FlowLayout());
         btnPanel.add(okBtn);
         btnPanel.add(cancelBtn);
-        //TODO: change in model
         getContentPane().add(btnPanel, BorderLayout.SOUTH);
         pack();
         setVisible(true);

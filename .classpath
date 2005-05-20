@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry output="breakout/awt/bin" kind="src" path="breakout/awt/src"/>
-	<classpathentry output="instantmessenger/awt/bin" kind="src" path="instantmessenger/awt/resources"/>
-	<classpathentry excluding="**" output="instantmessenger/awt/bin" kind="src" path="instantmessenger/awt/src"/>
 	<classpathentry excluding="**" output="instantmessenger/midp/bin" kind="src" path="instantmessenger/midp/src"/>
 	<classpathentry output="instantmessenger/swing/bin" kind="src" path="instantmessenger/swing/resources"/>
 	<classpathentry output="instantmessenger/swing/bin" kind="src" path="instantmessenger/swing/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry sourcepath="runtime/JabberWookie_Lib_Src-20050124-164011GMT.zip" kind="lib" path="runtime/JabberWookie.jar"/>
-	<classpathentry kind="lib" path="runtime/SSTTR-Crypto.jar"/>
-	<classpathentry kind="lib" path="runtime/SSTTR-Util.jar"/>
-	<classpathentry kind="lib" path="runtime/SSTTR-XML.jar"/>
+	<classpathentry sourcepath="runtime/SSTTR_Libs_Src-20040510-014553GMT.zip" kind="lib" path="runtime/SSTTR-Crypto.jar"/>
+	<classpathentry sourcepath="runtime/SSTTR_Libs_Src-20040510-014553GMT.zip" kind="lib" path="runtime/SSTTR-Util.jar"/>
+	<classpathentry sourcepath="runtime/SSTTR_Libs_Src-20040510-014553GMT.zip" kind="lib" path="runtime/SSTTR-XML.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

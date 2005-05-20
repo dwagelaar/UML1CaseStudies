@@ -203,16 +203,19 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  * 
  * 
  */
-    public void logout() {        
-        System.out.println("Closing connection for " + getConnection().getServerName());
+    public void logout() {
         try {
+            if (getConnection() == null) {
+                throw new java.io.IOException("Cannot logout: connection not established");
+            }
+            System.out.println("Closing connection for " + getConnection().getServerName());
             Presence p = new Presence();
             p.setType(Const.UNAVAILABLE);
             getConnection().send(p);
+            getConnection().close();
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        getConnection().close();
     } 
 
 /**
@@ -223,19 +226,22 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  * @param c 
  */
     public void addContact(im.model.Contact c) {        
-        	try {
-             Presence presence = new Presence(c.getUserId(), Const.SUBSCRIBE);
-             System.out.println("Adding contact " + presence);
-             getConnection().send(presence);
-             IQRoster roster = new IQRoster();
-             roster.addItem(c.getUserId(), c.getName());
-             IQ iq = new IQ(Const.SET);
-             iq.addChild(roster);
-             getConnection().send(iq);
-         } catch (java.io.IOException e) {
-             System.err.println(e.getMessage());
-             e.printStackTrace();
-         }
+        try {
+            if (getConnection() == null) {
+                throw new java.io.IOException("Cannot add contact: connection not established");
+            }
+            Presence presence = new Presence(c.getUserId(), Const.SUBSCRIBE);
+            System.out.println("Adding contact " + presence);
+            getConnection().send(presence);
+            IQRoster roster = new IQRoster();
+            roster.addItem(c.getUserId(), c.getName());
+            IQ iq = new IQ(Const.SET);
+            iq.addChild(roster);
+            getConnection().send(iq);
+        } catch (java.io.IOException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+        }
     } 
 
 /**
@@ -246,20 +252,23 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  * @param c 
  */
     public void removeContact(im.model.Contact c) {        
-        	try {
-                IQRoster roster = new IQRoster();
-                roster.addItem(c.getUserId());
-                ((IQRoster.Item) roster.getChild(0)).setSubscription(Const.REMOVE);
-                IQ iq = new IQ(Const.SET);
-                iq.addChild(roster);
-                getConnection().send(iq);
-                Presence presence = new Presence(c.getUserId(), Const.UNSUBSCRIBE);
-                System.out.println("Removing contact " + presence);
-                getConnection().send(presence);
-        	} catch (java.io.IOException e) {
-                System.err.println(e.getMessage());
-                e.printStackTrace();
-        	}
+        try {
+            if (getConnection() == null) {
+                throw new java.io.IOException("Cannot remove contact: connection not established");
+            }
+            IQRoster roster = new IQRoster();
+            roster.addItem(c.getUserId());
+            ((IQRoster.Item) roster.getChild(0)).setSubscription(Const.REMOVE);
+            IQ iq = new IQ(Const.SET);
+            iq.addChild(roster);
+            getConnection().send(iq);
+            Presence presence = new Presence(c.getUserId(), Const.UNSUBSCRIBE);
+            System.out.println("Removing contact " + presence);
+            getConnection().send(presence);
+       	} catch (java.io.IOException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+       	}
     } 
 
 /**

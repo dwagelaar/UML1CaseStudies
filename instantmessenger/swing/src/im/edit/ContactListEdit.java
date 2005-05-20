@@ -286,7 +286,7 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
     public void onNewContactDialogClose(boolean okClicked, im.view.NewContactDialog dlg) {        
         if (okClicked) {
             im.model.Contact c;
-            if (dlg.getPassword().length() > 0) {
+            if (getModel().getIdentity(dlg.getNetwork()) == null) {
                 im.model.Identity id = new im.model.Identity();
                 id.setNetwork(dlg.getNetwork());
                 id.setUserId(dlg.getUid());
