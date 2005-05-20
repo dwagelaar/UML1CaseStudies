@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 20 13:50:05 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 20 14:30:52 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -879,25 +879,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                         <UML:Operation xmi.idref = 'Im19d38ba1m1038378dc94mm507f'/>
                       </UML:Method.specification>
                     </UML:Method>
-                    <UML:Operation xmi.id = 'Im19d38ba1m1038378dc94mm4e46' name = 'onFactoryChange'
-                      visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
-                      isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                      isAbstract = 'false'>
-                      <UML:BehavioralFeature.parameter>
-                        <UML:Parameter xmi.id = 'Im19d38ba1m1038378dc94mm4e1a' name = 'f' isSpecification = 'false'
-                          kind = 'in'/>
-                      </UML:BehavioralFeature.parameter>
-                    </UML:Operation>
-                    <UML:Method xmi.id = 'Im19d38ba1m1038378dc94mm4e44' isSpecification = 'false'
-                      isQuery = 'false'>
-                      <UML:Method.body>
-                        <UML:ProcedureExpression xmi.id = 'Im19d38ba1m1038378dc94mm4e45' language = 'java'
-                          body = '        if (f.isValidContent(new String())) {&#10;            getView().setTextEnabled(true);&#10;        } else {&#10;            getView().setTextEnabled(false);&#10;        }&#10;        getView().toFront();&#10;'/>
-                      </UML:Method.body>
-                      <UML:Method.specification>
-                        <UML:Operation xmi.idref = 'Im19d38ba1m1038378dc94mm4e46'/>
-                      </UML:Method.specification>
-                    </UML:Method>
                     <UML:Operation xmi.id = 'Im2040183cm103a707e832mm43f7' name = 'onConversationClose'
                       visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
                       isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
@@ -939,7 +920,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im2040183cm103a707e832mm43b1' language = 'java'
-                          body = '        im.model.Contact recipient = getModel().getContact();&#10;        im.model.Contact sender = getSender(recipient);&#10;        im.model.messages.Message msg = getModel().getFactory().createMessage();&#10;        msg.setNetwork(recipient.getNetwork());&#10;        msg.setSender(sender.getUserId());&#10;        msg.setRecipient(recipient.getUserId());&#10;        msg.setContent(getView().getContent());&#10;        msg.send();&#10;        getModel().setMessage(msg);&#10;'/>
+                          body = '        im.model.Contact recipient = getModel().getContact();&#10;        im.model.Contact sender = getSender(recipient);&#10;        im.model.Message msg = new im.model.Message();&#10;        msg.setNetwork(recipient.getNetwork());&#10;        msg.setSender(sender.getUserId());&#10;        msg.setRecipient(recipient.getUserId());&#10;        msg.setContent(getView().getContent());&#10;        msg.send();&#10;        getModel().setMessage(msg);&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im2040183cm103a707e832mm43b2'/>
@@ -6176,7 +6157,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im4efd786m103c25c4064mm5b14' language = 'java'
-                          body = '        String[] options = {&#10;            &quot;im.view.swing.SwingViewFactory&quot;,&#10;            &quot;im.view.awt.AWTViewFactory&quot;,&#10;            &quot;im.view.lcdui.LCDUIViewFactory&quot;&#10;        };&#10;        ViewFactory factory = null;&#10;        for (int i = 0; i &lt; options.length &amp;&amp; factory == null; i++) {&#10;            try {&#10;               factory = (ViewFactory) Class.forName(options[i]).newInstance();&#10;            } catch (Exception e) &#10;            }&#10;        }&#10;        return factory;&#10;'/>
+                          body = '        String[] options = {&#10;            &quot;im.view.swing.SwingViewFactory&quot;,&#10;            &quot;im.view.awt.AWTViewFactory&quot;,&#10;            &quot;im.view.lcdui.LCDUIViewFactory&quot;&#10;        };&#10;        ViewFactory factory = null;&#10;        for (int i = 0; i &lt; options.length &amp;&amp; factory == null; i++) {&#10;            try {&#10;               factory = (ViewFactory) Class.forName(options[i]).newInstance();&#10;            } catch (Exception e) {&#10;            }&#10;        }&#10;        return factory;&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im4efd786m103c25c4064mm5b15'/>
@@ -7270,12 +7251,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
       </UML:Namespace.ownedElement>
     </UML:Model>
     <UML:A_context_raisedSignal>
-      <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm5454'/>
-      <UML:Exception xmi.idref = 'I659e1adfm103d045fb1emm5441'/>
       <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm54b2'/>
       <UML:Exception xmi.idref = 'I659e1adfm103d045fb1emm5442'/>
       <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm5483'/>
       <UML:Exception xmi.idref = 'I659e1adfm103d045fb1emm5443'/>
+      <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm5454'/>
+      <UML:Exception xmi.idref = 'I659e1adfm103d045fb1emm5441'/>
     </UML:A_context_raisedSignal>
   </XMI.content>
 </XMI>
