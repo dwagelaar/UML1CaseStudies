@@ -19,22 +19,17 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List conversation = new java.util.ArrayList();
-
-/**
- * <p>Represents ...</p>
- */
     private im.view.ViewFactory viewFactory = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.model.ContactList contactList = new im.model.ContactList();
+    private java.util.List conversation = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List messageFactory = new java.util.ArrayList();
+    private im.model.ContactList contactList = new im.model.ContactList();
 
 /**
  * <p>Does ...</p>
@@ -116,28 +111,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * @return 
  */
-    public java.util.List getNetworks() {        
-        return network;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public java.util.List getConversations() {        
-        return conversation;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
     public im.model.ContactList getContactList() {        
         return contactList;
     } 
@@ -160,8 +133,19 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * @return 
  */
-    public java.util.List getMessageFactorys() {        
-        return messageFactory;
+    public java.util.List getNetworks() {        
+        return network;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public java.util.List getConversations() {        
+        return conversation;
     } 
 
 /**
@@ -201,22 +185,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param index 
- * @return 
- */
-    public im.model.messages.MessageFactory getMessageFactoryAt(int index) {        
-        try {
-            return (im.model.messages.MessageFactory) messageFactory.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param network 
  */
     public void addNetwork(im.networking.Network network) {        
@@ -237,17 +205,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  */
     public void addConversation(im.model.Conversation conversation) {        
         this.conversation.add(conversation);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param messageFactory 
- */
-    public void addMessageFactory(im.model.messages.MessageFactory messageFactory) {        
-        this.messageFactory.add(messageFactory);
     } 
 
 /**
@@ -292,22 +249,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param messageFactory 
- * @param index 
- */
-    public void insertMessageFactory(im.model.messages.MessageFactory messageFactory, int index) {        
-        try {
-            this.messageFactory.add(index, messageFactory);
-        } catch (IndexOutOfBoundsException e) {
-            this.messageFactory.add(messageFactory);
-        };
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param network 
  */
     public void removeNetwork(im.networking.Network network) {        
@@ -334,17 +275,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * <p>Does ...</p>
  * 
  * 
- * 
- * @param messageFactory 
- */
-    public void removeMessageFactory(im.model.messages.MessageFactory messageFactory) {        
-        this.messageFactory.remove(messageFactory);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
  */
     public void init() {        
         instance = this;
@@ -352,23 +282,33 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
                 loadSettings();
     } 
 
-    public void stop() {
-        for (int i = 0; i < getNetworks().size(); i++) {
-            if (getContactList().getIdentity(getNetworkAt(i)) != null) {
-                getNetworkAt(i).logout();
-            }
-        }
-    }
-    
-    public void start() {
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void start() {        
         for (int i = 0; i < getNetworks().size(); i++) {
             im.model.Identity id = getContactList().getIdentity(getNetworkAt(i));
             if (id != null) {
                 getNetworkAt(i).login(id.getUserId(), id.getPassword());
             }
         }
-    }
-    
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void stop() {        
+        for (int i = 0; i < getNetworks().size(); i++) {
+            if (getContactList().getIdentity(getNetworkAt(i)) != null) {
+                getNetworkAt(i).logout();
+            }
+        }
+    } 
+
 /**
  * <p>Does ...</p>
  * 
@@ -376,12 +316,11 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * @param r 
  */
-    public void onRecvMsgChange(im.model.messages.Message r) {        
+    public void onRecvMsgChange(im.model.Message r) {        
         for (int i = 0; i < getConversations().size(); i++) {
             String contact = getConversationAt(i).getContact().getUserId();
-            im.model.messages.MessageFactory mf = getConversationAt(i).getFactory();
-            if (contact.equals(r.getSender()) && (mf == getMessageFactory(r.getContent()))) {
-                getConversationAt(i).addMessage(r);
+            if (contact.equals(r.getSender())) {
+                getConversationAt(i).setMessage(r);
                 return;
             }
         }
@@ -389,12 +328,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
         im.model.Conversation conv = new im.model.Conversation();
         new im.edit.ConversationEdit(conv);
         addConversation(conv);
-        for (int i = 0; i < getMessageFactorys().size(); i++) {
-            if (getMessageFactoryAt(i).isValidContent(r.getContent())) {
-                conv.setFactory(getMessageFactoryAt(i));
-                break;
-            }
-        }
         for (int i = 0; i < getContactList().getContacts().size(); i++) {
             if (getContactList().getContactAt(i).getUserId().equals(r.getSender())) {
                 conv.setContact(getContactList().getContactAt(i));
@@ -405,7 +338,7 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
             conv.setContact(new im.model.Contact());
             conv.getContact().setUserId(r.getSender());
         }
-        conv.addMessage(r);
+        conv.setMessage(r);
     } 
 
 /**
@@ -435,23 +368,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * <p>Does ...</p>
  * 
  * 
- * 
- * @param c 
- * @return 
- */
-    public im.model.messages.MessageFactory getMessageFactory(Object c) {        
-        for (int i = 0; i < getMessageFactorys().size(); i++) {
-            if (getMessageFactoryAt(i).isValidContent(c)) {
-                return getMessageFactoryAt(i);
-            }
-        }
-        return null;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
  */
     private void loadSettings() {        
         try {
@@ -461,11 +377,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
             im.networking.Network[] networks = im.networking.Network.getDefault();
             for (int i = 0; i < networks.length; i++) {
                 addNetwork(networks[i]);
-            }
-            // MessageFactory
-            im.model.messages.MessageFactory[] mfs = im.model.messages.MessageFactory.getDefault();
-            for (int i = 0; i < mfs.length; i++) {
-                addMessageFactory(mfs[i]);
             }
             // Create and register edit/view
             new im.edit.ContactListEdit(contactList);

@@ -31,6 +31,60 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
+ * @param status 
+ */
+    public void setStatus(String status) {        
+        // Begin Observable stanza
+        if (this.status != status) {
+            // Begin original body
+        this.status = status;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Status");
+            e.put("class", String.class);
+            if (status != null) {
+                e.put("value", status);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param list 
+ */
+    public void setList(im.model.ContactList list) {        
+        // Begin Observable stanza
+        if (this.list != list) {
+            // Begin original body
+        if (this.list != list) {
+            if (this.list != null) this.list.removeContact(this);
+            this.list = list;
+            if (list != null) list.addContact(this);
+        }
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "List");
+            e.put("class", im.model.ContactList.class);
+            if (list != null) {
+                e.put("value", list);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param name 
  */
     public void setName(String name) {        
@@ -81,28 +135,10 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param list 
+ * @return 
  */
-    public void setList(im.model.ContactList list) {        
-        // Begin Observable stanza
-        if (this.list != list) {
-            // Begin original body
-        if (this.list != list) {
-            if (this.list != null) this.list.removeContact(this);
-            this.list = list;
-            if (list != null) list.addContact(this);
-        }
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "List");
-            e.put("class", im.model.ContactList.class);
-            if (list != null) {
-                e.put("value", list);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
+    public String getStatus() {        
+        return status;
     } 
 
 /**
@@ -110,24 +146,10 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param status 
+ * @return 
  */
-    public void setStatus(String status) {        
-        // Begin Observable stanza
-        if (this.status != status) {
-            // Begin original body
-        this.status = status;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Status");
-            e.put("class", String.class);
-            if (status != null) {
-                e.put("value", status);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
+    public im.model.ContactList getList() {        
+        return list;
     } 
 
 /**
@@ -150,27 +172,5 @@ public class Contact extends im.model.NetworkSpecificData {
  */
     public String getUserId() {        
         return userId;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.ContactList getList() {        
-        return list;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public String getStatus() {        
-        return status;
     } 
  }

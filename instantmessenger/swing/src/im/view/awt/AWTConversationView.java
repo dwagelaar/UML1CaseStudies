@@ -65,9 +65,11 @@ public class AWTConversationView extends java.awt.Frame implements im.view.Conve
         setLayout(new BorderLayout());
         textConvField.setEditable(false);
         convPanel.setLayout(new BorderLayout());
+        convPanel.add(textConvField, BorderLayout.CENTER);
         add(convPanel, BorderLayout.CENTER);
         btnPanel.setLayout(new BorderLayout());
         btnPanel.add(sendBtn, BorderLayout.EAST);
+        btnPanel.add(messageField, BorderLayout.CENTER);
         add(btnPanel, BorderLayout.SOUTH);
         pack();
         setVisible(true);
@@ -101,29 +103,6 @@ public class AWTConversationView extends java.awt.Frame implements im.view.Conve
  */
     public Object getContent() {        
         return messageField.getText();
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param enabled 
- */
-    public void setTextEnabled(boolean enabled) {        
-        if (enabled) {
-            if (convPanel.getComponentCount() == 0) {
-                convPanel.add(textConvField, BorderLayout.CENTER);
-                btnPanel.add(messageField, BorderLayout.CENTER);
-                pack();
-            }
-        } else {
-            if (convPanel.getComponentCount() > 0) {
-                convPanel.remove(textConvField);
-                btnPanel.remove(messageField);
-                pack();
-            }
-        }
     } 
 
 /**

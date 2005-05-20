@@ -14,7 +14,7 @@ public abstract class Network extends java.util.Observable {
 /**
  * <p>Represents ...</p>
  */
-    private im.model.messages.Message recvMsg;
+    private im.model.Message recvMsg;
 
 /**
  * <p>Represents ...</p>
@@ -51,31 +51,6 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @param recvMsg 
- */
-    public void setRecvMsg(im.model.messages.Message recvMsg) {        
-        // Begin Observable stanza
-        if (this.recvMsg != recvMsg) {
-            // Begin original body
-        this.recvMsg = recvMsg;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "RecvMsg");
-            e.put("class", im.model.messages.Message.class);
-            if (recvMsg != null) {
-                e.put("value", recvMsg);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param name 
  */
     public void setName(String name) {        
@@ -101,10 +76,24 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @return 
+ * @param recvMsg 
  */
-    public im.model.Contact getRecvContact() {        
-        return recvContact;
+    public void setRecvMsg(im.model.Message recvMsg) {        
+        // Begin Observable stanza
+        if (this.recvMsg != recvMsg) {
+            // Begin original body
+        this.recvMsg = recvMsg;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "RecvMsg");
+            e.put("class", im.model.Message.class);
+            if (recvMsg != null) {
+                e.put("value", recvMsg);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -114,8 +103,8 @@ public abstract class Network extends java.util.Observable {
  * 
  * @return 
  */
-    public im.model.messages.Message getRecvMsg() {        
-        return recvMsg;
+    public im.model.Contact getRecvContact() {        
+        return recvContact;
     } 
 
 /**
@@ -134,9 +123,20 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
+ * @return 
+ */
+    public im.model.Message getRecvMsg() {        
+        return recvMsg;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param msg 
  */
-    public abstract void send(im.model.messages.Message msg);
+    public abstract void send(im.model.Message msg);
 
 /**
  * <p>Does ...</p>

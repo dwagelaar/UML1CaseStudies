@@ -4,7 +4,7 @@ package im.edit;
 /**
  * <p></p>
  */
-public class ContactListEdit implements im.view.ContactListViewListener, im.view.NewContactDialogListener, java.util.Observer {
+public class ContactListEdit implements java.util.Observer, im.view.ContactListViewListener, im.view.NewContactDialogListener {
 
 /**
  * <p>Represents ...</p>
@@ -14,12 +14,12 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List contactEdit = new java.util.ArrayList();
+    private im.view.ContactListView view = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ContactListView view = null;
+    private java.util.List contactEdit = new java.util.ArrayList();
 
 /**
  * <p>Does ...</p>
@@ -82,8 +82,8 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
  * 
  * @return 
  */
-    public im.model.ContactList getModel() {        
-        return model;
+    public java.util.List getContactEdits() {        
+        return contactEdit;
     } 
 
 /**
@@ -93,8 +93,8 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
  * 
  * @return 
  */
-    public java.util.List getContactEdits() {        
-        return contactEdit;
+    public im.model.ContactList getModel() {        
+        return model;
     } 
 
 /**
@@ -246,21 +246,10 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
         if (index > -1) {
             im.model.Contact c = getModel().getContactAt(index);
             im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();
-            im.model.messages.MessageFactory currentMf;
-            if (client.getMessageFactorys().size() == 1) {
-                currentMf = client.getMessageFactoryAt(0);
-            } else {
-                System.out.println("TODO: multiple message kind handling");
-                currentMf = client.getMessageFactoryAt(0);
-                // 1. new message dialog, in which message type gets chosen
-                // 2. new message gets created, along with view
-            }
             // reuse existing conversation, if any
             for (int i = 0; i < client.getConversations().size(); i++) {
                 im.model.Contact contact = client.getConversationAt(i).getContact();
-                im.model.messages.MessageFactory mf = 
-                    client.getConversationAt(i).getFactory();
-                if (contact.equals(c) && (mf.equals(currentMf))) {
+                if (contact.equals(c)) {
                     client.getConversationAt(i).setContact(new im.model.Contact());
                     client.getConversationAt(i).setContact(c);
                     return;
@@ -271,7 +260,6 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
             new ConversationEdit(conv);
             client.addConversation(conv);
             conv.setContact(c);
-            conv.setFactory(currentMf);
         }
     } 
 

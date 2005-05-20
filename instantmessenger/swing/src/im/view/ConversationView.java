@@ -40,14 +40,6 @@ public interface ConversationView {
  * <p>Does ...</p>
  * 
  * 
- * 
- * @param enabled 
- */
-    public abstract void setTextEnabled(boolean enabled);
-/**
- * <p>Does ...</p>
- * 
- * 
  */
     public abstract void toFront();
 }

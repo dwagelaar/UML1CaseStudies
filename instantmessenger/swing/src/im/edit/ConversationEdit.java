@@ -4,7 +4,7 @@ package im.edit;
 /**
  * <p></p>
  */
-public class ConversationEdit implements im.view.ConversationViewListener, java.util.Observer {
+public class ConversationEdit implements java.util.Observer, im.view.ConversationViewListener {
 
 /**
  * <p>Represents ...</p>
@@ -113,18 +113,16 @@ public class ConversationEdit implements im.view.ConversationViewListener, java.
  * 
  * @param m 
  */
-    public void onMessageChange(im.model.messages.Message m) {        
-        if (getModel().getMessages().contains(m)) {
-            if (m.getContent() instanceof String) {
-                im.model.ContactList list =
-                    im.InstantMessagingClient.getInstance().getContactList();
-                getView().addContent(list.getUserName(m.getSender())
-                    + ": " + m.getContent());
-            } else {
-                getView().addContent(m.getContent());
-            }
-            getView().toFront();
+    public void onMessageChange(im.model.Message m) {        
+        if (m.getContent() instanceof String) {
+            im.model.ContactList list =
+                im.InstantMessagingClient.getInstance().getContactList();
+            getView().addContent(list.getUserName(m.getSender())
+                + ": " + m.getContent());
+        } else {
+            getView().addContent(m.getContent());
         }
+        getView().toFront();
     } 
 
 /**
@@ -134,24 +132,8 @@ public class ConversationEdit implements im.view.ConversationViewListener, java.
  * 
  * @param c 
  */
-    public void onContactChange(im.model.Contact c) {
+    public void onContactChange(im.model.Contact c) {        
         getView().setTitle(getModel().getContact().getName());
-        getView().toFront();
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param f 
- */
-    public void onFactoryChange(im.model.messages.MessageFactory f) {        
-        if (f.isValidContent(new String())) {
-            getView().setTextEnabled(true);
-        } else {
-            getView().setTextEnabled(false);
-        }
         getView().toFront();
     } 
 
@@ -172,13 +154,13 @@ public class ConversationEdit implements im.view.ConversationViewListener, java.
     public void onConversationSend() {        
         im.model.Contact recipient = getModel().getContact();
         im.model.Contact sender = getSender(recipient);
-        im.model.messages.Message msg = getModel().getFactory().createMessage();
+        im.model.Message msg = new im.model.Message();
         msg.setNetwork(recipient.getNetwork());
         msg.setSender(sender.getUserId());
         msg.setRecipient(recipient.getUserId());
         msg.setContent(getView().getContent());
         msg.send();
-        getModel().addMessage(msg);
+        getModel().setMessage(msg);
     } 
 
 /**

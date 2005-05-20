@@ -209,4 +209,17 @@ public class AWTNewContactDialog extends java.awt.Frame implements im.view.NewCo
             ((NewContactDialogListener) listeners.elementAt(i)).onNewContactDialogClose(okClicked, this);
         }
     } 
-}
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param n 
+ */
+    public void setAvailableNetworks(im.networking.Network[] n) {        
+        for (int i = 0; i < n.length; i++) {
+            networkField.add(n[i].getName());
+        }
+    } 
+ }

@@ -8,7 +8,7 @@ import java.net.*;
 /**
  * <p></p>
  */
-public class Jabber extends im.networking.Network implements com.jabberwookie.MessageListener, com.jabberwookie.PresenceListener, com.jabberwookie.IQListener {
+public class Jabber extends im.networking.Network implements com.jabberwookie.PresenceListener, com.jabberwookie.IQListener, com.jabberwookie.MessageListener {
 
 /**
  * <p>Represents ...</p>
@@ -29,31 +29,6 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  * <p>Represents ...</p>
  */
     private String uid = "";
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param socket 
- */
-    public void setSocket(java.net.Socket socket) {        
-        // Begin Observable stanza
-        if (this.socket != socket) {
-            // Begin original body
-        this.socket = socket;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Socket");
-            e.put("class", java.net.Socket.class);
-            if (socket != null) {
-                e.put("value", socket);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
 
 /**
  * <p>Does ...</p>
@@ -85,10 +60,24 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  * 
  * 
  * 
- * @return 
+ * @param socket 
  */
-    public java.net.Socket getSocket() {        
-        return socket;
+    public void setSocket(java.net.Socket socket) {        
+        // Begin Observable stanza
+        if (this.socket != socket) {
+            // Begin original body
+        this.socket = socket;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Socket");
+            e.put("class", java.net.Socket.class);
+            if (socket != null) {
+                e.put("value", socket);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -100,6 +89,17 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  */
     public com.jabberwookie.Client2Server getConnection() {        
         return connection;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public java.net.Socket getSocket() {        
+        return socket;
     } 
 
 /**
@@ -118,7 +118,7 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  * 
  * @param msg 
  */
-    public void send(im.model.messages.Message msg) {        
+    public void send(im.model.Message msg) {        
         try {
             if (getConnection() == null) {
                 throw new java.io.IOException("Cannot send message: connection not established");
@@ -203,7 +203,7 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  * 
  * 
  */
-    public void logout() {
+    public void logout() {        
         try {
             if (getConnection() == null) {
                 throw new java.io.IOException("Cannot logout: connection not established");
@@ -252,23 +252,23 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  * @param c 
  */
     public void removeContact(im.model.Contact c) {        
-        try {
-            if (getConnection() == null) {
-                throw new java.io.IOException("Cannot remove contact: connection not established");
-            }
-            IQRoster roster = new IQRoster();
-            roster.addItem(c.getUserId());
-            ((IQRoster.Item) roster.getChild(0)).setSubscription(Const.REMOVE);
-            IQ iq = new IQ(Const.SET);
-            iq.addChild(roster);
-            getConnection().send(iq);
-            Presence presence = new Presence(c.getUserId(), Const.UNSUBSCRIBE);
-            System.out.println("Removing contact " + presence);
-            getConnection().send(presence);
-       	} catch (java.io.IOException e) {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
-       	}
+         try {
+             if (getConnection() == null) {
+                 throw new java.io.IOException("Cannot remove contact: connection not established");
+             }
+             IQRoster roster = new IQRoster();
+             roster.addItem(c.getUserId());
+             ((IQRoster.Item) roster.getChild(0)).setSubscription(Const.REMOVE);
+             IQ iq = new IQ(Const.SET);
+             iq.addChild(roster);
+             getConnection().send(iq);
+             Presence presence = new Presence(c.getUserId(), Const.UNSUBSCRIBE);
+             System.out.println("Removing contact " + presence);
+             getConnection().send(presence);
+        	} catch (java.io.IOException e) {
+             System.err.println(e.getMessage());
+             e.printStackTrace();
+        	}
     } 
 
 /**
@@ -279,18 +279,12 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.Me
  * @param message 
  */
     public void incomingMessage(com.jabberwookie.ns.jabber.Message message) {        
-        im.InstantMessagingClient c = im.InstantMessagingClient.getInstance();
-        im.model.messages.MessageFactory mf = c.getMessageFactory(message.getBody());
-        if (mf != null) {
-            System.out.println("Message: " + message);
-            im.model.messages.Message msg = mf.createMessage();
-            msg.setSender(stripResource(message.getFrom()));
-            msg.setRecipient(message.getTo());
-            msg.setContent(message.getBody());
-            setRecvMsg(msg);
-        } else {
-            System.err.println("No message factory for " + message);
-        }
+        System.out.println("Message: " + message);
+        im.model.Message msg = new im.model.Message();
+        msg.setSender(stripResource(message.getFrom()));
+        msg.setRecipient(message.getTo());
+        msg.setContent(message.getBody());
+        setRecvMsg(msg);
     } 
 
 /**

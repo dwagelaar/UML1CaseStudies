@@ -22,7 +22,7 @@ public class SMS extends im.networking.Network {
  * 
  * @param msg 
  */
-    public void send(im.model.messages.Message msg) {        
+    public void send(im.model.Message msg) {        
         System.out.println("Sending " + msg + " via " + getName());
         // your code here
     } 

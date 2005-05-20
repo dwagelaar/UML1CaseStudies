@@ -73,9 +73,11 @@ public class SwingConversationView extends javax.swing.JFrame implements im.view
         textConvScroll.setPreferredSize(new Dimension(500, 300));
         textConvScroll.getViewport().setView(textConvField);
         convPanel.setLayout(new BorderLayout());
+        convPanel.add(textConvScroll, BorderLayout.CENTER);
         getContentPane().add(convPanel, BorderLayout.CENTER);
         btnPanel.setLayout(new BorderLayout());
         btnPanel.add(sendBtn, BorderLayout.EAST);
+        btnPanel.add(messageField, BorderLayout.CENTER);
         getContentPane().add(btnPanel, BorderLayout.SOUTH);
         pack();
         setVisible(true);
@@ -108,29 +110,6 @@ public class SwingConversationView extends javax.swing.JFrame implements im.view
             Graphics g = convPanel.getGraphics();
             g.drawImage(im, 1, 1, convPanel);
             g.finalize();
-        }
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param enabled 
- */
-    public void setTextEnabled(boolean enabled) {        
-        if (enabled) {
-            if (convPanel.getComponentCount() == 0) {
-                convPanel.add(textConvScroll, BorderLayout.CENTER);
-                btnPanel.add(messageField, BorderLayout.CENTER);
-                pack();
-            }
-        } else {
-            if (convPanel.getComponentCount() > 0) {
-                convPanel.remove(textConvScroll);
-                btnPanel.remove(messageField);
-                pack();
-            }
         }
     } 
 
@@ -181,18 +160,6 @@ public class SwingConversationView extends javax.swing.JFrame implements im.view
             pop();
         }
         super.setVisible(visible);
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public void toFront() {        
-        if (!isActive()) {
-            pop();
-        }
-        super.toFront();
     } 
 
 /**
