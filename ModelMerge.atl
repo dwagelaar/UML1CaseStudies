@@ -63,21 +63,23 @@ helper context MERGEMODEL!Association def : notInSourceModel() : Boolean =
 	not self.connection->forAll(c|c.inSourceModel());
 
 helper context MERGEMODEL!AssociationEnd def : inSourceModel() : Boolean =
-	not INMODEL!AssociationEnd.allInstances()->select(e|e.name=self.name
-		and e.participant.qName()=self.participant.qName())->isEmpty();
+	if self.isNavigable then
+		not INMODEL!AssociationEnd.allInstances()->select(e|e.isNavigable)->select(e|
+			e.name=self.name and e.participant.qName()=self.participant.qName())->isEmpty()
+	else if self.otherEnd().isNavigable then
+		self.otherEnd().inSourceModel()
+	else
+		true
+	endif endif;
 
 helper context MERGEMODEL!AssociationEnd def : notInSourceModel() : Boolean =
 	self.association.notInSourceModel();
 
-helper context MERGEMODEL!TaggedValue def : notInSourceModel() : Boolean =
-	INMODEL!TaggedValue.allInstances()->select(e|
-		e.modelElement.qName()=self.modelElement.qName() and
-		e.type.qName()=self.type.qName())->isEmpty();
+helper context MERGEMODEL!AssociationEnd def : otherEnd() : MERGEMODEL!AssociationEnd =
+	self.association.connection->select(x|x<>self)->first();
 
-helper context MERGEMODEL!TaggedValue def : fromSourceModel() : INMODEL!TaggedValue =
-	INMODEL!TaggedValue.allInstances()->select(e|
-		e.modelElement.qName()=self.modelElement.qName() and
-		e.type.qName()=self.type.qName())->first();
+helper context MERGEMODEL!TaggedValue def : notInSourceModel() : Boolean =
+	self.modelElement.notInSourceModel();
 
 helper context MERGEMODEL!Feature def : notInSourceModel() : Boolean =
 	self.owner.notInSourceModel();
@@ -102,8 +104,8 @@ helper context MERGEMODEL!Generalization def : notInSourceModel() : Boolean =
 		g.child.qName()=self.child.qName())->isEmpty();
 
 helper context MERGEMODEL!Multiplicity def : notInSourceModel() : Boolean =
-	if not MERGEMODEL!BehavioralFeature.allInstances()->select(e|e.multiplicity=self)->isEmpty() then
-		MERGEMODEL!BehavioralFeature.allInstances()->select(e|e.multiplicity=self)->first().notInSourceModel()
+	if not MERGEMODEL!StructuralFeature.allInstances()->select(e|e.multiplicity=self)->isEmpty() then
+		MERGEMODEL!StructuralFeature.allInstances()->select(e|e.multiplicity=self)->first().notInSourceModel()
 	else if	not MERGEMODEL!AssociationEnd.allInstances()->select(e|e.multiplicity=self)->isEmpty() then
 		MERGEMODEL!AssociationEnd.allInstances()->select(e|e.multiplicity=self)->first().notInSourceModel()
 	else if	not MERGEMODEL!TagDefinition.allInstances()->select(e|e.multiplicity=self)->isEmpty() then
