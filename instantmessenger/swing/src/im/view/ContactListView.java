@@ -12,7 +12,7 @@ public interface ContactListView {
  * @param c 
  * @param index 
  */
-    public abstract void addContact(im.model.Contact c, int index);
+    public abstract void addContact(String c, int index);
 /**
  * <p>Does ...</p>
  * 

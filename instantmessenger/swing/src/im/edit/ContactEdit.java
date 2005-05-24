@@ -138,7 +138,32 @@ public class ContactEdit implements java.util.Observer {
         	int index = getListEdit().getContactEdits().indexOf(this);
             if (index > -1) {
                 getListEdit().getView().removeContact(index);
-                getListEdit().getView().addContact(getModel(), index);
+                getListEdit().getView().addContact(formatContact(), index);
             }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String formatContact() {        
+        String name = getModel().getName();
+        String status = getModel().getStatus();
+        if (getModel() instanceof im.model.Identity) {
+            name = "* " + name;
+        } else {
+            name = "  " + name;
+        }
+        if (getModel().getNetwork() != null) {
+            name += " - " + getModel().getNetwork().getName();
+        }
+        if (status == null) {
+            status = "offline";
+        }
+        name += " (" + status + ")";
+        return name;
     } 
  }

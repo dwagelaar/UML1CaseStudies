@@ -31,20 +31,45 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param status 
+ * @param userId 
  */
-    public void setStatus(String status) {        
+    public void setUserId(String userId) {        
         // Begin Observable stanza
-        if (this.status != status) {
+        if (this.userId != userId) {
             // Begin original body
-        this.status = status;
+        this.userId = userId;
             // End original body
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Status");
+            e.put("name", "UserId");
             e.put("class", String.class);
-            if (status != null) {
-                e.put("value", status);
+            if (userId != null) {
+                e.put("value", userId);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param name 
+ */
+    public void setName(String name) {        
+        // Begin Observable stanza
+        if (this.name != name) {
+            // Begin original body
+        this.name = name;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Name");
+            e.put("class", String.class);
+            if (name != null) {
+                e.put("value", name);
             }
             notifyObservers(e);
         }
@@ -85,45 +110,20 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param name 
+ * @param status 
  */
-    public void setName(String name) {        
+    public void setStatus(String status) {        
         // Begin Observable stanza
-        if (this.name != name) {
+        if (this.status != status) {
             // Begin original body
-        this.name = name;
+        this.status = status;
             // End original body
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Name");
+            e.put("name", "Status");
             e.put("class", String.class);
-            if (name != null) {
-                e.put("value", name);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param userId 
- */
-    public void setUserId(String userId) {        
-        // Begin Observable stanza
-        if (this.userId != userId) {
-            // Begin original body
-        this.userId = userId;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "UserId");
-            e.put("class", String.class);
-            if (userId != null) {
-                e.put("value", userId);
+            if (status != null) {
+                e.put("value", status);
             }
             notifyObservers(e);
         }
@@ -137,19 +137,8 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getStatus() {        
-        return status;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.ContactList getList() {        
-        return list;
+    public String getUserId() {        
+        return userId;
     } 
 
 /**
@@ -170,7 +159,18 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getUserId() {        
-        return userId;
+    public im.model.ContactList getList() {        
+        return list;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getStatus() {        
+        return status;
     } 
  }

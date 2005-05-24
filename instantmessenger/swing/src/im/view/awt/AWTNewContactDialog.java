@@ -98,10 +98,6 @@ public class AWTNewContactDialog extends java.awt.Frame implements im.view.NewCo
         });
         setTitle("Add new contact");
         setLayout(new BorderLayout());
-        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();
-        for (int i = 0; i < client.getNetworks().size(); i++) {
-            networkField.add(client.getNetworkAt(i).getName());
-        }
         dlgPanel.setLayout(new GridLayout(4,2));
         dlgPanel.add(network);
         dlgPanel.add(networkField);
@@ -150,9 +146,8 @@ public class AWTNewContactDialog extends java.awt.Frame implements im.view.NewCo
  * 
  * @return 
  */
-    public im.networking.Network getNetwork() {        
-        int index = networkField.getSelectedIndex();
-        return im.InstantMessagingClient.getInstance().getNetworkAt(index);
+    public int getNetwork() {        
+        return networkField.getSelectedIndex();
     } 
 
 /**
@@ -217,9 +212,7 @@ public class AWTNewContactDialog extends java.awt.Frame implements im.view.NewCo
  * 
  * @param n 
  */
-    public void setAvailableNetworks(im.networking.Network[] n) {        
-        for (int i = 0; i < n.length; i++) {
-            networkField.add(n[i].getName());
-        }
+    public void addNetwork(String n) {        
+        networkField.add(n);
     } 
  }

@@ -73,22 +73,8 @@ public class AWTContactListView extends java.awt.Panel implements im.view.Contac
  * @param contact 
  * @param index 
  */
-    public void addContact(im.model.Contact contact, int index) {        
-        String name = contact.getName();
-        String status = contact.getStatus();
-        if (contact instanceof im.model.Identity) {
-            name = "* " + name;
-        } else {
-            name = "  " + name;
-        }
-        if (contact.getNetwork() != null) {
-            name += " - " + contact.getNetwork().getName();
-        }
-        if (status == null) {
-            status = "offline";
-        }
-        name += " (" + status + ")";
-        list.add(name, index);
+    public void addContact(String contact, int index) {        
+        list.add(contact, index);
     } 
 
 /**

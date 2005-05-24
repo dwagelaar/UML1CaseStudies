@@ -8,17 +8,17 @@ import java.net.*;
 /**
  * <p></p>
  */
-public class Jabber extends im.networking.Network implements com.jabberwookie.PresenceListener, com.jabberwookie.IQListener, com.jabberwookie.MessageListener {
-
-/**
- * <p>Represents ...</p>
- */
-    private com.jabberwookie.Client2Server connection;
+public class Jabber extends im.networking.Network implements com.jabberwookie.IQListener, com.jabberwookie.MessageListener, com.jabberwookie.PresenceListener {
 
 /**
  * <p>Represents ...</p>
  */
     private java.net.Socket socket = null;
+
+/**
+ * <p>Represents ...</p>
+ */
+    private com.jabberwookie.Client2Server connection;
 
 /**
  * <p>Represents ...</p>

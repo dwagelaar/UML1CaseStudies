@@ -99,10 +99,6 @@ public class SwingNewContactDialog extends javax.swing.JFrame implements im.view
         });
         setTitle("Add new contact");
         getContentPane().setLayout(new BorderLayout());
-        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();
-        for (int i = 0; i < client.getNetworks().size(); i++) {
-            networkField.addItem(makeObject(client.getNetworkAt(i).getName()));
-        }
         dlgPanel.setLayout(new GridLayout(4,2));
         dlgPanel.add(network);
         dlgPanel.add(networkField);
@@ -166,9 +162,8 @@ public class SwingNewContactDialog extends javax.swing.JFrame implements im.view
  * 
  * @return 
  */
-    public im.networking.Network getNetwork() {        
-        int index = networkField.getSelectedIndex();
-        return im.InstantMessagingClient.getInstance().getNetworkAt(index);
+    public int getNetwork() {        
+        return networkField.getSelectedIndex();
     } 
 
 /**
@@ -224,5 +219,16 @@ public class SwingNewContactDialog extends javax.swing.JFrame implements im.view
  */
     public String getPassword() {        
         return passwordField.getText();
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param n 
+ */
+    public void addNetwork(String n) {        
+        networkField.addItem(makeObject(n));
     } 
  }

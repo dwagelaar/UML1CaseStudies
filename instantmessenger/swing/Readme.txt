@@ -4,6 +4,10 @@ Instant Messenger - Swing Version
 This version was derived from InstantMessengerModel.xmi
 through the following operations:
 
+* IMAWT.launch
+* IMSwing.launch
+* IMJabber.launch
+* IMSMS.launch
 * IMJava2Attributes.launch
 * IMJava2Accessors.launch
 * IMJavaObserver.launch

@@ -9,17 +9,17 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
 /**
  * <p>Represents ...</p>
  */
-    private im.model.ContactList model = null;
-
-/**
- * <p>Represents ...</p>
- */
     private im.view.ContactListView view = null;
 
 /**
  * <p>Represents ...</p>
  */
     private java.util.List contactEdit = new java.util.ArrayList();
+
+/**
+ * <p>Represents ...</p>
+ */
+    private im.model.ContactList model = null;
 
 /**
  * <p>Does ...</p>
@@ -82,17 +82,6 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
  * 
  * @return 
  */
-    public java.util.List getContactEdits() {        
-        return contactEdit;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
     public im.model.ContactList getModel() {        
         return model;
     } 
@@ -106,6 +95,17 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
  */
     public im.view.ContactListView getView() {        
         return view;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public java.util.List getContactEdits() {        
+        return contactEdit;
     } 
 
 /**
@@ -196,8 +196,8 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
         int index = getModel().getContacts().indexOf(c);
         if (index > -1) {
             ContactEdit edit = new ContactEdit(c);
-            getView().addContact(c, index);
             insertContactEdit(edit, index);
+            getView().addContact(edit.formatContact(), index);
         } else {
             index = getContactEditIndex(c);
             getView().removeContact(index);
@@ -212,8 +212,12 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
  */
     public void onContactListAdd() {        
         getView().setEnabled(false);
+        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();
         im.view.NewContactDialog dlg =
-            im.InstantMessagingClient.getInstance().getViewFactory().createNewContactDialog();
+            client.getViewFactory().createNewContactDialog();
+        for (int i = 0; i < client.getNetworks().size(); i++) {
+            dlg.addNetwork(client.getNetworkAt(i).getName());
+        }
         dlg.addListener(this);
     } 
 
@@ -274,9 +278,11 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
     public void onNewContactDialogClose(boolean okClicked, im.view.NewContactDialog dlg) {        
         if (okClicked) {
             im.model.Contact c;
-            if (getModel().getIdentity(dlg.getNetwork()) == null) {
+            im.networking.Network n =
+                im.InstantMessagingClient.getInstance().getNetworkAt(dlg.getNetwork());
+            if (getModel().getIdentity(n) == null) {
                 im.model.Identity id = new im.model.Identity();
-                id.setNetwork(dlg.getNetwork());
+                id.setNetwork(n);
                 id.setUserId(dlg.getUid());
                 id.setName(dlg.getName());
                 id.setPassword(dlg.getPassword());
@@ -285,7 +291,7 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
                 id.getNetwork().login(id.getUserId(), id.getPassword());
             } else {
                 c = new im.model.Contact();
-                c.setNetwork(dlg.getNetwork());
+                c.setNetwork(n);
                 c.setUserId(dlg.getUid());
                 c.setName(dlg.getName());
                 getModel().addContact(c);

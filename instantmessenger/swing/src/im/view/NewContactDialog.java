@@ -27,7 +27,7 @@ public interface NewContactDialog {
  * 
  * @return 
  */
-    public abstract im.networking.Network getNetwork();
+    public abstract int getNetwork();
 /**
  * <p>Does ...</p>
  * 
@@ -44,6 +44,14 @@ public interface NewContactDialog {
  * @param l 
  */
     public abstract void addListener(im.view.NewContactDialogListener l);
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param n 
+ */
+    public abstract void addNetwork(String n);
 }
 
 

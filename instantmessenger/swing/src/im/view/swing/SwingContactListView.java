@@ -82,22 +82,8 @@ public class SwingContactListView extends javax.swing.JPanel implements im.view.
  * @param contact 
  * @param index 
  */
-    public void addContact(im.model.Contact contact, int index) {        
-        String name = contact.getName();
-        String status = contact.getStatus();
-        if (contact instanceof im.model.Identity) {
-            name = "* " + name;
-        } else {
-            name = "  " + name;
-        }
-        if (contact.getNetwork() != null) {
-            name += " - " + contact.getNetwork().getName();
-        }
-        if (status == null) {
-            status = "offline";
-        }
-        name += " (" + status + ")";
-        listAdd(name, index);
+    public void addContact(String contact, int index) {        
+        listAdd(contact, index);
     } 
 
 /**

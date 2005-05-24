@@ -31,56 +31,6 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param content 
- */
-    public void setContent(Object content) {        
-        // Begin Observable stanza
-        if (this.content != content) {
-            // Begin original body
-        this.content = content;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Content");
-            e.put("class", Object.class);
-            if (content != null) {
-                e.put("value", content);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param sender 
- */
-    public void setSender(String sender) {        
-        // Begin Observable stanza
-        if (this.sender != sender) {
-            // Begin original body
-        this.sender = sender;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Sender");
-            e.put("class", String.class);
-            if (sender != null) {
-                e.put("value", sender);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param conversation 
  */
     public void setConversation(im.model.Conversation conversation) {        
@@ -134,10 +84,24 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @return 
+ * @param content 
  */
-    public Object getContent() {        
-        return content;
+    public void setContent(Object content) {        
+        // Begin Observable stanza
+        if (this.content != content) {
+            // Begin original body
+        this.content = content;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Content");
+            e.put("class", Object.class);
+            if (content != null) {
+                e.put("value", content);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -145,10 +109,24 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @return 
+ * @param sender 
  */
-    public String getSender() {        
-        return sender;
+    public void setSender(String sender) {        
+        // Begin Observable stanza
+        if (this.sender != sender) {
+            // Begin original body
+        this.sender = sender;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Sender");
+            e.put("class", String.class);
+            if (sender != null) {
+                e.put("value", sender);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -171,6 +149,28 @@ public class Message extends im.model.NetworkSpecificData {
  */
     public String getRecipient() {        
         return recipient;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public Object getContent() {        
+        return content;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getSender() {        
+        return sender;
     } 
 
 /**
