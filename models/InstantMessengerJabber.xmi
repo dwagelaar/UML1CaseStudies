@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 20 15:55:35 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue May 24 17:24:48 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -80,6 +80,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                         <UML:Dependency xmi.idref = 'I5e1f0371m103888fb12amm670b'/>
                         <UML:Dependency xmi.idref = 'Im7dc8534am10389aee3admm688e'/>
                         <UML:Dependency xmi.idref = 'I5e1f0371m103888fb12amm66f2'/>
+                        <UML:Dependency xmi.idref = 'I742480e1m1040f4c9758mm7bd1'/>
                       </UML:ModelElement.clientDependency>
                       <UML:GeneralizableElement.generalization>
                         <UML:Generalization xmi.idref = 'Im2d596f98m10363d93b95mm37a2'/>
@@ -704,6 +705,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                         <UML:Class xmi.id = 'I6e742d0m1039cde3951mm65cc' name = 'IQ' visibility = 'public'
                           isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
                           isActive = 'false'/>
+                        <UML:Package xmi.id = 'I742480e1m1040f4c9758mm7bf6' name = 'iq' visibility = 'public'
+                          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                        <UML:Dependency xmi.id = 'I742480e1m1040f4c9758mm7bd1' isSpecification = 'false'>
+                          <UML:Dependency.client>
+                            <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm378c'/>
+                          </UML:Dependency.client>
+                          <UML:Dependency.supplier>
+                            <UML:Package xmi.idref = 'I742480e1m1040f4c9758mm7bf6'/>
+                          </UML:Dependency.supplier>
+                        </UML:Dependency>
                       </UML:Namespace.ownedElement>
                     </UML:Package>
                     <UML:Dependency xmi.id = 'Im7dc8534am10389aee3admm688e' isSpecification = 'false'>

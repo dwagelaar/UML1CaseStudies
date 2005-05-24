@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 20 15:54:51 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue May 24 17:26:14 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -459,7 +459,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isAbstract = 'false'>
                       <UML:BehavioralFeature.parameter>
                         <UML:Parameter xmi.id = 'I6e742d0m1039cde3951mm63b4' name = 's' isSpecification = 'false'
-                          kind = 'in'/>
+                          kind = 'in'>
+                          <UML:Parameter.type>
+                            <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+                          </UML:Parameter.type>
+                        </UML:Parameter>
                       </UML:BehavioralFeature.parameter>
                     </UML:Operation>
                     <UML:Method xmi.id = 'I6e742d0m1039cde3951mm63de' isSpecification = 'false'
@@ -665,7 +669,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im2040183cm103a707e832mm4470' language = 'java'
-                          body = '        if (okClicked) {&#10;            im.model.Contact c;&#10;            if (getModel().getIdentity(dlg.getNetwork()) == null) {&#10;                im.model.Identity id = new im.model.Identity();&#10;                id.setNetwork(dlg.getNetwork());&#10;                id.setUserId(dlg.getUid());&#10;                id.setName(dlg.getName());&#10;                id.setPassword(dlg.getPassword());&#10;                c = id;&#10;                getModel().addContact(c);&#10;                id.getNetwork().login(id.getUserId(), id.getPassword());&#10;            } else {&#10;                c = new im.model.Contact();&#10;                c.setNetwork(dlg.getNetwork());&#10;                c.setUserId(dlg.getUid());&#10;                c.setName(dlg.getName());&#10;                getModel().addContact(c);&#10;                c.getNetwork().addContact(c);&#10;            }&#10;        }&#10;        getView().setEnabled(true);&#10;'/>
+                          body = '        if (okClicked) {&#10;            im.model.Contact c;&#10;            im.networking.Network n =&#10;                im.InstantMessagingClient.getInstance().getNetworkAt(dlg.getNetwork());&#10;            if (getModel().getIdentity(n) == null) {&#10;                im.model.Identity id = new im.model.Identity();&#10;                id.setNetwork(n);&#10;                id.setUserId(dlg.getUid());&#10;                id.setName(dlg.getName());&#10;                id.setPassword(dlg.getPassword());&#10;                c = id;&#10;                getModel().addContact(c);&#10;                id.getNetwork().login(id.getUserId(), id.getPassword());&#10;            } else {&#10;                c = new im.model.Contact();&#10;                c.setNetwork(n);&#10;                c.setUserId(dlg.getUid());&#10;                c.setName(dlg.getName());&#10;                getModel().addContact(c);&#10;                c.getNetwork().addContact(c);&#10;            }&#10;        }&#10;        getView().setEnabled(true);&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im2040183cm103a707e832mm4471'/>

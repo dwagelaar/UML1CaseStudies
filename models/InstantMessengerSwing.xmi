@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 20 15:56:29 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue May 24 15:45:30 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -168,400 +168,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'I6dcbb290m103cd3a30f0mm5483'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                      </UML:Classifier.feature>
-                    </UML:Class>
-                    <UML:Class xmi.id = 'I3e6530b3m103c0640dacmm5c0c' name = 'SwingNewContactDialog'
-                      visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
-                      isAbstract = 'false' isActive = 'false'>
-                      <UML:ModelElement.clientDependency>
-                        <UML:Abstraction xmi.idref = 'I3e6530b3m103c0640dacmm5ac7'/>
-                        <UML:Dependency xmi.idref = 'Im3485c6bbm103c188be3fmm5b47'/>
-                        <UML:Dependency xmi.idref = 'I3e6530b3m103c0640dacmm5289'/>
-                        <UML:Dependency xmi.idref = 'I3e6530b3m103c0640dacmm5691'/>
-                        <UML:Dependency xmi.idref = 'I3e6530b3m103c0640dacmm5421'/>
-                        <UML:Dependency xmi.idref = 'I3e6530b3m103c0640dacmm566a'/>
-                      </UML:ModelElement.clientDependency>
-                      <UML:GeneralizableElement.generalization>
-                        <UML:Generalization xmi.idref = 'I3e6530b3m103c0640dacmm5618'/>
-                      </UML:GeneralizableElement.generalization>
-                      <UML:Classifier.feature>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm55e1' name = 'dlgPanel'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm55d0' language = 'java'
-                              body = 'new JPanel()'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5642'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm55c7' name = 'btnPanel'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm55b6' language = 'java'
-                              body = 'new JPanel()'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5642'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm55ad' name = 'okBtn' visibility = 'private'
-                          isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm559c' language = 'java'
-                              body = 'new JButton(&quot;OK&quot;)'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5644'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm5593' name = 'cancelBtn'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm5582' language = 'java'
-                              body = 'new JButton(&quot;Cancel&quot;)'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5644'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm5579' name = 'uid' visibility = 'private'
-                          isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm555f' language = 'java'
-                              body = 'new JLabel(&quot;User ID&quot;)'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563e'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm555a' name = 'name' visibility = 'private'
-                          isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'Im49178f4bm103d01f7b74mm5448' language = 'java'
-                              body = 'new JLabel(&quot;Name&quot;)'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563e'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm5540' name = 'uidField'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm552f' language = 'java'
-                              body = 'new JTextField()'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5640'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm5526' name = 'nameField'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm5515' language = 'java'
-                              body = 'new JTextField()'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5640'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm550c' name = 'network' visibility = 'private'
-                          isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm54fb' language = 'java'
-                              body = 'new JLabel(&quot;Network&quot;)'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563e'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm54f2' name = 'networkField'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm54e1' language = 'java'
-                              body = 'new JComboBox()'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563c'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm54d8' name = 'listeners'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm54c7' language = 'java'
-                              body = 'new Vector()'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm36c2'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm54be' name = 'SwingNewContactDialog'
-                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
-                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                          isAbstract = 'false'>
-                          <UML:ModelElement.stereotype>
-                            <UML:Stereotype xmi.idref = 'Im2d596f98m10363d93b95mm3666'/>
-                          </UML:ModelElement.stereotype>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm549c' name = 'return' isSpecification = 'false'
-                              kind = 'return'>
-                              <UML:Parameter.type>
-                                <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5c0c'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm54bc' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm54bd' language = 'java'
-                              body = '        this.addWindowListener(new WindowAdapter() {&#10;            public void windowClosing(WindowEvent e) {&#10;                onCancel();&#10;            }&#10;        });&#10;        cancelBtn.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                onCancel();&#10;            }&#10;        });&#10;        okBtn.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                onOk();&#10;            }&#10;        });&#10;        setTitle(&quot;Add new contact&quot;);&#10;        getContentPane().setLayout(new BorderLayout());&#10;        dlgPanel.setLayout(new GridLayout(4,2));&#10;        dlgPanel.add(network);&#10;        dlgPanel.add(networkField);&#10;        dlgPanel.add(uid);&#10;        dlgPanel.add(uidField);&#10;        dlgPanel.add(name);&#10;        dlgPanel.add(nameField);&#10;        dlgPanel.add(password);&#10;        dlgPanel.add(passwordField);&#10;        getContentPane().add(dlgPanel, BorderLayout.CENTER);&#10;        btnPanel.setLayout(new FlowLayout());&#10;        btnPanel.add(okBtn);&#10;        btnPanel.add(cancelBtn);&#10;        getContentPane().add(btnPanel, BorderLayout.SOUTH);&#10;        pack();&#10;        setVisible(true);&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm54be'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm547e' name = 'makeObject'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                          isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm5466' name = 's' isSpecification = 'false'
-                              kind = 'in'>
-                              <UML:ModelElement.taggedValue>
-                                <UML:TaggedValue xmi.id = 'I3e6530b3m103c0640dacmm543b' isSpecification = 'false'>
-                                  <UML:TaggedValue.dataValue>true</UML:TaggedValue.dataValue>
-                                  <UML:TaggedValue.type>
-                                    <UML:TagDefinition xmi.idref = 'I3e6530b3m103c0640dacmm543e'/>
-                                  </UML:TaggedValue.type>
-                                </UML:TaggedValue>
-                              </UML:ModelElement.taggedValue>
-                            </UML:Parameter>
-                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm5465' name = 'return' isSpecification = 'false'
-                              kind = 'return'/>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm547c' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm547d' language = 'java'
-                              body = '        return new Object() {&#10;            public String toString() {&#10;                return s;&#10;            }&#10;        };&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm547e'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm53fc' name = 'getUid' visibility = 'public'
-                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm53fd' name = 'return' isSpecification = 'false'
-                              kind = 'return'>
-                              <UML:Parameter.type>
-                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm53fe' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm53ff' language = 'java'
-                              body = '        return uidField.getText();&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm53fc'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm53d8' name = 'getName' visibility = 'public'
-                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm53d9' name = 'return' isSpecification = 'false'
-                              kind = 'return'>
-                              <UML:Parameter.type>
-                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm53da' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm53db' language = 'java'
-                              body = '        return nameField.getText();&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm53d8'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm53b4' name = 'getNetwork'
-                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
-                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                          isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm53b5' name = 'return' isSpecification = 'false'
-                              kind = 'return'/>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm53b6' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm53b7' language = 'java'
-                              body = '        int index = networkField.getSelectedIndex();&#10;        return im.InstantMessagingClient.getInstance().getNetworkAt(index);&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm53b4'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm538c' name = 'addListener'
-                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
-                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                          isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm538d' name = 'l' isSpecification = 'false'
-                              kind = 'in'>
-                              <UML:Parameter.type>
-                                <UML:Interface xmi.idref = 'Im2040183cm103a707e832mm6408'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm538e' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm538f' language = 'java'
-                              body = '        listeners.addElement(l);&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm538c'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm536b' name = 'onOk' visibility = 'private'
-                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm536c' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm536d' language = 'java'
-                              body = '        setVisible(false);&#10;        notifyListeners(true);&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm536b'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm535a' name = 'onCancel'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                          isAbstract = 'false'/>
-                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm535b' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm535c' language = 'java'
-                              body = '        setVisible(false);&#10;        notifyListeners(false);&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm535a'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm533e' name = 'notifyListeners'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                          isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm533f' name = 'okClicked'
-                              isSpecification = 'false' kind = 'in'>
-                              <UML:Parameter.type>
-                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm366c'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm5340' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm5341' language = 'java'
-                              body = '        for (int i = 0; i &lt; listeners.size(); i++) {&#10;            ((NewContactDialogListener) listeners.elementAt(i)).onNewContactDialogClose(okClicked, this);&#10;        }&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm533e'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Attribute xmi.id = 'Im399d9576m103cccccbcamm5297' name = 'password'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'I4bd70c44m103cd5267fcmmc72' language = 'java'
-                              body = 'new JLabel(&quot;Password&quot;)'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563e'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Attribute xmi.id = 'Im399d9576m103cccccbcamm5285' name = 'passwordField'
-                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'>
-                          <UML:Attribute.initialValue>
-                            <UML:Expression xmi.id = 'Im399d9576m103cccccbcamm5240' language = 'java'
-                              body = 'new JPasswordField()'/>
-                          </UML:Attribute.initialValue>
-                          <UML:StructuralFeature.type>
-                            <UML:Class xmi.idref = 'Im399d9576m103cccccbcamm5245'/>
-                          </UML:StructuralFeature.type>
-                        </UML:Attribute>
-                        <UML:Operation xmi.id = 'Im399d9576m103cccccbcamm5252' name = 'getPassword'
-                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
-                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                          isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'Im399d9576m103cccccbcamm5253' name = 'return' isSpecification = 'false'
-                              kind = 'return'>
-                              <UML:Parameter.type>
-                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'Im399d9576m103cccccbcamm5254' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'Im399d9576m103cccccbcamm5255' language = 'java'
-                              body = '        return passwordField.getText();&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'Im399d9576m103cccccbcamm5252'/>
-                          </UML:Method.specification>
-                        </UML:Method>
-                        <UML:Operation xmi.id = 'I157a319dm103fa06bf69mm202a' name = 'addNetwork'
-                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
-                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                          isAbstract = 'false'>
-                          <UML:BehavioralFeature.parameter>
-                            <UML:Parameter xmi.id = 'I157a319dm103fa06bf69mm202b' name = 'n' isSpecification = 'false'
-                              kind = 'in'>
-                              <UML:Parameter.type>
-                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
-                              </UML:Parameter.type>
-                            </UML:Parameter>
-                          </UML:BehavioralFeature.parameter>
-                        </UML:Operation>
-                        <UML:Method xmi.id = 'I157a319dm103fa06bf69mm202c' isSpecification = 'false'
-                          isQuery = 'false'>
-                          <UML:Method.body>
-                            <UML:ProcedureExpression xmi.id = 'I157a319dm103fa06bf69mm202d' language = 'java'
-                              body = '        networkField.addItem(makeObject(n));&#10;'/>
-                          </UML:Method.body>
-                          <UML:Method.specification>
-                            <UML:Operation xmi.idref = 'I157a319dm103fa06bf69mm202a'/>
                           </UML:Method.specification>
                         </UML:Method>
                       </UML:Classifier.feature>
@@ -1113,6 +719,411 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1f68'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
+                    <UML:Class xmi.id = 'I3e6530b3m103c0640dacmm5c0c' name = 'SwingNewContactDialog'
+                      visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+                      isAbstract = 'false' isActive = 'false'>
+                      <UML:ModelElement.clientDependency>
+                        <UML:Abstraction xmi.idref = 'I3e6530b3m103c0640dacmm5ac7'/>
+                        <UML:Dependency xmi.idref = 'Im3485c6bbm103c188be3fmm5b47'/>
+                        <UML:Dependency xmi.idref = 'I3e6530b3m103c0640dacmm5289'/>
+                        <UML:Dependency xmi.idref = 'I3e6530b3m103c0640dacmm5691'/>
+                        <UML:Dependency xmi.idref = 'I3e6530b3m103c0640dacmm5421'/>
+                        <UML:Dependency xmi.idref = 'I3e6530b3m103c0640dacmm566a'/>
+                      </UML:ModelElement.clientDependency>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'I3e6530b3m103c0640dacmm5618'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm55e1' name = 'dlgPanel'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm55d0' language = 'java'
+                              body = 'new JPanel()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5642'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm55c7' name = 'btnPanel'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm55b6' language = 'java'
+                              body = 'new JPanel()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5642'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm55ad' name = 'okBtn' visibility = 'private'
+                          isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm559c' language = 'java'
+                              body = 'new JButton(&quot;OK&quot;)'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5644'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm5593' name = 'cancelBtn'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm5582' language = 'java'
+                              body = 'new JButton(&quot;Cancel&quot;)'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5644'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm5579' name = 'uid' visibility = 'private'
+                          isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm555f' language = 'java'
+                              body = 'new JLabel(&quot;User ID&quot;)'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563e'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm555a' name = 'name' visibility = 'private'
+                          isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'Im49178f4bm103d01f7b74mm5448' language = 'java'
+                              body = 'new JLabel(&quot;Name&quot;)'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563e'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm5540' name = 'uidField'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm552f' language = 'java'
+                              body = 'new JTextField()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5640'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm5526' name = 'nameField'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm5515' language = 'java'
+                              body = 'new JTextField()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5640'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm550c' name = 'network' visibility = 'private'
+                          isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm54fb' language = 'java'
+                              body = 'new JLabel(&quot;Network&quot;)'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563e'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm54f2' name = 'networkField'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm54e1' language = 'java'
+                              body = 'new JComboBox()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563c'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'I3e6530b3m103c0640dacmm54d8' name = 'listeners'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I3e6530b3m103c0640dacmm54c7' language = 'java'
+                              body = 'new Vector()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm36c2'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm54be' name = 'SwingNewContactDialog'
+                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'>
+                          <UML:ModelElement.stereotype>
+                            <UML:Stereotype xmi.idref = 'Im2d596f98m10363d93b95mm3666'/>
+                          </UML:ModelElement.stereotype>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm549c' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm5c0c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm54bc' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm54bd' language = 'java'
+                              body = '        this.addWindowListener(new WindowAdapter() {&#10;            public void windowClosing(WindowEvent e) {&#10;                onCancel();&#10;            }&#10;        });&#10;        cancelBtn.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                onCancel();&#10;            }&#10;        });&#10;        okBtn.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                onOk();&#10;            }&#10;        });&#10;        setTitle(&quot;Add new contact&quot;);&#10;        getContentPane().setLayout(new BorderLayout());&#10;        dlgPanel.setLayout(new GridLayout(4,2));&#10;        dlgPanel.add(network);&#10;        dlgPanel.add(networkField);&#10;        dlgPanel.add(uid);&#10;        dlgPanel.add(uidField);&#10;        dlgPanel.add(name);&#10;        dlgPanel.add(nameField);&#10;        dlgPanel.add(password);&#10;        dlgPanel.add(passwordField);&#10;        getContentPane().add(dlgPanel, BorderLayout.CENTER);&#10;        btnPanel.setLayout(new FlowLayout());&#10;        btnPanel.add(okBtn);&#10;        btnPanel.add(cancelBtn);&#10;        getContentPane().add(btnPanel, BorderLayout.SOUTH);&#10;        pack();&#10;        setVisible(true);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm54be'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm547e' name = 'makeObject'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm5466' name = 's' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue xmi.id = 'I3e6530b3m103c0640dacmm543b' isSpecification = 'false'>
+                                  <UML:TaggedValue.dataValue>true</UML:TaggedValue.dataValue>
+                                  <UML:TaggedValue.type>
+                                    <UML:TagDefinition xmi.idref = 'I3e6530b3m103c0640dacmm543e'/>
+                                  </UML:TaggedValue.type>
+                                </UML:TaggedValue>
+                              </UML:ModelElement.taggedValue>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm5465' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367a'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm547c' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm547d' language = 'java'
+                              body = '        return new Object() {&#10;            public String toString() {&#10;                return s;&#10;            }&#10;        };&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm547e'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm53fc' name = 'getUid' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm53fd' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm53fe' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm53ff' language = 'java'
+                              body = '        return uidField.getText();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm53fc'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm53d8' name = 'getName' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm53d9' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm53da' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm53db' language = 'java'
+                              body = '        return nameField.getText();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm53d8'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm53b4' name = 'getNetwork'
+                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm53b5' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm3674'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm53b6' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm53b7' language = 'java'
+                              body = '        return networkField.getSelectedIndex();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm53b4'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm538c' name = 'addListener'
+                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm538d' name = 'l' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:Interface xmi.idref = 'Im2040183cm103a707e832mm6408'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm538e' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm538f' language = 'java'
+                              body = '        listeners.addElement(l);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm538c'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm536b' name = 'onOk' visibility = 'private'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm536c' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm536d' language = 'java'
+                              body = '        setVisible(false);&#10;        notifyListeners(true);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm536b'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm535a' name = 'onCancel'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'/>
+                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm535b' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm535c' language = 'java'
+                              body = '        setVisible(false);&#10;        notifyListeners(false);&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm535a'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I3e6530b3m103c0640dacmm533e' name = 'notifyListeners'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I3e6530b3m103c0640dacmm533f' name = 'okClicked'
+                              isSpecification = 'false' kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm366c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I3e6530b3m103c0640dacmm5340' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I3e6530b3m103c0640dacmm5341' language = 'java'
+                              body = '        for (int i = 0; i &lt; listeners.size(); i++) {&#10;            ((NewContactDialogListener) listeners.elementAt(i)).onNewContactDialogClose(okClicked, this);&#10;        }&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I3e6530b3m103c0640dacmm533e'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Attribute xmi.id = 'Im399d9576m103cccccbcamm5297' name = 'password'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'I4bd70c44m103cd5267fcmmc72' language = 'java'
+                              body = 'new JLabel(&quot;Password&quot;)'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I3e6530b3m103c0640dacmm563e'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Attribute xmi.id = 'Im399d9576m103cccccbcamm5285' name = 'passwordField'
+                          visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
+                          changeability = 'changeable'>
+                          <UML:Attribute.initialValue>
+                            <UML:Expression xmi.id = 'Im399d9576m103cccccbcamm5240' language = 'java'
+                              body = 'new JPasswordField()'/>
+                          </UML:Attribute.initialValue>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'Im399d9576m103cccccbcamm5245'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
+                        <UML:Operation xmi.id = 'Im399d9576m103cccccbcamm5252' name = 'getPassword'
+                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'Im399d9576m103cccccbcamm5253' name = 'return' isSpecification = 'false'
+                              kind = 'return'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'Im399d9576m103cccccbcamm5254' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'Im399d9576m103cccccbcamm5255' language = 'java'
+                              body = '        return passwordField.getText();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'Im399d9576m103cccccbcamm5252'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                        <UML:Operation xmi.id = 'I157a319dm103fa06bf69mm202a' name = 'addNetwork'
+                          visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+                          isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
+                          isAbstract = 'false'>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I157a319dm103fa06bf69mm202b' name = 'n' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I157a319dm103fa06bf69mm202c' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I157a319dm103fa06bf69mm202d' language = 'java'
+                              body = '        networkField.addItem(makeObject(n));&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I157a319dm103fa06bf69mm202a'/>
                           </UML:Method.specification>
                         </UML:Method>
                       </UML:Classifier.feature>
