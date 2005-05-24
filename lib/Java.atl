@@ -243,17 +243,11 @@ helper context String def : javaNotifyObservers() : String =
 	'}';
 
 helper context String def : notifyStanza(type : String) : String =
-	'    java.util.Hashtable e = new java.util.Hashtable();\n' +
 	if self = self.javaBoxing(type.removeOcl()) then
-		'    e.put("name", "' + self.firstToUpper() + '");\n' +
-		'    if (' + self + ' != null) {\n' +
-		'        e.put("value", ' + self + ');\n' +
-		'    }\n'
+		'    notifyObservers("' + self.firstToUpper() + '", ' + self + ');\n'
 	else
-		'    e.put("name", "' + self.firstToUpper() + '");\n' +
-		'    e.put("value", ' + self.javaBoxing(type.removeOcl()) + ');\n'
-	endif
-	+ '    notifyObservers(e);\n';
+		'    notifyObservers("' + self.firstToUpper() + '", ' + self.javaBoxing(type.removeOcl()) + ');\n'
+	endif;
 	
 helper context String def : javaNotifyStanza(type : String) : String =
 	'    setChanged();\n' +

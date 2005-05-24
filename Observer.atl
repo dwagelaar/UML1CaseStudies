@@ -9,7 +9,7 @@ uses strings;
 -- ======================================================================
 -- model merge helpers begin
 -- ======================================================================
--- From: ModelMerge.atl 1104 2005-05-12 11:06:08Z dwagelaa
+-- From: ModelMerge.atl 1174 2005-05-23 07:38:38Z dwagelaa
 
 helper context INMODEL!ModelElement def : isInPackage() : Boolean =
 	not INMODEL!Package.allInstances()->select(p|
@@ -67,21 +67,23 @@ helper context MERGEMODEL!Association def : notInSourceModel() : Boolean =
 	not self.connection->forAll(c|c.inSourceModel());
 
 helper context MERGEMODEL!AssociationEnd def : inSourceModel() : Boolean =
-	not INMODEL!AssociationEnd.allInstances()->select(e|e.name=self.name
-		and e.participant.qName()=self.participant.qName())->isEmpty();
+	if self.isNavigable then
+		not INMODEL!AssociationEnd.allInstances()->select(e|e.isNavigable)->select(e|
+			e.name=self.name and e.participant.qName()=self.participant.qName())->isEmpty()
+	else if self.otherEnd().isNavigable then
+		self.otherEnd().inSourceModel()
+	else
+		true
+	endif endif;
 
 helper context MERGEMODEL!AssociationEnd def : notInSourceModel() : Boolean =
 	self.association.notInSourceModel();
 
-helper context MERGEMODEL!TaggedValue def : notInSourceModel() : Boolean =
-	INMODEL!TaggedValue.allInstances()->select(e|
-		e.modelElement.qName()=self.modelElement.qName() and
-		e.type.qName()=self.type.qName())->isEmpty();
+helper context MERGEMODEL!AssociationEnd def : otherEnd() : MERGEMODEL!AssociationEnd =
+	self.association.connection->select(x|x<>self)->first();
 
-helper context MERGEMODEL!TaggedValue def : fromSourceModel() : INMODEL!TaggedValue =
-	INMODEL!TaggedValue.allInstances()->select(e|
-		e.modelElement.qName()=self.modelElement.qName() and
-		e.type.qName()=self.type.qName())->first();
+helper context MERGEMODEL!TaggedValue def : notInSourceModel() : Boolean =
+	self.modelElement.notInSourceModel();
 
 helper context MERGEMODEL!Feature def : notInSourceModel() : Boolean =
 	self.owner.notInSourceModel();
@@ -106,8 +108,8 @@ helper context MERGEMODEL!Generalization def : notInSourceModel() : Boolean =
 		g.child.qName()=self.child.qName())->isEmpty();
 
 helper context MERGEMODEL!Multiplicity def : notInSourceModel() : Boolean =
-	if not MERGEMODEL!BehavioralFeature.allInstances()->select(e|e.multiplicity=self)->isEmpty() then
-		MERGEMODEL!BehavioralFeature.allInstances()->select(e|e.multiplicity=self)->first().notInSourceModel()
+	if not MERGEMODEL!StructuralFeature.allInstances()->select(e|e.multiplicity=self)->isEmpty() then
+		MERGEMODEL!StructuralFeature.allInstances()->select(e|e.multiplicity=self)->first().notInSourceModel()
 	else if	not MERGEMODEL!AssociationEnd.allInstances()->select(e|e.multiplicity=self)->isEmpty() then
 		MERGEMODEL!AssociationEnd.allInstances()->select(e|e.multiplicity=self)->first().notInSourceModel()
 	else if	not MERGEMODEL!TagDefinition.allInstances()->select(e|e.multiplicity=self)->isEmpty() then
@@ -160,8 +162,14 @@ helper context INMODEL!Attribute def : javaRemoverNotify(body : String) : String
 	'}\n' +
 	'// End Observable stanza';
 
-helper context String def : class() : INMODEL!Class =
-	INMODEL!Class.allInstances()->select(c|c.name=self)->first();
+helper context String def : qClass() : INMODEL!Class =
+	INMODEL!Class.allInstances()->select(c|c.qName()=self)->first();
+
+helper context String def : mergeQClass() : MERGEMODEL!Class =
+	MERGEMODEL!Class.allInstances()->select(c|c.qName()=self)->first();
+
+helper context String def : hasQClass() : Boolean =
+	not INMODEL!Class.allInstances()->select(c|c.qName()=self)->isEmpty();
 
 helper context String def : qInterface() : INMODEL!Interface =
 	INMODEL!Interface.allInstances()->select(c|c.qName()=self)->first();
@@ -172,8 +180,23 @@ helper context String def : mergeQInterface() : MERGEMODEL!Interface =
 helper context String def : hasQInterface() : Boolean =
 	not INMODEL!Interface.allInstances()->select(c|c.qName()=self)->isEmpty();
 
+helper context String def : hasDataType() : Boolean =
+	not INMODEL!DataType.allInstances()->select(c|c.name=self)->isEmpty();
+
+helper context String def : dataType() : INMODEL!DataType =
+	INMODEL!DataType.allInstances()->select(c|c.name=self)->first();
+
+helper context String def : mergeDataType() : MERGEMODEL!DataType =
+	MERGEMODEL!DataType.allInstances()->select(c|c.name=self)->first();
+
+helper context String def : hasStereotype() : Boolean =
+	not INMODEL!Stereotype.allInstances()->select(s|s.name=self)->isEmpty();
+
 helper context String def : stereotype() : INMODEL!Stereotype =
-	INMODEL!Stereotype.allInstances()->select(c|c.name=self)->first();
+	INMODEL!Stereotype.allInstances()->select(s|s.name=self)->first();
+
+helper context String def : mergeStereotype() : MERGEMODEL!Stereotype =
+	MERGEMODEL!Stereotype.allInstances()->select(s|s.name=self)->first();
 
 helper context INMODEL!AssociationEnd def : otherEnd() : INMODEL!AssociationEnd =
 	self.association.connection->select(x|x<>self)->first();
@@ -279,8 +302,7 @@ helper context INMODEL!Classifier def : handlers() : Sequence(INMODEL!Operation)
 	);
 
 helper context INMODEL!Classifier def : updateBody() : String =
-    'String name = (String) e.get("name");' +
-    self.handlers()->iterate(o; acc : String = ''|acc + o.updateBody('e.get("value")'));
+    self.handlers()->iterate(o; acc : String = ''|acc + o.updateBody('value'));
 
 helper context INMODEL!Operation def : updateBody(value : String) : String =
 	'\nif (name.equals("' + self.propertyName() + '")) {\n' +
@@ -306,7 +328,9 @@ rule ObservableClass {
 	to observers : OUTMODEL!Attribute (
 	   	name <- 'observers',
 		owner <- s,
-		type <- 'Vector'.class(),
+		type <- if 'java.util.Vector'.hasQClass()
+			then 'java.util.Vector'.qClass()
+			else 'java.util.Vector'.mergeQClass() endif,
 		visibility <- #vk_private,
 		ownerScope <- #sk_instance,
 		changeability <- #ck_changeable,
@@ -363,14 +387,23 @@ rule ObservableClass {
 		ownerScope <- #sk_instance,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   notifyObserversPar : OUTMODEL!Parameter (
-	   	name <- 'e',
+	   notifyObserversName : OUTMODEL!Parameter (
+	   	name <- 'name',
 		behavioralFeature <- notifyObservers,
-		type <- 'Hashtable'.class(),
+		type <- if 'String'.hasDataType()
+			then 'String'.dataType()
+			else 'String'.mergeDataType() endif,
+		kind <- #pdk_in),
+	   notifyObserversValue : OUTMODEL!Parameter (
+	   	name <- 'value',
+		behavioralFeature <- notifyObservers,
+		type <- if 'OclAny'.hasDataType()
+			then 'OclAny'.dataType()
+			else 'OclAny'.mergeDataType() endif,
 		kind <- #pdk_in),
 	   notifyObserversBody : OUTMODEL!ProcedureExpression (
 	   	language <- 'java',
-		body <- 'e'.javaNotifyObservers()),
+		body <- 'name, value'.javaNotifyObservers()),
 	   notifyObserversMeth : OUTMODEL!Method (
 	   	owner <- s,
 		body <- notifyObserversBody,
@@ -381,7 +414,9 @@ rule ObserverClass {
 	from s : INMODEL!Class (s.isObserverType())
 	to t : OUTMODEL!Abstraction (
 	   	namespace <- s.namespace,
-		stereotype <- 'realize'.stereotype(),
+		stereotype <- if 'realize'.hasStereotype()
+			then 'realize'.stereotype()
+			else 'realize'.mergeStereotype() endif,
 		supplier <- Set{if 'observer.Observer'.hasQInterface()
 			then 'observer.Observer'.qInterface()
 			else 'observer.Observer'.mergeQInterface() endif},
@@ -393,10 +428,19 @@ rule ObserverClass {
 		ownerScope <- #sk_instance,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   e : OUTMODEL!Parameter (
-	   	name <- 'e',
+	   name : OUTMODEL!Parameter (
+	   	name <- 'name',
 		behavioralFeature <- op,
-		type <- 'Hashtable'.class(),
+		type <- if 'String'.hasDataType()
+			then 'String'.dataType()
+			else 'String'.mergeDataType() endif,
+		kind <- #pdk_in),
+	   value : OUTMODEL!Parameter (
+	   	name <- 'value',
+		behavioralFeature <- op,
+		type <- if 'OclAny'.hasDataType()
+			then 'OclAny'.dataType()
+			else 'OclAny'.mergeDataType() endif,
 		kind <- #pdk_in),
 	   mbody : OUTMODEL!ProcedureExpression (
 	   	language <- 'java',
@@ -467,7 +511,7 @@ rule SubscribeProcedureExpression {
 -- ======================================================================
 -- model merge begin
 -- ======================================================================
--- From: ModelMerge.atl 1104 2005-05-12 11:06:08Z dwagelaa
+-- From: ModelMerge.atl 1174 2005-05-23 07:38:38Z dwagelaa
 
 rule MergeAssociation {
     from s : MERGEMODEL!Association (s.oclIsTypeOf(MERGEMODEL!Association) and
@@ -939,7 +983,7 @@ rule MergeException {
 -- ======================================================================
 -- model merge end
 -- ======================================================================
-	
+
 -- ======================================================================
 -- model copy begin
 -- ======================================================================
