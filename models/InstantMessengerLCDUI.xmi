@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue May 24 13:47:23 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue May 31 13:24:41 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -270,7 +270,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           isQuery = 'false'>
                           <UML:Method.body>
                             <UML:ProcedureExpression xmi.id = 'I38193843m103c598d487mm5937' language = 'java'
-                              body = '        super(&quot;Add new contact&quot;);&#10;        append(networkField);&#10;        append(uidField);&#10;        append(nameField);&#10;        append(passwordField);&#10;        addCommand(okBtn);&#10;        addCommand(cancelBtn);&#10;        setCommandListener(new CommandListener() {&#10;            public void commandAction(Command c, Displayable d) {&#10;                if (c.equals(okBtn)) {&#10;                    onOk();&#10;                } else {&#10;                    onCancel();&#10;                }&#10;            }&#10;        });&#10;        Display.getDisplay(client).setCurrent(this);&#10;'/>
+                              body = '        super(&quot;Add new contact&quot;);&#10;        append(networkField);&#10;        append(uidField);&#10;        append(nameField);&#10;        append(passwordField);&#10;        addCommand(okBtn);&#10;        addCommand(cancelBtn);&#10;        setCommandListener(new CommandListener() {&#10;            public void commandAction(Command c, Displayable d) {&#10;                if (c.equals(okBtn)) {&#10;                    onOk();&#10;                } else {&#10;                    onCancel();&#10;                }&#10;            }&#10;        });&#10;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#10;        Display.getDisplay(client).setCurrent(this);&#10;'/>
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'I38193843m103c598d487mm5938'/>
@@ -709,8 +709,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                                 <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm366c'/>
                               </UML:Parameter.type>
                             </UML:Parameter>
-                            <UML:Parameter xmi.id = 'I38193843m103c598d487mm1f35' name = 'return' isSpecification = 'false'
-                              kind = 'return'/>
                           </UML:BehavioralFeature.parameter>
                         </UML:Operation>
                         <UML:Method xmi.id = 'I38193843m103c598d487mm1f4c' isSpecification = 'false'
@@ -902,7 +900,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                         </UML:Method>
                         <UML:Attribute xmi.id = 'I38193843m103c598d487mm1cc3' name = 'previousScreen'
                           visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                          changeability = 'changeable'/>
+                          changeability = 'changeable'>
+                          <UML:StructuralFeature.type>
+                            <UML:Class xmi.idref = 'I172eec2m1043232b328mm79f4'/>
+                          </UML:StructuralFeature.type>
+                        </UML:Attribute>
                         <UML:Operation xmi.id = 'I38193843m103c598d487mm1ca2' name = 'notifySendClicked'
                           visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
                           isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
@@ -1273,6 +1275,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                         <UML:Class xmi.idref = 'I38193843m103c598d487mm5953'/>
                       </UML:Generalization.parent>
                     </UML:Generalization>
+                    <UML:Class xmi.id = 'I172eec2m1043232b328mm79f4' name = 'Displayable' visibility = 'public'
+                      isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                      isActive = 'false'/>
                   </UML:Namespace.ownedElement>
                 </UML:Package>
                 <UML:Dependency xmi.id = 'Im4efd786m103c25c4064mm43bf' isSpecification = 'false'>
