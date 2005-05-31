@@ -43,11 +43,12 @@ public class ContactList {
  * 
  * 
  * 
- * @param e 
+ * @param name 
+ * @param value 
  */
-    protected void notifyObservers(java.util.Hashtable e) {        
+    protected void notifyObservers(String name, Object value) {        
         for (int i = 0; i < observers.size(); i++) {
-            ((observer.Observer) observers.elementAt(i)).update(e);
+            ((observer.Observer) observers.elementAt(i)).update(name, value);
         }
     } 
 
@@ -94,12 +95,7 @@ public class ContactList {
             contact.setList(this);
         }
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Contact");
-            if (contact != null) {
-                e.put("value", contact);
-            }
-            notifyObservers(e);
+            notifyObservers("Contact", contact);
         }
         // End Observable stanza
     } 
@@ -124,12 +120,7 @@ public class ContactList {
             contact.setList(this);
         }
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Contact");
-            if (contact != null) {
-                e.put("value", contact);
-            }
-            notifyObservers(e);
+            notifyObservers("Contact", contact);
         }
         // End Observable stanza
     } 
@@ -150,12 +141,7 @@ public class ContactList {
             contact.setList(null);
         }
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Contact");
-            if (contact != null) {
-                e.put("value", contact);
-            }
-            notifyObservers(e);
+            notifyObservers("Contact", contact);
         }
         // End Observable stanza
     } 

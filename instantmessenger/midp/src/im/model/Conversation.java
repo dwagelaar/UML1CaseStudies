@@ -14,17 +14,12 @@ public class Conversation {
 /**
  * <p>Represents ...</p>
  */
-    private java.util.Vector message = new java.util.Vector();
-
-/**
- * <p>Represents ...</p>
- */
-    private im.model.messages.MessageFactory factory = null;
-
-/**
- * <p>Represents ...</p>
- */
     private im.model.Contact contact = null;
+
+/**
+ * <p>Represents ...</p>
+ */
+    private im.model.Message message = null;
 
 /**
  * <p>Does ...</p>
@@ -53,11 +48,12 @@ public class Conversation {
  * 
  * 
  * 
- * @param e 
+ * @param name 
+ * @param value 
  */
-    protected void notifyObservers(java.util.Hashtable e) {        
+    protected void notifyObservers(String name, Object value) {        
         for (int i = 0; i < observers.size(); i++) {
-            ((observer.Observer) observers.elementAt(i)).update(e);
+            ((observer.Observer) observers.elementAt(i)).update(name, value);
         }
     } 
 
@@ -74,12 +70,7 @@ public class Conversation {
             // Begin original body
         this.contact = contact;
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Contact");
-            if (contact != null) {
-                e.put("value", contact);
-            }
-            notifyObservers(e);
+            notifyObservers("Contact", contact);
         }
         // End Observable stanza
     } 
@@ -89,33 +80,20 @@ public class Conversation {
  * 
  * 
  * 
- * @param factory 
+ * @param message 
  */
-    public void setFactory(im.model.messages.MessageFactory factory) {        
+    public void setMessage(im.model.Message message) {        
         // Begin Observable stanza
-        if (this.factory != factory) {
+        if (this.message != message) {
             // Begin original body
-        this.factory = factory;
+        if (this.message != message) {
+            this.message = message;
+            message.setConversation(this);
+        }
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Factory");
-            if (factory != null) {
-                e.put("value", factory);
-            }
-            notifyObservers(e);
+            notifyObservers("Message", message);
         }
         // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public java.util.Vector getMessages() {        
-        return message;
     } 
 
 /**
@@ -136,105 +114,7 @@ public class Conversation {
  * 
  * @return 
  */
-    public im.model.messages.MessageFactory getFactory() {        
-        return factory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param index 
- * @return 
- */
-    public im.model.messages.Message getMessageAt(int index) {        
-        try {
-            return (im.model.messages.Message) message.elementAt(index);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return null;
-        }
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param message 
- */
-    public void addMessage(im.model.messages.Message message) {        
-        // Begin Observable stanza
-        if (! this.message.contains(message)) {
-            // Begin original body
-        if (! this.message.contains(message)) {
-            this.message.addElement(message);
-            message.setConversation(this);
-        }
-            // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Message");
-            if (message != null) {
-                e.put("value", message);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param message 
- * @param index 
- */
-    public void insertMessage(im.model.messages.Message message, int index) {        
-        // Begin Observable stanza
-        if (! this.message.contains(message)) {
-            // Begin original body
-        if (! this.message.contains(message)) {
-            try {
-            this.message.insertElementAt(message, index);} catch (ArrayIndexOutOfBoundsException e) {
-            this.message.addElement(message);
-        };
-            message.setConversation(this);
-        }
-            // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Message");
-            if (message != null) {
-                e.put("value", message);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param message 
- */
-    public void removeMessage(im.model.messages.Message message) {        
-        // Begin Observable stanza
-        if (this.message.contains(message)) {
-            // Begin original body
-        if (this.message.contains(message)) {
-            this.message.removeElement(message);
-            message.setConversation(null);
-        }
-            // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Message");
-            if (message != null) {
-                e.put("value", message);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
+    public im.model.Message getMessage() {        
+        return message;
     } 
  }

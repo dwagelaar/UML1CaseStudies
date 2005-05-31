@@ -1,10 +1,10 @@
 
-package im.model.messages;
+package im.model;
 
 /**
  * <p></p>
  */
-public abstract class Message extends im.model.NetworkSpecificData {
+public class Message extends im.model.NetworkSpecificData {
 
 /**
  * <p>Represents ...</p>
@@ -39,39 +39,7 @@ public abstract class Message extends im.model.NetworkSpecificData {
             // Begin original body
         this.sender = sender;
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Sender");
-            if (sender != null) {
-                e.put("value", sender);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param conversation 
- */
-    public void setConversation(im.model.Conversation conversation) {        
-        // Begin Observable stanza
-        if (this.conversation != conversation) {
-            // Begin original body
-        if (this.conversation != conversation) {
-            if (this.conversation != null) this.conversation.removeMessage(this);
-            this.conversation = conversation;
-            if (conversation != null) conversation.addMessage(this);
-        }
-            // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Conversation");
-            if (conversation != null) {
-                e.put("value", conversation);
-            }
-            notifyObservers(e);
+            notifyObservers("Sender", sender);
         }
         // End Observable stanza
     } 
@@ -89,12 +57,28 @@ public abstract class Message extends im.model.NetworkSpecificData {
             // Begin original body
         this.content = content;
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Content");
-            if (content != null) {
-                e.put("value", content);
-            }
-            notifyObservers(e);
+            notifyObservers("Content", content);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param conversation 
+ */
+    public void setConversation(im.model.Conversation conversation) {        
+        // Begin Observable stanza
+        if (this.conversation != conversation) {
+            // Begin original body
+        if (this.conversation != conversation) {
+            this.conversation = conversation;
+            conversation.setMessage(this);
+        }
+            // End original body
+            notifyObservers("Conversation", conversation);
         }
         // End Observable stanza
     } 
@@ -112,12 +96,7 @@ public abstract class Message extends im.model.NetworkSpecificData {
             // Begin original body
         this.recipient = recipient;
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Recipient");
-            if (recipient != null) {
-                e.put("value", recipient);
-            }
-            notifyObservers(e);
+            notifyObservers("Recipient", recipient);
         }
         // End Observable stanza
     } 
@@ -140,8 +119,8 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public im.model.Conversation getConversation() {        
-        return conversation;
+    public Object getContent() {        
+        return content;
     } 
 
 /**
@@ -151,8 +130,8 @@ public abstract class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public Object getContent() {        
-        return content;
+    public im.model.Conversation getConversation() {        
+        return conversation;
     } 
 
 /**
@@ -176,14 +155,4 @@ public abstract class Message extends im.model.NetworkSpecificData {
             getNetwork().send(this);
         }
     } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param c 
- * @return 
- */
-    public abstract boolean isValidContent(Object c);
  }

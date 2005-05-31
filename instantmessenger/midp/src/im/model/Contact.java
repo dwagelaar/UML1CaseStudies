@@ -31,29 +31,6 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param status 
- */
-    public void setStatus(String status) {        
-        // Begin Observable stanza
-        if (this.status != status) {
-            // Begin original body
-        this.status = status;
-            // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Status");
-            if (status != null) {
-                e.put("value", status);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param userId 
  */
     public void setUserId(String userId) {        
@@ -62,12 +39,7 @@ public class Contact extends im.model.NetworkSpecificData {
             // Begin original body
         this.userId = userId;
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "UserId");
-            if (userId != null) {
-                e.put("value", userId);
-            }
-            notifyObservers(e);
+            notifyObservers("UserId", userId);
         }
         // End Observable stanza
     } 
@@ -77,20 +49,15 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param name 
+ * @param status 
  */
-    public void setName(String name) {        
+    public void setStatus(String status) {        
         // Begin Observable stanza
-        if (this.name != name) {
+        if (this.status != status) {
             // Begin original body
-        this.name = name;
+        this.status = status;
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Name");
-            if (name != null) {
-                e.put("value", name);
-            }
-            notifyObservers(e);
+            notifyObservers("Status", status);
         }
         // End Observable stanza
     } 
@@ -112,12 +79,7 @@ public class Contact extends im.model.NetworkSpecificData {
             if (list != null) list.addContact(this);
         }
             // End original body
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "List");
-            if (list != null) {
-                e.put("value", list);
-            }
-            notifyObservers(e);
+            notifyObservers("List", list);
         }
         // End Observable stanza
     } 
@@ -127,10 +89,17 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @return 
+ * @param name 
  */
-    public String getStatus() {        
-        return status;
+    public void setName(String name) {        
+        // Begin Observable stanza
+        if (this.name != name) {
+            // Begin original body
+        this.name = name;
+            // End original body
+            notifyObservers("Name", name);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -151,8 +120,8 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getName() {        
-        return name;
+    public String getStatus() {        
+        return status;
     } 
 
 /**
@@ -164,5 +133,16 @@ public class Contact extends im.model.NetworkSpecificData {
  */
     public im.model.ContactList getList() {        
         return list;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getName() {        
+        return name;
     } 
  }
