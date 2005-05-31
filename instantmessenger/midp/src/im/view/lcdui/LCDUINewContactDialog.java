@@ -66,6 +66,7 @@ public class LCDUINewContactDialog extends javax.microedition.lcdui.Form impleme
                 }
             }
         });
+        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();
         Display.getDisplay(client).setCurrent(this);
     } 
 
