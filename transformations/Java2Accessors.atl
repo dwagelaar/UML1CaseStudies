@@ -4,7 +4,6 @@ module Java2Accessors;
 create OUT : OUTMODEL from IN : INMODEL, MERGE : MERGEMODEL;
 
 uses Java;
-uses strings;
 
 -- ======================================================================
 -- model merge helpers begin
@@ -178,9 +177,9 @@ helper context INMODEL!Attribute def : dualSetter() : String =
 	if not self.associationEnd().otherEnd().isNavigable then
 		self.name.javaSetter()
 	else if self.associationEnd().otherEnd().isSingle() then
-		self.name.javaDualSetter(self.associationEnd().otherEnd().name.firstToUpper())
+		self.name.javaDualSetter(self.associationEnd().otherEnd().name.stringFirstToUpper())
 	else
-		self.name.javaAddRemoveSetter(self.associationEnd().otherEnd().name.firstToUpper())
+		self.name.javaAddRemoveSetter(self.associationEnd().otherEnd().name.stringFirstToUpper())
 	endif endif;
 	
 helper context INMODEL!Attribute def : setter() : String =
@@ -194,18 +193,18 @@ helper context INMODEL!Attribute def : dualAdder() : String =
 	if not self.associationEnd().otherEnd().isNavigable then
 		self.name.java2Adder()
 	else if self.associationEnd().otherEnd().isSingle() then
-		self.name.java2SetterAdder(self.associationEnd().otherEnd().name.firstToUpper())
+		self.name.java2SetterAdder(self.associationEnd().otherEnd().name.stringFirstToUpper())
 	else
-		self.name.java2DualAdder(self.associationEnd().otherEnd().name.firstToUpper())
+		self.name.java2DualAdder(self.associationEnd().otherEnd().name.stringFirstToUpper())
 	endif endif;
 	
 helper context INMODEL!Attribute def : dualInsert() : String =
 	if not self.associationEnd().otherEnd().isNavigable then
 		self.name.java2Insert()
 	else if self.associationEnd().otherEnd().isSingle() then
-		self.name.java2SetterInsert(self.associationEnd().otherEnd().name.firstToUpper())
+		self.name.java2SetterInsert(self.associationEnd().otherEnd().name.stringFirstToUpper())
 	else
-		self.name.java2DualInsert(self.associationEnd().otherEnd().name.firstToUpper())
+		self.name.java2DualInsert(self.associationEnd().otherEnd().name.stringFirstToUpper())
 	endif endif;
 	
 helper context INMODEL!Attribute def : adder() : String =
@@ -226,9 +225,9 @@ helper context INMODEL!Attribute def : dualRemover() : String =
 	if not self.associationEnd().otherEnd().isNavigable then
 		self.name.java2Remover()
 	else if self.associationEnd().otherEnd().isSingle() then
-		self.name.java2SetterRemover(self.associationEnd().otherEnd().name.firstToUpper())
+		self.name.java2SetterRemover(self.associationEnd().otherEnd().name.stringFirstToUpper())
 	else
-		self.name.java2DualRemover(self.associationEnd().otherEnd().name.firstToUpper())
+		self.name.java2DualRemover(self.associationEnd().otherEnd().name.stringFirstToUpper())
 	endif endif;
 	
 helper context INMODEL!Attribute def : remover() : String =
@@ -262,7 +261,7 @@ rule PublicAttributeSetter {
 		s.visibility = #vk_public and
 		not s.type.name.isCollection())
 	to op : OUTMODEL!Operation (
-	   	name <- 'set' + s.name.firstToUpper(),
+	   	name <- 'set' + s.name.stringFirstToUpper(),
 		owner <- s.owner,
 		visibility <- s.visibility,
 		ownerScope <- s.ownerScope,
@@ -281,7 +280,7 @@ rule PublicAttributeSetter {
 		body <- mbody,
 		specification <- op),
 	   dep : OUTMODEL!Dependency (
-	   	name <- 'accessor ' + 'set' + s.name.firstToUpper() + '()',
+	   	name <- 'accessor ' + 'set' + s.name.stringFirstToUpper() + '()',
 		namespace <- s.owner.namespace,
 		stereotype <- if 'accessor'.hasStereotype()
 			then 'accessor'.stereotype()
@@ -294,7 +293,7 @@ rule PublicAttributeGetter {
 	from s : INMODEL!Attribute (
 		s.visibility = #vk_public)
 	to op : OUTMODEL!Operation (
-	   	name <- 'get' + s.name.firstToUpper() + s.type.name.s(),
+	   	name <- 'get' + s.name.stringFirstToUpper() + s.type.name.s(),
 		owner <- s.owner,
 		visibility <- s.visibility,
 		ownerScope <- s.ownerScope,
@@ -313,7 +312,7 @@ rule PublicAttributeGetter {
 		body <- mbody,
 		specification <- op),
 	   dep : OUTMODEL!Dependency (
-	   	name <- 'accessor ' + 'get' + s.name.firstToUpper() + s.type.name.s() + '()',
+	   	name <- 'accessor ' + 'get' + s.name.stringFirstToUpper() + s.type.name.s() + '()',
 		namespace <- s.owner.namespace,
 		stereotype <- if 'accessor'.hasStereotype()
 			then 'accessor'.stereotype()
@@ -327,7 +326,7 @@ rule PublicAttributeGetAt {
 		s.visibility = #vk_public and
 		s.type.name.isSequence())
 	to op : OUTMODEL!Operation (
-	   	name <- 'get' + s.name.firstToUpper() + 'At',
+	   	name <- 'get' + s.name.stringFirstToUpper() + 'At',
 		owner <- s.owner,
 		visibility <- s.visibility,
 		ownerScope <- s.ownerScope,
@@ -353,7 +352,7 @@ rule PublicAttributeGetAt {
 		body <- mbody,
 		specification <- op),
 	   dep : OUTMODEL!Dependency (
-	   	name <- 'accessor ' + 'get' + s.name.firstToUpper() + 'At()',
+	   	name <- 'accessor ' + 'get' + s.name.stringFirstToUpper() + 'At()',
 		namespace <- s.owner.namespace,
 		stereotype <- if 'accessor'.hasStereotype()
 			then 'accessor'.stereotype()
@@ -367,7 +366,7 @@ rule PublicAttributeAdder {
 		s.visibility = #vk_public and
 		s.type.name.isCollection())
 	to op : OUTMODEL!Operation (
-	   	name <- 'add' + s.name.firstToUpper(),
+	   	name <- 'add' + s.name.stringFirstToUpper(),
 		owner <- s.owner,
 		visibility <- s.visibility,
 		ownerScope <- s.ownerScope,
@@ -386,7 +385,7 @@ rule PublicAttributeAdder {
 		body <- mbody,
 		specification <- op),
 	   dep : OUTMODEL!Dependency (
-	   	name <- 'accessor ' + 'add' + s.name.firstToUpper() + '()',
+	   	name <- 'accessor ' + 'add' + s.name.stringFirstToUpper() + '()',
 		namespace <- s.owner.namespace,
 		stereotype <- if 'accessor'.hasStereotype()
 			then 'accessor'.stereotype()
@@ -400,7 +399,7 @@ rule PublicAttributeInsert {
 		s.visibility = #vk_public and
 		s.type.name.isSequence())
 	to op : OUTMODEL!Operation (
-	   	name <- 'insert' + s.name.firstToUpper(),
+	   	name <- 'insert' + s.name.stringFirstToUpper(),
 		owner <- s.owner,
 		visibility <- s.visibility,
 		ownerScope <- s.ownerScope,
@@ -426,7 +425,7 @@ rule PublicAttributeInsert {
 		body <- mbody,
 		specification <- op),
 	   dep : OUTMODEL!Dependency (
-	   	name <- 'accessor ' + 'insert' + s.name.firstToUpper() + '()',
+	   	name <- 'accessor ' + 'insert' + s.name.stringFirstToUpper() + '()',
 		namespace <- s.owner.namespace,
 		stereotype <- if 'accessor'.hasStereotype()
 			then 'accessor'.stereotype()
@@ -440,7 +439,7 @@ rule PublicAttributeRemover {
 		s.visibility = #vk_public and
 		s.type.name.isCollection())
 	to op : OUTMODEL!Operation (
-	   	name <- 'remove' + s.name.firstToUpper(),
+	   	name <- 'remove' + s.name.stringFirstToUpper(),
 		owner <- s.owner,
 		visibility <- s.visibility,
 		ownerScope <- s.ownerScope,
@@ -459,7 +458,7 @@ rule PublicAttributeRemover {
 		body <- mbody,
 		specification <- op),
 	   dep : OUTMODEL!Dependency (
-	   	name <- 'accessor ' + 'remove' + s.name.firstToUpper() + '()',
+	   	name <- 'accessor ' + 'remove' + s.name.stringFirstToUpper() + '()',
 		namespace <- s.owner.namespace,
 		stereotype <- if 'accessor'.hasStereotype()
 			then 'accessor'.stereotype()

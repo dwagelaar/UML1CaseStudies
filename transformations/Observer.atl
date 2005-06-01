@@ -4,7 +4,6 @@ module Observer;
 create OUT : OUTMODEL from IN : INMODEL, MERGE : MERGEMODEL;
 
 uses Java;
-uses strings;
 
 -- ======================================================================
 -- model merge helpers begin
@@ -271,22 +270,22 @@ helper context INMODEL!ProcedureExpression def : method() : INMODEL!Method =
 	INMODEL!Method.allInstances()->select(m|m.body=self)->first();
 
 helper context INMODEL!Operation def : javaNotify(body : String) : String =
-	if self.name.startsWith('remove') then
+	if self.name.stringStartsWith('remove') then
 		self.accessorFor().javaRemoverNotify(body)
-	else if self.name.startsWith('add') or self.name.startsWith('insert') then
+	else if self.name.stringStartsWith('add') or self.name.stringStartsWith('insert') then
 		self.accessorFor().javaAdderNotify(body)
-	else if self.name.startsWith('set') then
+	else if self.name.stringStartsWith('set') then
 		self.accessorFor().javaSetterNotify(body)
 	else
 		body
 	endif endif endif;
 
 helper context INMODEL!Operation def : javaSubscribe(body : String) : String =
-	if self.name.startsWith('remove') then
+	if self.name.stringStartsWith('remove') then
 		self.accessorFor().name.javaRemoverSubscribe(body)
-	else if self.name.startsWith('add') or self.name.startsWith('insert') then
+	else if self.name.stringStartsWith('add') or self.name.stringStartsWith('insert') then
 		self.accessorFor().name.javaAdderSubscribe(body)
-	else if self.name.startsWith('set') then
+	else if self.name.stringStartsWith('set') then
 		self.accessorFor().name.javaSetterSubscribe(body)
 	else
 		body
@@ -295,7 +294,7 @@ helper context INMODEL!Operation def : javaSubscribe(body : String) : String =
 helper context INMODEL!Classifier def : handlers() : Sequence(INMODEL!Operation) =
 	self.feature->select(f|
 		if f.oclIsKindOf(INMODEL!Operation) then
-			f.name.startsWith('on') and f.name.endsWith('Change') and f.name.size() > 8
+			f.name.stringStartsWith('on') and f.name.stringEndsWith('Change') and f.name.size() > 8
 		else
 			false
 		endif
