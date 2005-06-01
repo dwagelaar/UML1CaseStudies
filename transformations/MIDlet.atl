@@ -290,7 +290,7 @@ rule NewAppletDestroyAppOperation {
 		kind <- #pdk_in),
 	   mbody : OUTMODEL!ProcedureExpression (
 	   	language <- 'java',
-		body <- 'destroy();'),
+		body <- 'stop();\ndestroy();'),
 	   meth : OUTMODEL!Method (
 	   	owner <- s,
 		body <- mbody,
