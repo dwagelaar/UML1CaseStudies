@@ -6,6 +6,8 @@ through the following operations:
 
 * IMLCDUI.launch
 * IMSMS.launch
+* IMJabber.launch
+* IMMEJabber.launch
 * IMAttributes.launch
 * IMAccessors.launch
 * IMObserver.launch

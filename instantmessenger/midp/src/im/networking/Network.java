@@ -167,9 +167,8 @@ public abstract class Network {
  * @param pwd 
  * @return 
  */
-    public boolean login(String uid, String pwd) {        
+    public void login(String uid, String pwd) {        
         // your code here
-        return true;
     } 
 
 /**
@@ -210,9 +209,9 @@ public abstract class Network {
  * 
  * @return 
  */
-    public static im.networking.Network[] getDefault() {        
+    public static im.networking.Network[] getDefault() {     
         String[] options = {
-            "im.networking.jabber.Jabber",
+            "im.networking.jabber.mejabber.MEJabber",
             "im.networking.sms.SMS"
         };
         java.util.Vector networks = new java.util.Vector();
