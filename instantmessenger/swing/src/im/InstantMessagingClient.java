@@ -14,12 +14,12 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List network = new java.util.ArrayList();
+    private im.model.ContactList contactList = new im.model.ContactList();
 
 /**
  * <p>Represents ...</p>
  */
-    private im.model.ContactList contactList = new im.model.ContactList();
+    private java.util.List network = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
@@ -87,17 +87,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param contactList 
- */
-    public void setContactList(im.model.ContactList contactList) {        
-        this.contactList = contactList;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param viewFactory 
  */
     public void setViewFactory(im.view.ViewFactory viewFactory) {        
@@ -109,21 +98,10 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @return 
+ * @param contactList 
  */
-    public java.util.List getNetworks() {        
-        return network;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.ContactList getContactList() {        
-        return contactList;
+    public void setContactList(im.model.ContactList contactList) {        
+        this.contactList = contactList;
     } 
 
 /**
@@ -153,15 +131,21 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param index 
  * @return 
  */
-    public im.networking.Network getNetworkAt(int index) {        
-        try {
-            return (im.networking.Network) network.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
+    public java.util.List getNetworks() {        
+        return network;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.model.ContactList getContactList() {        
+        return contactList;
     } 
 
 /**
@@ -178,6 +162,33 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param index 
+ * @return 
+ */
+    public im.networking.Network getNetworkAt(int index) {        
+        try {
+            return (im.networking.Network) network.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param conversation 
+ */
+    public void addConversation(im.model.Conversation conversation) {        
+        this.conversation.add(conversation);
     } 
 
 /**
@@ -202,9 +213,14 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * @param conversation 
+ * @param index 
  */
-    public void addConversation(im.model.Conversation conversation) {        
-        this.conversation.add(conversation);
+    public void insertConversation(im.model.Conversation conversation, int index) {        
+        try {
+            this.conversation.add(index, conversation);
+        } catch (IndexOutOfBoundsException e) {
+            this.conversation.add(conversation);
+        };
     } 
 
 /**
@@ -234,14 +250,9 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * @param conversation 
- * @param index 
  */
-    public void insertConversation(im.model.Conversation conversation, int index) {        
-        try {
-            this.conversation.add(index, conversation);
-        } catch (IndexOutOfBoundsException e) {
-            this.conversation.add(conversation);
-        };
+    public void removeConversation(im.model.Conversation conversation) {        
+        this.conversation.remove(conversation);
     } 
 
 /**
@@ -258,17 +269,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
         this.network.remove(network);
         // End original body
         // End subscribe stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param conversation 
- */
-    public void removeConversation(im.model.Conversation conversation) {        
-        this.conversation.remove(conversation);
     } 
 
 /**

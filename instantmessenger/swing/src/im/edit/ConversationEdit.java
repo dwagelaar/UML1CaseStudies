@@ -4,17 +4,17 @@ package im.edit;
 /**
  * <p></p>
  */
-public class ConversationEdit implements java.util.Observer, im.view.ConversationViewListener {
-
-/**
- * <p>Represents ...</p>
- */
-    private im.view.ConversationView view = null;
+public class ConversationEdit implements im.view.ConversationViewListener, java.util.Observer {
 
 /**
  * <p>Represents ...</p>
  */
     private im.model.Conversation model = null;
+
+/**
+ * <p>Represents ...</p>
+ */
+    private im.view.ConversationView view = null;
 
 /**
  * <p>Does ...</p>

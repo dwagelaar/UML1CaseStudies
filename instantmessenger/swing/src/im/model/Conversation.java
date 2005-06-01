@@ -9,12 +9,12 @@ public class Conversation extends java.util.Observable {
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Contact contact = null;
+    private im.model.Message message = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Message message = null;
+    private im.model.Contact contact = null;
 
 /**
  * <p>Does ...</p>

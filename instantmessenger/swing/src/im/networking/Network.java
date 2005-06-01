@@ -51,31 +51,6 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @param recvMsg 
- */
-    public void setRecvMsg(im.model.Message recvMsg) {        
-        // Begin Observable stanza
-        if (this.recvMsg != recvMsg) {
-            // Begin original body
-        this.recvMsg = recvMsg;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "RecvMsg");
-            e.put("class", im.model.Message.class);
-            if (recvMsg != null) {
-                e.put("value", recvMsg);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param recvContact 
  */
     public void setRecvContact(im.model.Contact recvContact) {        
@@ -101,10 +76,24 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @return 
+ * @param recvMsg 
  */
-    public String getName() {        
-        return name;
+    public void setRecvMsg(im.model.Message recvMsg) {        
+        // Begin Observable stanza
+        if (this.recvMsg != recvMsg) {
+            // Begin original body
+        this.recvMsg = recvMsg;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "RecvMsg");
+            e.put("class", im.model.Message.class);
+            if (recvMsg != null) {
+                e.put("value", recvMsg);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -114,8 +103,8 @@ public abstract class Network extends java.util.Observable {
  * 
  * @return 
  */
-    public im.model.Message getRecvMsg() {        
-        return recvMsg;
+    public String getName() {        
+        return name;
     } 
 
 /**
@@ -134,6 +123,17 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
+ * @return 
+ */
+    public im.model.Message getRecvMsg() {        
+        return recvMsg;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param msg 
  */
     public abstract void send(im.model.Message msg);
@@ -145,11 +145,9 @@ public abstract class Network extends java.util.Observable {
  * 
  * @param uid 
  * @param pwd 
- * @return 
  */
-    public boolean login(String uid, String pwd) {        
+    public void login(String uid, String pwd) {        
         // your code here
-        return true;
     } 
 
 /**
@@ -192,7 +190,8 @@ public abstract class Network extends java.util.Observable {
  */
     public static im.networking.Network[] getDefault() {        
         String[] options = {
-            "im.networking.jabber.Jabber",
+            "im.networking.jabber.mejabber.MEJabber",
+            "im.networking.jabber.defaultjabber.DefaultJabber",
             "im.networking.sms.SMS"
         };
         java.util.Vector networks = new java.util.Vector();

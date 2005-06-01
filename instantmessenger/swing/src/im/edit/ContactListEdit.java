@@ -4,12 +4,12 @@ package im.edit;
 /**
  * <p></p>
  */
-public class ContactListEdit implements java.util.Observer, im.view.ContactListViewListener, im.view.NewContactDialogListener {
+public class ContactListEdit implements im.view.NewContactDialogListener, im.view.ContactListViewListener, java.util.Observer {
 
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ContactListView view = null;
+    private im.model.ContactList model = null;
 
 /**
  * <p>Represents ...</p>
@@ -19,7 +19,7 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
 /**
  * <p>Represents ...</p>
  */
-    private im.model.ContactList model = null;
+    private im.view.ContactListView view = null;
 
 /**
  * <p>Does ...</p>
@@ -82,6 +82,17 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
  * 
  * @return 
  */
+    public java.util.List getContactEdits() {        
+        return contactEdit;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
     public im.model.ContactList getModel() {        
         return model;
     } 
@@ -95,17 +106,6 @@ public class ContactListEdit implements java.util.Observer, im.view.ContactListV
  */
     public im.view.ContactListView getView() {        
         return view;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public java.util.List getContactEdits() {        
-        return contactEdit;
     } 
 
 /**

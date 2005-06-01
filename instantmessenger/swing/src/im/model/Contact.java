@@ -31,20 +31,20 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param userId 
+ * @param status 
  */
-    public void setUserId(String userId) {        
+    public void setStatus(String status) {        
         // Begin Observable stanza
-        if (this.userId != userId) {
+        if (this.status != status) {
             // Begin original body
-        this.userId = userId;
+        this.status = status;
             // End original body
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "UserId");
+            e.put("name", "Status");
             e.put("class", String.class);
-            if (userId != null) {
-                e.put("value", userId);
+            if (status != null) {
+                e.put("value", status);
             }
             notifyObservers(e);
         }
@@ -110,20 +110,20 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param status 
+ * @param userId 
  */
-    public void setStatus(String status) {        
+    public void setUserId(String userId) {        
         // Begin Observable stanza
-        if (this.status != status) {
+        if (this.userId != userId) {
             // Begin original body
-        this.status = status;
+        this.userId = userId;
             // End original body
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Status");
+            e.put("name", "UserId");
             e.put("class", String.class);
-            if (status != null) {
-                e.put("value", status);
+            if (userId != null) {
+                e.put("value", userId);
             }
             notifyObservers(e);
         }
@@ -137,8 +137,8 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getUserId() {        
-        return userId;
+    public String getStatus() {        
+        return status;
     } 
 
 /**
@@ -170,7 +170,7 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getStatus() {        
-        return status;
+    public String getUserId() {        
+        return userId;
     } 
  }
