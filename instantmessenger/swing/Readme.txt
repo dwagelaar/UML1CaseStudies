@@ -7,6 +7,7 @@ through the following operations:
 * IMAWT.launch
 * IMSwing.launch
 * IMJabber.launch
+* IMDefaultJabber.launch
 * IMSMS.launch
 * IMJava2Attributes.launch
 * IMJava2Accessors.launch

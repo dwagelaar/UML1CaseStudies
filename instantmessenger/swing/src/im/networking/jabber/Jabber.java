@@ -3,7 +3,10 @@ package im.networking.jabber;
 import com.jabberwookie.*;
 import com.jabberwookie.ns.jabber.*;
 import com.jabberwookie.ns.jabber.iq.*;
+import com.ssttr.util.Strings;
+
 import java.net.*;
+import java.util.Vector;
 
 /**
  * <p></p>
@@ -146,12 +149,19 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
     public boolean login(String uid, String pwd) {        
         try {
             this.uid = uid; 
-            java.util.StringTokenizer address = new java.util.StringTokenizer(uid, "@");
-            String user = address.nextToken();
-            String server = address.nextToken();
-            address = new java.util.StringTokenizer(server, "/");
-            server = address.nextToken();
-            String resource = address.nextToken();
+            //TODO: change in model
+            java.util.Vector address = Strings.tokenize(uid, '@');
+            String user = (String) address.elementAt(0);
+            String server = (String) address.elementAt(1);
+            address = Strings.tokenize(server, '/');
+            server = (String) address.elementAt(0);
+            String resource = (String) address.elementAt(1);
+//            java.util.StringTokenizer address = new java.util.StringTokenizer(uid, "@");
+//            String user = address.nextToken();
+//            String server = address.nextToken();
+//            address = new java.util.StringTokenizer(server, "/");
+//            server = address.nextToken();
+//            String resource = address.nextToken();
             setSocket(connect(server, 5222));
             if (getSocket() == null) {
                 throw new SocketException(connectError);
@@ -454,9 +464,12 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
         if (uid.equals(jid)) {
         	return jid;
         } else { // strip resource bit if remote user
-        	java.util.StringTokenizer strip =
-        		new java.util.StringTokenizer(jid, "/");
-        	return strip.nextToken();
+            //TODO: change in model
+            Vector strip = Strings.tokenize(jid, '/');
+            return (String) strip.elementAt(0);
+//          java.util.StringTokenizer strip =
+//              new java.util.StringTokenizer(jid, "/");
+//          return strip.nextToken();
         }
     } 
  }

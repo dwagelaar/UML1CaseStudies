@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="UML1CaseStudies/runtime" default="all">
+<project name="SwingInstantMessenger" default="all">
     <target name="clean">
         <delete>
         	<fileset dir=".">
-	       		<include name="im.jar"/>
+	       		<include name="*.jar"/>
         	</fileset>
         </delete>
     </target>
@@ -13,7 +13,7 @@
         	<include name="**"/>
         	<manifest>
         		<attribute name="Main-Class" value="sun.applet.AppletViewer"/>
-        		<attribute name="Class-Path" value="JabberWookie.jar SSTTR-Crypto.jar SSTTR-Util.jar SSTTR-XML.jar"/>
+        		<attribute name="Class-Path" value="MicroJabberWookie.jar"/>
         	</manifest>
         </jar>
     </target>
@@ -26,5 +26,9 @@
 			storepass="Pwd#jc"/>
 	</target>
 
-	<target name="all" depends="jar-sign"/>
+	<target name="jabberwookie" depends="clean">
+		<copy file="../../../microjabberwookie/jar/MicroJabberWookie.jar" todir="."/>
+	</target>
+	
+	<target name="all" depends="jar-sign,jabberwookie"/>
 </project>
