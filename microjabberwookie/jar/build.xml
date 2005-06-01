@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MicroJabberWookie" default="all">
+    <target name="clean">
+        <delete>
+        	<fileset dir=".">
+	       		<include name="im.jar"/>
+        	</fileset>
+        </delete>
+    </target>
+
+    <target name="jar" depends="clean">
+        <jar destfile="MicroJabberWookie.jar" basedir="../bin">
+        	<include name="**"/>
+        </jar>
+    </target>
+	
+	<target name="jar-sign" depends="jar">
+		<signjar jar="MicroJabberWookie.jar" 
+			alias="dennis.wagelaar@vub.ac.be"
+			keystore="../../local/certificate.p12"
+			storetype="pkcs12"
+			storepass="Pwd#jc"/>
+	</target>
+
+	<target name="all" depends="jar-sign"/>
+</project>
