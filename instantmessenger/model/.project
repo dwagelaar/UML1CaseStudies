@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>UML1CaseStudies.instantmessenger.model</name>
+	<name>UML1CaseStudies-instantmessenger-model</name>
 	<comment></comment>
 	<projects>
 		<project>UML1CaseStudies.transformations</project>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
+<stringAttribute key="Model Handler" value="MDR"/>
+<stringAttribute key="ATL File Name" value="/UML1CaseStudies-transformations/AssociationAttributes.atl"/>
+<mapAttribute key="Libs">
+<mapEntry key="Java" value="/UML1CaseStudies-transformations/lib/Java.asm"/>
+</mapAttribute>
+<mapAttribute key="ModelType">
+<mapEntry key="MERGEMODEL" value="METAMODELINPUT"/>
+<mapEntry key="OUT" value="MODELOUTPUT"/>
+<mapEntry key="MERGE" value="MODELINPUT"/>
+<mapEntry key="OUTMODEL" value="METAMODELOUTPUT"/>
+<mapEntry key="INMODEL" value="METAMODELINPUT"/>
+<mapEntry key="IN" value="MODELINPUT"/>
+</mapAttribute>
+<mapAttribute key="Path">
+<mapEntry key="MERGEMODEL" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="OUT" value="../UML1CaseStudies-instantmessenger-model/outmodels/midp/im-midp-11-Attributes"/>
+<mapEntry key="MERGE" value="/UML1CaseStudies-transformations/models/OclTypes.xmi"/>
+<mapEntry key="OUTMODEL" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="INMODEL" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="IN" value="/UML1CaseStudies-instantmessenger-model/outmodels/midp/im-midp-04-MEJabber.xmi"/>
+</mapAttribute>
+<stringAttribute key="Project Name" value="UML1CaseStudies-transformations"/>
+<mapAttribute key="Output">
+<mapEntry key="OUT" value="OUTMODEL"/>
+</mapAttribute>
+<mapAttribute key="Input">
+<mapEntry key="MERGE" value="MERGEMODEL"/>
+<mapEntry key="IN" value="INMODEL"/>
+</mapAttribute>
+</launchConfiguration>
