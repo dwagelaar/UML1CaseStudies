@@ -1,44 +1,229 @@
 
 package im.networking.jabber;
+import java.io.IOException;
+import java.util.Vector;
+
 import com.jabberwookie.*;
 import com.jabberwookie.ns.jabber.*;
 import com.jabberwookie.ns.jabber.iq.*;
+<<<<<<< .mine
+import com.ssttr.util.Strings;
+//import java.net.*;
+=======
 import com.ssttr.util.Strings;
 
 import java.net.*;
+>>>>>>> .r1281
 import java.util.Vector;
 
 /**
  * <p></p>
  */
-public class Jabber extends im.networking.Network implements com.jabberwookie.IQListener, com.jabberwookie.MessageListener, com.jabberwookie.PresenceListener {
+public abstract class Jabber extends im.networking.Network implements com.jabberwookie.IQListener, com.jabberwookie.MessageListener, com.jabberwookie.PresenceListener {
 
+    abstract class State {
+        public void login(String uid, String pwd) {}
+        public void logout() {}
+        public void addContact(im.model.Contact c) {}
+        public void removeContact(im.model.Contact c) {}
+        public void send(im.model.Message msg) {}
+    }
+    
+    class DisconnectedState extends State {
+        public void login(final String uid, final String pwd) {
+			Thread login = new Thread() {
+				public void run() {
+					try {
+						java.util.Vector address = Strings.tokenize(uid, '@');
+						String user = (String) address.elementAt(0);
+						String server = (String) address.elementAt(1);
+						address = Strings.tokenize(server, '/');
+						server = (String) address.elementAt(0);
+						String resource = (String) address.elementAt(1);
+						connect(server);
+						getConnection().setMessageListener(Jabber.this);
+						getConnection().setIQListener(Jabber.this);
+						getConnection().setPresenceListener(Jabber.this);
+						boolean try_again;
+						do {
+							try_again = false;
+							System.out.println("Logging in " + uid);
+							switch (getConnection().loginAny(user, resource,
+									pwd, 30000)) {
+							case Client2Server.LOGIN_BAD_PASS:
+								throw new IOException("Bad password for " + uid);
+							case Client2Server.LOGIN_BAD_UID:
+								if (!registerUser(user, pwd))
+									throw new IOException(
+											"Could not register user for "
+													+ uid);
+								else
+									try_again = true;
+								break;
+							case Client2Server.LOGIN_FAILED:
+								throw new IOException("Login failed: unknown: "
+										+ uid);
+							case Client2Server.LOGIN_PASS_EXP:
+								System.out
+										.println("Your password has expired for "
+												+ uid);
+								break;
+							case Client2Server.LOGIN_OK:
+								break;
+							}
+						} while (try_again);
+						Presence pres = new Presence(Const.AVAILABLE,
+								"Available", 1);
+						pres.setFrom(uid);
+						getConnection().send(pres);
+						incomingPresence(pres);
+						getConnection().send(IQRoster.createGetRequest());
+                        synchronized(Jabber.this) {
+                            Jabber.this.state = new ConnectedState();
+                        }
+					} catch (IOException e) {
+						System.err.println(e.getMessage());
+						e.printStackTrace();
+					}
+				}
+			};
+            login.start();
+        }
+    }
+    
+    class ConnectedState extends State {
+        public void logout() {
+            Thread logout = new Thread() {
+                public void run() {
+                    try {
+                        System.out.println("Closing connection for " + getConnection().getServerName());
+                        Presence p = new Presence();
+                        p.setType(Const.UNAVAILABLE);
+                        getConnection().send(p);
+                        getConnection().close();
+                        synchronized(Jabber.this) {
+                            Jabber.this.state = new DisconnectedState();
+                        }
+                    } catch (java.io.IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            logout.start();
+		}
+
+		public void addContact(final im.model.Contact c) {
+            if (!getConnection().isConnected()) {
+            	Jabber.this.state = new DisconnectedState();
+                return;
+            }
+            Thread addContact = new Thread() {
+            	public void run() {
+            		try {
+            			Presence presence = new Presence(c.getUserId(), Const.SUBSCRIBE);
+            			System.out.println("Adding contact " + presence);
+            			getConnection().send(presence);
+            			IQRoster roster = new IQRoster();
+            			roster.addItem(c.getUserId(), c.getName());
+            			IQ iq = new IQ(Const.SET);
+            			iq.addChild(roster);
+            			getConnection().send(iq);
+            		} catch (java.io.IOException e) {
+            			System.err.println(e.getMessage());
+            			e.printStackTrace();
+            		}
+            	}
+            };
+            addContact.start();
+		}
+
+		public void removeContact(final im.model.Contact c) {
+            if (!getConnection().isConnected()) {
+                Jabber.this.state = new DisconnectedState();
+                return;
+            }
+            Thread removeContact = new Thread() {
+                public void run() {
+                    try {
+                        IQRoster roster = new IQRoster();
+                        roster.addItem(c.getUserId());
+                        ((IQRoster.Item) roster.getChild(0)).setSubscription(Const.REMOVE);
+                        IQ iq = new IQ(Const.SET);
+                        iq.addChild(roster);
+                        getConnection().send(iq);
+                        Presence presence = new Presence(c.getUserId(), Const.UNSUBSCRIBE);
+                        System.out.println("Removing contact " + presence);
+                        getConnection().send(presence);
+                    } catch (java.io.IOException e) {
+                        System.err.println(e.getMessage());
+                        e.printStackTrace();
+                    }
+                }
+            };
+            removeContact.start();
+		}
+
+		public void send(final im.model.Message msg) {
+            if (!getConnection().isConnected()) {
+                Jabber.this.state = new DisconnectedState();
+                return;
+            }
+            Thread send = new Thread() {
+                public void run() {
+                    try {
+                        Message message = new Message();
+                        message.setTo(msg.getRecipient());
+                        message.setFrom(msg.getSender());
+                        message.setBody(msg.getContent().toString());
+                        System.out.println("Sending " + msg + ": " + message);
+                        getConnection().send(message);
+                    } catch (java.io.IOException e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+            };
+            send.start();
+		}
+    }
+    
+    private State state = new DisconnectedState();
+    
 /**
- * <p>Represents ...</p>
+ * <p>
+ * Represents ...
+ * </p>
  */
-    private java.net.Socket socket = null;
+    //private java.net.Socket socket = null;
 
 /**
- * <p>Represents ...</p>
+ * <p>
+ * Represents ...
+ * </p>
  */
     private com.jabberwookie.Client2Server connection;
 
 /**
- * <p>Represents ...</p>
+ * <p>
+ * Represents ...
+ * </p>
  */
-    private String connectError = "";
+//    private String connectError = "";
 
 /**
- * <p>Represents ...</p>
+ * <p>
+ * Represents ...
+ * </p>
  */
     private String uid = "";
 
 /**
- * <p>Does ...</p>
+ * <p>
+ * Does ...
+ * </p>
  * 
  * 
  * 
- * @param connection 
+ * @param connection
  */
     public void setConnection(com.jabberwookie.Client2Server connection) {        
         // Begin Observable stanza
@@ -46,69 +231,30 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
             // Begin original body
         this.connection = connection;
             // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Connection");
-            e.put("class", com.jabberwookie.Client2Server.class);
-            if (connection != null) {
-                e.put("value", connection);
-            }
-            notifyObservers(e);
+            notifyObservers("Connection", connection);
         }
         // End Observable stanza
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>
+ * Does ...
+ * </p>
  * 
  * 
  * 
- * @param socket 
- */
-    public void setSocket(java.net.Socket socket) {        
-        // Begin Observable stanza
-        if (this.socket != socket) {
-            // Begin original body
-        this.socket = socket;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Socket");
-            e.put("class", java.net.Socket.class);
-            if (socket != null) {
-                e.put("value", socket);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
+ * @return
  */
     public com.jabberwookie.Client2Server getConnection() {        
         return connection;
     } 
 
 /**
- * <p>Does ...</p>
+ * <p>
+ * Does ...
+ * </p>
  * 
- * 
- * 
- * @return 
- */
-    public java.net.Socket getSocket() {        
-        return socket;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
+ *  
  */
     public  Jabber() {        
         setName("Jabber");
@@ -122,21 +268,11 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
  * @param msg 
  */
     public void send(im.model.Message msg) {        
-        try {
-            if (getConnection() == null) {
-                throw new java.io.IOException("Cannot send message: connection not established");
-            }
-            Message message = new Message();
-            message.setTo(msg.getRecipient());
-            message.setFrom(msg.getSender());
-            message.setBody(msg.getContent().toString());
-            System.out.println("Sending " + msg + ": " + message);
-            getConnection().send(message);
-        } catch (java.io.IOException e) {
-            System.err.println(e.getMessage());
-        }
+        state.send(msg);
     } 
 
+    abstract protected void connect(String host) throws java.io.IOException;
+    
 /**
  * <p>Does ...</p>
  * 
@@ -146,6 +282,11 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
  * @param pwd 
  * @return 
  */
+<<<<<<< .mine
+    public void login(String uid, String pwd) {        
+        this.uid = uid;
+        state.login(uid, pwd);
+=======
     public boolean login(String uid, String pwd) {        
         try {
             this.uid = uid; 
@@ -206,6 +347,7 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
             e.printStackTrace();
         }
         return false;
+>>>>>>> .r1281
     } 
 
 /**
@@ -213,19 +355,8 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
  * 
  * 
  */
-    public void logout() {        
-        try {
-            if (getConnection() == null) {
-                throw new java.io.IOException("Cannot logout: connection not established");
-            }
-            System.out.println("Closing connection for " + getConnection().getServerName());
-            Presence p = new Presence();
-            p.setType(Const.UNAVAILABLE);
-            getConnection().send(p);
-            getConnection().close();
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
+    public void logout() {
+        state.logout();
     } 
 
 /**
@@ -236,22 +367,7 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
  * @param c 
  */
     public void addContact(im.model.Contact c) {        
-        try {
-            if (getConnection() == null) {
-                throw new java.io.IOException("Cannot add contact: connection not established");
-            }
-            Presence presence = new Presence(c.getUserId(), Const.SUBSCRIBE);
-            System.out.println("Adding contact " + presence);
-            getConnection().send(presence);
-            IQRoster roster = new IQRoster();
-            roster.addItem(c.getUserId(), c.getName());
-            IQ iq = new IQ(Const.SET);
-            iq.addChild(roster);
-            getConnection().send(iq);
-        } catch (java.io.IOException e) {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
-        }
+        state.addContact(c);
     } 
 
 /**
@@ -262,23 +378,7 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
  * @param c 
  */
     public void removeContact(im.model.Contact c) {        
-         try {
-             if (getConnection() == null) {
-                 throw new java.io.IOException("Cannot remove contact: connection not established");
-             }
-             IQRoster roster = new IQRoster();
-             roster.addItem(c.getUserId());
-             ((IQRoster.Item) roster.getChild(0)).setSubscription(Const.REMOVE);
-             IQ iq = new IQ(Const.SET);
-             iq.addChild(roster);
-             getConnection().send(iq);
-             Presence presence = new Presence(c.getUserId(), Const.UNSUBSCRIBE);
-             System.out.println("Removing contact " + presence);
-             getConnection().send(presence);
-        	} catch (java.io.IOException e) {
-             System.err.println(e.getMessage());
-             e.printStackTrace();
-        	}
+        state.removeContact(c);
     } 
 
 /**
@@ -428,29 +528,29 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
  * @param port 
  * @return 
  */
-    private java.net.Socket connect(String host, int port) {        
-        Socket s = null;
-        try {
-            InetAddress[] hosts = InetAddress.getAllByName(host);
-            java.util.Stack exceptions = new java.util.Stack();
-            for (int i = 0; i < hosts.length; i++) {
-                try {
-                    s = new Socket(hosts[i], port);
-                    break;
-                } catch (Exception e) {
-                    exceptions.push(e);
-                }
-            }
-            StringBuffer sb = new StringBuffer();
-            while (!exceptions.empty()) {
-                sb.append(((Exception) exceptions.pop()).getMessage());
-            }
-            connectError = sb.toString();
-        } catch (Exception e) {
-            connectError = e.getMessage();
-        }
-        return s;
-    } 
+//    private java.net.Socket connect(String host, int port) {        
+//        Socket s = null;
+//        try {
+//            InetAddress[] hosts = InetAddress.getAllByName(host);
+//            java.util.Stack exceptions = new java.util.Stack();
+//            for (int i = 0; i < hosts.length; i++) {
+//                try {
+//                    s = new Socket(hosts[i], port);
+//                    break;
+//                } catch (Exception e) {
+//                    exceptions.push(e);
+//                }
+//            }
+//            StringBuffer sb = new StringBuffer();
+//            while (!exceptions.empty()) {
+//                sb.append(((Exception) exceptions.pop()).getMessage());
+//            }
+//            connectError = sb.toString();
+//        } catch (Exception e) {
+//            connectError = e.getMessage();
+//        }
+//        return s;
+//    } 
 
 /**
  * <p>Does ...</p>
@@ -464,12 +564,20 @@ public class Jabber extends im.networking.Network implements com.jabberwookie.IQ
         if (uid.equals(jid)) {
         	return jid;
         } else { // strip resource bit if remote user
+<<<<<<< .mine
+            Vector strip = Strings.tokenize(jid, '/');
+            return (String) strip.elementAt(0);
+//        	java.util.StringTokenizer strip =
+//        		new java.util.StringTokenizer(jid, "/");
+//        	return strip.nextToken();
+=======
             //TODO: change in model
             Vector strip = Strings.tokenize(jid, '/');
             return (String) strip.elementAt(0);
 //          java.util.StringTokenizer strip =
 //              new java.util.StringTokenizer(jid, "/");
 //          return strip.nextToken();
+>>>>>>> .r1281
         }
     } 
  }
