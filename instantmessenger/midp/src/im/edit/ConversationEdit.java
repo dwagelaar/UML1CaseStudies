@@ -9,12 +9,12 @@ public class ConversationEdit implements observer.Observer, im.view.Conversation
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ConversationView view = null;
+    private im.model.Conversation model = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Conversation model = null;
+    private im.view.ConversationView view = null;
 
 /**
  * <p>Does ...</p>
@@ -31,6 +31,17 @@ public class ConversationEdit implements observer.Observer, im.view.Conversation
         if (name.equals("Contact")) {
             onContactChange((im.model.Contact) value);
         }
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param view 
+ */
+    public void setView(im.view.ConversationView view) {        
+        this.view = view;
     } 
 
 /**
@@ -55,10 +66,10 @@ public class ConversationEdit implements observer.Observer, im.view.Conversation
  * 
  * 
  * 
- * @param view 
+ * @return 
  */
-    public void setView(im.view.ConversationView view) {        
-        this.view = view;
+    public im.view.ConversationView getView() {        
+        return view;
     } 
 
 /**
@@ -70,17 +81,6 @@ public class ConversationEdit implements observer.Observer, im.view.Conversation
  */
     public im.model.Conversation getModel() {        
         return model;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.view.ConversationView getView() {        
-        return view;
     } 
 
 /**

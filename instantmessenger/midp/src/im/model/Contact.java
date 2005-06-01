@@ -31,33 +31,15 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param userId 
+ * @param name 
  */
-    public void setUserId(String userId) {        
+    public void setName(String name) {        
         // Begin Observable stanza
-        if (this.userId != userId) {
+        if (this.name != name) {
             // Begin original body
-        this.userId = userId;
+        this.name = name;
             // End original body
-            notifyObservers("UserId", userId);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param status 
- */
-    public void setStatus(String status) {        
-        // Begin Observable stanza
-        if (this.status != status) {
-            // Begin original body
-        this.status = status;
-            // End original body
-            notifyObservers("Status", status);
+            notifyObservers("Name", name);
         }
         // End Observable stanza
     } 
@@ -89,15 +71,33 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param name 
+ * @param status 
  */
-    public void setName(String name) {        
+    public void setStatus(String status) {        
         // Begin Observable stanza
-        if (this.name != name) {
+        if (this.status != status) {
             // Begin original body
-        this.name = name;
+        this.status = status;
             // End original body
-            notifyObservers("Name", name);
+            notifyObservers("Status", status);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param userId 
+ */
+    public void setUserId(String userId) {        
+        // Begin Observable stanza
+        if (this.userId != userId) {
+            // Begin original body
+        this.userId = userId;
+            // End original body
+            notifyObservers("UserId", userId);
         }
         // End Observable stanza
     } 
@@ -109,19 +109,8 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getUserId() {        
-        return userId;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public String getStatus() {        
-        return status;
+    public String getName() {        
+        return name;
     } 
 
 /**
@@ -142,7 +131,18 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getName() {        
-        return name;
+    public String getStatus() {        
+        return status;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getUserId() {        
+        return userId;
     } 
  }

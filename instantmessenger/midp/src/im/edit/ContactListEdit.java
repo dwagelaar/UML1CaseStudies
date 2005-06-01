@@ -14,12 +14,12 @@ public class ContactListEdit implements observer.Observer, im.view.NewContactDia
 /**
  * <p>Represents ...</p>
  */
-    private im.model.ContactList model = null;
+    private java.util.Vector contactEdit = new java.util.Vector();
 
 /**
  * <p>Represents ...</p>
  */
-    private java.util.Vector contactEdit = new java.util.Vector();
+    private im.model.ContactList model = null;
 
 /**
  * <p>Does ...</p>
@@ -33,17 +33,6 @@ public class ContactListEdit implements observer.Observer, im.view.NewContactDia
         if (name.equals("Contact")) {
             onContactChange((im.model.Contact) value);
         }
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param view 
- */
-    public void setView(im.view.ContactListView view) {        
-        this.view = view;
     } 
 
 /**
@@ -68,10 +57,10 @@ public class ContactListEdit implements observer.Observer, im.view.NewContactDia
  * 
  * 
  * 
- * @return 
+ * @param view 
  */
-    public im.view.ContactListView getView() {        
-        return view;
+    public void setView(im.view.ContactListView view) {        
+        this.view = view;
     } 
 
 /**
@@ -83,6 +72,17 @@ public class ContactListEdit implements observer.Observer, im.view.NewContactDia
  */
     public im.model.ContactList getModel() {        
         return model;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.view.ContactListView getView() {        
+        return view;
     } 
 
 /**

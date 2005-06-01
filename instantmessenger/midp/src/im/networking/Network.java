@@ -67,6 +67,24 @@ public abstract class Network {
  * 
  * 
  * 
+ * @param recvMsg 
+ */
+    public void setRecvMsg(im.model.Message recvMsg) {        
+        // Begin Observable stanza
+        if (this.recvMsg != recvMsg) {
+            // Begin original body
+        this.recvMsg = recvMsg;
+            // End original body
+            notifyObservers("RecvMsg", recvMsg);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param name 
  */
     public void setName(String name) {        
@@ -103,17 +121,10 @@ public abstract class Network {
  * 
  * 
  * 
- * @param recvMsg 
+ * @return 
  */
-    public void setRecvMsg(im.model.Message recvMsg) {        
-        // Begin Observable stanza
-        if (this.recvMsg != recvMsg) {
-            // Begin original body
-        this.recvMsg = recvMsg;
-            // End original body
-            notifyObservers("RecvMsg", recvMsg);
-        }
-        // End Observable stanza
+    public im.model.Message getRecvMsg() {        
+        return recvMsg;
     } 
 
 /**
@@ -143,17 +154,6 @@ public abstract class Network {
  * 
  * 
  * 
- * @return 
- */
-    public im.model.Message getRecvMsg() {        
-        return recvMsg;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param msg 
  */
     public abstract void send(im.model.Message msg);
@@ -165,7 +165,6 @@ public abstract class Network {
  * 
  * @param uid 
  * @param pwd 
- * @return 
  */
     public void login(String uid, String pwd) {        
         // your code here
@@ -209,9 +208,10 @@ public abstract class Network {
  * 
  * @return 
  */
-    public static im.networking.Network[] getDefault() {     
+    public static im.networking.Network[] getDefault() {        
         String[] options = {
             "im.networking.jabber.mejabber.MEJabber",
+            "im.networking.jabber.defaultjabber.DefaultJabber",
             "im.networking.sms.SMS"
         };
         java.util.Vector networks = new java.util.Vector();

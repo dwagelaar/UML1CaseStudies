@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="jar/midp.jar"/>
-	<classpathentry kind="src" path="/UML1CaseStudies.microjabberwookie"/>
-	<classpathentry kind="lib" path="/UML1CaseStudies.microjabberwookie/jar/MicroJabberWookie.jar"/>
+	<classpathentry kind="src" path="/UML1CaseStudies-microjabberwookie"/>
+	<classpathentry kind="lib" path="/UML1CaseStudies-microjabberwookie/jar/MicroJabberWookie.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
