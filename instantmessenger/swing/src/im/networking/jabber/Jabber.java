@@ -6,15 +6,7 @@ import java.util.Vector;
 import com.jabberwookie.*;
 import com.jabberwookie.ns.jabber.*;
 import com.jabberwookie.ns.jabber.iq.*;
-<<<<<<< .mine
 import com.ssttr.util.Strings;
-//import java.net.*;
-=======
-import com.ssttr.util.Strings;
-
-import java.net.*;
->>>>>>> .r1281
-import java.util.Vector;
 
 /**
  * <p></p>
@@ -282,72 +274,9 @@ public abstract class Jabber extends im.networking.Network implements com.jabber
  * @param pwd 
  * @return 
  */
-<<<<<<< .mine
     public void login(String uid, String pwd) {        
         this.uid = uid;
         state.login(uid, pwd);
-=======
-    public boolean login(String uid, String pwd) {        
-        try {
-            this.uid = uid; 
-            //TODO: change in model
-            java.util.Vector address = Strings.tokenize(uid, '@');
-            String user = (String) address.elementAt(0);
-            String server = (String) address.elementAt(1);
-            address = Strings.tokenize(server, '/');
-            server = (String) address.elementAt(0);
-            String resource = (String) address.elementAt(1);
-//            java.util.StringTokenizer address = new java.util.StringTokenizer(uid, "@");
-//            String user = address.nextToken();
-//            String server = address.nextToken();
-//            address = new java.util.StringTokenizer(server, "/");
-//            server = address.nextToken();
-//            String resource = address.nextToken();
-            setSocket(connect(server, 5222));
-            if (getSocket() == null) {
-                throw new SocketException(connectError);
-            }
-            setConnection(new Client2Server(getSocket().getInputStream(), getSocket().getOutputStream()));
-            if (!getConnection().open(server, 60000)) {
-                throw new ConnectException("Could not establish stream to " + server + ":5222 after 60 seconds");
-            }
-            getConnection().setMessageListener(this);
-            getConnection().setIQListener(this);
-            getConnection().setPresenceListener(this);
-            boolean try_again;
-            do {
-                try_again = false;
-                System.out.println("Logging in " + uid);
-                switch (getConnection().loginAny(user, resource, pwd, 30000)) {
-                    case Client2Server.LOGIN_BAD_PASS:
-                        throw new ConnectException("Bad password for " + uid);
-                    case Client2Server.LOGIN_BAD_UID:
-                        if (!registerUser(user, pwd))
-                            throw new ConnectException("Could not register user for " + uid);
-                        else
-                            try_again = true;
-                        break;
-                    case Client2Server.LOGIN_FAILED:
-                        throw new ConnectException("Login failed: unknown: " + uid);
-                    case Client2Server.LOGIN_PASS_EXP:
-                        System.out.println("Your password has expired for " + uid);
-                        break;
-                    case Client2Server.LOGIN_OK:
-                        break;
-                }
-            } while (try_again);
-            Presence pres = new Presence(Const.AVAILABLE, "Available", 1);
-            pres.setFrom(uid);
-            getConnection().send(pres);
-            incomingPresence(pres);
-            getConnection().send(IQRoster.createGetRequest());
-            return true;
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
-        }
-        return false;
->>>>>>> .r1281
     } 
 
 /**
@@ -524,39 +453,6 @@ public abstract class Jabber extends im.networking.Network implements com.jabber
  * 
  * 
  * 
- * @param host 
- * @param port 
- * @return 
- */
-//    private java.net.Socket connect(String host, int port) {        
-//        Socket s = null;
-//        try {
-//            InetAddress[] hosts = InetAddress.getAllByName(host);
-//            java.util.Stack exceptions = new java.util.Stack();
-//            for (int i = 0; i < hosts.length; i++) {
-//                try {
-//                    s = new Socket(hosts[i], port);
-//                    break;
-//                } catch (Exception e) {
-//                    exceptions.push(e);
-//                }
-//            }
-//            StringBuffer sb = new StringBuffer();
-//            while (!exceptions.empty()) {
-//                sb.append(((Exception) exceptions.pop()).getMessage());
-//            }
-//            connectError = sb.toString();
-//        } catch (Exception e) {
-//            connectError = e.getMessage();
-//        }
-//        return s;
-//    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param jid 
  * @return 
  */
@@ -564,20 +460,8 @@ public abstract class Jabber extends im.networking.Network implements com.jabber
         if (uid.equals(jid)) {
         	return jid;
         } else { // strip resource bit if remote user
-<<<<<<< .mine
             Vector strip = Strings.tokenize(jid, '/');
             return (String) strip.elementAt(0);
-//        	java.util.StringTokenizer strip =
-//        		new java.util.StringTokenizer(jid, "/");
-//        	return strip.nextToken();
-=======
-            //TODO: change in model
-            Vector strip = Strings.tokenize(jid, '/');
-            return (String) strip.elementAt(0);
-//          java.util.StringTokenizer strip =
-//              new java.util.StringTokenizer(jid, "/");
-//          return strip.nextToken();
->>>>>>> .r1281
         }
     } 
  }
