@@ -31,15 +31,15 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param content 
+ * @param recipient 
  */
-    public void setContent(Object content) {        
+    public void setRecipient(String recipient) {        
         // Begin Observable stanza
-        if (this.content != content) {
+        if (this.recipient != recipient) {
             // Begin original body
-        this.content = content;
+        this.recipient = recipient;
             // End original body
-            notifyObservers("Content", content);
+            notifyObservers("Recipient", recipient);
         }
         // End Observable stanza
     } 
@@ -88,15 +88,15 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param recipient 
+ * @param content 
  */
-    public void setRecipient(String recipient) {        
+    public void setContent(Object content) {        
         // Begin Observable stanza
-        if (this.recipient != recipient) {
+        if (this.content != content) {
             // Begin original body
-        this.recipient = recipient;
+        this.content = content;
             // End original body
-            notifyObservers("Recipient", recipient);
+            notifyObservers("Content", content);
         }
         // End Observable stanza
     } 
@@ -108,8 +108,8 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public Object getContent() {        
-        return content;
+    public String getRecipient() {        
+        return recipient;
     } 
 
 /**
@@ -141,8 +141,8 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getRecipient() {        
-        return recipient;
+    public Object getContent() {        
+        return content;
     } 
 
 /**

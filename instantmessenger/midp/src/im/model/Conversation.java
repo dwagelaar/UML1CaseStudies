@@ -62,6 +62,24 @@ public class Conversation {
  * 
  * 
  * 
+ * @param contact 
+ */
+    public void setContact(im.model.Contact contact) {        
+        // Begin Observable stanza
+        if (this.contact != contact) {
+            // Begin original body
+        this.contact = contact;
+            // End original body
+            notifyObservers("Contact", contact);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param message 
  */
     public void setMessage(im.model.Message message) {        
@@ -83,17 +101,10 @@ public class Conversation {
  * 
  * 
  * 
- * @param contact 
+ * @return 
  */
-    public void setContact(im.model.Contact contact) {        
-        // Begin Observable stanza
-        if (this.contact != contact) {
-            // Begin original body
-        this.contact = contact;
-            // End original body
-            notifyObservers("Contact", contact);
-        }
-        // End Observable stanza
+    public im.model.Contact getContact() {        
+        return contact;
     } 
 
 /**
@@ -105,16 +116,5 @@ public class Conversation {
  */
     public im.model.Message getMessage() {        
         return message;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.Contact getContact() {        
-        return contact;
     } 
  }

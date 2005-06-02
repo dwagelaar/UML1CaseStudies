@@ -7,7 +7,7 @@ import com.jabberwookie.ns.jabber.iq.*;
 /**
  * <p></p>
  */
-public abstract class Jabber extends im.networking.Network implements com.jabberwookie.IQListener, com.jabberwookie.PresenceListener, com.jabberwookie.MessageListener {
+public abstract class Jabber extends im.networking.Network implements com.jabberwookie.IQListener, com.jabberwookie.MessageListener, com.jabberwookie.PresenceListener {
 
 /**
  * <p>Represents ...</p>

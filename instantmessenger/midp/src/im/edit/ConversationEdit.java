@@ -9,12 +9,12 @@ public class ConversationEdit implements observer.Observer, im.view.Conversation
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Conversation model = null;
+    private im.view.ConversationView view = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ConversationView view = null;
+    private im.model.Conversation model = null;
 
 /**
  * <p>Does ...</p>
@@ -124,7 +124,11 @@ public class ConversationEdit implements observer.Observer, im.view.Conversation
  * @param c 
  */
     public void onContactChange(im.model.Contact c) {        
-        getView().setTitle(getModel().getContact().getName());
+        if (c.getName() != null) {
+            getView().setTitle(c.getName());
+        } else if (c.getUserId() != null) {
+            getView().setTitle(c.getUserId());
+        }
         getView().toFront();
     } 
 
@@ -143,15 +147,27 @@ public class ConversationEdit implements observer.Observer, im.view.Conversation
  * 
  */
     public void onConversationSend() {        
-        im.model.Contact recipient = getModel().getContact();
-        im.model.Contact sender = getSender(recipient);
-        im.model.Message msg = new im.model.Message();
-        msg.setNetwork(recipient.getNetwork());
-        msg.setSender(sender.getUserId());
-        msg.setRecipient(recipient.getUserId());
-        msg.setContent(getView().getContent());
-        msg.send();
-        getModel().setMessage(msg);
+        try {
+            im.model.Contact recipient = getModel().getContact();
+            if (recipient == null) {
+                throw new NullPointerException(
+                "No recipient available in ConversationEdit.onConversationSend()");
+            }
+            im.model.Contact sender = getSender(recipient);
+            if (sender == null) {
+                throw new NullPointerException(
+                "No sender available in ConversationEdit.onConversationSend()");
+            }
+            im.model.Message msg = new im.model.Message();
+            msg.setNetwork(recipient.getNetwork());
+            msg.setSender(sender.getUserId());
+            msg.setRecipient(recipient.getUserId());
+            msg.setContent(getView().getContent());
+            msg.send();
+            getModel().setMessage(msg);
+        } catch (Exception e) {
+            im.InstantMessagingClient.getInstance().report(e);
+        }
     } 
 
 /**

@@ -1,10 +1,11 @@
 
 package im;
+import im.ExceptionReporter;
 
 /**
  * <p></p>
  */
-public class InstantMessagingClient extends javax.microedition.midlet.MIDlet implements observer.Observer {
+public class InstantMessagingClient extends javax.microedition.midlet.MIDlet implements observer.Observer, im.ExceptionReporter {
 
 /**
  * <p>Represents ...</p>
@@ -19,22 +20,22 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
 /**
  * <p>Represents ...</p>
  */
-    private java.util.Vector network = new java.util.Vector();
-
-/**
- * <p>Represents ...</p>
- */
-    private im.view.ViewFactory viewFactory = null;
-
-/**
- * <p>Represents ...</p>
- */
     private java.util.Vector conversation = new java.util.Vector();
 
 /**
  * <p>Represents ...</p>
  */
+    private java.util.Vector network = new java.util.Vector();
+
+/**
+ * <p>Represents ...</p>
+ */
     private im.model.ContactList contactList = new im.model.ContactList();
+
+/**
+ * <p>Represents ...</p>
+ */
+    private im.view.ViewFactory viewFactory = null;
 
 /**
  * <p>Does ...</p>
@@ -76,7 +77,7 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * @param unconditional 
  */
-    public void destroyApp(boolean unconditional) {
+    public void destroyApp(boolean unconditional) {        
         stop();
         destroy();
     } 
@@ -150,6 +151,17 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * @return 
  */
+    public java.util.Vector getNetworks() {        
+        return network;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
     public im.model.ContactList getContactList() {        
         return contactList;
     } 
@@ -181,33 +193,6 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * 
  * 
- * @return 
- */
-    public java.util.Vector getNetworks() {        
-        return network;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param index 
- * @return 
- */
-    public im.model.Conversation getConversationAt(int index) {        
-        try {
-            return (im.model.Conversation) conversation.elementAt(index);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return null;
-        }
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param index 
  * @return 
  */
@@ -224,10 +209,15 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * 
  * 
- * @param conversation 
+ * @param index 
+ * @return 
  */
-    public void addConversation(im.model.Conversation conversation) {        
-        this.conversation.addElement(conversation);
+    public im.model.Conversation getConversationAt(int index) {        
+        try {
+            return (im.model.Conversation) conversation.elementAt(index);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
     } 
 
 /**
@@ -252,13 +242,9 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * 
  * @param conversation 
- * @param index 
  */
-    public void insertConversation(im.model.Conversation conversation, int index) {        
-        try {
-            this.conversation.insertElementAt(conversation, index);} catch (ArrayIndexOutOfBoundsException e) {
-            this.conversation.addElement(conversation);
-        };
+    public void addConversation(im.model.Conversation conversation) {        
+        this.conversation.addElement(conversation);
     } 
 
 /**
@@ -287,9 +273,13 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * 
  * @param conversation 
+ * @param index 
  */
-    public void removeConversation(im.model.Conversation conversation) {        
-        this.conversation.removeElement(conversation);
+    public void insertConversation(im.model.Conversation conversation, int index) {        
+        try {
+            this.conversation.insertElementAt(conversation, index);} catch (ArrayIndexOutOfBoundsException e) {
+            this.conversation.addElement(conversation);
+        };
     } 
 
 /**
@@ -306,6 +296,17 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
         this.network.removeElement(network);
         // End original body
         // End subscribe stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param conversation 
+ */
+    public void removeConversation(im.model.Conversation conversation) {        
+        this.conversation.removeElement(conversation);
     } 
 
 /**
@@ -404,6 +405,24 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param e 
+ */
+    public void report(Exception e) {        
+        for (int i = 0; i < getNetworks().size(); i++) {
+            if (getNetworkAt(i) instanceof ExceptionReporter) {
+                ((ExceptionReporter) getNetworkAt(i)).report(e);
+                return;
+            }
+        }
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
  */
     private void loadSettings() {        
         try {
@@ -420,15 +439,4 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
             e.printStackTrace();
         }
     } 
-    
-    public void report(Exception e) {
-        for (int i = 0; i < getNetworks().size(); i++) {
-            if (getNetworkAt(i) instanceof ExceptionReporter) {
-                ((ExceptionReporter) getNetworkAt(i)).report(e);
-                return;
-            }
-        }
-        System.err.println(e.getMessage());
-        e.printStackTrace();
-    }
  }
