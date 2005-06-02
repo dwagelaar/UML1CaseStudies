@@ -9,12 +9,12 @@ public class ContactEdit implements java.util.Observer {
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Contact model = null;
+    private im.edit.ContactListEdit listEdit = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.edit.ContactListEdit listEdit = null;
+    private im.model.Contact model = null;
 
 /**
  * <p>Does ...</p>
@@ -47,21 +47,6 @@ public class ContactEdit implements java.util.Observer {
  * 
  * 
  * 
- * @param listEdit 
- */
-    public void setListEdit(im.edit.ContactListEdit listEdit) {        
-        if (this.listEdit != listEdit) {
-            if (this.listEdit != null) this.listEdit.removeContactEdit(this);
-            this.listEdit = listEdit;
-            if (listEdit != null) listEdit.addContactEdit(this);
-        }
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param model 
  */
     public void setModel(im.model.Contact model) {        
@@ -79,10 +64,14 @@ public class ContactEdit implements java.util.Observer {
  * 
  * 
  * 
- * @return 
+ * @param listEdit 
  */
-    public im.edit.ContactListEdit getListEdit() {        
-        return listEdit;
+    public void setListEdit(im.edit.ContactListEdit listEdit) {        
+        if (this.listEdit != listEdit) {
+            if (this.listEdit != null) this.listEdit.removeContactEdit(this);
+            this.listEdit = listEdit;
+            if (listEdit != null) listEdit.addContactEdit(this);
+        }
     } 
 
 /**
@@ -94,6 +83,17 @@ public class ContactEdit implements java.util.Observer {
  */
     public im.model.Contact getModel() {        
         return model;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.edit.ContactListEdit getListEdit() {        
+        return listEdit;
     } 
 
 /**

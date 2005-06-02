@@ -21,6 +21,31 @@ public class Conversation extends java.util.Observable {
  * 
  * 
  * 
+ * @param contact 
+ */
+    public void setContact(im.model.Contact contact) {        
+        // Begin Observable stanza
+        if (this.contact != contact) {
+            // Begin original body
+        this.contact = contact;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Contact");
+            e.put("class", im.model.Contact.class);
+            if (contact != null) {
+                e.put("value", contact);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param message 
  */
     public void setMessage(im.model.Message message) {        
@@ -49,24 +74,10 @@ public class Conversation extends java.util.Observable {
  * 
  * 
  * 
- * @param contact 
+ * @return 
  */
-    public void setContact(im.model.Contact contact) {        
-        // Begin Observable stanza
-        if (this.contact != contact) {
-            // Begin original body
-        this.contact = contact;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Contact");
-            e.put("class", im.model.Contact.class);
-            if (contact != null) {
-                e.put("value", contact);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
+    public im.model.Contact getContact() {        
+        return contact;
     } 
 
 /**
@@ -78,16 +89,5 @@ public class Conversation extends java.util.Observable {
  */
     public im.model.Message getMessage() {        
         return message;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.Contact getContact() {        
-        return contact;
     } 
  }

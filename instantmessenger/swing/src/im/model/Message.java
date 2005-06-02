@@ -59,20 +59,20 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param recipient 
+ * @param sender 
  */
-    public void setRecipient(String recipient) {        
+    public void setSender(String sender) {        
         // Begin Observable stanza
-        if (this.recipient != recipient) {
+        if (this.sender != sender) {
             // Begin original body
-        this.recipient = recipient;
+        this.sender = sender;
             // End original body
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Recipient");
+            e.put("name", "Sender");
             e.put("class", String.class);
-            if (recipient != null) {
-                e.put("value", recipient);
+            if (sender != null) {
+                e.put("value", sender);
             }
             notifyObservers(e);
         }
@@ -109,20 +109,20 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param sender 
+ * @param recipient 
  */
-    public void setSender(String sender) {        
+    public void setRecipient(String recipient) {        
         // Begin Observable stanza
-        if (this.sender != sender) {
+        if (this.recipient != recipient) {
             // Begin original body
-        this.sender = sender;
+        this.recipient = recipient;
             // End original body
             setChanged();
             java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Sender");
+            e.put("name", "Recipient");
             e.put("class", String.class);
-            if (sender != null) {
-                e.put("value", sender);
+            if (recipient != null) {
+                e.put("value", recipient);
             }
             notifyObservers(e);
         }
@@ -147,8 +147,8 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getRecipient() {        
-        return recipient;
+    public String getSender() {        
+        return sender;
     } 
 
 /**
@@ -169,8 +169,8 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getSender() {        
-        return sender;
+    public String getRecipient() {        
+        return recipient;
     } 
 
 /**

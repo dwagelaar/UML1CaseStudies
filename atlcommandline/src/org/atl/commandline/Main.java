@@ -41,7 +41,7 @@ public class Main implements Runnable {
         "--trans <transformation url> " +
         "[--in <id>=<model> <id>=<metamodel>] " +
         "[--out <id>=<model> <id>=<metamodel>] " +
-        "[--lib <id>=<library>";
+        "[--lib <id>=<library url>";
     
     public URL trans = null;
     public String handler = "MDR";
@@ -54,6 +54,8 @@ public class Main implements Runnable {
         Main main = new Main();
         if (main.parseArgs(args)) {
             main.run();
+        } else {
+            System.exit(1);
         }
     }
     
@@ -63,6 +65,10 @@ public class Main implements Runnable {
      * @return
      */
     public boolean parseArgs(String[] args) {
+        if (args.length == 0) {
+            System.out.println(USAGE);
+            return false;
+        }
         try {
             for (int i = 0; i < args.length; i++) {
                 System.out.println(args[i]);
@@ -80,6 +86,7 @@ public class Main implements Runnable {
                     addLib(args[i]);
                 } else {
                     System.out.print(USAGE);
+                    return false;
                 }
             }
         } catch (Exception e) {
@@ -154,7 +161,7 @@ public class Main implements Runnable {
             metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
         }
         if (in.get(metaid) == null)
-            out.put(metaid, metaModel);
+            in.put(metaid, metaModel);
         System.out.println("Using output metamodel " + metaModel);
         System.out.println("Creating new model " + modelid + " for output");
         outputModel = amh.newModel(modelid, metaModel);
@@ -198,17 +205,19 @@ public class Main implements Runnable {
             Map params = Collections.EMPTY_MAP;
             AtlLauncher myLauncher = AtlLauncher.getDefault();
             myLauncher.launch(trans, libs, models, params);
+            System.out.println("Model transformation done");
             // save output models
             for(Iterator i = out.keySet().iterator(); i.hasNext() ; ) {
                 String mName = (String)i.next();
                 ASMModel currentOutModel = (ASMModel)out.get(mName);
                 amh.saveModel(currentOutModel, (String) paths.get(mName));
+                System.out.println("Wrote " + (String) paths.get(mName));
             }
         } catch (Exception e) {
             System.err.print(e.toString());
             e.printStackTrace();
             System.out.println(USAGE);
+            System.exit(1);
         }
-        System.out.println("Model transformation done");
     }
 }

@@ -12,12 +12,12 @@ public abstract class Jabber extends im.networking.Network implements com.jabber
 /**
  * <p>Represents ...</p>
  */
-    private com.jabberwookie.Client2Server connection;
+    private im.networking.jabber.Jabber.State state = new DisconnectedState();
 
 /**
  * <p>Represents ...</p>
  */
-    private im.networking.jabber.Jabber.State state = new DisconnectedState();
+    private com.jabberwookie.Client2Server connection;
 
 /**
  * <p>Represents ...</p>
@@ -290,6 +290,65 @@ public abstract class Jabber extends im.networking.Network implements com.jabber
 /**
  * <p></p>
  */
+public abstract class State {
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param uid 
+ * @param pwd 
+ */
+    public void login(String uid, String pwd) {        
+        // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ */
+    public void logout() {        
+        // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param c 
+ */
+    public void addContact(im.model.Contact c) {        
+        // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param c 
+ */
+    public void removeContact(im.model.Contact c) {        
+        // your code here
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param msg 
+ */
+    public void send(im.model.Message msg) {        
+        // your code here
+    } 
+ }
+/**
+ * <p></p>
+ */
 public class ConnectedState extends im.networking.jabber.Jabber.State {
 
 /**
@@ -412,65 +471,6 @@ public class ConnectedState extends im.networking.jabber.Jabber.State {
 /**
  * <p></p>
  */
-public abstract class State {
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param uid 
- * @param pwd 
- */
-    public void login(String uid, String pwd) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- */
-    public void logout() {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param c 
- */
-    public void addContact(im.model.Contact c) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param c 
- */
-    public void removeContact(im.model.Contact c) {        
-        // your code here
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param msg 
- */
-    public void send(im.model.Message msg) {        
-        // your code here
-    } 
- }
-/**
- * <p></p>
- */
 public class DisconnectedState extends im.networking.jabber.Jabber.State {
 
 /**
@@ -530,7 +530,7 @@ public class DisconnectedState extends im.networking.jabber.Jabber.State {
                     incomingPresence(pres);
                     getConnection().send(IQRoster.createGetRequest());
                     synchronized(Jabber.this) {
-                        Jabber.this.state = new ConnectedState();
+                            Jabber.this.state = new ConnectedState();
                     }
                 } catch (Exception e) {
                     im.InstantMessagingClient.getInstance().report(e);

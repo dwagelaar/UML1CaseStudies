@@ -4,7 +4,12 @@ package im.edit;
 /**
  * <p></p>
  */
-public class ContactListEdit implements im.view.NewContactDialogListener, im.view.ContactListViewListener, java.util.Observer {
+public class ContactListEdit implements im.view.ContactListViewListener, im.view.NewContactDialogListener, java.util.Observer {
+
+/**
+ * <p>Represents ...</p>
+ */
+    private im.view.ContactListView view = null;
 
 /**
  * <p>Represents ...</p>
@@ -15,11 +20,6 @@ public class ContactListEdit implements im.view.NewContactDialogListener, im.vie
  * <p>Represents ...</p>
  */
     private java.util.List contactEdit = new java.util.ArrayList();
-
-/**
- * <p>Represents ...</p>
- */
-    private im.view.ContactListView view = null;
 
 /**
  * <p>Does ...</p>
@@ -82,8 +82,8 @@ public class ContactListEdit implements im.view.NewContactDialogListener, im.vie
  * 
  * @return 
  */
-    public java.util.List getContactEdits() {        
-        return contactEdit;
+    public im.model.ContactList getModel() {        
+        return model;
     } 
 
 /**
@@ -93,8 +93,8 @@ public class ContactListEdit implements im.view.NewContactDialogListener, im.vie
  * 
  * @return 
  */
-    public im.model.ContactList getModel() {        
-        return model;
+    public java.util.List getContactEdits() {        
+        return contactEdit;
     } 
 
 /**

@@ -1,10 +1,11 @@
 
 package im;
+import im.ExceptionReporter;
 
 /**
  * <p></p>
  */
-public class InstantMessagingClient extends java.applet.Applet implements java.util.Observer {
+public class InstantMessagingClient extends java.applet.Applet implements im.ExceptionReporter, java.util.Observer {
 
 /**
  * <p>Represents ...</p>
@@ -14,12 +15,12 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
 /**
  * <p>Represents ...</p>
  */
-    private im.model.ContactList contactList = new im.model.ContactList();
+    private im.view.ViewFactory viewFactory = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List network = new java.util.ArrayList();
+    private im.model.ContactList contactList = new im.model.ContactList();
 
 /**
  * <p>Represents ...</p>
@@ -29,7 +30,7 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ViewFactory viewFactory = null;
+    private java.util.List network = new java.util.ArrayList();
 
 /**
  * <p>Does ...</p>
@@ -87,17 +88,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param viewFactory 
- */
-    public void setViewFactory(im.view.ViewFactory viewFactory) {        
-        this.viewFactory = viewFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param contactList 
  */
     public void setContactList(im.model.ContactList contactList) {        
@@ -109,10 +99,10 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @return 
+ * @param viewFactory 
  */
-    public java.util.List getConversations() {        
-        return conversation;
+    public void setViewFactory(im.view.ViewFactory viewFactory) {        
+        this.viewFactory = viewFactory;
     } 
 
 /**
@@ -122,8 +112,8 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * @return 
  */
-    public im.view.ViewFactory getViewFactory() {        
-        return viewFactory;
+    public im.model.ContactList getContactList() {        
+        return contactList;
     } 
 
 /**
@@ -144,8 +134,8 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * @return 
  */
-    public im.model.ContactList getContactList() {        
-        return contactList;
+    public im.view.ViewFactory getViewFactory() {        
+        return viewFactory;
     } 
 
 /**
@@ -153,15 +143,10 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param index 
  * @return 
  */
-    public im.model.Conversation getConversationAt(int index) {        
-        try {
-            return (im.model.Conversation) conversation.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
+    public java.util.List getConversations() {        
+        return conversation;
     } 
 
 /**
@@ -185,10 +170,15 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param conversation 
+ * @param index 
+ * @return 
  */
-    public void addConversation(im.model.Conversation conversation) {        
-        this.conversation.add(conversation);
+    public im.model.Conversation getConversationAt(int index) {        
+        try {
+            return (im.model.Conversation) conversation.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     } 
 
 /**
@@ -213,14 +203,9 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * @param conversation 
- * @param index 
  */
-    public void insertConversation(im.model.Conversation conversation, int index) {        
-        try {
-            this.conversation.add(index, conversation);
-        } catch (IndexOutOfBoundsException e) {
-            this.conversation.add(conversation);
-        };
+    public void addConversation(im.model.Conversation conversation) {        
+        this.conversation.add(conversation);
     } 
 
 /**
@@ -250,9 +235,14 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * @param conversation 
+ * @param index 
  */
-    public void removeConversation(im.model.Conversation conversation) {        
-        this.conversation.remove(conversation);
+    public void insertConversation(im.model.Conversation conversation, int index) {        
+        try {
+            this.conversation.add(index, conversation);
+        } catch (IndexOutOfBoundsException e) {
+            this.conversation.add(conversation);
+        };
     } 
 
 /**
@@ -269,6 +259,17 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
         this.network.remove(network);
         // End original body
         // End subscribe stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param conversation 
+ */
+    public void removeConversation(im.model.Conversation conversation) {        
+        this.conversation.remove(conversation);
     } 
 
 /**
@@ -368,6 +369,24 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * <p>Does ...</p>
  * 
  * 
+ * 
+ * @param e 
+ */
+    public void report(Exception e) {        
+        for (int i = 0; i < getNetworks().size(); i++) {
+            if (getNetworkAt(i) instanceof ExceptionReporter) {
+                ((ExceptionReporter) getNetworkAt(i)).report(e);
+                return;
+            }
+        }
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
  */
     private void loadSettings() {        
         try {
@@ -384,15 +403,4 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
             e.printStackTrace();
         }
     } 
-    
-    public void report(Exception e) {
-        for (int i = 0; i < getNetworks().size(); i++) {
-            if (getNetworkAt(i) instanceof ExceptionReporter) {
-                ((ExceptionReporter) getNetworkAt(i)).report(e);
-                return;
-            }
-        }
-        System.err.println(e.getMessage());
-        e.printStackTrace();
-    }
  }
