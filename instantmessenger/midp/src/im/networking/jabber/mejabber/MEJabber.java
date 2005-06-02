@@ -80,7 +80,7 @@ public class MEJabber extends im.networking.jabber.Jabber {
         try {
             s = (StreamConnection) Connector.open("socket://" + host + ":" + port);
         } catch (Exception e) {
-            connectError = e.getMessage();
+            connectError = e.getMessage() + " at MEJabber.connect(" + host + ", " + port + ")";
         }
         return s;
     } 

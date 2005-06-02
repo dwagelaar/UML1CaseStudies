@@ -220,7 +220,7 @@ public abstract class Jabber extends im.networking.Network implements com.jabber
         try {
             getConnection().send(presence);
         } catch (java.io.IOException e) {
-            e.printStackTrace();
+            im.InstantMessagingClient.getInstance().report(e);
         }
     } 
 
@@ -266,8 +266,7 @@ public abstract class Jabber extends im.networking.Network implements com.jabber
                 IQRegister.createSetRequest(getConnection().getServerName(), info), 30000);
             return (chunk != null && chunk.getType().equals(Const.RESULT));
         } catch (java.io.IOException e) {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
+            im.InstantMessagingClient.getInstance().report(e);
         }
         return false;
     } 
@@ -302,16 +301,16 @@ public class ConnectedState extends im.networking.jabber.Jabber.State {
         Thread logout = new Thread() {
             public void run() {
                 try {
-                System.out.println("Closing connection for " + getConnection().getServerName());
-                Presence p = new Presence();
-                p.setType(Const.UNAVAILABLE);
-                getConnection().send(p);
-                getConnection().close();
-                synchronized(Jabber.this) {
-                    Jabber.this.state = new DisconnectedState();
-                }
+                    System.out.println("Closing connection for " + getConnection().getServerName());
+                    Presence p = new Presence();
+                    p.setType(Const.UNAVAILABLE);
+                    getConnection().send(p);
+                    getConnection().close();
+                    synchronized(Jabber.this) {
+                        Jabber.this.state = new DisconnectedState();
+                    }
                 } catch (java.io.IOException e) {
-                e.printStackTrace();
+                    im.InstantMessagingClient.getInstance().report(e);
                 }
             }
         };
@@ -342,8 +341,7 @@ public class ConnectedState extends im.networking.jabber.Jabber.State {
                     iq.addChild(roster);
                     getConnection().send(iq);
                 } catch (java.io.IOException e) {
-                    System.err.println(e.getMessage());
-                    e.printStackTrace();
+                    im.InstantMessagingClient.getInstance().report(e);
                 }
             }
         };
@@ -365,18 +363,17 @@ public class ConnectedState extends im.networking.jabber.Jabber.State {
         Thread removeContact = new Thread() {
             public void run() {
                 try {
-                IQRoster roster = new IQRoster();
-                roster.addItem(c.getUserId());
-                ((IQRoster.Item) roster.getChild(0)).setSubscription(Const.REMOVE);
-                IQ iq = new IQ(Const.SET);
-                iq.addChild(roster);
-                getConnection().send(iq);
-                Presence presence = new Presence(c.getUserId(), Const.UNSUBSCRIBE);
-                System.out.println("Removing contact " + presence);
-                getConnection().send(presence);
+                    IQRoster roster = new IQRoster();
+                    roster.addItem(c.getUserId());
+                    ((IQRoster.Item) roster.getChild(0)).setSubscription(Const.REMOVE);
+                    IQ iq = new IQ(Const.SET);
+                    iq.addChild(roster);
+                    getConnection().send(iq);
+                    Presence presence = new Presence(c.getUserId(), Const.UNSUBSCRIBE);
+                    System.out.println("Removing contact " + presence);
+                    getConnection().send(presence);
                 } catch (java.io.IOException e) {
-                System.err.println(e.getMessage());
-                e.printStackTrace();
+                    im.InstantMessagingClient.getInstance().report(e);
                 }
             }
         };
@@ -398,14 +395,14 @@ public class ConnectedState extends im.networking.jabber.Jabber.State {
         Thread send = new Thread() {
             public void run() {
                 try {
-                Message message = new Message();
-                message.setTo(msg.getRecipient());
-                message.setFrom(msg.getSender());
-                message.setBody(msg.getContent().toString());
-                System.out.println("Sending " + msg + ": " + message);
-                getConnection().send(message);
+                    Message message = new Message();
+                    message.setTo(msg.getRecipient());
+                    message.setFrom(msg.getSender());
+                    message.setBody(msg.getContent().toString());
+                    System.out.println("Sending " + msg + ": " + message);
+                    getConnection().send(message);
                 } catch (java.io.IOException e) {
-                System.err.println(e.getMessage());
+                    im.InstantMessagingClient.getInstance().report(e);
                 }
             }
         };
@@ -533,11 +530,10 @@ public class DisconnectedState extends im.networking.jabber.Jabber.State {
                     incomingPresence(pres);
                     getConnection().send(IQRoster.createGetRequest());
                     synchronized(Jabber.this) {
-                            Jabber.this.state = new ConnectedState();
+                        Jabber.this.state = new ConnectedState();
                     }
-                } catch (java.io.IOException e) {
-                    System.err.println(e.getMessage());
-                    e.printStackTrace();
+                } catch (Exception e) {
+                    im.InstantMessagingClient.getInstance().report(e);
                 }
             }
         };

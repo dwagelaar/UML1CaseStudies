@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="atl-commandline" default="all">
+    <target name="clean">
+        <delete>
+        	<fileset dir=".">
+	       		<include name="atlcommandline.jar"/>
+        	</fileset>
+        </delete>
+    </target>
+
+    <target name="jar" depends="clean">
+        <jar destfile="atlcommandline.jar" basedir="../bin">
+        	<include name="**"/>
+        	<manifest>
+        		<attribute name="Main-Class" value="org.atl.commandline.Main"/>
+        		<attribute name="Class-Path" value="atl.jar jmi.jar jmiutils.jar mdr4atl.jar mdrapi.jar mof.jar nbmdr.jar openide-util.jar"/>
+        	</manifest>
+        </jar>
+    </target>
+	
+	<target name="all" depends="jar"/>
+</project>

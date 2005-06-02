@@ -101,7 +101,7 @@ public class DefaultJabber extends im.networking.jabber.Jabber {
             }
             connectError = sb.toString();
         } catch (Exception e) {
-            connectError = e.getMessage();
+            connectError = e.getMessage() + " at DefaultJabber.connect(" + host + ", " + port + ")";
         }
         return s;
     } 

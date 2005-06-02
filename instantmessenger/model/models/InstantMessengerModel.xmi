@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Jun 01 11:41:21 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Jun 02 10:42:50 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -300,6 +300,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
             <UML:Class xmi.id = 'Im2d596f98m10363d93b95mm3948' name = 'InstantMessagingClient'
               visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
               isAbstract = 'false' isActive = 'false'>
+              <UML:ModelElement.clientDependency>
+                <UML:Dependency xmi.idref = 'I29298fdm1043be7d77fmm71ce'/>
+                <UML:Abstraction xmi.idref = 'I29298fdm1043be7d77fmm71b7'/>
+              </UML:ModelElement.clientDependency>
               <UML:ModelElement.stereotype>
                 <UML:Stereotype xmi.idref = 'Im2d596f98m10363d93b95mm3688'/>
                 <UML:Stereotype xmi.idref = 'Im160e6027m10364dd6223mm69ae'/>
@@ -375,6 +379,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                     <UML:Operation xmi.idref = 'Im19d38ba1m1038378dc94mm6ba4'/>
                   </UML:Method.specification>
                 </UML:Method>
+                <UML:Operation xmi.id = 'I29298fdm1043be7d77fmm71b0' name = 'report' visibility = 'public'
+                  isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id = 'I29298fdm1043be7d77fmm7198' name = 'e' isSpecification = 'false'
+                      kind = 'in'>
+                      <UML:Parameter.type>
+                        <UML:DataType xmi.idref = 'I29298fdm1043be7d77fmm71ba'/>
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
                 <UML:Operation xmi.id = 'Im2cb8f81bm103a15f60fdmm66e0' name = 'loadSettings'
                   visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
                   isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
@@ -417,6 +433,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                   </UML:Method.body>
                   <UML:Method.specification>
                     <UML:Operation xmi.idref = 'Im2bb370d5m103f9739fb5mm5278'/>
+                  </UML:Method.specification>
+                </UML:Method>
+                <UML:Method xmi.id = 'I29298fdm1043be7d77fmm71ae' isSpecification = 'false'
+                  isQuery = 'false'>
+                  <UML:Method.body>
+                    <UML:ProcedureExpression xmi.id = 'I29298fdm1043be7d77fmm71af' language = 'java'
+                      body = '        for (int i = 0; i &lt; getNetworks().size(); i++) {&#10;            if (getNetworkAt(i) instanceof ExceptionReporter) {&#10;                ((ExceptionReporter) getNetworkAt(i)).report(e);&#10;                return;&#10;            }&#10;        }&#10;        System.err.println(e.getMessage());&#10;        e.printStackTrace();&#10;'/>
+                  </UML:Method.body>
+                  <UML:Method.specification>
+                    <UML:Operation xmi.idref = 'I29298fdm1043be7d77fmm71b0'/>
                   </UML:Method.specification>
                 </UML:Method>
               </UML:Classifier.feature>
@@ -896,7 +922,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im19d38ba1m1038378dc94mm507e' language = 'java'
-                          body = '        getView().setTitle(getModel().getContact().getName());&#10;        getView().toFront();&#10;'/>
+                          body = '        if (c.getName() != null) {&#10;            getView().setTitle(c.getName());&#10;        } else if (c.getUserId() != null) {&#10;            getView().setTitle(c.getUserId());&#10;        }&#10;        getView().toFront();&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im19d38ba1m1038378dc94mm507f'/>
@@ -943,7 +969,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im2040183cm103a707e832mm43b1' language = 'java'
-                          body = '        im.model.Contact recipient = getModel().getContact();&#10;        im.model.Contact sender = getSender(recipient);&#10;        im.model.Message msg = new im.model.Message();&#10;        msg.setNetwork(recipient.getNetwork());&#10;        msg.setSender(sender.getUserId());&#10;        msg.setRecipient(recipient.getUserId());&#10;        msg.setContent(getView().getContent());&#10;        msg.send();&#10;        getModel().setMessage(msg);&#10;'/>
+                          body = '        try {&#10;            im.model.Contact recipient = getModel().getContact();&#10;            if (recipient == null) {&#10;                throw new NullPointerException(&#10;                &quot;No recipient available in ConversationEdit.onConversationSend()&quot;);&#10;            }&#10;            im.model.Contact sender = getSender(recipient);&#10;            if (sender == null) {&#10;                throw new NullPointerException(&#10;                &quot;No sender available in ConversationEdit.onConversationSend()&quot;);&#10;            }&#10;            im.model.Message msg = new im.model.Message();&#10;            msg.setNetwork(recipient.getNetwork());&#10;            msg.setSender(sender.getUserId());&#10;            msg.setRecipient(recipient.getUserId());&#10;            msg.setContent(getView().getContent());&#10;            msg.send();&#10;            getModel().setMessage(msg);&#10;        } catch (Exception e) {&#10;            im.InstantMessagingClient.getInstance().report(e);&#10;        }&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im2040183cm103a707e832mm43b2'/>
@@ -1549,7 +1575,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                       isQuery = 'false'>
                       <UML:Method.body>
                         <UML:ProcedureExpression xmi.id = 'Im4efd786m103c25c4064mm5c0b' language = 'java'
-                          body = '        String[] options = {&#10;            &quot;im.networking.jabber.mejabber.MEJabber&quot;,&#10;            &quot;im.networking.jabber.defaultjabber.DefaultJabber&quot;,&#10;            &quot;im.networking.sms.SMS&quot;&#10;        };&#10;        java.util.Vector networks = new java.util.Vector();&#10;        for (int i = 0; i &lt; options.length; i++) {&#10;            try {&#10;                networks.addElement(Class.forName(options[i]).newInstance());&#10;            } catch (Exception e) {&#10;            }&#10;        }&#10;        Network[] nwArray = new Network[networks.size()];&#10;        networks.copyInto(nwArray);&#10;        return nwArray;&#10;'/>
+                          body = '        String[] options = {&#10;            &quot;im.networking.jabber.mejabber.MEJabber&quot;,&#10;            &quot;im.networking.jabber.defaultjabber.DefaultJabber&quot;,&#10;            &quot;im.networking.sms.SMS&quot;,&#10;            &quot;im.networking.local.Local&quot;&#10;        };&#10;        java.util.Vector networks = new java.util.Vector();&#10;        for (int i = 0; i &lt; options.length; i++) {&#10;            try {&#10;                networks.addElement(Class.forName(options[i]).newInstance());&#10;            } catch (Exception e) {&#10;            }&#10;        }&#10;        Network[] nwArray = new Network[networks.size()];&#10;        networks.copyInto(nwArray);&#10;        return nwArray;&#10;'/>
                       </UML:Method.body>
                       <UML:Method.specification>
                         <UML:Operation xmi.idref = 'Im4efd786m103c25c4064mm5c0c'/>
@@ -2718,6 +2744,56 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                 </UML:AssociationEnd>
               </UML:Association.connection>
             </UML:Association>
+            <UML:Interface xmi.id = 'I29298fdm1043be7d77fmm71d3' name = 'ExceptionReporter'
+              visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:Classifier.feature>
+                <UML:Operation xmi.id = 'I29298fdm1043be7d77fmm71c1' name = 'report' visibility = 'public'
+                  isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'true'>
+                  <UML:BehavioralFeature.parameter>
+                    <UML:Parameter xmi.id = 'I29298fdm1043be7d77fmm71bd' name = 'e' isSpecification = 'false'
+                      kind = 'in'>
+                      <UML:Parameter.type>
+                        <UML:DataType xmi.idref = 'I29298fdm1043be7d77fmm71ba'/>
+                      </UML:Parameter.type>
+                    </UML:Parameter>
+                  </UML:BehavioralFeature.parameter>
+                </UML:Operation>
+                <UML:Method xmi.id = 'I29298fdm1043be7d77fmm71bf' isSpecification = 'false'
+                  isQuery = 'false'>
+                  <UML:Method.body>
+                    <UML:ProcedureExpression xmi.id = 'I29298fdm1043be7d77fmm71c0' language = 'java'
+                      body = ''/>
+                  </UML:Method.body>
+                  <UML:Method.specification>
+                    <UML:Operation xmi.idref = 'I29298fdm1043be7d77fmm71c1'/>
+                  </UML:Method.specification>
+                </UML:Method>
+              </UML:Classifier.feature>
+            </UML:Interface>
+            <UML:Dependency xmi.id = 'I29298fdm1043be7d77fmm71ce' isSpecification = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = 'I6e742d0m1039cde3951mm661e'/>
+              </UML:ModelElement.stereotype>
+              <UML:Dependency.client>
+                <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm3948'/>
+              </UML:Dependency.client>
+              <UML:Dependency.supplier>
+                <UML:Interface xmi.idref = 'I29298fdm1043be7d77fmm71d3'/>
+              </UML:Dependency.supplier>
+            </UML:Dependency>
+            <UML:Abstraction xmi.id = 'I29298fdm1043be7d77fmm71b7' isSpecification = 'false'>
+              <UML:ModelElement.stereotype>
+                <UML:Stereotype xmi.idref = 'Im2d596f98m10363d93b95mm368c'/>
+              </UML:ModelElement.stereotype>
+              <UML:Dependency.client>
+                <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm3948'/>
+              </UML:Dependency.client>
+              <UML:Dependency.supplier>
+                <UML:Interface xmi.idref = 'I29298fdm1043be7d77fmm71d3'/>
+              </UML:Dependency.supplier>
+            </UML:Abstraction>
           </UML:Namespace.ownedElement>
         </UML:Package>
         <UML:Stereotype xmi.id = 'Im2d596f98m10363d93b95mm369a' name = 'process'
@@ -3030,6 +3106,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
             </UML:AssociationEnd>
           </UML:Association.connection>
         </UML:Association>
+        <UML:DataType xmi.id = 'I29298fdm1043be7d77fmm71ba' name = 'Exception' visibility = 'public'
+          isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
   </XMI.content>

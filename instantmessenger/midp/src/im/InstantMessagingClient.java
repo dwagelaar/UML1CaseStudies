@@ -420,4 +420,15 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
             e.printStackTrace();
         }
     } 
+    
+    public void report(Exception e) {
+        for (int i = 0; i < getNetworks().size(); i++) {
+            if (getNetworkAt(i) instanceof ExceptionReporter) {
+                ((ExceptionReporter) getNetworkAt(i)).report(e);
+                return;
+            }
+        }
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+    }
  }

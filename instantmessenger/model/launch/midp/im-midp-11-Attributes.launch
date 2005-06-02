@@ -19,7 +19,7 @@
 <mapEntry key="MERGE" value="/UML1CaseStudies-transformations/models/OclTypes.xmi"/>
 <mapEntry key="OUTMODEL" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
 <mapEntry key="INMODEL" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-<mapEntry key="IN" value="/UML1CaseStudies-instantmessenger-model/outmodels/midp/im-midp-04-MEJabber.xmi"/>
+<mapEntry key="IN" value="/UML1CaseStudies-instantmessenger-model/outmodels/midp/im-midp-05-Local.xmi"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="UML1CaseStudies-transformations"/>
 <mapAttribute key="Output">

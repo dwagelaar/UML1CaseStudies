@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Jun 01 12:01:13 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Jun 02 09:53:02 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -129,7 +129,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                               isQuery = 'false'>
                               <UML:Method.body>
                                 <UML:ProcedureExpression xmi.id = 'I4cc96e20m104371c528dmm64cb' language = 'java'
-                                  body = '        Socket s = null;&#10;        try {&#10;            InetAddress[] hosts = InetAddress.getAllByName(host);&#10;            java.util.Stack exceptions = new java.util.Stack();&#10;            for (int i = 0; i &lt; hosts.length; i++) {&#10;                try {&#10;                    s = new Socket(hosts[i], port);&#10;                    break;&#10;                } catch (Exception e) {&#10;                    exceptions.push(e);&#10;                }&#10;            }&#10;            StringBuffer sb = new StringBuffer();&#10;            while (!exceptions.empty()) {&#10;                sb.append(((Exception) exceptions.pop()).getMessage());&#10;            }&#10;            connectError = sb.toString();&#10;        } catch (Exception e) {&#10;            connectError = e.getMessage();&#10;        }&#10;        return s;&#10;'/>
+                                  body = '        Socket s = null;&#10;        try {&#10;            InetAddress[] hosts = InetAddress.getAllByName(host);&#10;            java.util.Stack exceptions = new java.util.Stack();&#10;            for (int i = 0; i &lt; hosts.length; i++) {&#10;                try {&#10;                    s = new Socket(hosts[i], port);&#10;                    break;&#10;                } catch (Exception e) {&#10;                    exceptions.push(e);&#10;                }&#10;            }&#10;            StringBuffer sb = new StringBuffer();&#10;            while (!exceptions.empty()) {&#10;                sb.append(((Exception) exceptions.pop()).getMessage());&#10;            }&#10;            connectError = sb.toString();&#10;        } catch (Exception e) {&#10;            connectError = e.getMessage() + &quot; at DefaultJabber.connect(&quot; + host + &quot;, &quot; + port + &quot;)&quot;;&#10;        }&#10;        return s;&#10;'/>
                               </UML:Method.body>
                               <UML:Method.specification>
                                 <UML:Operation xmi.idref = 'I4cc96e20m104371c528dmm64cc'/>

@@ -192,7 +192,8 @@ public abstract class Network extends java.util.Observable {
         String[] options = {
             "im.networking.jabber.mejabber.MEJabber",
             "im.networking.jabber.defaultjabber.DefaultJabber",
-            "im.networking.sms.SMS"
+            "im.networking.sms.SMS",
+            "im.networking.local.Local"
         };
         java.util.Vector networks = new java.util.Vector();
         for (int i = 0; i < options.length; i++) {

@@ -384,4 +384,15 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
             e.printStackTrace();
         }
     } 
+    
+    public void report(Exception e) {
+        for (int i = 0; i < getNetworks().size(); i++) {
+            if (getNetworkAt(i) instanceof ExceptionReporter) {
+                ((ExceptionReporter) getNetworkAt(i)).report(e);
+                return;
+            }
+        }
+        System.err.println(e.getMessage());
+        e.printStackTrace();
+    }
  }
