@@ -59,6 +59,31 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
+ * @param recipient 
+ */
+    public void setRecipient(String recipient) {        
+        // Begin Observable stanza
+        if (this.recipient != recipient) {
+            // Begin original body
+        this.recipient = recipient;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Recipient");
+            e.put("class", String.class);
+            if (recipient != null) {
+                e.put("value", recipient);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param sender 
  */
     public void setSender(String sender) {        
@@ -109,24 +134,10 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param recipient 
+ * @return 
  */
-    public void setRecipient(String recipient) {        
-        // Begin Observable stanza
-        if (this.recipient != recipient) {
-            // Begin original body
-        this.recipient = recipient;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Recipient");
-            e.put("class", String.class);
-            if (recipient != null) {
-                e.put("value", recipient);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
+    public im.model.Conversation getConversation() {        
+        return conversation;
     } 
 
 /**
@@ -136,8 +147,8 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public im.model.Conversation getConversation() {        
-        return conversation;
+    public String getRecipient() {        
+        return recipient;
     } 
 
 /**
@@ -160,17 +171,6 @@ public class Message extends im.model.NetworkSpecificData {
  */
     public Object getContent() {        
         return content;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public String getRecipient() {        
-        return recipient;
     } 
 
 /**

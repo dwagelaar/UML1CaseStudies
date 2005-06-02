@@ -14,12 +14,12 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
 /**
  * <p>Represents ...</p>
  */
-    private im.model.ContactList model = null;
+    private java.util.List contactEdit = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List contactEdit = new java.util.ArrayList();
+    private im.model.ContactList model = null;
 
 /**
  * <p>Does ...</p>
@@ -82,8 +82,8 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
  * 
  * @return 
  */
-    public im.model.ContactList getModel() {        
-        return model;
+    public java.util.List getContactEdits() {        
+        return contactEdit;
     } 
 
 /**
@@ -93,8 +93,8 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
  * 
  * @return 
  */
-    public java.util.List getContactEdits() {        
-        return contactEdit;
+    public im.model.ContactList getModel() {        
+        return model;
     } 
 
 /**

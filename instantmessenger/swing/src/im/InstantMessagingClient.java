@@ -5,7 +5,7 @@ import im.ExceptionReporter;
 /**
  * <p></p>
  */
-public class InstantMessagingClient extends java.applet.Applet implements im.ExceptionReporter, java.util.Observer {
+public class InstantMessagingClient extends java.applet.Applet implements java.util.Observer, im.ExceptionReporter {
 
 /**
  * <p>Represents ...</p>
@@ -25,12 +25,12 @@ public class InstantMessagingClient extends java.applet.Applet implements im.Exc
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List conversation = new java.util.ArrayList();
+    private java.util.List network = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List network = new java.util.ArrayList();
+    private java.util.List conversation = new java.util.ArrayList();
 
 /**
  * <p>Does ...</p>
@@ -123,8 +123,8 @@ public class InstantMessagingClient extends java.applet.Applet implements im.Exc
  * 
  * @return 
  */
-    public java.util.List getNetworks() {        
-        return network;
+    public java.util.List getConversations() {        
+        return conversation;
     } 
 
 /**
@@ -145,8 +145,24 @@ public class InstantMessagingClient extends java.applet.Applet implements im.Exc
  * 
  * @return 
  */
-    public java.util.List getConversations() {        
-        return conversation;
+    public java.util.List getNetworks() {        
+        return network;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param index 
+ * @return 
+ */
+    public im.model.Conversation getConversationAt(int index) {        
+        try {
+            return (im.model.Conversation) conversation.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     } 
 
 /**
@@ -170,15 +186,10 @@ public class InstantMessagingClient extends java.applet.Applet implements im.Exc
  * 
  * 
  * 
- * @param index 
- * @return 
+ * @param conversation 
  */
-    public im.model.Conversation getConversationAt(int index) {        
-        try {
-            return (im.model.Conversation) conversation.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
+    public void addConversation(im.model.Conversation conversation) {        
+        this.conversation.add(conversation);
     } 
 
 /**
@@ -203,9 +214,14 @@ public class InstantMessagingClient extends java.applet.Applet implements im.Exc
  * 
  * 
  * @param conversation 
+ * @param index 
  */
-    public void addConversation(im.model.Conversation conversation) {        
-        this.conversation.add(conversation);
+    public void insertConversation(im.model.Conversation conversation, int index) {        
+        try {
+            this.conversation.add(index, conversation);
+        } catch (IndexOutOfBoundsException e) {
+            this.conversation.add(conversation);
+        };
     } 
 
 /**
@@ -235,14 +251,9 @@ public class InstantMessagingClient extends java.applet.Applet implements im.Exc
  * 
  * 
  * @param conversation 
- * @param index 
  */
-    public void insertConversation(im.model.Conversation conversation, int index) {        
-        try {
-            this.conversation.add(index, conversation);
-        } catch (IndexOutOfBoundsException e) {
-            this.conversation.add(conversation);
-        };
+    public void removeConversation(im.model.Conversation conversation) {        
+        this.conversation.remove(conversation);
     } 
 
 /**
@@ -259,17 +270,6 @@ public class InstantMessagingClient extends java.applet.Applet implements im.Exc
         this.network.remove(network);
         // End original body
         // End subscribe stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param conversation 
- */
-    public void removeConversation(im.model.Conversation conversation) {        
-        this.conversation.remove(conversation);
     } 
 
 /**

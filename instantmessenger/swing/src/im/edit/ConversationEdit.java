@@ -9,12 +9,12 @@ public class ConversationEdit implements im.view.ConversationViewListener, java.
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ConversationView view = null;
+    private im.model.Conversation model = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Conversation model = null;
+    private im.view.ConversationView view = null;
 
 /**
  * <p>Does ...</p>
