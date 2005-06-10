@@ -1,4 +1,4 @@
-; Fri May 27 14:37:11 CEST 2005
+; Fri Jun 03 17:10:42 CEST 2005
 ; 
 ;+ (version "3.0")
 ;+ (build "Build 141")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[InstantMessengerFeatures_ProjectKB_Instance_30230]
-		[InstantMessengerFeatures_ProjectKB_Instance_30231]
-		[InstantMessengerFeatures_ProjectKB_Instance_30232]
-		[InstantMessengerFeatures_ProjectKB_Instance_30233]
-		[InstantMessengerFeatures_ProjectKB_Instance_30234]))
+		[InstantMessengerFeatures_ProjectKB_Instance_20044]
+		[InstantMessengerFeatures_ProjectKB_Instance_20045]
+		[InstantMessengerFeatures_ProjectKB_Instance_30046]
+		[InstantMessengerFeatures_ProjectKB_Instance_30047]
+		[InstantMessengerFeatures_ProjectKB_Instance_30048]))
 
 ([CLSES_TAB] of  Widget
 
@@ -326,7 +326,7 @@
 
 ([InstantMessengerFeatures_ProjectKB_Instance_2] of  Widget
 
-	(is_hidden TRUE)
+	(is_hidden FALSE)
 	(property_list [InstantMessengerFeatures_ProjectKB_Instance_3])
 	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
 
@@ -335,6 +335,16 @@
 	(is_hidden TRUE)
 	(property_list [InstantMessengerFeatures_ProjectKB_Instance_21])
 	(widget_class_name "edu.stanford.smi.protegex.owl.swrl.ui.tab.SWRLTab"))
+
+([InstantMessengerFeatures_ProjectKB_Instance_20044] of  String
+
+	(name "owl:Class")
+	(string_value "%3ANAME"))
+
+([InstantMessengerFeatures_ProjectKB_Instance_20045] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
 
 ([InstantMessengerFeatures_ProjectKB_Instance_20046] of  Widget
 
@@ -429,27 +439,17 @@
 ([InstantMessengerFeatures_ProjectKB_Instance_30045] of  Property_List
 )
 
-([InstantMessengerFeatures_ProjectKB_Instance_30230] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([InstantMessengerFeatures_ProjectKB_Instance_30231] of  String
-
-	(name "owl:Class")
-	(string_value "%3ANAME"))
-
-([InstantMessengerFeatures_ProjectKB_Instance_30232] of  String
+([InstantMessengerFeatures_ProjectKB_Instance_30046] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([InstantMessengerFeatures_ProjectKB_Instance_30233] of  String
+([InstantMessengerFeatures_ProjectKB_Instance_30047] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([InstantMessengerFeatures_ProjectKB_Instance_30234] of  String
+([InstantMessengerFeatures_ProjectKB_Instance_30048] of  String
 
 	(name "owl:Thing")
 	(string_value "%3ANAME"))
@@ -2372,27 +2372,27 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[KB_420361_Instance_54]
-		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[KB_313796_Instance_852]
-		[Instance_581]
-		[KB_764103_Instance_545]
-		[KB_553917_Instance_637]
-		[KB_868747_Instance_76]
-		[KB_691299_Instance_537]
 		[KB_379625_Instance_617]
 		[Instance_1005]
 		[STANDARD_FACET_FORM_WIDGET]
+		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[KB_691299_Instance_398]
 		[KB_313796_Instance_943]
+		[KB_313796_Instance_852]
+		[Instance_581]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[KB_303942_Instance_68]
-		[KB_465546_Instance_567]
+		[KB_764103_Instance_545]
 		[Instance_443]
+		[KB_465546_Instance_567]
 		[PAL_FORM_WIDGET]
-		[KB_301165_Instance_1013]
+		[KB_553917_Instance_637]
 		[KB_301165_Instance_856]
+		[KB_301165_Instance_1013]
+		[KB_868747_Instance_76]
 		[KB_379625_Instance_777]
-		[STANDARD_CLASS_FORM_WIDGET])
+		[STANDARD_CLASS_FORM_WIDGET]
+		[KB_691299_Instance_537])
 	(default_cls_metaclass "owl:Class")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget")
@@ -2401,12 +2401,12 @@
 		"owl:maxCardinality"
 		":OWL-INFERRED-SUPERCLASSES"
 		"rdf:value"
-		"rdfs:Container"
 		"rdf:type"
-		"owl:cardinality"
+		"rdfs:Container"
 		"owl:someValuesFrom"
-		"rdf:predicate"
+		"owl:cardinality"
 		"rdf:Property"
+		"rdf:predicate"
 		"rdf:object"
 		"rdf:List"
 		"owl:differentFrom"
@@ -2423,39 +2423,59 @@
 		"owl:DatatypeProperty"
 		":OWL-ANONYMOUS-ROOT"
 		"rdf:rest"
-		":FROM"
 		"rdf:Statement"
+		":FROM"
 		"rdf:first"
 		"rdfs:Bag"
 		":SYSTEM-CLASS"
-		"rdfs:Alt"
 		"rdfs:Literal"
-		"owl:hasValue"
+		"rdfs:Alt"
 		"ExternalResource"
+		"owl:hasValue"
 		"rdfs:Seq"
 		":OWL-INFERRED-SUBCLASSES"
-		"owl:allValuesFrom"
-		":DIRECTED-BINARY-RELATION"
 		"owl:Nothing"
+		":DIRECTED-BINARY-RELATION"
+		"owl:allValuesFrom"
 		"rdf:subject"
 		"owl:oneOf")
 	(next_frame_number 0)
 	(options [Instance_48])
 	(sources [SOURCES])
 	(tabs
-		[CLSES_TAB]
 		[Instance_86]
-		[SLOTS_TAB]
 		[Instance_2600]
 		[FORMS_TAB]
-		[INSTANCES_TAB]
 		[Instance_3234]
-		[Instance_43]
-		[Instance_45]
-		[Instance_89]
 		[Instance_2534]
-		[KB_484936_Instance_0]
-		[KB_484936_Instance_2]))
+		[InstantMessengerFeatures_ProjectKB_Instance_36]
+		[Instance_43]
+		[CLSES_TAB]
+		[InstantMessengerFeatures_ProjectKB_Instance_28]
+		[InstantMessengerFeatures_ProjectKB_Instance_18]
+		[InstantMessengerFeatures_ProjectKB_Instance_22]
+		[INSTANCES_TAB]
+		[InstantMessengerFeatures_ProjectKB_Instance_32]
+		[InstantMessengerFeatures_ProjectKB_Instance_34]
+		[InstantMessengerFeatures_ProjectKB_Instance_4]
+		[Instance_45]
+		[InstantMessengerFeatures_ProjectKB_Instance_30]
+		[InstantMessengerFeatures_ProjectKB_Instance_2]
+		[InstantMessengerFeatures_ProjectKB_Instance_42]
+		[InstantMessengerFeatures_ProjectKB_Instance_26]
+		[KB_484936_Instance_2]
+		[InstantMessengerFeatures_ProjectKB_Instance_6]
+		[InstantMessengerFeatures_ProjectKB_Instance_12]
+		[InstantMessengerFeatures_ProjectKB_Instance_14]
+		[SLOTS_TAB]
+		[InstantMessengerFeatures_ProjectKB_Instance_8]
+		[InstantMessengerFeatures_ProjectKB_Instance_20]
+		[InstantMessengerFeatures_ProjectKB_Instance_0]
+		[InstantMessengerFeatures_ProjectKB_Instance_40]
+		[InstantMessengerFeatures_ProjectKB_Instance_24]
+		[InstantMessengerFeatures_ProjectKB_Instance_16]
+		[InstantMessengerFeatures_ProjectKB_Instance_38]
+		[InstantMessengerFeatures_ProjectKB_Instance_10]))
 
 ([SLOTS_TAB] of  Widget
 

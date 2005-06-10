@@ -7,26 +7,26 @@
 </mapAttribute>
 <mapAttribute key="ModelType">
 <mapEntry key="MERGEMODEL" value="METAMODELINPUT"/>
-<mapEntry key="OUT" value="MODELOUTPUT"/>
-<mapEntry key="MERGE" value="MODELINPUT"/>
-<mapEntry key="OUTMODEL" value="METAMODELOUTPUT"/>
-<mapEntry key="INMODEL" value="METAMODELINPUT"/>
-<mapEntry key="IN" value="MODELINPUT"/>
+<mapEntry key="OBSERVER" value="MODELOUTPUT"/>
+<mapEntry key="JAVATYPES" value="MODELINPUT"/>
+<mapEntry key="OBSERVERM" value="METAMODELOUTPUT"/>
+<mapEntry key="ACCESSORSM" value="METAMODELINPUT"/>
+<mapEntry key="ACCESSORS" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
 <mapEntry key="MERGEMODEL" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-<mapEntry key="OUT" value="../UML1CaseStudies-instantmessenger-model/outmodels/swing/im-swing-13-Observer"/>
-<mapEntry key="MERGE" value="/UML1CaseStudies-transformations/models/JavaTypes.xmi"/>
-<mapEntry key="OUTMODEL" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-<mapEntry key="INMODEL" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-<mapEntry key="IN" value="/UML1CaseStudies-instantmessenger-model/outmodels/swing/im-swing-12-Accessors.xmi"/>
+<mapEntry key="OBSERVER" value="../UML1CaseStudies-instantmessenger-model/outmodels/swing/im-swing-13-Observer"/>
+<mapEntry key="JAVATYPES" value="/UML1CaseStudies-transformations/models/JavaTypes.xmi"/>
+<mapEntry key="OBSERVERM" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="ACCESSORSM" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="ACCESSORS" value="/UML1CaseStudies-instantmessenger-model/outmodels/swing/im-swing-12-Accessors.xmi"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="UML1CaseStudies-transformations"/>
 <mapAttribute key="Output">
-<mapEntry key="OUT" value="OUTMODEL"/>
+<mapEntry key="OBSERVER" value="OBSERVERM"/>
 </mapAttribute>
 <mapAttribute key="Input">
-<mapEntry key="MERGE" value="MERGEMODEL"/>
-<mapEntry key="IN" value="INMODEL"/>
+<mapEntry key="JAVATYPES" value="MERGEMODEL"/>
+<mapEntry key="ACCESSORS" value="ACCESSORSM"/>
 </mapAttribute>
 </launchConfiguration>
