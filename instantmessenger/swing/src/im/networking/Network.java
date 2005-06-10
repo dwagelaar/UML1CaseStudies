@@ -26,31 +26,6 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @param name 
- */
-    public void setName(String name) {        
-        // Begin Observable stanza
-        if (this.name != name) {
-            // Begin original body
-        this.name = name;
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Name");
-            e.put("class", String.class);
-            if (name != null) {
-                e.put("value", name);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param recvContact 
  */
     public void setRecvContact(im.model.Contact recvContact) {        
@@ -101,10 +76,24 @@ public abstract class Network extends java.util.Observable {
  * 
  * 
  * 
- * @return 
+ * @param name 
  */
-    public String getName() {        
-        return name;
+    public void setName(String name) {        
+        // Begin Observable stanza
+        if (this.name != name) {
+            // Begin original body
+        this.name = name;
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Name");
+            e.put("class", String.class);
+            if (name != null) {
+                e.put("value", name);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -127,6 +116,17 @@ public abstract class Network extends java.util.Observable {
  */
     public im.model.Message getRecvMsg() {        
         return recvMsg;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getName() {        
+        return name;
     } 
 
 /**

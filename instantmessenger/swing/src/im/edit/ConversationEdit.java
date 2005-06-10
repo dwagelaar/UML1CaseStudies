@@ -9,12 +9,12 @@ public class ConversationEdit implements im.view.ConversationViewListener, java.
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Conversation model = null;
+    private im.view.ConversationView view = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ConversationView view = null;
+    private im.model.Conversation model = null;
 
 /**
  * <p>Does ...</p>
@@ -47,17 +47,6 @@ public class ConversationEdit implements im.view.ConversationViewListener, java.
  * 
  * 
  * 
- * @param view 
- */
-    public void setView(im.view.ConversationView view) {        
-        this.view = view;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param model 
  */
     public void setModel(im.model.Conversation model) {        
@@ -75,10 +64,10 @@ public class ConversationEdit implements im.view.ConversationViewListener, java.
  * 
  * 
  * 
- * @return 
+ * @param view 
  */
-    public im.view.ConversationView getView() {        
-        return view;
+    public void setView(im.view.ConversationView view) {        
+        this.view = view;
     } 
 
 /**
@@ -90,6 +79,17 @@ public class ConversationEdit implements im.view.ConversationViewListener, java.
  */
     public im.model.Conversation getModel() {        
         return model;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.view.ConversationView getView() {        
+        return view;
     } 
 
 /**

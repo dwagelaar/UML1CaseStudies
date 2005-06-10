@@ -9,17 +9,17 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
 /**
  * <p>Represents ...</p>
  */
+    private im.model.ContactList model = null;
+
+/**
+ * <p>Represents ...</p>
+ */
     private im.view.ContactListView view = null;
 
 /**
  * <p>Represents ...</p>
  */
     private java.util.List contactEdit = new java.util.ArrayList();
-
-/**
- * <p>Represents ...</p>
- */
-    private im.model.ContactList model = null;
 
 /**
  * <p>Does ...</p>

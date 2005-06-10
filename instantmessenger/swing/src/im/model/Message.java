@@ -31,34 +31,6 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param conversation 
- */
-    public void setConversation(im.model.Conversation conversation) {        
-        // Begin Observable stanza
-        if (this.conversation != conversation) {
-            // Begin original body
-        if (this.conversation != conversation) {
-            this.conversation = conversation;
-            conversation.setMessage(this);
-        }
-            // End original body
-            setChanged();
-            java.util.Hashtable e = new java.util.Hashtable();
-            e.put("name", "Conversation");
-            e.put("class", im.model.Conversation.class);
-            if (conversation != null) {
-                e.put("value", conversation);
-            }
-            notifyObservers(e);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param recipient 
  */
     public void setRecipient(String recipient) {        
@@ -134,10 +106,27 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @return 
+ * @param conversation 
  */
-    public im.model.Conversation getConversation() {        
-        return conversation;
+    public void setConversation(im.model.Conversation conversation) {        
+        // Begin Observable stanza
+        if (this.conversation != conversation) {
+            // Begin original body
+        if (this.conversation != conversation) {
+            this.conversation = conversation;
+            conversation.setMessage(this);
+        }
+            // End original body
+            setChanged();
+            java.util.Hashtable e = new java.util.Hashtable();
+            e.put("name", "Conversation");
+            e.put("class", im.model.Conversation.class);
+            if (conversation != null) {
+                e.put("value", conversation);
+            }
+            notifyObservers(e);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -171,6 +160,17 @@ public class Message extends im.model.NetworkSpecificData {
  */
     public Object getContent() {        
         return content;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.model.Conversation getConversation() {        
+        return conversation;
     } 
 
 /**
