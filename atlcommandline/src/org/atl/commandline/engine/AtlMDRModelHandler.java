@@ -15,42 +15,21 @@ import org.mda.asm.nativeimpl.ASMModel;
 
 /**
  * @author JOUAULT
- *
+ * @author Dennis Wagelaar
  */
 public class AtlMDRModelHandler extends AtlModelHandler{
 	
 	private ASMMDRModel atlmm;
 	private ASMMDRModel mofmm;	
-	public void saveModel(final ASMModel model/*, IProject project*/) {
-		saveModel(model, model.getName() + ".xmi"/*, project*/);
+	public void saveModel(final ASMModel model) throws IOException {
+		saveModel(model, model.getName() + ".xmi");
 	}
 	
-	public void saveModel(final ASMModel model, String fileName/*, IProject project*/) {
+	public void saveModel(final ASMModel model, String fileName)
+            throws IOException {
 		File file = new File(fileName);
-        //IFile file = project.getFile(fileName);
-		try {
-			//PipedInputStream in = new PipedInputStream();
-			final FileOutputStream out = new FileOutputStream(file);
-			new Thread() {
-				public void run() {
-					try {
-						((ASMMDRModel)model).save(out);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}.start();
-/*			if(file.exists()) {
-				file.setContents(in, IFile.FORCE, null);
-            } else {
-				file.create(in, IFile.FORCE, null);
-            } */
-		} catch (IOException e) {
-			e.printStackTrace();
-/*		} catch (CoreException e) {
-			e.printStackTrace(); */
-		}
+		final FileOutputStream out = new FileOutputStream(file);
+		((ASMMDRModel) model).save(out);
 	}
 
 	public ASMModel getAtl() {
@@ -61,38 +40,22 @@ public class AtlMDRModelHandler extends AtlModelHandler{
 		return mofmm;
 	}
 	
-	public ASMModel loadModel(String name, ASMModel metamodel, InputStream in) {
+	public ASMModel loadModel(String name, ASMModel metamodel, InputStream in)
+            throws Exception {
 		ASMModel ret = null;
-		
-		try {
-			ret = ASMMDRModel.loadASMMDRModel(name, (ASMMDRModel)metamodel, in);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		ret = ASMMDRModel.loadASMMDRModel(name, (ASMMDRModel)metamodel, in);
 		return ret;
 	}
-	public ASMModel newModel(String name, ASMModel metamodel) {
+	public ASMModel newModel(String name, ASMModel metamodel) throws Exception {
 		ASMModel ret = null;
-		
-		try {
-			ret = ASMMDRModel.newASMMDRModel(name, (ASMMDRModel)metamodel);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+		ret = ASMMDRModel.newASMMDRModel(name, (ASMMDRModel)metamodel);
 		return ret;
 	}
 
-	protected AtlMDRModelHandler() {
+	protected AtlMDRModelHandler() throws Exception {
 		URL atlurl = AtlMDRModelHandler.class.getResource("resources/ATL-0.2.xmi");
 		mofmm = ASMMDRModel.createMOF();
-		
-		try {
-			atlmm = ASMMDRModel.loadASMMDRModel("ATL", mofmm, atlurl);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		atlmm = ASMMDRModel.loadASMMDRModel("ATL", mofmm, atlurl);
 	}
 	
 	public ASMModel getBuiltInMetaModel(String name) {

@@ -41,36 +41,46 @@ public class Main implements Runnable {
         "--trans <transformation url> " +
         "[--in <id>=<model> <id>=<metamodel>] " +
         "[--out <id>=<model> <id>=<metamodel>] " +
-        "[--lib <id>=<library url>";
+        "[--lib <id>=<library url>] " +
+        "--next --trans ...";
     
     public URL trans = null;
-    public String handler = "MDR";
+    public String handler = AtlModelHandler.AMH_MDR;
     public Map in = new HashMap();
     public HashMap out = new HashMap();
     public HashMap libs = new HashMap();
     public HashMap paths = new HashMap();
+    public HashMap modelCache = new HashMap();
+    
+    private int argPos = 0;
     
     public static void main(String[] args) {
+        int argsLeft = args.length;
         Main main = new Main();
-        if (main.parseArgs(args)) {
-            main.run();
-        } else {
+        do {
+            argsLeft = main.parseArgs(args);
+            if (argsLeft > -1)
+                main.run();
+        } while (argsLeft > 0);
+        if (argsLeft < 0) {
             System.exit(1);
+        } else {
+            System.exit(0);
         }
     }
     
     /**
      * Parses the command line arguments
      * @param args
-     * @return
+     * @return number of arguments left (e.g. if "--next" is used) or -1 if error
      */
-    public boolean parseArgs(String[] args) {
-        if (args.length == 0) {
+    public int parseArgs(String[] args) {
+        if (args.length <= argPos+1) {
             System.out.println(USAGE);
-            return false;
+            return -1;
         }
         try {
-            for (int i = 0; i < args.length; i++) {
+            for (int i = argPos; i < args.length; i++) {
                 System.out.println(args[i]);
                 if (args[i].equals("--trans")) {
                     i++;
@@ -84,18 +94,22 @@ public class Main implements Runnable {
                 } else if (args[i].equals("--lib")) {
                     i++;
                     addLib(args[i]);
+                } else if (args[i].equals("--next")) {
+                    i++;
+                    argPos = i;
+                    return args.length - argPos;
                 } else {
                     System.out.print(USAGE);
-                    return false;
+                    return -1;
                 }
             }
         } catch (Exception e) {
             System.err.print(e.toString());
             e.printStackTrace();
             System.out.print(USAGE);
-            return false;
+            return -1;
         }
-        return true;
+        return 0;
     }
 
     /**
@@ -121,15 +135,21 @@ public class Main implements Runnable {
         }
         else {
             metaModel = (ASMModel) in.get(metaid);
-            if(metaModel == null) {
+            if (metaModel == null || !metapath.equals(paths.get(metaid))) {
                 System.out.println("Input metamodel " + metaid + " not yet loaded - loading from " + metapath);
                 metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
                 in.put(metaid, metaModel);
             }
         }
         System.out.println("Using input metamodel " + metaModel);
-        System.out.println("Loading input model " + modelid + " from " + modelpath);
-        inputModel = amh.loadModel(modelid, metaModel, new FileInputStream(modelpath));
+        inputModel = (ASMModel) modelCache.get(modelid);
+        if (inputModel == null || 
+                !modelpath.equals(paths.get(modelid)) || 
+                !metaid.equals(inputModel.getMetamodel().getName())) {
+            System.out.println("Loading input model " + modelid + " from " + modelpath);
+            inputModel = amh.loadModel(modelid, metaModel, new FileInputStream(modelpath));
+        }
+        System.out.println("Using input model " + inputModel);
         in.put(modelid, inputModel);
         paths.put(modelid, modelpath);
         paths.put(metaid, metapath);
@@ -157,11 +177,13 @@ public class Main implements Runnable {
             metaModel = amh.getMof();
         }
         else {
-            System.out.println("Loading output metamodel " + metaid + " from " + metapath);
-            metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
+            metaModel = (ASMModel) in.get(metaid);
+            if (metaModel == null || !metapath.equals(paths.get(metaid))) {
+                System.out.println("Loading output metamodel " + metaid + " from " + metapath);
+                metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
+                in.put(metaid, metaModel);
+            }
         }
-        if (in.get(metaid) == null)
-            in.put(metaid, metaModel);
         System.out.println("Using output metamodel " + metaModel);
         System.out.println("Creating new model " + modelid + " for output");
         outputModel = amh.newModel(modelid, metaModel);
@@ -187,7 +209,7 @@ public class Main implements Runnable {
      */
     public void run() {
         try {
-            System.out.println("Starting model transformation");
+            System.out.println("Starting model transformation " + trans);
             AtlModelHandler amh = AtlModelHandler.getDefault(handler);
             Map models = new HashMap();
             // add input models
@@ -212,6 +234,8 @@ public class Main implements Runnable {
                 ASMModel currentOutModel = (ASMModel)out.get(mName);
                 amh.saveModel(currentOutModel, (String) paths.get(mName));
                 System.out.println("Wrote " + (String) paths.get(mName));
+                modelCache.put(mName, currentOutModel);
+                i.remove();
             }
         } catch (Exception e) {
             System.err.print(e.toString());

@@ -5,7 +5,6 @@
 package org.atl.commandline.engine;
 
 import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +23,7 @@ import org.mda.asm.nativeimpl.ASMModule;
 
 /**
  * @author JOUAULT
+ * @author Dennis Wagelaar
  *
  */
 public class AtlLauncher {
@@ -41,15 +41,18 @@ public class AtlLauncher {
 		
 	}
 	
-	public Object launch(URL asmurl, Map models, Map asmParams) {
+	public Object launch(URL asmurl, Map models, Map asmParams)
+            throws Exception {
 		return launch(asmurl, Collections.EMPTY_MAP, models, asmParams);
 	}
 	
-	public Object launch(URL asmurl, Map libraries, Map models, Map asmParams) {
+	public Object launch(URL asmurl, Map libraries, Map models, Map asmParams)
+            throws Exception{
 		return launch(asmurl, libraries, models, asmParams, false);
 	}
 	
-	public Object launch(URL asmurl, Map libraries, Map models, Map asmParams, boolean step) {
+	public Object launch(URL asmurl, Map libraries, Map models, Map asmParams, boolean step)
+            throws Exception {
 		return launch(asmurl, libraries, models, asmParams, new SimpleDebugger(
 				/* step = */ step,
 				/* stepops = */ new ArrayList(),
@@ -60,13 +63,15 @@ public class AtlLauncher {
 		));
 	}
 	
-	public Object debug(URL asmurl, Map libraries, Map models, Map asmParams) {
+	public Object debug(URL asmurl, Map libraries, Map models, Map asmParams)
+            throws Exception{
 		return launch(asmurl, libraries, models, asmParams, new NetworkDebugger(6060, true));
 	}
 	
-	public Object launch(URL asmurl, Map libraries, Map models, Map asmParams, Debugger debugger) {
+	public Object launch(URL asmurl, Map libraries, Map models, Map asmParams, Debugger debugger) 
+            throws Exception {
 		Object ret = null;
-		try {
+
 			ASM asm = new ASMXMLReader().read(new BufferedInputStream(asmurl.openStream()));
 			ASMModule asmModule = new ASMModule(asm);
 
@@ -88,11 +93,6 @@ public class AtlLauncher {
 
 			ASMInterpreter ai = new ASMInterpreter(asm, asmModule, env, asmParams);
 			ret = ai.getReturnValue();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		return ret;
 	}
