@@ -7,17 +7,17 @@ import com.jabberwookie.ns.jabber.iq.*;
 /**
  * <p></p>
  */
-public abstract class Jabber extends im.networking.Network implements com.jabberwookie.IQListener, com.jabberwookie.MessageListener, com.jabberwookie.PresenceListener {
-
-/**
- * <p>Represents ...</p>
- */
-    private com.jabberwookie.Client2Server connection;
+public abstract class Jabber extends im.networking.Network implements com.jabberwookie.IQListener, com.jabberwookie.PresenceListener, com.jabberwookie.MessageListener {
 
 /**
  * <p>Represents ...</p>
  */
     private im.networking.jabber.Jabber.State state = new DisconnectedState();
+
+/**
+ * <p>Represents ...</p>
+ */
+    private com.jabberwookie.Client2Server connection;
 
 /**
  * <p>Represents ...</p>
@@ -283,78 +283,6 @@ public abstract class Jabber extends im.networking.Network implements com.jabber
 /**
  * <p></p>
  */
-public class DisconnectedState extends im.networking.jabber.Jabber.State {
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param uid 
- * @param pwd 
- */
-    public void login(final String uid, final String pwd) {        
-        Thread login = new Thread() {
-            public void run() {
-                try {
-                    java.util.Vector address = com.ssttr.util.Strings.tokenize(uid, '@');
-                    String user = (String) address.elementAt(0);
-                    String server = (String) address.elementAt(1);
-                    address = com.ssttr.util.Strings.tokenize(server, '/');
-                    server = (String) address.elementAt(0);
-                    String resource = (String) address.elementAt(1);
-                    connect(server);
-                    getConnection().setMessageListener(Jabber.this);
-                    getConnection().setIQListener(Jabber.this);
-                    getConnection().setPresenceListener(Jabber.this);
-                    boolean try_again;
-                    do {
-                        try_again = false;
-                        System.out.println("Logging in " + uid);
-                        switch (getConnection().loginAny(user, resource,
-                                pwd, 30000)) {
-                        case Client2Server.LOGIN_BAD_PASS:
-                            throw new java.io.IOException("Bad password for " + uid);
-                        case Client2Server.LOGIN_BAD_UID:
-                            if (!registerUser(user, pwd))
-                                throw new java.io.IOException(
-                                        "Could not register user for "
-                                                + uid);
-                            else
-                                try_again = true;
-                            break;
-                        case Client2Server.LOGIN_FAILED:
-                            throw new java.io.IOException("Login failed: unknown: "
-                                    + uid);
-                        case Client2Server.LOGIN_PASS_EXP:
-                            System.out
-                                    .println("Your password has expired for "
-                                            + uid);
-                            break;
-                        case Client2Server.LOGIN_OK:
-                            break;
-                        }
-                    } while (try_again);
-                    Presence pres = new Presence(Const.AVAILABLE,
-                            "Available", 1);
-                    pres.setFrom(uid);
-                    getConnection().send(pres);
-                    incomingPresence(pres);
-                    getConnection().send(IQRoster.createGetRequest());
-                    synchronized(Jabber.this) {
-                            Jabber.this.state = new ConnectedState();
-                    }
-                } catch (Exception e) {
-                    im.InstantMessagingClient.getInstance().report(e);
-                }
-            }
-        };
-        login.start();
-    } 
- }
-/**
- * <p></p>
- */
 public abstract class State {
 
 /**
@@ -531,6 +459,78 @@ public class ConnectedState extends im.networking.jabber.Jabber.State {
             }
         };
         send.start();
+    } 
+ }
+/**
+ * <p></p>
+ */
+public class DisconnectedState extends im.networking.jabber.Jabber.State {
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param uid 
+ * @param pwd 
+ */
+    public void login(final String uid, final String pwd) {        
+        Thread login = new Thread() {
+            public void run() {
+                try {
+                    java.util.Vector address = com.ssttr.util.Strings.tokenize(uid, '@');
+                    String user = (String) address.elementAt(0);
+                    String server = (String) address.elementAt(1);
+                    address = com.ssttr.util.Strings.tokenize(server, '/');
+                    server = (String) address.elementAt(0);
+                    String resource = (String) address.elementAt(1);
+                    connect(server);
+                    getConnection().setMessageListener(Jabber.this);
+                    getConnection().setIQListener(Jabber.this);
+                    getConnection().setPresenceListener(Jabber.this);
+                    boolean try_again;
+                    do {
+                        try_again = false;
+                        System.out.println("Logging in " + uid);
+                        switch (getConnection().loginAny(user, resource,
+                                pwd, 30000)) {
+                        case Client2Server.LOGIN_BAD_PASS:
+                            throw new java.io.IOException("Bad password for " + uid);
+                        case Client2Server.LOGIN_BAD_UID:
+                            if (!registerUser(user, pwd))
+                                throw new java.io.IOException(
+                                        "Could not register user for "
+                                                + uid);
+                            else
+                                try_again = true;
+                            break;
+                        case Client2Server.LOGIN_FAILED:
+                            throw new java.io.IOException("Login failed: unknown: "
+                                    + uid);
+                        case Client2Server.LOGIN_PASS_EXP:
+                            System.out
+                                    .println("Your password has expired for "
+                                            + uid);
+                            break;
+                        case Client2Server.LOGIN_OK:
+                            break;
+                        }
+                    } while (try_again);
+                    Presence pres = new Presence(Const.AVAILABLE,
+                            "Available", 1);
+                    pres.setFrom(uid);
+                    getConnection().send(pres);
+                    incomingPresence(pres);
+                    getConnection().send(IQRoster.createGetRequest());
+                    synchronized(Jabber.this) {
+                            Jabber.this.state = new ConnectedState();
+                    }
+                } catch (Exception e) {
+                    im.InstantMessagingClient.getInstance().report(e);
+                }
+            }
+        };
+        login.start();
     } 
  }
  }

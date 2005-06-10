@@ -5,7 +5,7 @@ import im.ExceptionReporter;
 /**
  * <p></p>
  */
-public class InstantMessagingClient extends javax.microedition.midlet.MIDlet implements observer.Observer, im.ExceptionReporter {
+public class InstantMessagingClient extends javax.microedition.midlet.MIDlet implements im.ExceptionReporter, observer.Observer {
 
 /**
  * <p>Represents ...</p>
@@ -25,12 +25,12 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
 /**
  * <p>Represents ...</p>
  */
-    private java.util.Vector network = new java.util.Vector();
+    private im.model.ContactList contactList = new im.model.ContactList();
 
 /**
  * <p>Represents ...</p>
  */
-    private im.model.ContactList contactList = new im.model.ContactList();
+    private java.util.Vector network = new java.util.Vector();
 
 /**
  * <p>Represents ...</p>
@@ -127,10 +127,10 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * 
  * 
- * @param contactList 
+ * @param viewFactory 
  */
-    public void setContactList(im.model.ContactList contactList) {        
-        this.contactList = contactList;
+    public void setViewFactory(im.view.ViewFactory viewFactory) {        
+        this.viewFactory = viewFactory;
     } 
 
 /**
@@ -138,10 +138,10 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * 
  * 
- * @param viewFactory 
+ * @param contactList 
  */
-    public void setViewFactory(im.view.ViewFactory viewFactory) {        
-        this.viewFactory = viewFactory;
+    public void setContactList(im.model.ContactList contactList) {        
+        this.contactList = contactList;
     } 
 
 /**
@@ -162,8 +162,8 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * @return 
  */
-    public im.model.ContactList getContactList() {        
-        return contactList;
+    public im.view.ViewFactory getViewFactory() {        
+        return viewFactory;
     } 
 
 /**
@@ -173,8 +173,8 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * @return 
  */
-    public im.view.ViewFactory getViewFactory() {        
-        return viewFactory;
+    public im.model.ContactList getContactList() {        
+        return contactList;
     } 
 
 /**

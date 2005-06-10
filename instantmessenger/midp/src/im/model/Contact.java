@@ -31,6 +31,28 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
+ * @param list 
+ */
+    public void setList(im.model.ContactList list) {        
+        // Begin Observable stanza
+        if (this.list != list) {
+            // Begin original body
+        if (this.list != list) {
+            if (this.list != null) this.list.removeContact(this);
+            this.list = list;
+            if (list != null) list.addContact(this);
+        }
+            // End original body
+            notifyObservers("List", list);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param userId 
  */
     public void setUserId(String userId) {        
@@ -85,21 +107,10 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param list 
+ * @return 
  */
-    public void setList(im.model.ContactList list) {        
-        // Begin Observable stanza
-        if (this.list != list) {
-            // Begin original body
-        if (this.list != list) {
-            if (this.list != null) this.list.removeContact(this);
-            this.list = list;
-            if (list != null) list.addContact(this);
-        }
-            // End original body
-            notifyObservers("List", list);
-        }
-        // End Observable stanza
+    public im.model.ContactList getList() {        
+        return list;
     } 
 
 /**
@@ -133,16 +144,5 @@ public class Contact extends im.model.NetworkSpecificData {
  */
     public String getName() {        
         return name;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.ContactList getList() {        
-        return list;
     } 
  }

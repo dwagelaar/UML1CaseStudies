@@ -9,12 +9,12 @@ public class ContactListEdit implements observer.Observer, im.view.ContactListVi
 /**
  * <p>Represents ...</p>
  */
-    private im.model.ContactList model = null;
+    private im.view.ContactListView view = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.view.ContactListView view = null;
+    private im.model.ContactList model = null;
 
 /**
  * <p>Represents ...</p>
@@ -70,8 +70,8 @@ public class ContactListEdit implements observer.Observer, im.view.ContactListVi
  * 
  * @return 
  */
-    public im.model.ContactList getModel() {        
-        return model;
+    public java.util.Vector getContactEdits() {        
+        return contactEdit;
     } 
 
 /**
@@ -81,8 +81,8 @@ public class ContactListEdit implements observer.Observer, im.view.ContactListVi
  * 
  * @return 
  */
-    public java.util.Vector getContactEdits() {        
-        return contactEdit;
+    public im.model.ContactList getModel() {        
+        return model;
     } 
 
 /**

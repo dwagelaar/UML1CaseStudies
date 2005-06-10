@@ -31,42 +31,6 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param recipient 
- */
-    public void setRecipient(String recipient) {        
-        // Begin Observable stanza
-        if (this.recipient != recipient) {
-            // Begin original body
-        this.recipient = recipient;
-            // End original body
-            notifyObservers("Recipient", recipient);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param sender 
- */
-    public void setSender(String sender) {        
-        // Begin Observable stanza
-        if (this.sender != sender) {
-            // Begin original body
-        this.sender = sender;
-            // End original body
-            notifyObservers("Sender", sender);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param conversation 
  */
     public void setConversation(im.model.Conversation conversation) {        
@@ -79,6 +43,24 @@ public class Message extends im.model.NetworkSpecificData {
         }
             // End original body
             notifyObservers("Conversation", conversation);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @param recipient 
+ */
+    public void setRecipient(String recipient) {        
+        // Begin Observable stanza
+        if (this.recipient != recipient) {
+            // Begin original body
+        this.recipient = recipient;
+            // End original body
+            notifyObservers("Recipient", recipient);
         }
         // End Observable stanza
     } 
@@ -106,21 +88,17 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @return 
+ * @param sender 
  */
-    public String getRecipient() {        
-        return recipient;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public String getSender() {        
-        return sender;
+    public void setSender(String sender) {        
+        // Begin Observable stanza
+        if (this.sender != sender) {
+            // Begin original body
+        this.sender = sender;
+            // End original body
+            notifyObservers("Sender", sender);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -141,8 +119,30 @@ public class Message extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
+    public String getRecipient() {        
+        return recipient;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
     public Object getContent() {        
         return content;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getSender() {        
+        return sender;
     } 
 
 /**
