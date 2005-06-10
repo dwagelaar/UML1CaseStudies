@@ -1,7 +1,7 @@
 -- $Id$
 module Observer;
 
-create OUT : OUTMODEL from IN : INMODEL, MERGE : MERGEMODEL;
+create OBSERVER : OBSERVERM from ACCESSORS : ACCESSORSM, OBSERVERTYPES : MERGEMODEL;
 
 uses Java;
 
@@ -10,11 +10,11 @@ uses Java;
 -- ======================================================================
 -- From: ModelMerge.atl 1174 2005-05-23 07:38:38Z dwagelaa
 
-helper context INMODEL!ModelElement def : isInPackage() : Boolean =
-	not INMODEL!Package.allInstances()->select(p|
-		p=self.namespace and p.oclIsTypeOf(INMODEL!Package))->isEmpty();
+helper context ACCESSORSM!ModelElement def : isInPackage() : Boolean =
+	not ACCESSORSM!Package.allInstances()->select(p|
+		p=self.namespace and p.oclIsTypeOf(ACCESSORSM!Package))->isEmpty();
 
-helper context INMODEL!ModelElement def : qName() : String =
+helper context ACCESSORSM!ModelElement def : qName() : String =
 	if self.isInPackage() then
 		self.namespace.qName() + '.' + self.name
 	else
@@ -35,39 +35,39 @@ helper context MERGEMODEL!ModelElement def : qName() : String =
 helper context MERGEMODEL!Model def : notInSourceModel() : Boolean =
 	false;
 
-helper context MERGEMODEL!Model def : fromSourceModel() : INMODEL!Model =
-	INMODEL!Model.allInstances()->asSequence()->first();
+helper context MERGEMODEL!Model def : fromSourceModel() : ACCESSORSM!Model =
+	ACCESSORSM!Model.allInstances()->asSequence()->first();
 
 helper context MERGEMODEL!Classifier def : notInSourceModel() : Boolean =
-	INMODEL!Classifier.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
+	ACCESSORSM!Classifier.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
 
-helper context MERGEMODEL!Classifier def : fromSourceModel() : INMODEL!Classifier =
-	INMODEL!Classifier.allInstances()->select(e|e.qName()=self.qName())->first();
+helper context MERGEMODEL!Classifier def : fromSourceModel() : ACCESSORSM!Classifier =
+	ACCESSORSM!Classifier.allInstances()->select(e|e.qName()=self.qName())->first();
 
 helper context MERGEMODEL!Package def : notInSourceModel() : Boolean =
-	INMODEL!Package.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
+	ACCESSORSM!Package.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
 
-helper context MERGEMODEL!Package def : fromSourceModel() : INMODEL!Package =
-	INMODEL!Package.allInstances()->select(e|e.qName()=self.qName())->first();
+helper context MERGEMODEL!Package def : fromSourceModel() : ACCESSORSM!Package =
+	ACCESSORSM!Package.allInstances()->select(e|e.qName()=self.qName())->first();
 
 helper context MERGEMODEL!TagDefinition def : notInSourceModel() : Boolean =
-	INMODEL!TagDefinition.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
+	ACCESSORSM!TagDefinition.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
 
-helper context MERGEMODEL!TagDefinition def : fromSourceModel() : INMODEL!TagDefinition =
-	INMODEL!TagDefinition.allInstances()->select(e|e.qName()=self.qName())->first();
+helper context MERGEMODEL!TagDefinition def : fromSourceModel() : ACCESSORSM!TagDefinition =
+	ACCESSORSM!TagDefinition.allInstances()->select(e|e.qName()=self.qName())->first();
 
 helper context MERGEMODEL!Stereotype def : notInSourceModel() : Boolean =
-	INMODEL!Stereotype.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
+	ACCESSORSM!Stereotype.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
 
-helper context MERGEMODEL!Stereotype def : fromSourceModel() : INMODEL!Stereotype =
-	INMODEL!Stereotype.allInstances()->select(e|e.qName()=self.qName())->first();
+helper context MERGEMODEL!Stereotype def : fromSourceModel() : ACCESSORSM!Stereotype =
+	ACCESSORSM!Stereotype.allInstances()->select(e|e.qName()=self.qName())->first();
 
 helper context MERGEMODEL!Association def : notInSourceModel() : Boolean =
 	not self.connection->forAll(c|c.inSourceModel());
 
 helper context MERGEMODEL!AssociationEnd def : inSourceModel() : Boolean =
 	if self.isNavigable then
-		not INMODEL!AssociationEnd.allInstances()->select(e|e.isNavigable)->select(e|
+		not ACCESSORSM!AssociationEnd.allInstances()->select(e|e.isNavigable)->select(e|
 			e.name=self.name and e.participant.qName()=self.participant.qName())->isEmpty()
 	else if self.otherEnd().isNavigable then
 		self.otherEnd().inSourceModel()
@@ -97,12 +97,12 @@ helper context MERGEMODEL!Expression def : notInSourceModel() : Boolean =
 	endif endif;
 
 helper context MERGEMODEL!Dependency def : notInSourceModel() : Boolean =
-	INMODEL!Dependency.allInstances()->select(d|
+	ACCESSORSM!Dependency.allInstances()->select(d|
 		d.supplier->forAll(s1|self.supplier->forAll(s2|s1.qName()=s2.qName())) and
 		d.client->forAll(c1|self.client->forAll(c2|c1.qName()=c2.qName())))->isEmpty();
 
 helper context MERGEMODEL!Generalization def : notInSourceModel() : Boolean =
-	INMODEL!Generalization.allInstances()->select(g|
+	ACCESSORSM!Generalization.allInstances()->select(g|
 		g.parent.qName()=self.parent.qName() and
 		g.child.qName()=self.child.qName())->isEmpty();
 
@@ -131,7 +131,7 @@ helper context MERGEMODEL!Parameter def : notInSourceModel() : Boolean =
 -- model-specific helpers begin
 -- ======================================================================
 
-helper context INMODEL!Attribute def : javaSetterNotify(body : String) : String =
+helper context ACCESSORSM!Attribute def : javaSetterNotify(body : String) : String =
 	'// Begin Observable stanza\n' +
 	'if (this.' + self.name + ' != ' + self.name + ') {\n' +
 	'    // Begin original body\n' +
@@ -141,7 +141,7 @@ helper context INMODEL!Attribute def : javaSetterNotify(body : String) : String 
 	'}\n' +
 	'// End Observable stanza';
 	
-helper context INMODEL!Attribute def : javaAdderNotify(body : String) : String =
+helper context ACCESSORSM!Attribute def : javaAdderNotify(body : String) : String =
 	'// Begin Observable stanza\n' +
 	'if (! this.' + self.name + '.contains(' + self.name + ')) {\n' +
 	'    // Begin original body\n' +
@@ -151,7 +151,7 @@ helper context INMODEL!Attribute def : javaAdderNotify(body : String) : String =
 	'}\n' +
 	'// End Observable stanza';
 	
-helper context INMODEL!Attribute def : javaRemoverNotify(body : String) : String =
+helper context ACCESSORSM!Attribute def : javaRemoverNotify(body : String) : String =
 	'// Begin Observable stanza\n' +
 	'if (this.' + self.name + '.contains(' + self.name + ')) {\n' +
 	'    // Begin original body\n' +
@@ -161,84 +161,84 @@ helper context INMODEL!Attribute def : javaRemoverNotify(body : String) : String
 	'}\n' +
 	'// End Observable stanza';
 
-helper context String def : qClass() : INMODEL!Class =
-	INMODEL!Class.allInstances()->select(c|c.qName()=self)->first();
+helper context String def : qClass() : ACCESSORSM!Class =
+	ACCESSORSM!Class.allInstances()->select(c|c.qName()=self)->first();
 
 helper context String def : mergeQClass() : MERGEMODEL!Class =
 	MERGEMODEL!Class.allInstances()->select(c|c.qName()=self)->first();
 
 helper context String def : hasQClass() : Boolean =
-	not INMODEL!Class.allInstances()->select(c|c.qName()=self)->isEmpty();
+	not ACCESSORSM!Class.allInstances()->select(c|c.qName()=self)->isEmpty();
 
-helper context String def : qInterface() : INMODEL!Interface =
-	INMODEL!Interface.allInstances()->select(c|c.qName()=self)->first();
+helper context String def : qInterface() : ACCESSORSM!Interface =
+	ACCESSORSM!Interface.allInstances()->select(c|c.qName()=self)->first();
 
 helper context String def : mergeQInterface() : MERGEMODEL!Interface =
 	MERGEMODEL!Interface.allInstances()->select(c|c.qName()=self)->first();
 
 helper context String def : hasQInterface() : Boolean =
-	not INMODEL!Interface.allInstances()->select(c|c.qName()=self)->isEmpty();
+	not ACCESSORSM!Interface.allInstances()->select(c|c.qName()=self)->isEmpty();
 
 helper context String def : hasDataType() : Boolean =
-	not INMODEL!DataType.allInstances()->select(c|c.name=self)->isEmpty();
+	not ACCESSORSM!DataType.allInstances()->select(c|c.name=self)->isEmpty();
 
-helper context String def : dataType() : INMODEL!DataType =
-	INMODEL!DataType.allInstances()->select(c|c.name=self)->first();
+helper context String def : dataType() : ACCESSORSM!DataType =
+	ACCESSORSM!DataType.allInstances()->select(c|c.name=self)->first();
 
 helper context String def : mergeDataType() : MERGEMODEL!DataType =
 	MERGEMODEL!DataType.allInstances()->select(c|c.name=self)->first();
 
 helper context String def : hasStereotype() : Boolean =
-	not INMODEL!Stereotype.allInstances()->select(s|s.name=self)->isEmpty();
+	not ACCESSORSM!Stereotype.allInstances()->select(s|s.name=self)->isEmpty();
 
-helper context String def : stereotype() : INMODEL!Stereotype =
-	INMODEL!Stereotype.allInstances()->select(s|s.name=self)->first();
+helper context String def : stereotype() : ACCESSORSM!Stereotype =
+	ACCESSORSM!Stereotype.allInstances()->select(s|s.name=self)->first();
 
 helper context String def : mergeStereotype() : MERGEMODEL!Stereotype =
 	MERGEMODEL!Stereotype.allInstances()->select(s|s.name=self)->first();
 
-helper context INMODEL!AssociationEnd def : otherEnd() : INMODEL!AssociationEnd =
+helper context ACCESSORSM!AssociationEnd def : otherEnd() : ACCESSORSM!AssociationEnd =
 	self.association.connection->select(x|x<>self)->first();
 
-helper context INMODEL!AssociationEnd def : navigableFrom() : INMODEL!Classifier =
+helper context ACCESSORSM!AssociationEnd def : navigableFrom() : ACCESSORSM!Classifier =
 	self.otherEnd().participant;
 
-helper context INMODEL!Attribute def : hasAssociationEnd() : Boolean =
-	not INMODEL!AssociationEnd.allInstances()->select(a|
+helper context ACCESSORSM!Attribute def : hasAssociationEnd() : Boolean =
+	not ACCESSORSM!AssociationEnd.allInstances()->select(a|
 		a.name=self.name and a.navigableFrom()=self.owner)->isEmpty();
 
-helper context INMODEL!Attribute def : associationEnd() : INMODEL!AssociationEnd =
-	INMODEL!AssociationEnd.allInstances()->select(a|
+helper context ACCESSORSM!Attribute def : associationEnd() : ACCESSORSM!AssociationEnd =
+	ACCESSORSM!AssociationEnd.allInstances()->select(a|
 		a.name=self.name and a.navigableFrom()=self.owner)->first();
 
-helper context INMODEL!Attribute def : originalType() : INMODEL!Classifier =
+helper context ACCESSORSM!Attribute def : originalType() : ACCESSORSM!Classifier =
 	if self.hasAssociationEnd() then
 		self.associationEnd().participant
 	else
 		self.type
 	endif;
 
-helper context INMODEL!Dependency def : isAccessorDependency() : Boolean =
+helper context ACCESSORSM!Dependency def : isAccessorDependency() : Boolean =
 	not self.stereotype->select(s|s.name='accessor')->isEmpty();
 	
-helper context INMODEL!Operation def : isAccessor() : Boolean =
+helper context ACCESSORSM!Operation def : isAccessor() : Boolean =
 	not self.clientDependency->select(d|d.isAccessorDependency())->isEmpty();
 
-helper context INMODEL!Operation def : accessorDependency() : INMODEL!Dependency =
+helper context ACCESSORSM!Operation def : accessorDependency() : ACCESSORSM!Dependency =
 	self.clientDependency->select(d|d.isAccessorDependency())->first();
 
-helper context INMODEL!Operation def : accessorFor() : INMODEL!Attribute =
+helper context ACCESSORSM!Operation def : accessorFor() : ACCESSORSM!Attribute =
 	self.accessorDependency().supplier->select(a|
-		a.oclIsKindOf(INMODEL!Attribute))->first();
+		a.oclIsKindOf(ACCESSORSM!Attribute))->first();
 
-helper context INMODEL!Operation def : isSubscriber() : Boolean =
+helper context ACCESSORSM!Operation def : isSubscriber() : Boolean =
 	if self.isAccessor() then
 		self.accessorFor().hasSubscribesAssociation()
 	else
 		false
 	endif;
 
-helper context INMODEL!Attribute def : hasSubscribesAssociation() : Boolean =
+helper context ACCESSORSM!Attribute def : hasSubscribesAssociation() : Boolean =
 	if self.hasAssociationEnd() then
 		not self.associationEnd().association.stereotype
 			->select(s|s.name='subscribe')->isEmpty()
@@ -246,30 +246,30 @@ helper context INMODEL!Attribute def : hasSubscribesAssociation() : Boolean =
 		false
 	endif;
 	
-helper context INMODEL!GeneralizableElement def : isObservableType() : Boolean =
+helper context ACCESSORSM!GeneralizableElement def : isObservableType() : Boolean =
 	not self.stereotype->select(s|s.name='Observable')->isEmpty();
 
-helper context INMODEL!GeneralizableElement def : isObservableKind() : Boolean =
+helper context ACCESSORSM!GeneralizableElement def : isObservableKind() : Boolean =
 	if self.isObservableType() then
 		true
 	else
 		not self.generalization->select(g|g.parent.isObservableKind())->isEmpty()
 	endif;
 
-helper context INMODEL!GeneralizableElement def : isObserverType() : Boolean =
+helper context ACCESSORSM!GeneralizableElement def : isObserverType() : Boolean =
 	not self.stereotype->select(s|s.name='Observer')->isEmpty();
 
-helper context INMODEL!GeneralizableElement def : isObserverKind() : Boolean =
+helper context ACCESSORSM!GeneralizableElement def : isObserverKind() : Boolean =
 	if self.isObserverType() then
 		true
 	else
 		not self.generalization->select(g|g.parent.isObserverKind())->isEmpty()
 	endif;
 
-helper context INMODEL!ProcedureExpression def : method() : INMODEL!Method =
-	INMODEL!Method.allInstances()->select(m|m.body=self)->first();
+helper context ACCESSORSM!ProcedureExpression def : method() : ACCESSORSM!Method =
+	ACCESSORSM!Method.allInstances()->select(m|m.body=self)->first();
 
-helper context INMODEL!Operation def : javaNotify(body : String) : String =
+helper context ACCESSORSM!Operation def : javaNotify(body : String) : String =
 	if self.name.stringStartsWith('remove') then
 		self.accessorFor().javaRemoverNotify(body)
 	else if self.name.stringStartsWith('add') or self.name.stringStartsWith('insert') then
@@ -280,7 +280,7 @@ helper context INMODEL!Operation def : javaNotify(body : String) : String =
 		body
 	endif endif endif;
 
-helper context INMODEL!Operation def : javaSubscribe(body : String) : String =
+helper context ACCESSORSM!Operation def : javaSubscribe(body : String) : String =
 	if self.name.stringStartsWith('remove') then
 		self.accessorFor().name.javaRemoverSubscribe(body)
 	else if self.name.stringStartsWith('add') or self.name.stringStartsWith('insert') then
@@ -291,27 +291,27 @@ helper context INMODEL!Operation def : javaSubscribe(body : String) : String =
 		body
 	endif endif endif;
 
-helper context INMODEL!Classifier def : handlers() : Sequence(INMODEL!Operation) =
+helper context ACCESSORSM!Classifier def : handlers() : Sequence(ACCESSORSM!Operation) =
 	self.feature->select(f|
-		if f.oclIsKindOf(INMODEL!Operation) then
+		if f.oclIsKindOf(ACCESSORSM!Operation) then
 			f.name.stringStartsWith('on') and f.name.stringEndsWith('Change') and f.name.size() > 8
 		else
 			false
 		endif
 	);
 
-helper context INMODEL!Classifier def : updateBody() : String =
+helper context ACCESSORSM!Classifier def : updateBody() : String =
     self.handlers()->iterate(o; acc : String = ''|acc + o.updateBody('value'));
 
-helper context INMODEL!Operation def : updateBody(value : String) : String =
+helper context ACCESSORSM!Operation def : updateBody(value : String) : String =
 	'\nif (name.equals("' + self.propertyName() + '")) {\n' +
 	'    ' + self.name + '(' + value.javaUnboxValue(self.parTypeName()) + ');\n' +
 	'}';
 
-helper context INMODEL!Operation def : propertyName() : String =
+helper context ACCESSORSM!Operation def : propertyName() : String =
 	self.name.substring(3, self.name.size() - 6); -- onPropertyChange -> Property
 
-helper context INMODEL!Operation def : parTypeName() : String =
+helper context ACCESSORSM!Operation def : parTypeName() : String =
 	self.parameter->first().type.qName();
 
 -- ======================================================================
@@ -323,8 +323,8 @@ helper context INMODEL!Operation def : parTypeName() : String =
 -- ======================================================================
 
 rule ObservableClass {
-	from s : INMODEL!Class (s.isObservableType())
-	to observers : OUTMODEL!Attribute (
+	from s : ACCESSORSM!Class (s.isObservableType())
+	to observers : OBSERVERM!Attribute (
 	   	name <- 'observers',
 		owner <- s,
 		type <- if 'java.util.Vector'.hasQClass()
@@ -334,84 +334,84 @@ rule ObservableClass {
 		ownerScope <- #sk_instance,
 		changeability <- #ck_changeable,
 		initialValue <- v),
-	   v : OUTMODEL!Expression (
+	   v : OBSERVERM!Expression (
 	   	language <- 'java',
 		body <- 'new java.util.Vector()'),
-	   addObserver : OUTMODEL!Operation (
+	   addObserver : OBSERVERM!Operation (
 	   	name <- 'addObserver',
 		owner <- s,
 		visibility <- #vk_public,
 		ownerScope <- #sk_instance,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   addObserverPar : OUTMODEL!Parameter (
+	   addObserverPar : OBSERVERM!Parameter (
 	   	name <- 'observer',
 		behavioralFeature <- addObserver,
 		type <- if 'observer.Observer'.hasQInterface()
 			then 'observer.Observer'.qInterface()
 			else 'observer.Observer'.mergeQInterface() endif,
 		kind <- #pdk_in),
-	   addObserverBody : OUTMODEL!ProcedureExpression (
+	   addObserverBody : OBSERVERM!ProcedureExpression (
 	   	language <- 'java',
 		body <- 'observers.addElement(observer);'),
-	   addObserverMeth : OUTMODEL!Method (
+	   addObserverMeth : OBSERVERM!Method (
 	   	owner <- s,
 		body <- addObserverBody,
 		specification <- addObserver),
-	   deleteObserver : OUTMODEL!Operation (
+	   deleteObserver : OBSERVERM!Operation (
 	   	name <- 'deleteObserver',
 		owner <- s,
 		visibility <- #vk_public,
 		ownerScope <- #sk_instance,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   deleteObserverPar : OUTMODEL!Parameter (
+	   deleteObserverPar : OBSERVERM!Parameter (
 	   	name <- 'observer',
 		behavioralFeature <- deleteObserver,
 		type <- if 'observer.Observer'.hasQInterface()
 			then 'observer.Observer'.qInterface()
 			else 'observer.Observer'.mergeQInterface() endif,
 		kind <- #pdk_in),
-	   deleteObserverBody : OUTMODEL!ProcedureExpression (
+	   deleteObserverBody : OBSERVERM!ProcedureExpression (
 	   	language <- 'java',
 		body <- 'observers.removeElement(observer);'),
-	   deleteObserverMeth : OUTMODEL!Method (
+	   deleteObserverMeth : OBSERVERM!Method (
 	   	owner <- s,
 		body <- deleteObserverBody,
 		specification <- deleteObserver),
-	   notifyObservers : OUTMODEL!Operation (
+	   notifyObservers : OBSERVERM!Operation (
 	   	name <- 'notifyObservers',
 		owner <- s,
 		visibility <- #vk_protected,
 		ownerScope <- #sk_instance,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   notifyObserversName : OUTMODEL!Parameter (
+	   notifyObserversName : OBSERVERM!Parameter (
 	   	name <- 'name',
 		behavioralFeature <- notifyObservers,
 		type <- if 'String'.hasDataType()
 			then 'String'.dataType()
 			else 'String'.mergeDataType() endif,
 		kind <- #pdk_in),
-	   notifyObserversValue : OUTMODEL!Parameter (
+	   notifyObserversValue : OBSERVERM!Parameter (
 	   	name <- 'value',
 		behavioralFeature <- notifyObservers,
 		type <- if 'OclAny'.hasDataType()
 			then 'OclAny'.dataType()
 			else 'OclAny'.mergeDataType() endif,
 		kind <- #pdk_in),
-	   notifyObserversBody : OUTMODEL!ProcedureExpression (
+	   notifyObserversBody : OBSERVERM!ProcedureExpression (
 	   	language <- 'java',
 		body <- 'name, value'.javaNotifyObservers()),
-	   notifyObserversMeth : OUTMODEL!Method (
+	   notifyObserversMeth : OBSERVERM!Method (
 	   	owner <- s,
 		body <- notifyObserversBody,
 		specification <- notifyObservers)
 }
 
 rule ObserverClass {
-	from s : INMODEL!Class (s.isObserverType())
-	to t : OUTMODEL!Abstraction (
+	from s : ACCESSORSM!Class (s.isObserverType())
+	to t : OBSERVERM!Abstraction (
 	   	namespace <- s.namespace,
 		stereotype <- if 'realize'.hasStereotype()
 			then 'realize'.stereotype()
@@ -420,31 +420,31 @@ rule ObserverClass {
 			then 'observer.Observer'.qInterface()
 			else 'observer.Observer'.mergeQInterface() endif},
 		client <- Set{s}),
-	   op : OUTMODEL!Operation (
+	   op : OBSERVERM!Operation (
 	   	name <- 'update',
 		owner <- s,
 		visibility <- #vk_public,
 		ownerScope <- #sk_instance,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   name : OUTMODEL!Parameter (
+	   name : OBSERVERM!Parameter (
 	   	name <- 'name',
 		behavioralFeature <- op,
 		type <- if 'String'.hasDataType()
 			then 'String'.dataType()
 			else 'String'.mergeDataType() endif,
 		kind <- #pdk_in),
-	   value : OUTMODEL!Parameter (
+	   value : OBSERVERM!Parameter (
 	   	name <- 'value',
 		behavioralFeature <- op,
 		type <- if 'OclAny'.hasDataType()
 			then 'OclAny'.dataType()
 			else 'OclAny'.mergeDataType() endif,
 		kind <- #pdk_in),
-	   mbody : OUTMODEL!ProcedureExpression (
+	   mbody : OBSERVERM!ProcedureExpression (
 	   	language <- 'java',
 		body <- s.updateBody()),
-	   meth : OUTMODEL!Method (
+	   meth : OBSERVERM!Method (
 	   	owner <- s,
 		body <- mbody,
 		specification <- op)
@@ -459,46 +459,46 @@ rule ObserverClass {
 -- ======================================================================
 
 rule ProcedureExpression {
-	from s : INMODEL!ProcedureExpression (not (
+	from s : ACCESSORSM!ProcedureExpression (not (
 		 s.method().specification.isAccessor() and
 		 (s.method().owner.isObservableKind() or
 		  (s.method().owner.isObserverKind() and
 		   s.method().specification.isSubscriber()))))
-	to t : OUTMODEL!ProcedureExpression mapsTo s (
+	to t : OBSERVERM!ProcedureExpression mapsTo s (
 		language <- s.language,
 		body <- s.body)
 }
 
 rule NotifyProcedureExpression {
-	from s : INMODEL!ProcedureExpression (
+	from s : ACCESSORSM!ProcedureExpression (
 		 s.method().specification.isAccessor() and
 		 s.method().owner.isObservableKind() and
 		 not (s.method().owner.isObserverKind() and
 		      s.method().specification.isSubscriber()))
-	to t : OUTMODEL!ProcedureExpression mapsTo s (
+	to t : OBSERVERM!ProcedureExpression mapsTo s (
 		language <- s.language,
 		body <- s.method().specification.javaNotify(s.body))
 }
 
 rule NotifySubscribeProcedureExpression {
-	from s : INMODEL!ProcedureExpression (
+	from s : ACCESSORSM!ProcedureExpression (
 		 s.method().specification.isAccessor() and
 		 s.method().owner.isObservableKind() and
 		 s.method().owner.isObserverKind() and
 		 s.method().specification.isSubscriber())
-	to t : OUTMODEL!ProcedureExpression mapsTo s (
+	to t : OBSERVERM!ProcedureExpression mapsTo s (
 		language <- s.language,
 		body <- s.method().specification.javaNotify(
 			s.method().specification.javaSubscribe(s.body)))
 }
 
 rule SubscribeProcedureExpression {
-	from s : INMODEL!ProcedureExpression (
+	from s : ACCESSORSM!ProcedureExpression (
 		 s.method().specification.isAccessor() and
 		 not s.method().owner.isObservableKind() and
 		 s.method().owner.isObserverKind() and
 		 s.method().specification.isSubscriber())
-	to t : OUTMODEL!ProcedureExpression mapsTo s (
+	to t : OBSERVERM!ProcedureExpression mapsTo s (
 		language <- s.language,
 		body <- s.method().specification.javaSubscribe(s.body))
 }
@@ -515,7 +515,7 @@ rule SubscribeProcedureExpression {
 rule MergeAssociation {
     from s : MERGEMODEL!Association (s.oclIsTypeOf(MERGEMODEL!Association) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Association mapsTo s (
+    to t : OBSERVERM!Association mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -540,7 +540,7 @@ rule MergeAssociation {
 
 rule MergeTaggedValue {
     from s : MERGEMODEL!TaggedValue (s.notInSourceModel())
-    to t : OUTMODEL!TaggedValue mapsTo s (
+    to t : OBSERVERM!TaggedValue mapsTo s (
         dataValue <- s.dataValue,
         visibility <- s.visibility,
         name <- s.name,
@@ -562,7 +562,7 @@ rule MergeTaggedValue {
 
 rule MergeOperation {
     from s : MERGEMODEL!Operation (s.notInSourceModel())
-    to t : OUTMODEL!Operation mapsTo s (
+    to t : OBSERVERM!Operation mapsTo s (
         ownerScope <- s.ownerScope,
         visibility <- s.visibility,
         isQuery <- s.isQuery,
@@ -587,14 +587,14 @@ rule MergeOperation {
 
 rule MergeProcedureExpression {
     from s : MERGEMODEL!ProcedureExpression (s.notInSourceModel())
-    to t : OUTMODEL!ProcedureExpression mapsTo s (
+    to t : OBSERVERM!ProcedureExpression mapsTo s (
         language <- s.language,
         body <- s.body)
 }
 
 rule MergeAbstraction {
     from s : MERGEMODEL!Abstraction (s.notInSourceModel())
-    to t : OUTMODEL!Abstraction mapsTo s (
+    to t : OBSERVERM!Abstraction mapsTo s (
         mapping <- s.mapping,
         visibility <- s.visibility,
         name <- s.name,
@@ -619,13 +619,13 @@ rule MergeAbstraction {
 
 rule MergeMultiplicity {
     from s : MERGEMODEL!Multiplicity (s.notInSourceModel())
-    to t : OUTMODEL!Multiplicity mapsTo s (
+    to t : OBSERVERM!Multiplicity mapsTo s (
         range <- s.range)
 }
 
 rule MergeParameter {
     from s : MERGEMODEL!Parameter (s.notInSourceModel())
-    to t : OUTMODEL!Parameter mapsTo s (
+    to t : OBSERVERM!Parameter mapsTo s (
         kind <- s.kind,
         visibility <- s.visibility,
         name <- s.name,
@@ -648,7 +648,7 @@ rule MergeParameter {
 rule MergeClass {
     from s : MERGEMODEL!Class (s.oclIsTypeOf(MERGEMODEL!Class) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Class mapsTo s (
+    to t : OBSERVERM!Class mapsTo s (
         isRoot <- s.isRoot,
         isActive <- s.isActive,
         isAbstract <- s.isAbstract,
@@ -676,7 +676,7 @@ rule MergeClass {
 
 rule MergeInterface {
     from s : MERGEMODEL!Interface (s.notInSourceModel())
-    to t : OUTMODEL!Interface mapsTo s (
+    to t : OBSERVERM!Interface mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -703,7 +703,7 @@ rule MergeInterface {
 
 rule MergeMultiplicityRange {
     from s : MERGEMODEL!MultiplicityRange (s.notInSourceModel())
-    to t : OUTMODEL!MultiplicityRange mapsTo s (
+    to t : OBSERVERM!MultiplicityRange mapsTo s (
         upper <- s.upper,
         lower <- s.lower)
 }
@@ -711,7 +711,7 @@ rule MergeMultiplicityRange {
 rule MergeExpression {
     from s : MERGEMODEL!Expression (s.oclIsTypeOf(MERGEMODEL!Expression) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Expression mapsTo s (
+    to t : OBSERVERM!Expression mapsTo s (
         language <- s.language,
         body <- s.body)
 }
@@ -719,7 +719,7 @@ rule MergeExpression {
 rule MergeDataType {
     from s : MERGEMODEL!DataType (s.oclIsTypeOf(MERGEMODEL!DataType) and
     	s.notInSourceModel())
-    to t : OUTMODEL!DataType mapsTo s (
+    to t : OBSERVERM!DataType mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -747,7 +747,7 @@ rule MergeDataType {
 rule MergePackage {
     from s : MERGEMODEL!Package (s.oclIsTypeOf(MERGEMODEL!Package) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Package mapsTo s (
+    to t : OBSERVERM!Package mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -774,7 +774,7 @@ rule MergePackage {
 rule MergeAssociationEnd {
     from s : MERGEMODEL!AssociationEnd (s.oclIsTypeOf(MERGEMODEL!AssociationEnd) and
     	s.notInSourceModel())
-    to t : OUTMODEL!AssociationEnd mapsTo s (
+    to t : OBSERVERM!AssociationEnd mapsTo s (
         targetScope <- s.targetScope,
         isNavigable <- s.isNavigable,
         ordering <- s.ordering,
@@ -802,7 +802,7 @@ rule MergeAssociationEnd {
 
 rule MergeAttribute {
     from s : MERGEMODEL!Attribute (s.notInSourceModel())
-    to t : OUTMODEL!Attribute mapsTo s (
+    to t : OBSERVERM!Attribute mapsTo s (
         targetScope <- s.targetScope,
         initialValue <- s.initialValue,
         ownerScope <- s.ownerScope,
@@ -828,7 +828,7 @@ rule MergeAttribute {
 
 rule MergeGeneralization {
     from s : MERGEMODEL!Generalization (s.notInSourceModel())
-    to t : OUTMODEL!Generalization mapsTo s (
+    to t : OBSERVERM!Generalization mapsTo s (
         discriminator <- s.discriminator,
         visibility <- s.visibility,
         name <- s.name,
@@ -857,7 +857,7 @@ rule MergeGeneralization {
 rule MergeDependency {
     from s : MERGEMODEL!Dependency (s.oclIsTypeOf(MERGEMODEL!Dependency) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Dependency mapsTo s (
+    to t : OBSERVERM!Dependency mapsTo s (
         visibility <- s.visibility,
         name <- s.name,
         isSpecification <- s.isSpecification,
@@ -881,7 +881,7 @@ rule MergeDependency {
 
 rule MergeTagDefinition {
     from s : MERGEMODEL!TagDefinition (s.notInSourceModel())
-    to t : OUTMODEL!TagDefinition mapsTo s (
+    to t : OBSERVERM!TagDefinition mapsTo s (
         tagType <- s.tagType,
         multiplicity <- s.multiplicity,
         visibility <- s.visibility,
@@ -903,7 +903,7 @@ rule MergeTagDefinition {
 
 rule MergeStereotype {
     from s : MERGEMODEL!Stereotype (s.notInSourceModel())
-    to t : OUTMODEL!Stereotype mapsTo s (
+    to t : OBSERVERM!Stereotype mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         baseClass <- s.baseClass,
@@ -931,7 +931,7 @@ rule MergeStereotype {
 
 rule MergeMethod {
     from s : MERGEMODEL!Method (s.notInSourceModel())
-    to t : OUTMODEL!Method mapsTo s (
+    to t : OBSERVERM!Method mapsTo s (
         body <- s.body,
         ownerScope <- s.ownerScope,
         visibility <- s.visibility,
@@ -953,7 +953,7 @@ rule MergeMethod {
 
 rule MergeException {
     from s : MERGEMODEL!Exception (s.notInSourceModel())
-    to t : OUTMODEL!Exception mapsTo s (
+    to t : OBSERVERM!Exception mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -989,8 +989,8 @@ rule MergeException {
 -- Generated by: ModelCopyGenerator.atl 1101 2005-05-12 10:35:43Z dwagelaa
 
 rule Generalization {
-    from s : INMODEL!Generalization
-    to t : OUTMODEL!Generalization mapsTo s (
+    from s : ACCESSORSM!Generalization
+    to t : OBSERVERM!Generalization mapsTo s (
         discriminator <- s.discriminator,
         name <- s.name,
         visibility <- s.visibility,
@@ -1009,8 +1009,8 @@ rule Generalization {
 }
 
 rule Abstraction {
-    from s : INMODEL!Abstraction
-    to t : OUTMODEL!Abstraction mapsTo s (
+    from s : ACCESSORSM!Abstraction
+    to t : OBSERVERM!Abstraction mapsTo s (
         name <- s.name,
         mapping <- s.mapping,
         visibility <- s.visibility,
@@ -1028,8 +1028,8 @@ rule Abstraction {
 }
 
 rule InteractionInstanceSet {
-    from s : INMODEL!InteractionInstanceSet
-    to t : OUTMODEL!InteractionInstanceSet mapsTo s (
+    from s : ACCESSORSM!InteractionInstanceSet
+    to t : OBSERVERM!InteractionInstanceSet mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1046,8 +1046,8 @@ rule InteractionInstanceSet {
 }
 
 rule Operation {
-    from s : INMODEL!Operation
-    to t : OUTMODEL!Operation mapsTo s (
+    from s : ACCESSORSM!Operation
+    to t : OBSERVERM!Operation mapsTo s (
         ownerScope <- s.ownerScope,
         isQuery <- s.isQuery,
         specification <- s.specification,
@@ -1070,8 +1070,8 @@ rule Operation {
 }
 
 rule Association {
-    from s : INMODEL!Association (s.oclIsTypeOf(INMODEL!Association))
-    to t : OUTMODEL!Association mapsTo s (
+    from s : ACCESSORSM!Association (s.oclIsTypeOf(ACCESSORSM!Association))
+    to t : OBSERVERM!Association mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1091,8 +1091,8 @@ rule Association {
 }
 
 rule Exception {
-    from s : INMODEL!Exception
-    to t : OUTMODEL!Exception mapsTo s (
+    from s : ACCESSORSM!Exception
+    to t : OBSERVERM!Exception mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1115,8 +1115,8 @@ rule Exception {
 }
 
 rule Interface {
-    from s : INMODEL!Interface
-    to t : OUTMODEL!Interface mapsTo s (
+    from s : ACCESSORSM!Interface
+    to t : OBSERVERM!Interface mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1138,8 +1138,8 @@ rule Interface {
 }
 
 rule UseCase {
-    from s : INMODEL!UseCase
-    to t : OUTMODEL!UseCase mapsTo s (
+    from s : ACCESSORSM!UseCase
+    to t : OBSERVERM!UseCase mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1164,8 +1164,8 @@ rule UseCase {
 }
 
 rule Argument {
-    from s : INMODEL!Argument
-    to t : OUTMODEL!Argument mapsTo s (
+    from s : ACCESSORSM!Argument
+    to t : OBSERVERM!Argument mapsTo s (
         value <- s.value,
         name <- s.name,
         visibility <- s.visibility,
@@ -1181,8 +1181,8 @@ rule Argument {
 }
 
 rule TaggedValue {
-    from s : INMODEL!TaggedValue
-    to t : OUTMODEL!TaggedValue mapsTo s (
+    from s : ACCESSORSM!TaggedValue
+    to t : OBSERVERM!TaggedValue mapsTo s (
         dataValue <- s.dataValue,
         name <- s.name,
         visibility <- s.visibility,
@@ -1200,8 +1200,8 @@ rule TaggedValue {
 }
 
 rule ReturnAction {
-    from s : INMODEL!ReturnAction
-    to t : OUTMODEL!ReturnAction mapsTo s (
+    from s : ACCESSORSM!ReturnAction
+    to t : OBSERVERM!ReturnAction mapsTo s (
         recurrence <- s.recurrence,
         name <- s.name,
         target <- s.target,
@@ -1221,15 +1221,15 @@ rule ReturnAction {
 }
 
 rule Expression {
-    from s : INMODEL!Expression (s.oclIsTypeOf(INMODEL!Expression))
-    to t : OUTMODEL!Expression mapsTo s (
+    from s : ACCESSORSM!Expression (s.oclIsTypeOf(ACCESSORSM!Expression))
+    to t : OBSERVERM!Expression mapsTo s (
         body <- s.body,
         language <- s.language)
 }
 
 rule CallAction {
-    from s : INMODEL!CallAction
-    to t : OUTMODEL!CallAction mapsTo s (
+    from s : ACCESSORSM!CallAction
+    to t : OBSERVERM!CallAction mapsTo s (
         recurrence <- s.recurrence,
         name <- s.name,
         target <- s.target,
@@ -1250,8 +1250,8 @@ rule CallAction {
 }
 
 rule AssociationEnd {
-    from s : INMODEL!AssociationEnd (s.oclIsTypeOf(INMODEL!AssociationEnd))
-    to t : OUTMODEL!AssociationEnd mapsTo s (
+    from s : ACCESSORSM!AssociationEnd (s.oclIsTypeOf(ACCESSORSM!AssociationEnd))
+    to t : OBSERVERM!AssociationEnd mapsTo s (
         targetScope <- s.targetScope,
         isNavigable <- s.isNavigable,
         name <- s.name,
@@ -1275,8 +1275,8 @@ rule AssociationEnd {
 }
 
 rule Dependency {
-    from s : INMODEL!Dependency (s.oclIsTypeOf(INMODEL!Dependency))
-    to t : OUTMODEL!Dependency mapsTo s (
+    from s : ACCESSORSM!Dependency (s.oclIsTypeOf(ACCESSORSM!Dependency))
+    to t : OBSERVERM!Dependency mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1293,8 +1293,8 @@ rule Dependency {
 }
 
 rule Package {
-    from s : INMODEL!Package (s.oclIsTypeOf(INMODEL!Package))
-    to t : OUTMODEL!Package mapsTo s (
+    from s : ACCESSORSM!Package (s.oclIsTypeOf(ACCESSORSM!Package))
+    to t : OBSERVERM!Package mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1315,8 +1315,8 @@ rule Package {
 }
 
 rule TagDefinition {
-    from s : INMODEL!TagDefinition
-    to t : OUTMODEL!TagDefinition mapsTo s (
+    from s : ACCESSORSM!TagDefinition
+    to t : OBSERVERM!TagDefinition mapsTo s (
         multiplicity <- s.multiplicity,
         name <- s.name,
         tagType <- s.tagType,
@@ -1333,8 +1333,8 @@ rule TagDefinition {
 }
 
 rule Method {
-    from s : INMODEL!Method
-    to t : OUTMODEL!Method mapsTo s (
+    from s : ACCESSORSM!Method
+    to t : OBSERVERM!Method mapsTo s (
         ownerScope <- s.ownerScope,
         isQuery <- s.isQuery,
         name <- s.name,
@@ -1354,15 +1354,15 @@ rule Method {
 }
 
 rule MultiplicityRange {
-    from s : INMODEL!MultiplicityRange
-    to t : OUTMODEL!MultiplicityRange mapsTo s (
+    from s : ACCESSORSM!MultiplicityRange
+    to t : OBSERVERM!MultiplicityRange mapsTo s (
         lower <- s.lower,
         upper <- s.upper)
 }
 
 rule LinkEnd {
-    from s : INMODEL!LinkEnd
-    to t : OUTMODEL!LinkEnd mapsTo s (
+    from s : ACCESSORSM!LinkEnd
+    to t : OBSERVERM!LinkEnd mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1380,8 +1380,8 @@ rule LinkEnd {
 }
 
 rule CollaborationInstanceSet {
-    from s : INMODEL!CollaborationInstanceSet
-    to t : OUTMODEL!CollaborationInstanceSet mapsTo s (
+    from s : ACCESSORSM!CollaborationInstanceSet
+    to t : OBSERVERM!CollaborationInstanceSet mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1401,8 +1401,8 @@ rule CollaborationInstanceSet {
 }
 
 rule Stimulus {
-    from s : INMODEL!Stimulus
-    to t : OUTMODEL!Stimulus mapsTo s (
+    from s : ACCESSORSM!Stimulus
+    to t : OBSERVERM!Stimulus mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1422,8 +1422,8 @@ rule Stimulus {
 }
 
 rule Link {
-    from s : INMODEL!Link (s.oclIsTypeOf(INMODEL!Link))
-    to t : OUTMODEL!Link mapsTo s (
+    from s : ACCESSORSM!Link (s.oclIsTypeOf(ACCESSORSM!Link))
+    to t : OBSERVERM!Link mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1440,8 +1440,8 @@ rule Link {
 }
 
 rule Model {
-    from s : INMODEL!Model
-    to t : OUTMODEL!Model mapsTo s (
+    from s : ACCESSORSM!Model
+    to t : OBSERVERM!Model mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1462,8 +1462,8 @@ rule Model {
 }
 
 rule Object {
-    from s : INMODEL!Object (s.oclIsTypeOf(INMODEL!Object))
-    to t : OUTMODEL!Object mapsTo s (
+    from s : ACCESSORSM!Object (s.oclIsTypeOf(ACCESSORSM!Object))
+    to t : OBSERVERM!Object mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1484,8 +1484,8 @@ rule Object {
 }
 
 rule Attribute {
-    from s : INMODEL!Attribute
-    to t : OUTMODEL!Attribute mapsTo s (
+    from s : ACCESSORSM!Attribute
+    to t : OBSERVERM!Attribute mapsTo s (
         ownerScope <- s.ownerScope,
         initialValue <- s.initialValue,
         name <- s.name,
@@ -1507,8 +1507,8 @@ rule Attribute {
 }
 
 rule Class {
-    from s : INMODEL!Class (s.oclIsTypeOf(INMODEL!Class))
-    to t : OUTMODEL!Class mapsTo s (
+    from s : ACCESSORSM!Class (s.oclIsTypeOf(ACCESSORSM!Class))
+    to t : OBSERVERM!Class mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isActive <- s.isActive,
@@ -1531,8 +1531,8 @@ rule Class {
 }
 
 rule Parameter {
-    from s : INMODEL!Parameter
-    to t : OUTMODEL!Parameter mapsTo s (
+    from s : ACCESSORSM!Parameter
+    to t : OBSERVERM!Parameter mapsTo s (
         name <- s.name,
         kind <- s.kind,
         defaultValue <- s.defaultValue,
@@ -1550,8 +1550,8 @@ rule Parameter {
 }
 
 rule Message {
-    from s : INMODEL!Message
-    to t : OUTMODEL!Message mapsTo s (
+    from s : ACCESSORSM!Message
+    to t : OBSERVERM!Message mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1573,8 +1573,8 @@ rule Message {
 }
 
 rule Stereotype {
-    from s : INMODEL!Stereotype
-    to t : OUTMODEL!Stereotype mapsTo s (
+    from s : ACCESSORSM!Stereotype
+    to t : OBSERVERM!Stereotype mapsTo s (
         isRoot <- s.isRoot,
         icon <- s.icon,
         name <- s.name,
@@ -1597,8 +1597,8 @@ rule Stereotype {
 }
 
 rule Collaboration {
-    from s : INMODEL!Collaboration
-    to t : OUTMODEL!Collaboration mapsTo s (
+    from s : ACCESSORSM!Collaboration
+    to t : OBSERVERM!Collaboration mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1623,8 +1623,8 @@ rule Collaboration {
 }
 
 rule DataType {
-    from s : INMODEL!DataType (s.oclIsTypeOf(INMODEL!DataType))
-    to t : OUTMODEL!DataType mapsTo s (
+    from s : ACCESSORSM!DataType (s.oclIsTypeOf(ACCESSORSM!DataType))
+    to t : OBSERVERM!DataType mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1646,14 +1646,14 @@ rule DataType {
 }
 
 rule Multiplicity {
-    from s : INMODEL!Multiplicity
-    to t : OUTMODEL!Multiplicity mapsTo s (
+    from s : ACCESSORSM!Multiplicity
+    to t : OBSERVERM!Multiplicity mapsTo s (
         range <- s.range)
 }
 
 rule Include {
-    from s : INMODEL!Include
-    to t : OUTMODEL!Include mapsTo s (
+    from s : ACCESSORSM!Include
+    to t : OBSERVERM!Include mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1670,8 +1670,8 @@ rule Include {
 }
 
 rule Actor {
-    from s : INMODEL!Actor
-    to t : OUTMODEL!Actor mapsTo s (
+    from s : ACCESSORSM!Actor
+    to t : OBSERVERM!Actor mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,

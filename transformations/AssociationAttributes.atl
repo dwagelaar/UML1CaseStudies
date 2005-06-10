@@ -1,7 +1,7 @@
 -- $Id$
 module AssociationAttributes;
 
-create OUT : OUTMODEL from IN : INMODEL, MERGE : MERGEMODEL;
+create ATTRIBUTES : ATTRIBUTESM from IN : INMODEL, OCLTYPES : MERGEMODEL;
 
 uses Java;
 
@@ -196,7 +196,7 @@ rule AssociationEndAttribute {
 	from s : INMODEL!AssociationEnd (
 		s.isNavigable and
 		s.navigableFrom().oclIsKindOf(INMODEL!Class))
-	to t : OUTMODEL!Attribute (
+	to t : ATTRIBUTESM!Attribute (
 		name <- s.name,
 		owner <- s.navigableFrom(),
 		type <- if s.typeAvailable()
@@ -206,7 +206,7 @@ rule AssociationEndAttribute {
 		ownerScope <- s.targetScope,
 		changeability <- s.changeability,
 		initialValue <- v),
-	   v : OUTMODEL!Expression (
+	   v : ATTRIBUTESM!Expression (
 	   	language <- 'java',
 		body <- s.instance())
 }
@@ -223,7 +223,7 @@ rule AssociationEndAttribute {
 rule MergeAssociation {
     from s : MERGEMODEL!Association (s.oclIsTypeOf(MERGEMODEL!Association) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Association mapsTo s (
+    to t : ATTRIBUTESM!Association mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -248,7 +248,7 @@ rule MergeAssociation {
 
 rule MergeTaggedValue {
     from s : MERGEMODEL!TaggedValue (s.notInSourceModel())
-    to t : OUTMODEL!TaggedValue mapsTo s (
+    to t : ATTRIBUTESM!TaggedValue mapsTo s (
         dataValue <- s.dataValue,
         visibility <- s.visibility,
         name <- s.name,
@@ -270,7 +270,7 @@ rule MergeTaggedValue {
 
 rule MergeOperation {
     from s : MERGEMODEL!Operation (s.notInSourceModel())
-    to t : OUTMODEL!Operation mapsTo s (
+    to t : ATTRIBUTESM!Operation mapsTo s (
         ownerScope <- s.ownerScope,
         visibility <- s.visibility,
         isQuery <- s.isQuery,
@@ -295,14 +295,14 @@ rule MergeOperation {
 
 rule MergeProcedureExpression {
     from s : MERGEMODEL!ProcedureExpression (s.notInSourceModel())
-    to t : OUTMODEL!ProcedureExpression mapsTo s (
+    to t : ATTRIBUTESM!ProcedureExpression mapsTo s (
         language <- s.language,
         body <- s.body)
 }
 
 rule MergeAbstraction {
     from s : MERGEMODEL!Abstraction (s.notInSourceModel())
-    to t : OUTMODEL!Abstraction mapsTo s (
+    to t : ATTRIBUTESM!Abstraction mapsTo s (
         mapping <- s.mapping,
         visibility <- s.visibility,
         name <- s.name,
@@ -327,13 +327,13 @@ rule MergeAbstraction {
 
 rule MergeMultiplicity {
     from s : MERGEMODEL!Multiplicity (s.notInSourceModel())
-    to t : OUTMODEL!Multiplicity mapsTo s (
+    to t : ATTRIBUTESM!Multiplicity mapsTo s (
         range <- s.range)
 }
 
 rule MergeParameter {
     from s : MERGEMODEL!Parameter (s.notInSourceModel())
-    to t : OUTMODEL!Parameter mapsTo s (
+    to t : ATTRIBUTESM!Parameter mapsTo s (
         kind <- s.kind,
         visibility <- s.visibility,
         name <- s.name,
@@ -356,7 +356,7 @@ rule MergeParameter {
 rule MergeClass {
     from s : MERGEMODEL!Class (s.oclIsTypeOf(MERGEMODEL!Class) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Class mapsTo s (
+    to t : ATTRIBUTESM!Class mapsTo s (
         isRoot <- s.isRoot,
         isActive <- s.isActive,
         isAbstract <- s.isAbstract,
@@ -384,7 +384,7 @@ rule MergeClass {
 
 rule MergeInterface {
     from s : MERGEMODEL!Interface (s.notInSourceModel())
-    to t : OUTMODEL!Interface mapsTo s (
+    to t : ATTRIBUTESM!Interface mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -411,7 +411,7 @@ rule MergeInterface {
 
 rule MergeMultiplicityRange {
     from s : MERGEMODEL!MultiplicityRange (s.notInSourceModel())
-    to t : OUTMODEL!MultiplicityRange mapsTo s (
+    to t : ATTRIBUTESM!MultiplicityRange mapsTo s (
         upper <- s.upper,
         lower <- s.lower)
 }
@@ -419,7 +419,7 @@ rule MergeMultiplicityRange {
 rule MergeExpression {
     from s : MERGEMODEL!Expression (s.oclIsTypeOf(MERGEMODEL!Expression) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Expression mapsTo s (
+    to t : ATTRIBUTESM!Expression mapsTo s (
         language <- s.language,
         body <- s.body)
 }
@@ -427,7 +427,7 @@ rule MergeExpression {
 rule MergeDataType {
     from s : MERGEMODEL!DataType (s.oclIsTypeOf(MERGEMODEL!DataType) and
     	s.notInSourceModel())
-    to t : OUTMODEL!DataType mapsTo s (
+    to t : ATTRIBUTESM!DataType mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -455,7 +455,7 @@ rule MergeDataType {
 rule MergePackage {
     from s : MERGEMODEL!Package (s.oclIsTypeOf(MERGEMODEL!Package) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Package mapsTo s (
+    to t : ATTRIBUTESM!Package mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -482,7 +482,7 @@ rule MergePackage {
 rule MergeAssociationEnd {
     from s : MERGEMODEL!AssociationEnd (s.oclIsTypeOf(MERGEMODEL!AssociationEnd) and
     	s.notInSourceModel())
-    to t : OUTMODEL!AssociationEnd mapsTo s (
+    to t : ATTRIBUTESM!AssociationEnd mapsTo s (
         targetScope <- s.targetScope,
         isNavigable <- s.isNavigable,
         ordering <- s.ordering,
@@ -510,7 +510,7 @@ rule MergeAssociationEnd {
 
 rule MergeAttribute {
     from s : MERGEMODEL!Attribute (s.notInSourceModel())
-    to t : OUTMODEL!Attribute mapsTo s (
+    to t : ATTRIBUTESM!Attribute mapsTo s (
         targetScope <- s.targetScope,
         initialValue <- s.initialValue,
         ownerScope <- s.ownerScope,
@@ -536,7 +536,7 @@ rule MergeAttribute {
 
 rule MergeGeneralization {
     from s : MERGEMODEL!Generalization (s.notInSourceModel())
-    to t : OUTMODEL!Generalization mapsTo s (
+    to t : ATTRIBUTESM!Generalization mapsTo s (
         discriminator <- s.discriminator,
         visibility <- s.visibility,
         name <- s.name,
@@ -565,7 +565,7 @@ rule MergeGeneralization {
 rule MergeDependency {
     from s : MERGEMODEL!Dependency (s.oclIsTypeOf(MERGEMODEL!Dependency) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Dependency mapsTo s (
+    to t : ATTRIBUTESM!Dependency mapsTo s (
         visibility <- s.visibility,
         name <- s.name,
         isSpecification <- s.isSpecification,
@@ -589,7 +589,7 @@ rule MergeDependency {
 
 rule MergeTagDefinition {
     from s : MERGEMODEL!TagDefinition (s.notInSourceModel())
-    to t : OUTMODEL!TagDefinition mapsTo s (
+    to t : ATTRIBUTESM!TagDefinition mapsTo s (
         tagType <- s.tagType,
         multiplicity <- s.multiplicity,
         visibility <- s.visibility,
@@ -611,7 +611,7 @@ rule MergeTagDefinition {
 
 rule MergeStereotype {
     from s : MERGEMODEL!Stereotype (s.notInSourceModel())
-    to t : OUTMODEL!Stereotype mapsTo s (
+    to t : ATTRIBUTESM!Stereotype mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         baseClass <- s.baseClass,
@@ -639,7 +639,7 @@ rule MergeStereotype {
 
 rule MergeMethod {
     from s : MERGEMODEL!Method (s.notInSourceModel())
-    to t : OUTMODEL!Method mapsTo s (
+    to t : ATTRIBUTESM!Method mapsTo s (
         body <- s.body,
         ownerScope <- s.ownerScope,
         visibility <- s.visibility,
@@ -661,7 +661,7 @@ rule MergeMethod {
 
 rule MergeException {
     from s : MERGEMODEL!Exception (s.notInSourceModel())
-    to t : OUTMODEL!Exception mapsTo s (
+    to t : ATTRIBUTESM!Exception mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -698,7 +698,7 @@ rule MergeException {
 
 rule Generalization {
     from s : INMODEL!Generalization
-    to t : OUTMODEL!Generalization mapsTo s (
+    to t : ATTRIBUTESM!Generalization mapsTo s (
         discriminator <- s.discriminator,
         name <- s.name,
         visibility <- s.visibility,
@@ -718,7 +718,7 @@ rule Generalization {
 
 rule Abstraction {
     from s : INMODEL!Abstraction
-    to t : OUTMODEL!Abstraction mapsTo s (
+    to t : ATTRIBUTESM!Abstraction mapsTo s (
         name <- s.name,
         mapping <- s.mapping,
         visibility <- s.visibility,
@@ -737,7 +737,7 @@ rule Abstraction {
 
 rule InteractionInstanceSet {
     from s : INMODEL!InteractionInstanceSet
-    to t : OUTMODEL!InteractionInstanceSet mapsTo s (
+    to t : ATTRIBUTESM!InteractionInstanceSet mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -755,7 +755,7 @@ rule InteractionInstanceSet {
 
 rule Operation {
     from s : INMODEL!Operation
-    to t : OUTMODEL!Operation mapsTo s (
+    to t : ATTRIBUTESM!Operation mapsTo s (
         ownerScope <- s.ownerScope,
         isQuery <- s.isQuery,
         specification <- s.specification,
@@ -779,7 +779,7 @@ rule Operation {
 
 rule Association {
     from s : INMODEL!Association (s.oclIsTypeOf(INMODEL!Association))
-    to t : OUTMODEL!Association mapsTo s (
+    to t : ATTRIBUTESM!Association mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -800,7 +800,7 @@ rule Association {
 
 rule Exception {
     from s : INMODEL!Exception
-    to t : OUTMODEL!Exception mapsTo s (
+    to t : ATTRIBUTESM!Exception mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -824,7 +824,7 @@ rule Exception {
 
 rule Interface {
     from s : INMODEL!Interface
-    to t : OUTMODEL!Interface mapsTo s (
+    to t : ATTRIBUTESM!Interface mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -847,7 +847,7 @@ rule Interface {
 
 rule UseCase {
     from s : INMODEL!UseCase
-    to t : OUTMODEL!UseCase mapsTo s (
+    to t : ATTRIBUTESM!UseCase mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -873,7 +873,7 @@ rule UseCase {
 
 rule Argument {
     from s : INMODEL!Argument
-    to t : OUTMODEL!Argument mapsTo s (
+    to t : ATTRIBUTESM!Argument mapsTo s (
         value <- s.value,
         name <- s.name,
         visibility <- s.visibility,
@@ -890,7 +890,7 @@ rule Argument {
 
 rule TaggedValue {
     from s : INMODEL!TaggedValue
-    to t : OUTMODEL!TaggedValue mapsTo s (
+    to t : ATTRIBUTESM!TaggedValue mapsTo s (
         dataValue <- s.dataValue,
         name <- s.name,
         visibility <- s.visibility,
@@ -909,7 +909,7 @@ rule TaggedValue {
 
 rule ReturnAction {
     from s : INMODEL!ReturnAction
-    to t : OUTMODEL!ReturnAction mapsTo s (
+    to t : ATTRIBUTESM!ReturnAction mapsTo s (
         recurrence <- s.recurrence,
         name <- s.name,
         target <- s.target,
@@ -930,14 +930,14 @@ rule ReturnAction {
 
 rule Expression {
     from s : INMODEL!Expression (s.oclIsTypeOf(INMODEL!Expression))
-    to t : OUTMODEL!Expression mapsTo s (
+    to t : ATTRIBUTESM!Expression mapsTo s (
         body <- s.body,
         language <- s.language)
 }
 
 rule CallAction {
     from s : INMODEL!CallAction
-    to t : OUTMODEL!CallAction mapsTo s (
+    to t : ATTRIBUTESM!CallAction mapsTo s (
         recurrence <- s.recurrence,
         name <- s.name,
         target <- s.target,
@@ -959,7 +959,7 @@ rule CallAction {
 
 rule AssociationEnd {
     from s : INMODEL!AssociationEnd (s.oclIsTypeOf(INMODEL!AssociationEnd))
-    to t : OUTMODEL!AssociationEnd mapsTo s (
+    to t : ATTRIBUTESM!AssociationEnd mapsTo s (
         targetScope <- s.targetScope,
         isNavigable <- s.isNavigable,
         name <- s.name,
@@ -984,7 +984,7 @@ rule AssociationEnd {
 
 rule Dependency {
     from s : INMODEL!Dependency (s.oclIsTypeOf(INMODEL!Dependency))
-    to t : OUTMODEL!Dependency mapsTo s (
+    to t : ATTRIBUTESM!Dependency mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1002,7 +1002,7 @@ rule Dependency {
 
 rule Package {
     from s : INMODEL!Package (s.oclIsTypeOf(INMODEL!Package))
-    to t : OUTMODEL!Package mapsTo s (
+    to t : ATTRIBUTESM!Package mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1024,7 +1024,7 @@ rule Package {
 
 rule TagDefinition {
     from s : INMODEL!TagDefinition
-    to t : OUTMODEL!TagDefinition mapsTo s (
+    to t : ATTRIBUTESM!TagDefinition mapsTo s (
         multiplicity <- s.multiplicity,
         name <- s.name,
         tagType <- s.tagType,
@@ -1042,7 +1042,7 @@ rule TagDefinition {
 
 rule Method {
     from s : INMODEL!Method
-    to t : OUTMODEL!Method mapsTo s (
+    to t : ATTRIBUTESM!Method mapsTo s (
         ownerScope <- s.ownerScope,
         isQuery <- s.isQuery,
         name <- s.name,
@@ -1063,14 +1063,14 @@ rule Method {
 
 rule MultiplicityRange {
     from s : INMODEL!MultiplicityRange
-    to t : OUTMODEL!MultiplicityRange mapsTo s (
+    to t : ATTRIBUTESM!MultiplicityRange mapsTo s (
         lower <- s.lower,
         upper <- s.upper)
 }
 
 rule LinkEnd {
     from s : INMODEL!LinkEnd
-    to t : OUTMODEL!LinkEnd mapsTo s (
+    to t : ATTRIBUTESM!LinkEnd mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1089,7 +1089,7 @@ rule LinkEnd {
 
 rule CollaborationInstanceSet {
     from s : INMODEL!CollaborationInstanceSet
-    to t : OUTMODEL!CollaborationInstanceSet mapsTo s (
+    to t : ATTRIBUTESM!CollaborationInstanceSet mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1110,7 +1110,7 @@ rule CollaborationInstanceSet {
 
 rule Stimulus {
     from s : INMODEL!Stimulus
-    to t : OUTMODEL!Stimulus mapsTo s (
+    to t : ATTRIBUTESM!Stimulus mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1131,7 +1131,7 @@ rule Stimulus {
 
 rule Link {
     from s : INMODEL!Link (s.oclIsTypeOf(INMODEL!Link))
-    to t : OUTMODEL!Link mapsTo s (
+    to t : ATTRIBUTESM!Link mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1149,14 +1149,14 @@ rule Link {
 
 rule ProcedureExpression {
     from s : INMODEL!ProcedureExpression
-    to t : OUTMODEL!ProcedureExpression mapsTo s (
+    to t : ATTRIBUTESM!ProcedureExpression mapsTo s (
         body <- s.body,
         language <- s.language)
 }
 
 rule Model {
     from s : INMODEL!Model
-    to t : OUTMODEL!Model mapsTo s (
+    to t : ATTRIBUTESM!Model mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1178,7 +1178,7 @@ rule Model {
 
 rule Object {
     from s : INMODEL!Object (s.oclIsTypeOf(INMODEL!Object))
-    to t : OUTMODEL!Object mapsTo s (
+    to t : ATTRIBUTESM!Object mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1200,7 +1200,7 @@ rule Object {
 
 rule Attribute {
     from s : INMODEL!Attribute
-    to t : OUTMODEL!Attribute mapsTo s (
+    to t : ATTRIBUTESM!Attribute mapsTo s (
         ownerScope <- s.ownerScope,
         initialValue <- s.initialValue,
         name <- s.name,
@@ -1223,7 +1223,7 @@ rule Attribute {
 
 rule Class {
     from s : INMODEL!Class (s.oclIsTypeOf(INMODEL!Class))
-    to t : OUTMODEL!Class mapsTo s (
+    to t : ATTRIBUTESM!Class mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isActive <- s.isActive,
@@ -1247,7 +1247,7 @@ rule Class {
 
 rule Parameter {
     from s : INMODEL!Parameter
-    to t : OUTMODEL!Parameter mapsTo s (
+    to t : ATTRIBUTESM!Parameter mapsTo s (
         name <- s.name,
         kind <- s.kind,
         defaultValue <- s.defaultValue,
@@ -1266,7 +1266,7 @@ rule Parameter {
 
 rule Message {
     from s : INMODEL!Message
-    to t : OUTMODEL!Message mapsTo s (
+    to t : ATTRIBUTESM!Message mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1289,7 +1289,7 @@ rule Message {
 
 rule Stereotype {
     from s : INMODEL!Stereotype
-    to t : OUTMODEL!Stereotype mapsTo s (
+    to t : ATTRIBUTESM!Stereotype mapsTo s (
         isRoot <- s.isRoot,
         icon <- s.icon,
         name <- s.name,
@@ -1313,7 +1313,7 @@ rule Stereotype {
 
 rule Collaboration {
     from s : INMODEL!Collaboration
-    to t : OUTMODEL!Collaboration mapsTo s (
+    to t : ATTRIBUTESM!Collaboration mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1339,7 +1339,7 @@ rule Collaboration {
 
 rule DataType {
     from s : INMODEL!DataType (s.oclIsTypeOf(INMODEL!DataType))
-    to t : OUTMODEL!DataType mapsTo s (
+    to t : ATTRIBUTESM!DataType mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1362,13 +1362,13 @@ rule DataType {
 
 rule Multiplicity {
     from s : INMODEL!Multiplicity
-    to t : OUTMODEL!Multiplicity mapsTo s (
+    to t : ATTRIBUTESM!Multiplicity mapsTo s (
         range <- s.range)
 }
 
 rule Include {
     from s : INMODEL!Include
-    to t : OUTMODEL!Include mapsTo s (
+    to t : ATTRIBUTESM!Include mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1386,7 +1386,7 @@ rule Include {
 
 rule Actor {
     from s : INMODEL!Actor
-    to t : OUTMODEL!Actor mapsTo s (
+    to t : ATTRIBUTESM!Actor mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,

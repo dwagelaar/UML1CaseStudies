@@ -1,7 +1,7 @@
 -- $Id: SingletonProcess.atl 988 2005-05-02 20:03:54Z dwagelaa $
 module Applet;
 
-create OUT : OUTMODEL from IN : INMODEL, MERGE : MERGEMODEL;
+create APPLET : APPLETM from SINGLETON : SINGLETONM, APPLETTYPES : MERGEMODEL;
 
 uses Java;
 
@@ -10,11 +10,11 @@ uses Java;
 -- ======================================================================
 -- From: ModelMerge.atl 1174 2005-05-23 07:38:38Z dwagelaa
 
-helper context INMODEL!ModelElement def : isInPackage() : Boolean =
-	not INMODEL!Package.allInstances()->select(p|
-		p=self.namespace and p.oclIsTypeOf(INMODEL!Package))->isEmpty();
+helper context SINGLETONM!ModelElement def : isInPackage() : Boolean =
+	not SINGLETONM!Package.allInstances()->select(p|
+		p=self.namespace and p.oclIsTypeOf(SINGLETONM!Package))->isEmpty();
 
-helper context INMODEL!ModelElement def : qName() : String =
+helper context SINGLETONM!ModelElement def : qName() : String =
 	if self.isInPackage() then
 		self.namespace.qName() + '.' + self.name
 	else
@@ -35,39 +35,39 @@ helper context MERGEMODEL!ModelElement def : qName() : String =
 helper context MERGEMODEL!Model def : notInSourceModel() : Boolean =
 	false;
 
-helper context MERGEMODEL!Model def : fromSourceModel() : INMODEL!Model =
-	INMODEL!Model.allInstances()->asSequence()->first();
+helper context MERGEMODEL!Model def : fromSourceModel() : SINGLETONM!Model =
+	SINGLETONM!Model.allInstances()->asSequence()->first();
 
 helper context MERGEMODEL!Classifier def : notInSourceModel() : Boolean =
-	INMODEL!Classifier.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
+	SINGLETONM!Classifier.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
 
-helper context MERGEMODEL!Classifier def : fromSourceModel() : INMODEL!Classifier =
-	INMODEL!Classifier.allInstances()->select(e|e.qName()=self.qName())->first();
+helper context MERGEMODEL!Classifier def : fromSourceModel() : SINGLETONM!Classifier =
+	SINGLETONM!Classifier.allInstances()->select(e|e.qName()=self.qName())->first();
 
 helper context MERGEMODEL!Package def : notInSourceModel() : Boolean =
-	INMODEL!Package.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
+	SINGLETONM!Package.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
 
-helper context MERGEMODEL!Package def : fromSourceModel() : INMODEL!Package =
-	INMODEL!Package.allInstances()->select(e|e.qName()=self.qName())->first();
+helper context MERGEMODEL!Package def : fromSourceModel() : SINGLETONM!Package =
+	SINGLETONM!Package.allInstances()->select(e|e.qName()=self.qName())->first();
 
 helper context MERGEMODEL!TagDefinition def : notInSourceModel() : Boolean =
-	INMODEL!TagDefinition.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
+	SINGLETONM!TagDefinition.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
 
-helper context MERGEMODEL!TagDefinition def : fromSourceModel() : INMODEL!TagDefinition =
-	INMODEL!TagDefinition.allInstances()->select(e|e.qName()=self.qName())->first();
+helper context MERGEMODEL!TagDefinition def : fromSourceModel() : SINGLETONM!TagDefinition =
+	SINGLETONM!TagDefinition.allInstances()->select(e|e.qName()=self.qName())->first();
 
 helper context MERGEMODEL!Stereotype def : notInSourceModel() : Boolean =
-	INMODEL!Stereotype.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
+	SINGLETONM!Stereotype.allInstances()->select(e|e.qName()=self.qName())->isEmpty();
 
-helper context MERGEMODEL!Stereotype def : fromSourceModel() : INMODEL!Stereotype =
-	INMODEL!Stereotype.allInstances()->select(e|e.qName()=self.qName())->first();
+helper context MERGEMODEL!Stereotype def : fromSourceModel() : SINGLETONM!Stereotype =
+	SINGLETONM!Stereotype.allInstances()->select(e|e.qName()=self.qName())->first();
 
 helper context MERGEMODEL!Association def : notInSourceModel() : Boolean =
 	not self.connection->forAll(c|c.inSourceModel());
 
 helper context MERGEMODEL!AssociationEnd def : inSourceModel() : Boolean =
 	if self.isNavigable then
-		not INMODEL!AssociationEnd.allInstances()->select(e|e.isNavigable)->select(e|
+		not SINGLETONM!AssociationEnd.allInstances()->select(e|e.isNavigable)->select(e|
 			e.name=self.name and e.participant.qName()=self.participant.qName())->isEmpty()
 	else if self.otherEnd().isNavigable then
 		self.otherEnd().inSourceModel()
@@ -97,12 +97,12 @@ helper context MERGEMODEL!Expression def : notInSourceModel() : Boolean =
 	endif endif;
 
 helper context MERGEMODEL!Dependency def : notInSourceModel() : Boolean =
-	INMODEL!Dependency.allInstances()->select(d|
+	SINGLETONM!Dependency.allInstances()->select(d|
 		d.supplier->forAll(s1|self.supplier->forAll(s2|s1.qName()=s2.qName())) and
 		d.client->forAll(c1|self.client->forAll(c2|c1.qName()=c2.qName())))->isEmpty();
 
 helper context MERGEMODEL!Generalization def : notInSourceModel() : Boolean =
-	INMODEL!Generalization.allInstances()->select(g|
+	SINGLETONM!Generalization.allInstances()->select(g|
 		g.parent.qName()=self.parent.qName() and
 		g.child.qName()=self.child.qName())->isEmpty();
 
@@ -131,29 +131,29 @@ helper context MERGEMODEL!Parameter def : notInSourceModel() : Boolean =
 -- model-specific helpers begin
 -- ======================================================================
 
-helper context String def : qClass() : INMODEL!Class =
-	INMODEL!Class.allInstances()->select(c|c.qName()=self)->first();
+helper context String def : qClass() : SINGLETONM!Class =
+	SINGLETONM!Class.allInstances()->select(c|c.qName()=self)->first();
 
 helper context String def : mergeQClass() : MERGEMODEL!Class =
 	MERGEMODEL!Class.allInstances()->select(c|c.qName()=self)->first();
 
 helper context String def : hasQClass() : Boolean =
-	not INMODEL!Class.allInstances()->select(c|c.qName()=self)->isEmpty();
+	not SINGLETONM!Class.allInstances()->select(c|c.qName()=self)->isEmpty();
 
-helper context INMODEL!GeneralizableElement def : isApplet() : Boolean =
+helper context SINGLETONM!GeneralizableElement def : isApplet() : Boolean =
 	not self.stereotype->select(s|s.name='Applet')->isEmpty();
 
-helper context INMODEL!GeneralizableElement def : isSingleton() : Boolean =
+helper context SINGLETONM!GeneralizableElement def : isSingleton() : Boolean =
 	not self.stereotype->select(s|s.name='Singleton')->isEmpty();
 
-helper context INMODEL!Classifier def : hasNoOperation(name : String) : Boolean =
+helper context SINGLETONM!Classifier def : hasNoOperation(name : String) : Boolean =
 	self.feature->select(f|f.name=name and
-		f.oclIsKindOf(INMODEL!Operation))->isEmpty();
+		f.oclIsKindOf(SINGLETONM!Operation))->isEmpty();
 
-helper context INMODEL!ProcedureExpression def : method() : INMODEL!Method =
-	INMODEL!Method.allInstances()->select(m|m.body=self)->first();
+helper context SINGLETONM!ProcedureExpression def : method() : SINGLETONM!Method =
+	SINGLETONM!Method.allInstances()->select(m|m.body=self)->first();
 
-helper context INMODEL!ModelElement def : hasTaggedValue(name : String) : Boolean =
+helper context SINGLETONM!ModelElement def : hasTaggedValue(name : String) : Boolean =
 	if self.taggedValue->select(t|t.type.name = name)->isEmpty() then
 		false
 	else
@@ -161,7 +161,7 @@ helper context INMODEL!ModelElement def : hasTaggedValue(name : String) : Boolea
 			->first().dataValue->isEmpty()
 	endif;
 
-helper context INMODEL!ModelElement def : taggedValue(name : String) : String =
+helper context SINGLETONM!ModelElement def : taggedValue(name : String) : String =
 	self.taggedValue->select(t|t.type.name = name)
 			->first().dataValue->asSequence()->first();
 
@@ -174,8 +174,8 @@ helper context INMODEL!ModelElement def : taggedValue(name : String) : String =
 -- ======================================================================
 
 rule AppletClass {
-	from s : INMODEL!Class (s.isApplet())
-	to g : OUTMODEL!Generalization (
+	from s : SINGLETONM!Class (s.isApplet())
+	to g : APPLETM!Generalization (
 	   	namespace <- s.namespace,
 		parent <- if 'java.applet.Applet'.hasQClass()
 			then 'java.applet.Applet'.qClass()
@@ -184,72 +184,72 @@ rule AppletClass {
 }
 
 rule NewAppletInitOperation {
-	from s : INMODEL!Class (s.isApplet() and
+	from s : SINGLETONM!Class (s.isApplet() and
 		s.hasNoOperation('init'))
-	to op : OUTMODEL!Operation (
+	to op : APPLETM!Operation (
 	   	name <- 'init',
 		owner <- s,
 		visibility <- #vk_public,
 		ownerScope <- #sk_instance,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   mbody : OUTMODEL!ProcedureExpression (
+	   mbody : APPLETM!ProcedureExpression (
 	   	language <- 'java',
 		body <- s.method().owner.isSingleton().
 			javaAppletInitBody()),
-	   meth : OUTMODEL!Method (
+	   meth : APPLETM!Method (
 	   	owner <- s,
 		body <- mbody,
 		specification <- op)
 }
 
 rule AppletInfo {
-    from s : INMODEL!Class (
+    from s : SINGLETONM!Class (
     	s.hasTaggedValue('AppletInfo'))
-	to op : OUTMODEL!Operation (
+	to op : APPLETM!Operation (
         name <- 'getAppletInfo',
 		owner <- s,
         visibility <- #vk_public,
 		ownerScope <- #sk_instance,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   return : OUTMODEL!Parameter (
+	   return : APPLETM!Parameter (
 	   	name <- 'return',
 		behavioralFeature <- op,
 		type <- if 'java.lang.String'.hasQClass()
 			then 'java.lang.String'.qClass()
 			else 'java.lang.String'.mergeQClass() endif,
 		kind <- #pdk_return),
-	   mbody : OUTMODEL!ProcedureExpression (
+	   mbody : APPLETM!ProcedureExpression (
 	   	language <- 'java',
 		body <- 'return "' + s.taggedValue('AppletInfo') + '";'),
-	   meth : OUTMODEL!Method (
+	   meth : APPLETM!Method (
 	   	owner <- s,
 		body <- mbody,
 		specification <- op)
 }
 
 rule ParameterInfo {
-    from s : INMODEL!Class (
+    from s : SINGLETONM!Class (
     	s.hasTaggedValue('ParameterInfo'))
-    to op : OUTMODEL!Operation (
+    to op : APPLETM!Operation (
         name <- 'getParameterInfo',
 		owner <- s,
         visibility <- #vk_public,
 		ownerScope <- #sk_instance,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   return : OUTMODEL!Parameter (
+	   return : APPLETM!Parameter (
 	   	name <- 'return',
 		behavioralFeature <- op,
 		type <- if 'java.lang.String[][]'.hasQClass()
 			then 'java.lang.String[][]'.qClass()
 			else 'java.lang.String[][]'.mergeQClass() endif,
 		kind <- #pdk_return),
-	   mbody : OUTMODEL!ProcedureExpression (
+	   mbody : APPLETM!ProcedureExpression (
 	   	language <- 'java',
 		body <- 'String[][] pinfo = ' + s.taggedValue('ParameterInfo') + ';\nreturn pinfo;'),
-	   meth : OUTMODEL!Method (
+	   meth : APPLETM!Method (
 	   	owner <- s,
 		body <- mbody,
 		specification <- op)
@@ -264,22 +264,22 @@ rule ParameterInfo {
 -- ======================================================================
 
 rule AppletInitProcedureExpression {
-    from s : INMODEL!ProcedureExpression (
+    from s : SINGLETONM!ProcedureExpression (
     	s.method().owner.isSingleton() and
     	s.method().owner.isApplet() and
 		s.method().specification.name = 'init')
-    to t : OUTMODEL!ProcedureExpression mapsTo s (
+    to t : APPLETM!ProcedureExpression mapsTo s (
         language <- s.language,
         body <- s.method().owner.isSingleton().
 			javaAppletInitBody() + '\n' + s.body)
 }
 
 rule ProcedureExpression {
-    from s : INMODEL!ProcedureExpression (not (
+    from s : SINGLETONM!ProcedureExpression (not (
     	s.method().owner.isSingleton() and
     	s.method().owner.isApplet() and
 		s.method().specification.name = 'init'))
-    to t : OUTMODEL!ProcedureExpression mapsTo s (
+    to t : APPLETM!ProcedureExpression mapsTo s (
         language <- s.language,
         body <- s.body)
 }
@@ -296,7 +296,7 @@ rule ProcedureExpression {
 rule MergeAssociation {
     from s : MERGEMODEL!Association (s.oclIsTypeOf(MERGEMODEL!Association) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Association mapsTo s (
+    to t : APPLETM!Association mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -321,7 +321,7 @@ rule MergeAssociation {
 
 rule MergeTaggedValue {
     from s : MERGEMODEL!TaggedValue (s.notInSourceModel())
-    to t : OUTMODEL!TaggedValue mapsTo s (
+    to t : APPLETM!TaggedValue mapsTo s (
         dataValue <- s.dataValue,
         visibility <- s.visibility,
         name <- s.name,
@@ -343,7 +343,7 @@ rule MergeTaggedValue {
 
 rule MergeOperation {
     from s : MERGEMODEL!Operation (s.notInSourceModel())
-    to t : OUTMODEL!Operation mapsTo s (
+    to t : APPLETM!Operation mapsTo s (
         ownerScope <- s.ownerScope,
         visibility <- s.visibility,
         isQuery <- s.isQuery,
@@ -368,14 +368,14 @@ rule MergeOperation {
 
 rule MergeProcedureExpression {
     from s : MERGEMODEL!ProcedureExpression (s.notInSourceModel())
-    to t : OUTMODEL!ProcedureExpression mapsTo s (
+    to t : APPLETM!ProcedureExpression mapsTo s (
         language <- s.language,
         body <- s.body)
 }
 
 rule MergeAbstraction {
     from s : MERGEMODEL!Abstraction (s.notInSourceModel())
-    to t : OUTMODEL!Abstraction mapsTo s (
+    to t : APPLETM!Abstraction mapsTo s (
         mapping <- s.mapping,
         visibility <- s.visibility,
         name <- s.name,
@@ -400,13 +400,13 @@ rule MergeAbstraction {
 
 rule MergeMultiplicity {
     from s : MERGEMODEL!Multiplicity (s.notInSourceModel())
-    to t : OUTMODEL!Multiplicity mapsTo s (
+    to t : APPLETM!Multiplicity mapsTo s (
         range <- s.range)
 }
 
 rule MergeParameter {
     from s : MERGEMODEL!Parameter (s.notInSourceModel())
-    to t : OUTMODEL!Parameter mapsTo s (
+    to t : APPLETM!Parameter mapsTo s (
         kind <- s.kind,
         visibility <- s.visibility,
         name <- s.name,
@@ -429,7 +429,7 @@ rule MergeParameter {
 rule MergeClass {
     from s : MERGEMODEL!Class (s.oclIsTypeOf(MERGEMODEL!Class) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Class mapsTo s (
+    to t : APPLETM!Class mapsTo s (
         isRoot <- s.isRoot,
         isActive <- s.isActive,
         isAbstract <- s.isAbstract,
@@ -457,7 +457,7 @@ rule MergeClass {
 
 rule MergeInterface {
     from s : MERGEMODEL!Interface (s.notInSourceModel())
-    to t : OUTMODEL!Interface mapsTo s (
+    to t : APPLETM!Interface mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -484,7 +484,7 @@ rule MergeInterface {
 
 rule MergeMultiplicityRange {
     from s : MERGEMODEL!MultiplicityRange (s.notInSourceModel())
-    to t : OUTMODEL!MultiplicityRange mapsTo s (
+    to t : APPLETM!MultiplicityRange mapsTo s (
         upper <- s.upper,
         lower <- s.lower)
 }
@@ -492,7 +492,7 @@ rule MergeMultiplicityRange {
 rule MergeExpression {
     from s : MERGEMODEL!Expression (s.oclIsTypeOf(MERGEMODEL!Expression) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Expression mapsTo s (
+    to t : APPLETM!Expression mapsTo s (
         language <- s.language,
         body <- s.body)
 }
@@ -500,7 +500,7 @@ rule MergeExpression {
 rule MergeDataType {
     from s : MERGEMODEL!DataType (s.oclIsTypeOf(MERGEMODEL!DataType) and
     	s.notInSourceModel())
-    to t : OUTMODEL!DataType mapsTo s (
+    to t : APPLETM!DataType mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -528,7 +528,7 @@ rule MergeDataType {
 rule MergePackage {
     from s : MERGEMODEL!Package (s.oclIsTypeOf(MERGEMODEL!Package) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Package mapsTo s (
+    to t : APPLETM!Package mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         visibility <- s.visibility,
@@ -555,7 +555,7 @@ rule MergePackage {
 rule MergeAssociationEnd {
     from s : MERGEMODEL!AssociationEnd (s.oclIsTypeOf(MERGEMODEL!AssociationEnd) and
     	s.notInSourceModel())
-    to t : OUTMODEL!AssociationEnd mapsTo s (
+    to t : APPLETM!AssociationEnd mapsTo s (
         targetScope <- s.targetScope,
         isNavigable <- s.isNavigable,
         ordering <- s.ordering,
@@ -583,7 +583,7 @@ rule MergeAssociationEnd {
 
 rule MergeAttribute {
     from s : MERGEMODEL!Attribute (s.notInSourceModel())
-    to t : OUTMODEL!Attribute mapsTo s (
+    to t : APPLETM!Attribute mapsTo s (
         targetScope <- s.targetScope,
         initialValue <- s.initialValue,
         ownerScope <- s.ownerScope,
@@ -609,7 +609,7 @@ rule MergeAttribute {
 
 rule MergeGeneralization {
     from s : MERGEMODEL!Generalization (s.notInSourceModel())
-    to t : OUTMODEL!Generalization mapsTo s (
+    to t : APPLETM!Generalization mapsTo s (
         discriminator <- s.discriminator,
         visibility <- s.visibility,
         name <- s.name,
@@ -638,7 +638,7 @@ rule MergeGeneralization {
 rule MergeDependency {
     from s : MERGEMODEL!Dependency (s.oclIsTypeOf(MERGEMODEL!Dependency) and
     	s.notInSourceModel())
-    to t : OUTMODEL!Dependency mapsTo s (
+    to t : APPLETM!Dependency mapsTo s (
         visibility <- s.visibility,
         name <- s.name,
         isSpecification <- s.isSpecification,
@@ -662,7 +662,7 @@ rule MergeDependency {
 
 rule MergeTagDefinition {
     from s : MERGEMODEL!TagDefinition (s.notInSourceModel())
-    to t : OUTMODEL!TagDefinition mapsTo s (
+    to t : APPLETM!TagDefinition mapsTo s (
         tagType <- s.tagType,
         multiplicity <- s.multiplicity,
         visibility <- s.visibility,
@@ -684,7 +684,7 @@ rule MergeTagDefinition {
 
 rule MergeStereotype {
     from s : MERGEMODEL!Stereotype (s.notInSourceModel())
-    to t : OUTMODEL!Stereotype mapsTo s (
+    to t : APPLETM!Stereotype mapsTo s (
         isRoot <- s.isRoot,
         isAbstract <- s.isAbstract,
         baseClass <- s.baseClass,
@@ -712,7 +712,7 @@ rule MergeStereotype {
 
 rule MergeMethod {
     from s : MERGEMODEL!Method (s.notInSourceModel())
-    to t : OUTMODEL!Method mapsTo s (
+    to t : APPLETM!Method mapsTo s (
         body <- s.body,
         ownerScope <- s.ownerScope,
         visibility <- s.visibility,
@@ -734,7 +734,7 @@ rule MergeMethod {
 
 rule MergeException {
     from s : MERGEMODEL!Exception (s.notInSourceModel())
-    to t : OUTMODEL!Exception mapsTo s (
+    to t : APPLETM!Exception mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -770,8 +770,8 @@ rule MergeException {
 -- Generated by: ModelCopyGenerator.atl 1101 2005-05-12 10:35:43Z dwagelaa
 
 rule Generalization {
-    from s : INMODEL!Generalization
-    to t : OUTMODEL!Generalization mapsTo s (
+    from s : SINGLETONM!Generalization
+    to t : APPLETM!Generalization mapsTo s (
         discriminator <- s.discriminator,
         name <- s.name,
         visibility <- s.visibility,
@@ -790,8 +790,8 @@ rule Generalization {
 }
 
 rule Abstraction {
-    from s : INMODEL!Abstraction
-    to t : OUTMODEL!Abstraction mapsTo s (
+    from s : SINGLETONM!Abstraction
+    to t : APPLETM!Abstraction mapsTo s (
         name <- s.name,
         mapping <- s.mapping,
         visibility <- s.visibility,
@@ -809,8 +809,8 @@ rule Abstraction {
 }
 
 rule InteractionInstanceSet {
-    from s : INMODEL!InteractionInstanceSet
-    to t : OUTMODEL!InteractionInstanceSet mapsTo s (
+    from s : SINGLETONM!InteractionInstanceSet
+    to t : APPLETM!InteractionInstanceSet mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -827,8 +827,8 @@ rule InteractionInstanceSet {
 }
 
 rule Operation {
-    from s : INMODEL!Operation
-    to t : OUTMODEL!Operation mapsTo s (
+    from s : SINGLETONM!Operation
+    to t : APPLETM!Operation mapsTo s (
         ownerScope <- s.ownerScope,
         isQuery <- s.isQuery,
         specification <- s.specification,
@@ -851,8 +851,8 @@ rule Operation {
 }
 
 rule Association {
-    from s : INMODEL!Association (s.oclIsTypeOf(INMODEL!Association))
-    to t : OUTMODEL!Association mapsTo s (
+    from s : SINGLETONM!Association (s.oclIsTypeOf(SINGLETONM!Association))
+    to t : APPLETM!Association mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -872,8 +872,8 @@ rule Association {
 }
 
 rule Exception {
-    from s : INMODEL!Exception
-    to t : OUTMODEL!Exception mapsTo s (
+    from s : SINGLETONM!Exception
+    to t : APPLETM!Exception mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -896,8 +896,8 @@ rule Exception {
 }
 
 rule Interface {
-    from s : INMODEL!Interface
-    to t : OUTMODEL!Interface mapsTo s (
+    from s : SINGLETONM!Interface
+    to t : APPLETM!Interface mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -919,8 +919,8 @@ rule Interface {
 }
 
 rule UseCase {
-    from s : INMODEL!UseCase
-    to t : OUTMODEL!UseCase mapsTo s (
+    from s : SINGLETONM!UseCase
+    to t : APPLETM!UseCase mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -945,8 +945,8 @@ rule UseCase {
 }
 
 rule Argument {
-    from s : INMODEL!Argument
-    to t : OUTMODEL!Argument mapsTo s (
+    from s : SINGLETONM!Argument
+    to t : APPLETM!Argument mapsTo s (
         value <- s.value,
         name <- s.name,
         visibility <- s.visibility,
@@ -962,8 +962,8 @@ rule Argument {
 }
 
 rule TaggedValue {
-    from s : INMODEL!TaggedValue
-    to t : OUTMODEL!TaggedValue mapsTo s (
+    from s : SINGLETONM!TaggedValue
+    to t : APPLETM!TaggedValue mapsTo s (
         dataValue <- s.dataValue,
         name <- s.name,
         visibility <- s.visibility,
@@ -981,8 +981,8 @@ rule TaggedValue {
 }
 
 rule ReturnAction {
-    from s : INMODEL!ReturnAction
-    to t : OUTMODEL!ReturnAction mapsTo s (
+    from s : SINGLETONM!ReturnAction
+    to t : APPLETM!ReturnAction mapsTo s (
         recurrence <- s.recurrence,
         name <- s.name,
         target <- s.target,
@@ -1002,15 +1002,15 @@ rule ReturnAction {
 }
 
 rule Expression {
-    from s : INMODEL!Expression (s.oclIsTypeOf(INMODEL!Expression))
-    to t : OUTMODEL!Expression mapsTo s (
+    from s : SINGLETONM!Expression (s.oclIsTypeOf(SINGLETONM!Expression))
+    to t : APPLETM!Expression mapsTo s (
         body <- s.body,
         language <- s.language)
 }
 
 rule CallAction {
-    from s : INMODEL!CallAction
-    to t : OUTMODEL!CallAction mapsTo s (
+    from s : SINGLETONM!CallAction
+    to t : APPLETM!CallAction mapsTo s (
         recurrence <- s.recurrence,
         name <- s.name,
         target <- s.target,
@@ -1031,8 +1031,8 @@ rule CallAction {
 }
 
 rule AssociationEnd {
-    from s : INMODEL!AssociationEnd (s.oclIsTypeOf(INMODEL!AssociationEnd))
-    to t : OUTMODEL!AssociationEnd mapsTo s (
+    from s : SINGLETONM!AssociationEnd (s.oclIsTypeOf(SINGLETONM!AssociationEnd))
+    to t : APPLETM!AssociationEnd mapsTo s (
         targetScope <- s.targetScope,
         isNavigable <- s.isNavigable,
         name <- s.name,
@@ -1056,8 +1056,8 @@ rule AssociationEnd {
 }
 
 rule Dependency {
-    from s : INMODEL!Dependency (s.oclIsTypeOf(INMODEL!Dependency))
-    to t : OUTMODEL!Dependency mapsTo s (
+    from s : SINGLETONM!Dependency (s.oclIsTypeOf(SINGLETONM!Dependency))
+    to t : APPLETM!Dependency mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1074,8 +1074,8 @@ rule Dependency {
 }
 
 rule Package {
-    from s : INMODEL!Package (s.oclIsTypeOf(INMODEL!Package))
-    to t : OUTMODEL!Package mapsTo s (
+    from s : SINGLETONM!Package (s.oclIsTypeOf(SINGLETONM!Package))
+    to t : APPLETM!Package mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1096,8 +1096,8 @@ rule Package {
 }
 
 rule TagDefinition {
-    from s : INMODEL!TagDefinition
-    to t : OUTMODEL!TagDefinition mapsTo s (
+    from s : SINGLETONM!TagDefinition
+    to t : APPLETM!TagDefinition mapsTo s (
         multiplicity <- s.multiplicity,
         name <- s.name,
         tagType <- s.tagType,
@@ -1114,8 +1114,8 @@ rule TagDefinition {
 }
 
 rule Method {
-    from s : INMODEL!Method
-    to t : OUTMODEL!Method mapsTo s (
+    from s : SINGLETONM!Method
+    to t : APPLETM!Method mapsTo s (
         ownerScope <- s.ownerScope,
         isQuery <- s.isQuery,
         name <- s.name,
@@ -1135,15 +1135,15 @@ rule Method {
 }
 
 rule MultiplicityRange {
-    from s : INMODEL!MultiplicityRange
-    to t : OUTMODEL!MultiplicityRange mapsTo s (
+    from s : SINGLETONM!MultiplicityRange
+    to t : APPLETM!MultiplicityRange mapsTo s (
         lower <- s.lower,
         upper <- s.upper)
 }
 
 rule LinkEnd {
-    from s : INMODEL!LinkEnd
-    to t : OUTMODEL!LinkEnd mapsTo s (
+    from s : SINGLETONM!LinkEnd
+    to t : APPLETM!LinkEnd mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1161,8 +1161,8 @@ rule LinkEnd {
 }
 
 rule CollaborationInstanceSet {
-    from s : INMODEL!CollaborationInstanceSet
-    to t : OUTMODEL!CollaborationInstanceSet mapsTo s (
+    from s : SINGLETONM!CollaborationInstanceSet
+    to t : APPLETM!CollaborationInstanceSet mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1182,8 +1182,8 @@ rule CollaborationInstanceSet {
 }
 
 rule Stimulus {
-    from s : INMODEL!Stimulus
-    to t : OUTMODEL!Stimulus mapsTo s (
+    from s : SINGLETONM!Stimulus
+    to t : APPLETM!Stimulus mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1203,8 +1203,8 @@ rule Stimulus {
 }
 
 rule Link {
-    from s : INMODEL!Link (s.oclIsTypeOf(INMODEL!Link))
-    to t : OUTMODEL!Link mapsTo s (
+    from s : SINGLETONM!Link (s.oclIsTypeOf(SINGLETONM!Link))
+    to t : APPLETM!Link mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1221,8 +1221,8 @@ rule Link {
 }
 
 rule Model {
-    from s : INMODEL!Model
-    to t : OUTMODEL!Model mapsTo s (
+    from s : SINGLETONM!Model
+    to t : APPLETM!Model mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1243,8 +1243,8 @@ rule Model {
 }
 
 rule Object {
-    from s : INMODEL!Object (s.oclIsTypeOf(INMODEL!Object))
-    to t : OUTMODEL!Object mapsTo s (
+    from s : SINGLETONM!Object (s.oclIsTypeOf(SINGLETONM!Object))
+    to t : APPLETM!Object mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1265,8 +1265,8 @@ rule Object {
 }
 
 rule Attribute {
-    from s : INMODEL!Attribute
-    to t : OUTMODEL!Attribute mapsTo s (
+    from s : SINGLETONM!Attribute
+    to t : APPLETM!Attribute mapsTo s (
         ownerScope <- s.ownerScope,
         initialValue <- s.initialValue,
         name <- s.name,
@@ -1288,8 +1288,8 @@ rule Attribute {
 }
 
 rule Class {
-    from s : INMODEL!Class (s.oclIsTypeOf(INMODEL!Class))
-    to t : OUTMODEL!Class mapsTo s (
+    from s : SINGLETONM!Class (s.oclIsTypeOf(SINGLETONM!Class))
+    to t : APPLETM!Class mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isActive <- s.isActive,
@@ -1312,8 +1312,8 @@ rule Class {
 }
 
 rule Parameter {
-    from s : INMODEL!Parameter
-    to t : OUTMODEL!Parameter mapsTo s (
+    from s : SINGLETONM!Parameter
+    to t : APPLETM!Parameter mapsTo s (
         name <- s.name,
         kind <- s.kind,
         defaultValue <- s.defaultValue,
@@ -1331,8 +1331,8 @@ rule Parameter {
 }
 
 rule Message {
-    from s : INMODEL!Message
-    to t : OUTMODEL!Message mapsTo s (
+    from s : SINGLETONM!Message
+    to t : APPLETM!Message mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1354,8 +1354,8 @@ rule Message {
 }
 
 rule Stereotype {
-    from s : INMODEL!Stereotype
-    to t : OUTMODEL!Stereotype mapsTo s (
+    from s : SINGLETONM!Stereotype
+    to t : APPLETM!Stereotype mapsTo s (
         isRoot <- s.isRoot,
         icon <- s.icon,
         name <- s.name,
@@ -1378,8 +1378,8 @@ rule Stereotype {
 }
 
 rule Collaboration {
-    from s : INMODEL!Collaboration
-    to t : OUTMODEL!Collaboration mapsTo s (
+    from s : SINGLETONM!Collaboration
+    to t : APPLETM!Collaboration mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1404,8 +1404,8 @@ rule Collaboration {
 }
 
 rule DataType {
-    from s : INMODEL!DataType (s.oclIsTypeOf(INMODEL!DataType))
-    to t : OUTMODEL!DataType mapsTo s (
+    from s : SINGLETONM!DataType (s.oclIsTypeOf(SINGLETONM!DataType))
+    to t : APPLETM!DataType mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
@@ -1427,14 +1427,14 @@ rule DataType {
 }
 
 rule Multiplicity {
-    from s : INMODEL!Multiplicity
-    to t : OUTMODEL!Multiplicity mapsTo s (
+    from s : SINGLETONM!Multiplicity
+    to t : APPLETM!Multiplicity mapsTo s (
         range <- s.range)
 }
 
 rule Include {
-    from s : INMODEL!Include
-    to t : OUTMODEL!Include mapsTo s (
+    from s : SINGLETONM!Include
+    to t : APPLETM!Include mapsTo s (
         name <- s.name,
         visibility <- s.visibility,
         isSpecification <- s.isSpecification,
@@ -1451,8 +1451,8 @@ rule Include {
 }
 
 rule Actor {
-    from s : INMODEL!Actor
-    to t : OUTMODEL!Actor mapsTo s (
+    from s : SINGLETONM!Actor
+    to t : APPLETM!Actor mapsTo s (
         isRoot <- s.isRoot,
         name <- s.name,
         isAbstract <- s.isAbstract,
