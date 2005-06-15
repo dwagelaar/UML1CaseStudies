@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
-<stringAttribute key="Model Handler" value="MDR"/>
-<stringAttribute key="ATL File Name" value="/UML1CaseStudies/ModelCopyGenerator.atl"/>
+<mapAttribute key="Model Handler">
+<mapEntry key="INMODEL" value="MDR"/>
+<mapEntry key="IN" value=""/>
+</mapAttribute>
+<stringAttribute key="ATL File Name" value="/UML1CaseStudies-transformations/ModelCopyGenerator.atl"/>
 <mapAttribute key="Libs"/>
+<booleanAttribute key="Mode Debug" value="false"/>
 <mapAttribute key="ModelType">
 <mapEntry key="INMODEL" value="METAMODELINPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="INMODEL" value="/UML1CaseStudies/metamodels/M3_MOF_1.4.xmi"/>
-<mapEntry key="IN" value="/UML1CaseStudies/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="INMODEL" value="#MDR"/>
+<mapEntry key="IN" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
 </mapAttribute>
-<stringAttribute key="Project Name" value="UML1CaseStudies"/>
+<stringAttribute key="Project Name" value="UML1CaseStudies-transformations"/>
 <mapAttribute key="Output"/>
 <mapAttribute key="Input">
 <mapEntry key="IN" value="INMODEL"/>
