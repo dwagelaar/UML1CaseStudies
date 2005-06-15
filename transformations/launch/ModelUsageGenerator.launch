@@ -12,7 +12,7 @@
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="INMODEL" value="#MDR"/>
+<mapEntry key="INMODEL" value="/UML1CaseStudies-transformations/metamodels/M3_MOF_1.4.xmi"/>
 <mapEntry key="IN" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="UML1CaseStudies-transformations"/>
