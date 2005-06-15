@@ -109,4 +109,4 @@ helper context String def : isKeyword() : Boolean =
 	Set{'module', 'create', 'from', 'rule', 'to', 'using', 'helper', 'context',
 		'def', 'and', 'or', 'not', 'if', 'then', 'else', 'endif', 'query',
 		'library', 'mapsTo', 'String', 'Boolean', 'Integer', 'Real', 'Bag',
-		'Set', 'OrderedSet', 'Sequence'}->includes(self);
+		'Set', 'OrderedSet', 'Sequence', 'abstract', 'derived'}->includes(self);
