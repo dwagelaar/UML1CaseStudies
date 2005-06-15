@@ -4,7 +4,7 @@ query ModelUsageGenerator = INMODEL!Class.allInstances()->iterate(e; acc : Strin
 	'query ModelUsage = (\n' +
 	'	\'helper context INMODEL!Class def : inclusionCondition() : Boolean =\\n\' +\n' +
 	thisModule.rootClassQueries() +
-	'	).writeTo(\'my_documents/PhD/Brainstorm/UML1CaseStudies/ModelUsage.txt\');\n\n'|
+	'	).writeTo(\'/home/dennis/my_documents/PhD/Brainstorm/UML1CaseStudies/transformations/ModelUsage.txt\');\n\n'|
 	acc + e.toString()).
 	writeTo('/home/dennis/my_documents/PhD/Brainstorm/UML1CaseStudies/transformations/ModelUsage.atl');
 
