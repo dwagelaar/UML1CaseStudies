@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Jun 02 09:52:07 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Jun 15 14:54:35 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -200,59 +200,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                             </UML:Method>
                           </UML:Classifier.feature>
                         </UML:Class>
-                        <UML:Class xmi.id = 'I4cc96e20m104371c528dmm7b6d' name = 'DisconnectedState'
-                          visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
-                          isAbstract = 'false' isActive = 'false'>
-                          <UML:GeneralizableElement.generalization>
-                            <UML:Generalization xmi.idref = 'I4cc96e20m104371c528dmm7a56'/>
-                          </UML:GeneralizableElement.generalization>
-                          <UML:Classifier.feature>
-                            <UML:Operation xmi.id = 'I4cc96e20m104371c528dmm79f0' name = 'login' visibility = 'public'
-                              isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                              <UML:BehavioralFeature.parameter>
-                                <UML:Parameter xmi.id = 'I4cc96e20m104371c528dmm79f1' name = 'uid' isSpecification = 'false'
-                                  kind = 'in'>
-                                  <UML:ModelElement.taggedValue>
-                                    <UML:TaggedValue xmi.id = 'I4cc96e20m104371c528dmm79af' isSpecification = 'false'>
-                                      <UML:TaggedValue.dataValue>true</UML:TaggedValue.dataValue>
-                                      <UML:TaggedValue.type>
-                                        <UML:TagDefinition xmi.idref = 'I3e6530b3m103c0640dacmm543e'/>
-                                      </UML:TaggedValue.type>
-                                    </UML:TaggedValue>
-                                  </UML:ModelElement.taggedValue>
-                                  <UML:Parameter.type>
-                                    <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
-                                  </UML:Parameter.type>
-                                </UML:Parameter>
-                                <UML:Parameter xmi.id = 'I4cc96e20m104371c528dmm79f2' name = 'pwd' isSpecification = 'false'
-                                  kind = 'in'>
-                                  <UML:ModelElement.taggedValue>
-                                    <UML:TaggedValue xmi.id = 'I4cc96e20m104371c528dmm79ae' isSpecification = 'false'>
-                                      <UML:TaggedValue.dataValue>true</UML:TaggedValue.dataValue>
-                                      <UML:TaggedValue.type>
-                                        <UML:TagDefinition xmi.idref = 'I3e6530b3m103c0640dacmm543e'/>
-                                      </UML:TaggedValue.type>
-                                    </UML:TaggedValue>
-                                  </UML:ModelElement.taggedValue>
-                                  <UML:Parameter.type>
-                                    <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
-                                  </UML:Parameter.type>
-                                </UML:Parameter>
-                              </UML:BehavioralFeature.parameter>
-                            </UML:Operation>
-                            <UML:Method xmi.id = 'I4cc96e20m104371c528dmm79f3' isSpecification = 'false'
-                              isQuery = 'false'>
-                              <UML:Method.body>
-                                <UML:ProcedureExpression xmi.id = 'I4cc96e20m104371c528dmm79f4' language = 'java'
-                                  body = '        Thread login = new Thread() {&#10;            public void run() {&#10;                try {&#10;                    java.util.Vector address = com.ssttr.util.Strings.tokenize(uid, &apos;@&apos;);&#10;                    String user = (String) address.elementAt(0);&#10;                    String server = (String) address.elementAt(1);&#10;                    address = com.ssttr.util.Strings.tokenize(server, &apos;/&apos;);&#10;                    server = (String) address.elementAt(0);&#10;                    String resource = (String) address.elementAt(1);&#10;                    connect(server);&#10;                    getConnection().setMessageListener(Jabber.this);&#10;                    getConnection().setIQListener(Jabber.this);&#10;                    getConnection().setPresenceListener(Jabber.this);&#10;                    boolean try_again;&#10;                    do {&#10;                        try_again = false;&#10;                        System.out.println(&quot;Logging in &quot; + uid);&#10;                        switch (getConnection().loginAny(user, resource,&#10;                                pwd, 30000)) {&#10;                        case Client2Server.LOGIN_BAD_PASS:&#10;                            throw new java.io.IOException(&quot;Bad password for &quot; + uid);&#10;                        case Client2Server.LOGIN_BAD_UID:&#10;                            if (!registerUser(user, pwd))&#10;                                throw new java.io.IOException(&#10;                                        &quot;Could not register user for &quot;&#10;                                                + uid);&#10;                            else&#10;                                try_again = true;&#10;                            break;&#10;                        case Client2Server.LOGIN_FAILED:&#10;                            throw new java.io.IOException(&quot;Login failed: unknown: &quot;&#10;                                    + uid);&#10;                        case Client2Server.LOGIN_PASS_EXP:&#10;                            System.out&#10;                                    .println(&quot;Your password has expired for &quot;&#10;                                            + uid);&#10;                            break;&#10;                        case Client2Server.LOGIN_OK:&#10;                            break;&#10;                        }&#10;                    } while (try_again);&#10;                    Presence pres = new Presence(Const.AVAILABLE,&#10;                            &quot;Available&quot;, 1);&#10;                    pres.setFrom(uid);&#10;                    getConnection().send(pres);&#10;                    incomingPresence(pres);&#10;                    getConnection().send(IQRoster.createGetRequest());&#10;                    synchronized(Jabber.this) {&#10;                            Jabber.this.state = new ConnectedState();&#10;                    }&#10;                } catch (Exception e) {&#10;                    im.InstantMessagingClient.getInstance().report(e);&#10;                }&#10;            }&#10;        };&#10;        login.start();&#10;'/>
-                              </UML:Method.body>
-                              <UML:Method.specification>
-                                <UML:Operation xmi.idref = 'I4cc96e20m104371c528dmm79f0'/>
-                              </UML:Method.specification>
-                            </UML:Method>
-                          </UML:Classifier.feature>
-                        </UML:Class>
                         <UML:Generalization xmi.id = 'I4cc96e20m104371c528dmm7a56' isSpecification = 'false'>
                           <UML:Generalization.child>
                             <UML:Class xmi.idref = 'I4cc96e20m104371c528dmm7b6d'/>
@@ -278,7 +225,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           <UML:Classifier.feature>
                             <UML:Operation xmi.id = 'I4cc96e20m104371c528dmm79bc' name = 'logout' visibility = 'public'
                               isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                              <UML:ModelElement.stereotype>
+                                <UML:Stereotype xmi.idref = 'Im211f237m1047fe46337mm7a36'/>
+                              </UML:ModelElement.stereotype>
+                            </UML:Operation>
                             <UML:Method xmi.id = 'I4cc96e20m104371c528dmm79be' isSpecification = 'false'
                               isQuery = 'false'>
                               <UML:Method.body>
@@ -772,6 +723,62 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                         </UML:AssociationEnd>
                       </UML:Association.connection>
                     </UML:Association>
+                    <UML:Class xmi.id = 'I4cc96e20m104371c528dmm7b6d' name = 'DisconnectedState'
+                      visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+                      isAbstract = 'false' isActive = 'false'>
+                      <UML:GeneralizableElement.generalization>
+                        <UML:Generalization xmi.idref = 'I4cc96e20m104371c528dmm7a56'/>
+                      </UML:GeneralizableElement.generalization>
+                      <UML:Classifier.feature>
+                        <UML:Operation xmi.id = 'I4cc96e20m104371c528dmm79f0' name = 'login' visibility = 'public'
+                          isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
+                          isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                          <UML:ModelElement.stereotype>
+                            <UML:Stereotype xmi.idref = 'Im211f237m1047fe46337mm7a36'/>
+                          </UML:ModelElement.stereotype>
+                          <UML:BehavioralFeature.parameter>
+                            <UML:Parameter xmi.id = 'I4cc96e20m104371c528dmm79f1' name = 'uid' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue xmi.id = 'I4cc96e20m104371c528dmm79af' isSpecification = 'false'>
+                                  <UML:TaggedValue.dataValue>true</UML:TaggedValue.dataValue>
+                                  <UML:TaggedValue.type>
+                                    <UML:TagDefinition xmi.idref = 'I3e6530b3m103c0640dacmm543e'/>
+                                  </UML:TaggedValue.type>
+                                </UML:TaggedValue>
+                              </UML:ModelElement.taggedValue>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                            <UML:Parameter xmi.id = 'I4cc96e20m104371c528dmm79f2' name = 'pwd' isSpecification = 'false'
+                              kind = 'in'>
+                              <UML:ModelElement.taggedValue>
+                                <UML:TaggedValue xmi.id = 'I4cc96e20m104371c528dmm79ae' isSpecification = 'false'>
+                                  <UML:TaggedValue.dataValue>true</UML:TaggedValue.dataValue>
+                                  <UML:TaggedValue.type>
+                                    <UML:TagDefinition xmi.idref = 'I3e6530b3m103c0640dacmm543e'/>
+                                  </UML:TaggedValue.type>
+                                </UML:TaggedValue>
+                              </UML:ModelElement.taggedValue>
+                              <UML:Parameter.type>
+                                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+                              </UML:Parameter.type>
+                            </UML:Parameter>
+                          </UML:BehavioralFeature.parameter>
+                        </UML:Operation>
+                        <UML:Method xmi.id = 'I4cc96e20m104371c528dmm79f3' isSpecification = 'false'
+                          isQuery = 'false'>
+                          <UML:Method.body>
+                            <UML:ProcedureExpression xmi.id = 'I4cc96e20m104371c528dmm79f4' language = 'java'
+                              body = '        Thread login = new Thread() {&#10;            public void run() {&#10;                try {&#10;                    java.util.Vector address = com.ssttr.util.Strings.tokenize(uid, &apos;@&apos;);&#10;                    String user = (String) address.elementAt(0);&#10;                    String server = (String) address.elementAt(1);&#10;                    address = com.ssttr.util.Strings.tokenize(server, &apos;/&apos;);&#10;                    server = (String) address.elementAt(0);&#10;                    String resource = (String) address.elementAt(1);&#10;                    connect(server);&#10;                    getConnection().setMessageListener(Jabber.this);&#10;                    getConnection().setIQListener(Jabber.this);&#10;                    getConnection().setPresenceListener(Jabber.this);&#10;                    boolean try_again;&#10;                    do {&#10;                        try_again = false;&#10;                        System.out.println(&quot;Logging in &quot; + uid);&#10;                        switch (getConnection().loginAny(user, resource,&#10;                                pwd, 30000)) {&#10;                        case Client2Server.LOGIN_BAD_PASS:&#10;                            throw new java.io.IOException(&quot;Bad password for &quot; + uid);&#10;                        case Client2Server.LOGIN_BAD_UID:&#10;                            if (!registerUser(user, pwd))&#10;                                throw new java.io.IOException(&#10;                                        &quot;Could not register user for &quot;&#10;                                                + uid);&#10;                            else&#10;                                try_again = true;&#10;                            break;&#10;                        case Client2Server.LOGIN_FAILED:&#10;                            throw new java.io.IOException(&quot;Login failed: unknown: &quot;&#10;                                    + uid);&#10;                        case Client2Server.LOGIN_PASS_EXP:&#10;                            System.out&#10;                                    .println(&quot;Your password has expired for &quot;&#10;                                            + uid);&#10;                            break;&#10;                        case Client2Server.LOGIN_OK:&#10;                            break;&#10;                        }&#10;                    } while (try_again);&#10;                    Presence pres = new Presence(Const.AVAILABLE,&#10;                            &quot;Available&quot;, 1);&#10;                    pres.setFrom(uid);&#10;                    getConnection().send(pres);&#10;                    incomingPresence(pres);&#10;                    getConnection().send(IQRoster.createGetRequest());&#10;                    synchronized(Jabber.this) {&#10;                            Jabber.this.state = new ConnectedState();&#10;                    }&#10;                } catch (Exception e) {&#10;                    im.InstantMessagingClient.getInstance().report(e);&#10;                }&#10;            }&#10;        };&#10;        login.start();&#10;'/>
+                          </UML:Method.body>
+                          <UML:Method.specification>
+                            <UML:Operation xmi.idref = 'I4cc96e20m104371c528dmm79f0'/>
+                          </UML:Method.specification>
+                        </UML:Method>
+                      </UML:Classifier.feature>
+                    </UML:Class>
                   </UML:Namespace.ownedElement>
                 </UML:Package>
                 <UML:Abstraction xmi.id = 'I6e742d0m1039cde3951mm668b' isSpecification = 'false'>
@@ -1113,8 +1120,171 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
             </UML:Multiplicity>
           </UML:TagDefinition.multiplicity>
         </UML:TagDefinition>
+        <UML:CallEvent xmi.id = 'Im211f237m1047fe46337mm7a5a' name = 'login' isSpecification = 'false'>
+          <UML:Event.parameter>
+            <UML:Parameter xmi.id = 'Im211f237m1047fe46337mm7a54' name = 'uid' isSpecification = 'false'
+              kind = 'in'>
+              <UML:Parameter.type>
+                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+              </UML:Parameter.type>
+            </UML:Parameter>
+            <UML:Parameter xmi.id = 'Im211f237m1047fe46337mm7a53' name = 'pwd' isSpecification = 'false'
+              kind = 'in'>
+              <UML:Parameter.type>
+                <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+              </UML:Parameter.type>
+            </UML:Parameter>
+          </UML:Event.parameter>
+        </UML:CallEvent>
+        <UML:Class xmi.id = 'Im211f237m1047fe46337mm7a55' name = 'java::lang::int'
+          visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false' isActive = 'false'/>
+        <UML:CallEvent xmi.id = 'Im211f237m1047fe46337mm7a3f' name = 'logout' isSpecification = 'false'/>
+        <UML:Stereotype xmi.id = 'Im211f237m1047fe46337mm7a36' name = 'asynchronous'
+          visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'>
+          <UML:Stereotype.baseClass>Operation</UML:Stereotype.baseClass>
+        </UML:Stereotype>
+        <UML:CallEvent xmi.id = 'Im211f237m1047fe46337mm78d6' name = 'addContact'
+          isSpecification = 'false'>
+          <UML:Event.parameter>
+            <UML:Parameter xmi.id = 'Im211f237m1047fe46337mm78d1' name = 'c' isSpecification = 'false'
+              kind = 'in'>
+              <UML:Parameter.type>
+                <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm3848'/>
+              </UML:Parameter.type>
+            </UML:Parameter>
+          </UML:Event.parameter>
+        </UML:CallEvent>
+        <UML:CallEvent xmi.id = 'Im211f237m1047fe46337mm78c1' name = 'send' isSpecification = 'false'>
+          <UML:Event.parameter>
+            <UML:Parameter xmi.id = 'Im211f237m1047fe46337mm78bc' name = 'msg' isSpecification = 'false'
+              kind = 'in'>
+              <UML:Parameter.type>
+                <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm383a'/>
+              </UML:Parameter.type>
+            </UML:Parameter>
+          </UML:Event.parameter>
+        </UML:CallEvent>
       </UML:Namespace.ownedElement>
     </UML:Model>
+    <UML:StateMachine xmi.id = 'Im211f237m1047fe46337mm7a8c' name = 'StateMachine_1'
+      isSpecification = 'false'>
+      <UML:StateMachine.context>
+        <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm378c'/>
+      </UML:StateMachine.context>
+      <UML:StateMachine.top>
+        <UML:CompositeState xmi.id = 'Im211f237m1047fe46337mm7a8b' name = '' isSpecification = 'false'
+          isConcurrent = 'false'>
+          <UML:CompositeState.subvertex>
+            <UML:Pseudostate xmi.id = 'Im211f237m1047fe46337mm7a87' name = 'start' visibility = 'public'
+              isSpecification = 'false' kind = 'initial'>
+              <UML:StateVertex.outgoing>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm7a6c'/>
+              </UML:StateVertex.outgoing>
+            </UML:Pseudostate>
+            <UML:SimpleState xmi.id = 'Im211f237m1047fe46337mm7a82' name = 'Disconnected'
+              visibility = 'public' isSpecification = 'false'>
+              <UML:StateVertex.outgoing>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm7a63'/>
+              </UML:StateVertex.outgoing>
+              <UML:StateVertex.incoming>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm7a6c'/>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm7a48'/>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm78f8'/>
+              </UML:StateVertex.incoming>
+            </UML:SimpleState>
+            <UML:SimpleState xmi.id = 'Im211f237m1047fe46337mm7a77' name = 'Connected'
+              visibility = 'public' isSpecification = 'false'>
+              <UML:StateVertex.outgoing>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm7a48'/>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm78f8'/>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm78db'/>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm78c6'/>
+              </UML:StateVertex.outgoing>
+              <UML:StateVertex.incoming>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm7a63'/>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm78db'/>
+                <UML:Transition xmi.idref = 'Im211f237m1047fe46337mm78c6'/>
+              </UML:StateVertex.incoming>
+              <UML:State.internalTransition>
+                <UML:Transition xmi.id = 'Im211f237m1047fe46337mm78db' name = 'anon' isSpecification = 'false'>
+                  <UML:Transition.trigger>
+                    <UML:CallEvent xmi.idref = 'Im211f237m1047fe46337mm78d6'/>
+                  </UML:Transition.trigger>
+                  <UML:Transition.source>
+                    <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a77'/>
+                  </UML:Transition.source>
+                  <UML:Transition.target>
+                    <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a77'/>
+                  </UML:Transition.target>
+                </UML:Transition>
+                <UML:Transition xmi.id = 'Im211f237m1047fe46337mm78c6' name = 'anon' isSpecification = 'false'>
+                  <UML:Transition.trigger>
+                    <UML:CallEvent xmi.idref = 'Im211f237m1047fe46337mm78c1'/>
+                  </UML:Transition.trigger>
+                  <UML:Transition.source>
+                    <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a77'/>
+                  </UML:Transition.source>
+                  <UML:Transition.target>
+                    <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a77'/>
+                  </UML:Transition.target>
+                </UML:Transition>
+              </UML:State.internalTransition>
+            </UML:SimpleState>
+          </UML:CompositeState.subvertex>
+        </UML:CompositeState>
+      </UML:StateMachine.top>
+      <UML:StateMachine.transitions>
+        <UML:Transition xmi.id = 'Im211f237m1047fe46337mm7a6c' isSpecification = 'false'>
+          <UML:Transition.source>
+            <UML:Pseudostate xmi.idref = 'Im211f237m1047fe46337mm7a87'/>
+          </UML:Transition.source>
+          <UML:Transition.target>
+            <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a82'/>
+          </UML:Transition.target>
+        </UML:Transition>
+        <UML:Transition xmi.id = 'Im211f237m1047fe46337mm7a63' isSpecification = 'false'>
+          <UML:Transition.trigger>
+            <UML:CallEvent xmi.idref = 'Im211f237m1047fe46337mm7a5a'/>
+          </UML:Transition.trigger>
+          <UML:Transition.source>
+            <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a82'/>
+          </UML:Transition.source>
+          <UML:Transition.target>
+            <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a77'/>
+          </UML:Transition.target>
+        </UML:Transition>
+        <UML:Transition xmi.id = 'Im211f237m1047fe46337mm7a48' isSpecification = 'false'>
+          <UML:Transition.trigger>
+            <UML:CallEvent xmi.idref = 'Im211f237m1047fe46337mm7a3f'/>
+          </UML:Transition.trigger>
+          <UML:Transition.source>
+            <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a77'/>
+          </UML:Transition.source>
+          <UML:Transition.target>
+            <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a82'/>
+          </UML:Transition.target>
+        </UML:Transition>
+        <UML:Transition xmi.id = 'Im211f237m1047fe46337mm78f8' isSpecification = 'false'>
+          <UML:Transition.guard>
+            <UML:Guard xmi.id = 'Im211f237m1047fe46337mm78e5' name = '' visibility = 'public'
+              isSpecification = 'false'>
+              <UML:Guard.expression>
+                <UML:BooleanExpression xmi.id = 'Im211f237m1047fe46337mm78e4' language = 'java'
+                  body = '!connection.isConnected()'/>
+              </UML:Guard.expression>
+            </UML:Guard>
+          </UML:Transition.guard>
+          <UML:Transition.source>
+            <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a77'/>
+          </UML:Transition.source>
+          <UML:Transition.target>
+            <UML:SimpleState xmi.idref = 'Im211f237m1047fe46337mm7a82'/>
+          </UML:Transition.target>
+        </UML:Transition>
+      </UML:StateMachine.transitions>
+    </UML:StateMachine>
     <UML:A_context_raisedSignal>
       <UML:Operation xmi.idref = 'I4cc96e20m104371c528dmm7bf2'/>
       <UML:Exception xmi.idref = 'I4cc96e20m104371c528dmm7ba0'/>
