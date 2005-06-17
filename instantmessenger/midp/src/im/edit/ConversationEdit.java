@@ -4,7 +4,7 @@ package im.edit;
 /**
  * <p></p>
  */
-public class ConversationEdit implements observer.Observer, im.view.ConversationViewListener {
+public class ConversationEdit implements im.view.ConversationViewListener, observer.Observer {
 
 /**
  * <p>Represents ...</p>

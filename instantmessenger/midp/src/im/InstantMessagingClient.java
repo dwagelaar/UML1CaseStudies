@@ -5,7 +5,7 @@ import im.ExceptionReporter;
 /**
  * <p></p>
  */
-public class InstantMessagingClient extends javax.microedition.midlet.MIDlet implements im.ExceptionReporter, observer.Observer {
+public class InstantMessagingClient extends javax.microedition.midlet.MIDlet implements observer.Observer, im.ExceptionReporter {
 
 /**
  * <p>Represents ...</p>
@@ -20,22 +20,22 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
 /**
  * <p>Represents ...</p>
  */
-    private java.util.Vector conversation = new java.util.Vector();
-
-/**
- * <p>Represents ...</p>
- */
     private im.model.ContactList contactList = new im.model.ContactList();
 
 /**
  * <p>Represents ...</p>
  */
-    private java.util.Vector network = new java.util.Vector();
+    private java.util.Vector conversation = new java.util.Vector();
 
 /**
  * <p>Represents ...</p>
  */
     private im.view.ViewFactory viewFactory = null;
+
+/**
+ * <p>Represents ...</p>
+ */
+    private java.util.Vector network = new java.util.Vector();
 
 /**
  * <p>Does ...</p>
@@ -127,17 +127,6 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * 
  * 
- * @param viewFactory 
- */
-    public void setViewFactory(im.view.ViewFactory viewFactory) {        
-        this.viewFactory = viewFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param contactList 
  */
     public void setContactList(im.model.ContactList contactList) {        
@@ -149,21 +138,10 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * 
  * 
- * @return 
+ * @param viewFactory 
  */
-    public java.util.Vector getNetworks() {        
-        return network;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.view.ViewFactory getViewFactory() {        
-        return viewFactory;
+    public void setViewFactory(im.view.ViewFactory viewFactory) {        
+        this.viewFactory = viewFactory;
     } 
 
 /**
@@ -184,8 +162,30 @@ public class InstantMessagingClient extends javax.microedition.midlet.MIDlet imp
  * 
  * @return 
  */
+    public java.util.Vector getNetworks() {        
+        return network;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
     public java.util.Vector getConversations() {        
         return conversation;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public im.view.ViewFactory getViewFactory() {        
+        return viewFactory;
     } 
 
 /**

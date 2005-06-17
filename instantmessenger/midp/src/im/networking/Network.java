@@ -67,6 +67,24 @@ public abstract class Network {
  * 
  * 
  * 
+ * @param recvContact 
+ */
+    public void setRecvContact(im.model.Contact recvContact) {        
+        // Begin Observable stanza
+        if (this.recvContact != recvContact) {
+            // Begin original body
+        this.recvContact = recvContact;
+            // End original body
+            notifyObservers("RecvContact", recvContact);
+        }
+        // End Observable stanza
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param recvMsg 
  */
     public void setRecvMsg(im.model.Message recvMsg) {        
@@ -103,17 +121,10 @@ public abstract class Network {
  * 
  * 
  * 
- * @param recvContact 
+ * @return 
  */
-    public void setRecvContact(im.model.Contact recvContact) {        
-        // Begin Observable stanza
-        if (this.recvContact != recvContact) {
-            // Begin original body
-        this.recvContact = recvContact;
-            // End original body
-            notifyObservers("RecvContact", recvContact);
-        }
-        // End Observable stanza
+    public im.model.Contact getRecvContact() {        
+        return recvContact;
     } 
 
 /**
@@ -136,17 +147,6 @@ public abstract class Network {
  */
     public String getName() {        
         return name;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
-    public im.model.Contact getRecvContact() {        
-        return recvContact;
     } 
 
 /**

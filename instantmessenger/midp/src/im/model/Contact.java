@@ -31,28 +31,6 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param list 
- */
-    public void setList(im.model.ContactList list) {        
-        // Begin Observable stanza
-        if (this.list != list) {
-            // Begin original body
-        if (this.list != list) {
-            if (this.list != null) this.list.removeContact(this);
-            this.list = list;
-            if (list != null) list.addContact(this);
-        }
-            // End original body
-            notifyObservers("List", list);
-        }
-        // End Observable stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
  * @param userId 
  */
     public void setUserId(String userId) {        
@@ -71,15 +49,19 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @param status 
+ * @param list 
  */
-    public void setStatus(String status) {        
+    public void setList(im.model.ContactList list) {        
         // Begin Observable stanza
-        if (this.status != status) {
+        if (this.list != list) {
             // Begin original body
-        this.status = status;
+        if (this.list != list) {
+            if (this.list != null) this.list.removeContact(this);
+            this.list = list;
+            if (list != null) list.addContact(this);
+        }
             // End original body
-            notifyObservers("Status", status);
+            notifyObservers("List", list);
         }
         // End Observable stanza
     } 
@@ -107,10 +89,17 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * 
  * 
- * @return 
+ * @param status 
  */
-    public im.model.ContactList getList() {        
-        return list;
+    public void setStatus(String status) {        
+        // Begin Observable stanza
+        if (this.status != status) {
+            // Begin original body
+        this.status = status;
+            // End original body
+            notifyObservers("Status", status);
+        }
+        // End Observable stanza
     } 
 
 /**
@@ -131,8 +120,8 @@ public class Contact extends im.model.NetworkSpecificData {
  * 
  * @return 
  */
-    public String getStatus() {        
-        return status;
+    public im.model.ContactList getList() {        
+        return list;
     } 
 
 /**
@@ -144,5 +133,16 @@ public class Contact extends im.model.NetworkSpecificData {
  */
     public String getName() {        
         return name;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
+ * @return 
+ */
+    public String getStatus() {        
+        return status;
     } 
  }
