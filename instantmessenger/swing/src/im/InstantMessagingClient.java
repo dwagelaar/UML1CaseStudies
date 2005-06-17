@@ -20,12 +20,12 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List network = new java.util.ArrayList();
+    private java.util.List conversation = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
  */
-    private java.util.List conversation = new java.util.ArrayList();
+    private java.util.List network = new java.util.ArrayList();
 
 /**
  * <p>Represents ...</p>
@@ -88,6 +88,17 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
+ * @param contactList 
+ */
+    public void setContactList(im.model.ContactList contactList) {        
+        this.contactList = contactList;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param viewFactory 
  */
     public void setViewFactory(im.view.ViewFactory viewFactory) {        
@@ -99,10 +110,10 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * 
  * 
- * @param contactList 
+ * @return 
  */
-    public void setContactList(im.model.ContactList contactList) {        
-        this.contactList = contactList;
+    public im.model.ContactList getContactList() {        
+        return contactList;
     } 
 
 /**
@@ -123,17 +134,6 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * @return 
  */
-    public im.view.ViewFactory getViewFactory() {        
-        return viewFactory;
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @return 
- */
     public java.util.List getNetworks() {        
         return network;
     } 
@@ -145,8 +145,8 @@ public class InstantMessagingClient extends java.applet.Applet implements java.u
  * 
  * @return 
  */
-    public im.model.ContactList getContactList() {        
-        return contactList;
+    public im.view.ViewFactory getViewFactory() {        
+        return viewFactory;
     } 
 
 /**

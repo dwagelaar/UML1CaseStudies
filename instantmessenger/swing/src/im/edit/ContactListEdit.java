@@ -52,6 +52,17 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
  * 
  * 
  * 
+ * @param view 
+ */
+    public void setView(im.view.ContactListView view) {        
+        this.view = view;
+    } 
+
+/**
+ * <p>Does ...</p>
+ * 
+ * 
+ * 
  * @param model 
  */
     public void setModel(im.model.ContactList model) {        
@@ -62,17 +73,6 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
         // End original body
         if (model != null) model.addObserver(this);
         // End subscribe stanza
-    } 
-
-/**
- * <p>Does ...</p>
- * 
- * 
- * 
- * @param view 
- */
-    public void setView(im.view.ContactListView view) {        
-        this.view = view;
     } 
 
 /**
@@ -93,8 +93,8 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
  * 
  * @return 
  */
-    public im.model.ContactList getModel() {        
-        return model;
+    public im.view.ContactListView getView() {        
+        return view;
     } 
 
 /**
@@ -104,8 +104,8 @@ public class ContactListEdit implements im.view.ContactListViewListener, im.view
  * 
  * @return 
  */
-    public im.view.ContactListView getView() {        
-        return view;
+    public im.model.ContactList getModel() {        
+        return model;
     } 
 
 /**

@@ -9,12 +9,12 @@ public class ContactEdit implements java.util.Observer {
 /**
  * <p>Represents ...</p>
  */
-    private im.edit.ContactListEdit listEdit = null;
+    private im.model.Contact model = null;
 
 /**
  * <p>Represents ...</p>
  */
-    private im.model.Contact model = null;
+    private im.edit.ContactListEdit listEdit = null;
 
 /**
  * <p>Does ...</p>
