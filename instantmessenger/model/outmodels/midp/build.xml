@@ -102,6 +102,16 @@
 			<arg value="--out"/>
 				<arg value="DATATYPES=im-midp-16-DataTypes.xmi"/>
 				<arg value="DATATYPESM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+
+			<arg value="--next"/>
+			<arg value="--trans"/>
+				<arg value="file:../../../../transformations/AsyncMethods.asm"/>
+			<arg value="--in"/>
+				<arg value="DATATYPES=im-midp-16-DataTypes.xmi"/>
+				<arg value="DATATYPESM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+			<arg value="--out"/>
+				<arg value="ASYNC=im-midp-17-Async.xmi"/>
+				<arg value="ASYNCM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
 		</java>
 	</target>
 		
@@ -192,7 +202,7 @@
 	
 	<target name="output" depends="im-midp-refine">
 		<exec dir="." executable="../../../../transformations/forOutput.sh" output="im-midp-output.xmi" logError="true">
-			<arg line="im-midp-16-DataTypes.xmi"/>
+			<arg line="im-midp-17-Async.xmi"/>
 		</exec>
 	</target>
 	
