@@ -1,4 +1,4 @@
-; Fri Jun 03 17:10:42 CEST 2005
+; Tue Aug 23 15:38:46 CEST 2005
 ; 
 ;+ (version "3.0")
 ;+ (build "Build 141")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[InstantMessengerFeatures_ProjectKB_Instance_20044]
-		[InstantMessengerFeatures_ProjectKB_Instance_20045]
-		[InstantMessengerFeatures_ProjectKB_Instance_30046]
-		[InstantMessengerFeatures_ProjectKB_Instance_30047]
-		[InstantMessengerFeatures_ProjectKB_Instance_30048]))
+		[InstantMessengerFeatures_ProjectKB_Instance_40576]
+		[InstantMessengerFeatures_ProjectKB_Instance_40577]
+		[InstantMessengerFeatures_ProjectKB_Instance_40578]
+		[InstantMessengerFeatures_ProjectKB_Instance_40579]
+		[InstantMessengerFeatures_ProjectKB_Instance_40580]))
 
 ([CLSES_TAB] of  Widget
 
@@ -52,9 +52,6 @@
 
 	(name "owl_namespace")
 	(string_value "http://owl.protege.stanford.edu"))
-
-([Instance_2531] of  Property_List
-)
 
 ([Instance_2534] of  Widget
 
@@ -186,12 +183,6 @@
 	(properties
 		[Instance_96]
 		[Instance_97]))
-
-([Instance_89] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [Instance_2531])
-	(widget_class_name "edu.stanford.smi.protegex.owl.jena.rdql.RDQLTab"))
 
 ([Instance_91] of  Integer
 
@@ -336,15 +327,41 @@
 	(property_list [InstantMessengerFeatures_ProjectKB_Instance_21])
 	(widget_class_name "edu.stanford.smi.protegex.owl.swrl.ui.tab.SWRLTab"))
 
-([InstantMessengerFeatures_ProjectKB_Instance_20044] of  String
+([InstantMessengerFeatures_ProjectKB_Instance_20000] of  Widget
 
-	(name "owl:Class")
-	(string_value "%3ANAME"))
+	(is_hidden FALSE)
+	(name "context:isRelativeTo")
+	(property_list [InstantMessengerFeatures_ProjectKB_Instance_20001]))
 
-([InstantMessengerFeatures_ProjectKB_Instance_20045] of  String
+([InstantMessengerFeatures_ProjectKB_Instance_20001] of  Property_List
+)
 
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
+([InstantMessengerFeatures_ProjectKB_Instance_20002] of  Widget
+
+	(is_hidden FALSE)
+	(name "context:isRelativeTo")
+	(property_list [InstantMessengerFeatures_ProjectKB_Instance_20003]))
+
+([InstantMessengerFeatures_ProjectKB_Instance_20003] of  Property_List
+)
+
+([InstantMessengerFeatures_ProjectKB_Instance_20004] of  Widget
+
+	(is_hidden FALSE)
+	(name "context:isRelativeTo")
+	(property_list [InstantMessengerFeatures_ProjectKB_Instance_20005]))
+
+([InstantMessengerFeatures_ProjectKB_Instance_20005] of  Property_List
+)
+
+([InstantMessengerFeatures_ProjectKB_Instance_20014] of  Widget
+
+	(is_hidden FALSE)
+	(name "context:isRelativeTo")
+	(property_list [InstantMessengerFeatures_ProjectKB_Instance_20015]))
+
+([InstantMessengerFeatures_ProjectKB_Instance_20015] of  Property_List
+)
 
 ([InstantMessengerFeatures_ProjectKB_Instance_20046] of  Widget
 
@@ -430,30 +447,6 @@
 	(property_list [InstantMessengerFeatures_ProjectKB_Instance_31])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
 
-([InstantMessengerFeatures_ProjectKB_Instance_30044] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:size")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_30045]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_30045] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_30046] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([InstantMessengerFeatures_ProjectKB_Instance_30047] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([InstantMessengerFeatures_ProjectKB_Instance_30048] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
-
 ([InstantMessengerFeatures_ProjectKB_Instance_31] of  Property_List
 )
 
@@ -505,176 +498,84 @@
 	(property_list [InstantMessengerFeatures_ProjectKB_Instance_41])
 	(widget_class_name "edu.stanford.smi.RemoteKBTab.UMLSTab"))
 
-([InstantMessengerFeatures_ProjectKB_Instance_40046] of  Widget
+([InstantMessengerFeatures_ProjectKB_Instance_40368] of  Widget
 
 	(is_hidden FALSE)
-	(name "context:value")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40047]))
+	(name "rdfs:comment")
+	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40369]))
 
-([InstantMessengerFeatures_ProjectKB_Instance_40047] of  Property_List
+([InstantMessengerFeatures_ProjectKB_Instance_40369] of  Property_List
 )
 
-([InstantMessengerFeatures_ProjectKB_Instance_40048] of  Widget
+([InstantMessengerFeatures_ProjectKB_Instance_40370] of  Widget
 
 	(is_hidden FALSE)
-	(name "context:gender")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40049]))
+	(name "rdfs:seeAlso")
+	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40371]))
 
-([InstantMessengerFeatures_ProjectKB_Instance_40049] of  Property_List
+([InstantMessengerFeatures_ProjectKB_Instance_40371] of  Property_List
 )
 
-([InstantMessengerFeatures_ProjectKB_Instance_40050] of  Widget
+([InstantMessengerFeatures_ProjectKB_Instance_40372] of  Widget
 
 	(is_hidden FALSE)
-	(name "context:age")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40051]))
+	(name "context:isRelativeTo")
+	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40373]))
 
-([InstantMessengerFeatures_ProjectKB_Instance_40051] of  Property_List
+([InstantMessengerFeatures_ProjectKB_Instance_40373] of  Property_List
 )
 
-([InstantMessengerFeatures_ProjectKB_Instance_40052] of  Widget
+([InstantMessengerFeatures_ProjectKB_Instance_40478] of  Widget
 
+	(height 60)
 	(is_hidden FALSE)
-	(name "context:range")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40053]))
+	(name "feature:impliesFeature")
+	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40479])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLInstanceFieldWidget")
+	(width 200)
+	(x 0)
+	(y 240))
 
-([InstantMessengerFeatures_ProjectKB_Instance_40053] of  Property_List
-)
+([InstantMessengerFeatures_ProjectKB_Instance_40479] of  Property_List
 
-([InstantMessengerFeatures_ProjectKB_Instance_40054] of  Widget
+	(properties
+		[InstantMessengerFeatures_ProjectKB_Instance_40480]
+		[InstantMessengerFeatures_ProjectKB_Instance_40481]))
 
-	(is_hidden FALSE)
-	(name "context:size")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40055]))
+([InstantMessengerFeatures_ProjectKB_Instance_40480] of  Boolean
 
-([InstantMessengerFeatures_ProjectKB_Instance_40055] of  Property_List
-)
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-View References to Value  "))
 
-([InstantMessengerFeatures_ProjectKB_Instance_40056] of  Widget
+([InstantMessengerFeatures_ProjectKB_Instance_40481] of  Boolean
 
-	(is_hidden FALSE)
-	(name "context:range")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40057]))
+	(boolean_value FALSE)
+	(name "ButtonDisplayed-Delete Instance"))
 
-([InstantMessengerFeatures_ProjectKB_Instance_40057] of  Property_List
-)
+([InstantMessengerFeatures_ProjectKB_Instance_40576] of  String
 
-([InstantMessengerFeatures_ProjectKB_Instance_40058] of  Widget
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
 
-	(is_hidden FALSE)
-	(name "context:value")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40059]))
+([InstantMessengerFeatures_ProjectKB_Instance_40577] of  String
 
-([InstantMessengerFeatures_ProjectKB_Instance_40059] of  Property_List
-)
+	(name "owl:Class")
+	(string_value "%3ANAME"))
 
-([InstantMessengerFeatures_ProjectKB_Instance_40060] of  Widget
+([InstantMessengerFeatures_ProjectKB_Instance_40578] of  String
 
-	(is_hidden FALSE)
-	(name "context:gender")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40061]))
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
 
-([InstantMessengerFeatures_ProjectKB_Instance_40061] of  Property_List
-)
+([InstantMessengerFeatures_ProjectKB_Instance_40579] of  String
 
-([InstantMessengerFeatures_ProjectKB_Instance_40062] of  Widget
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
 
-	(is_hidden FALSE)
-	(name "context:age")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40063]))
+([InstantMessengerFeatures_ProjectKB_Instance_40580] of  String
 
-([InstantMessengerFeatures_ProjectKB_Instance_40063] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40064] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:size")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40065]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40065] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40066] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:value")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40067]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40067] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40068] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:gender")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40069]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40069] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40070] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:age")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40071]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40071] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40072] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:range")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40073]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40073] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40092] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:size")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40093]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40093] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40094] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:value")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40095]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40095] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40096] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:gender")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40097]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40097] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40098] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:age")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40099]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40099] of  Property_List
-)
-
-([InstantMessengerFeatures_ProjectKB_Instance_40100] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:range")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40101]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40101] of  Property_List
-)
+	(name "owl:Thing")
+	(string_value "%3ANAME"))
 
 ([InstantMessengerFeatures_ProjectKB_Instance_41] of  Property_List
 )
@@ -723,6 +624,11 @@
 	(is_hidden FALSE)
 	(name "rdfs:seeAlso")
 	(property_list [InstantMessengerFeatures_ProjectKB_Instance_51]))
+
+([InstantMessengerFeatures_ProjectKB_Instance_50171] of  String
+
+	(name "OWL-PREDEFINED-PROFILE-URI")
+	(string_value "http://protege.stanford.edu/plugins/owl/OWLProfiles.owl#OWL-DL"))
 
 ([InstantMessengerFeatures_ProjectKB_Instance_51] of  Property_List
 )
@@ -885,72 +791,11 @@
 
 ([KB_307200_Instance_22] of  Property_List
 
-	(name "DisabledTestGroups")
-	(properties [KB_307200_Instance_24]))
+	(name "DisabledTestGroups"))
 
 ([KB_307200_Instance_23] of  Property_List
 
-	(name "DisabledTest")
-	(properties
-		[KB_307200_Instance_25]
-		[KB_307200_Instance_26]
-		[KB_307200_Instance_27]
-		[KB_307200_Instance_28]
-		[KB_307200_Instance_29]
-		[KB_307200_Instance_30]
-		[KB_307200_Instance_31]
-		[KB_307200_Instance_32]
-		[KB_307200_Instance_33]))
-
-([KB_307200_Instance_24] of  Boolean
-
-	(boolean_value TRUE)
-	(name "OWL-DL Tests"))
-
-([KB_307200_Instance_25] of  Boolean
-
-	(boolean_value TRUE)
-	(name "edu.stanford.smi.protegex.owl.testing.owldl.NoTopLevelJunkOWLDLTest"))
-
-([KB_307200_Instance_26] of  Boolean
-
-	(boolean_value TRUE)
-	(name "edu.stanford.smi.protegex.owl.testing.owldl.NoSubclassesOfRDFClassesOWLDLTest"))
-
-([KB_307200_Instance_27] of  Boolean
-
-	(boolean_value TRUE)
-	(name "edu.stanford.smi.protegex.owl.testing.owldl.NoImportOfSystemOntologiesOWLDLTest"))
-
-([KB_307200_Instance_28] of  Boolean
-
-	(boolean_value TRUE)
-	(name "edu.stanford.smi.protegex.owl.testing.owldl.NoClassesOrPropertiesInEnumerationsOWLDLTest"))
-
-([KB_307200_Instance_29] of  Boolean
-
-	(boolean_value TRUE)
-	(name "edu.stanford.smi.protegex.owl.testing.owldl.NoPropertiesWithClassAsRangeOWLDLTest"))
-
-([KB_307200_Instance_30] of  Boolean
-
-	(boolean_value TRUE)
-	(name "edu.stanford.smi.protegex.owl.testing.owldl.NoMetaclassOWLDLTest"))
-
-([KB_307200_Instance_31] of  Boolean
-
-	(boolean_value TRUE)
-	(name "edu.stanford.smi.protegex.owl.testing.owldl.NoSuperOrSubPropertiesOfAnnotationPropertiesTest"))
-
-([KB_307200_Instance_32] of  Boolean
-
-	(boolean_value TRUE)
-	(name "edu.stanford.smi.protegex.owl.testing.owldl.TransitivePropertiesCannotBeFunctionalOWLDLTest"))
-
-([KB_307200_Instance_33] of  Boolean
-
-	(boolean_value TRUE)
-	(name "edu.stanford.smi.protegex.owl.testing.owldl.NoCardiRestrictionOnTransitivePropertiesOWLDLTest"))
+	(name "DisabledTest"))
 
 ([KB_313796_Instance_852] of  Widget
 
@@ -993,15 +838,6 @@
 	(name "ExternalResource")
 	(property_list [XY_Instance_890])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
-
-([KB_484936_Instance_0] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_484936_Instance_1])
-	(widget_class_name "ca.concordia.cs.rql.tab.RqlTab"))
-
-([KB_484936_Instance_1] of  Property_List
-)
 
 ([KB_484936_Instance_10] of  Widget
 
@@ -2372,27 +2208,27 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[KB_420361_Instance_54]
+		[INSTANCE_ANNOTATION_FORM_WIDGET]
+		[KB_313796_Instance_852]
+		[Instance_581]
+		[KB_764103_Instance_545]
+		[KB_553917_Instance_637]
+		[KB_868747_Instance_76]
+		[KB_691299_Instance_537]
 		[KB_379625_Instance_617]
 		[Instance_1005]
 		[STANDARD_FACET_FORM_WIDGET]
-		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[KB_691299_Instance_398]
 		[KB_313796_Instance_943]
-		[KB_313796_Instance_852]
-		[Instance_581]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[KB_303942_Instance_68]
-		[KB_764103_Instance_545]
-		[Instance_443]
 		[KB_465546_Instance_567]
+		[Instance_443]
 		[PAL_FORM_WIDGET]
-		[KB_553917_Instance_637]
-		[KB_301165_Instance_856]
 		[KB_301165_Instance_1013]
-		[KB_868747_Instance_76]
+		[KB_301165_Instance_856]
 		[KB_379625_Instance_777]
-		[STANDARD_CLASS_FORM_WIDGET]
-		[KB_691299_Instance_537])
+		[STANDARD_CLASS_FORM_WIDGET])
 	(default_cls_metaclass "owl:Class")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget")
@@ -2401,12 +2237,12 @@
 		"owl:maxCardinality"
 		":OWL-INFERRED-SUPERCLASSES"
 		"rdf:value"
-		"rdf:type"
 		"rdfs:Container"
-		"owl:someValuesFrom"
+		"rdf:type"
 		"owl:cardinality"
-		"rdf:Property"
+		"owl:someValuesFrom"
 		"rdf:predicate"
+		"rdf:Property"
 		"rdf:object"
 		"rdf:List"
 		"owl:differentFrom"
@@ -2423,20 +2259,20 @@
 		"owl:DatatypeProperty"
 		":OWL-ANONYMOUS-ROOT"
 		"rdf:rest"
-		"rdf:Statement"
 		":FROM"
+		"rdf:Statement"
 		"rdf:first"
 		"rdfs:Bag"
 		":SYSTEM-CLASS"
-		"rdfs:Literal"
 		"rdfs:Alt"
+		"rdfs:Literal"
 		"ExternalResource"
 		"owl:hasValue"
 		"rdfs:Seq"
 		":OWL-INFERRED-SUBCLASSES"
-		"owl:Nothing"
-		":DIRECTED-BINARY-RELATION"
 		"owl:allValuesFrom"
+		":DIRECTED-BINARY-RELATION"
+		"owl:Nothing"
 		"rdf:subject"
 		"owl:oneOf")
 	(next_frame_number 0)
@@ -2492,7 +2328,8 @@
 		[Instance_2470]
 		[KB_307200_Instance_22]
 		[KB_307200_Instance_23]
-		[KB_750102_Instance_44]))
+		[KB_750102_Instance_44]
+		[InstantMessengerFeatures_ProjectKB_Instance_50171]))
 
 ([STANDARD_CLASS_FORM_WIDGET] of  Widget
 
@@ -3304,11 +3141,7 @@
 		[KB_635552_Instance_20]
 		[KB_635552_Instance_22]
 		[KB_635552_Instance_24]
-		[InstantMessengerFeatures_ProjectKB_Instance_40064]
-		[InstantMessengerFeatures_ProjectKB_Instance_40066]
-		[InstantMessengerFeatures_ProjectKB_Instance_40068]
-		[InstantMessengerFeatures_ProjectKB_Instance_40070]
-		[InstantMessengerFeatures_ProjectKB_Instance_40072]))
+		[InstantMessengerFeatures_ProjectKB_Instance_20004]))
 
 ([XY_Instance_2] of  Widget
 
@@ -4867,11 +4700,7 @@
 		[KB_635552_Instance_4]
 		[KB_635552_Instance_6]
 		[KB_635552_Instance_8]
-		[InstantMessengerFeatures_ProjectKB_Instance_30044]
-		[InstantMessengerFeatures_ProjectKB_Instance_40046]
-		[InstantMessengerFeatures_ProjectKB_Instance_40048]
-		[InstantMessengerFeatures_ProjectKB_Instance_40050]
-		[InstantMessengerFeatures_ProjectKB_Instance_40052]))
+		[InstantMessengerFeatures_ProjectKB_Instance_20000]))
 
 ([XY_Instance_541] of  Widget
 
@@ -5100,11 +4929,7 @@
 		[InstantMessengerFeatures_ProjectKB_Instance_20048]
 		[InstantMessengerFeatures_ProjectKB_Instance_20050]
 		[InstantMessengerFeatures_ProjectKB_Instance_20052]
-		[InstantMessengerFeatures_ProjectKB_Instance_40054]
-		[InstantMessengerFeatures_ProjectKB_Instance_40056]
-		[InstantMessengerFeatures_ProjectKB_Instance_40058]
-		[InstantMessengerFeatures_ProjectKB_Instance_40060]
-		[InstantMessengerFeatures_ProjectKB_Instance_40062]))
+		[InstantMessengerFeatures_ProjectKB_Instance_20002]))
 
 ([XY_Instance_592] of  Widget
 
@@ -5415,19 +5240,14 @@
 
 	(properties
 		[XY_Instance_666]
-		[XY_Instance_668]
 		[XY_Instance_670]
 		[XY_Instance_672]
 		[XY_Instance_674]
-		[XY_Instance_676]
-		[XY_Instance_678]
 		[XY_Instance_680]
-		[XY_Instance_683]
-		[XY_Instance_685]
-		[XY_Instance_687]
-		[XY_Instance_689]
-		[XY_Instance_691]
-		[XY_Instance_693]))
+		[XY_Instance_693]
+		[InstantMessengerFeatures_ProjectKB_Instance_40368]
+		[InstantMessengerFeatures_ProjectKB_Instance_40370]
+		[InstantMessengerFeatures_ProjectKB_Instance_40372]))
 
 ([XY_Instance_666] of  Widget
 
@@ -6009,11 +5829,7 @@
 		[KB_635552_Instance_30]
 		[KB_635552_Instance_32]
 		[KB_635552_Instance_34]
-		[InstantMessengerFeatures_ProjectKB_Instance_40092]
-		[InstantMessengerFeatures_ProjectKB_Instance_40094]
-		[InstantMessengerFeatures_ProjectKB_Instance_40096]
-		[InstantMessengerFeatures_ProjectKB_Instance_40098]
-		[InstantMessengerFeatures_ProjectKB_Instance_40100]))
+		[InstantMessengerFeatures_ProjectKB_Instance_20014]))
 
 ([XY_Instance_789] of  Widget
 
