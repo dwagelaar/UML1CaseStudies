@@ -1,4 +1,4 @@
-; Mon May 30 12:51:28 CEST 2005
+; Mon Aug 22 16:39:53 CEST 2005
 ; 
 ;+ (version "3.0")
 ;+ (build "Build 141")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[BuildContext_ProjectKB_Instance_98]
-		[BuildContext_ProjectKB_Instance_99]
-		[BuildContext_ProjectKB_Instance_100]
-		[BuildContext_ProjectKB_Instance_101]
-		[BuildContext_ProjectKB_Instance_102]))
+		[BuildContext_ProjectKB_Instance_20170]
+		[BuildContext_ProjectKB_Instance_20171]
+		[BuildContext_ProjectKB_Instance_20172]
+		[BuildContext_ProjectKB_Instance_20173]
+		[BuildContext_ProjectKB_Instance_20174]))
 
 ([BuildContext_ProjectKB_Instance_0] of  Widget
 
@@ -27,200 +27,14 @@
 	(property_list [BuildContext_ProjectKB_Instance_11])
 	(widget_class_name "edu.stanford.smi.RemoteKBTab.WordNetTab"))
 
-([BuildContext_ProjectKB_Instance_100] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([BuildContext_ProjectKB_Instance_10044] of  Widget
+([BuildContext_ProjectKB_Instance_104] of  Widget
 
 	(is_hidden FALSE)
-	(name "context:range")
-	(property_list [BuildContext_ProjectKB_Instance_10045]))
+	(name "context:isRelativeTo")
+	(property_list [BuildContext_ProjectKB_Instance_105]))
 
-([BuildContext_ProjectKB_Instance_10045] of  Property_List
+([BuildContext_ProjectKB_Instance_105] of  Property_List
 )
-
-([BuildContext_ProjectKB_Instance_10046] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:value")
-	(property_list [BuildContext_ProjectKB_Instance_10047]))
-
-([BuildContext_ProjectKB_Instance_10047] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10048] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:size")
-	(property_list [BuildContext_ProjectKB_Instance_10049]))
-
-([BuildContext_ProjectKB_Instance_10049] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10050] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:age")
-	(property_list [BuildContext_ProjectKB_Instance_10051]))
-
-([BuildContext_ProjectKB_Instance_10051] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10052] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:gender")
-	(property_list [BuildContext_ProjectKB_Instance_10053]))
-
-([BuildContext_ProjectKB_Instance_10053] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10054] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:range")
-	(property_list [BuildContext_ProjectKB_Instance_10055]))
-
-([BuildContext_ProjectKB_Instance_10055] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10056] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:value")
-	(property_list [BuildContext_ProjectKB_Instance_10057]))
-
-([BuildContext_ProjectKB_Instance_10057] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10058] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:size")
-	(property_list [BuildContext_ProjectKB_Instance_10059]))
-
-([BuildContext_ProjectKB_Instance_10059] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10060] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:age")
-	(property_list [BuildContext_ProjectKB_Instance_10061]))
-
-([BuildContext_ProjectKB_Instance_10061] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10062] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:gender")
-	(property_list [BuildContext_ProjectKB_Instance_10063]))
-
-([BuildContext_ProjectKB_Instance_10063] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10064] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:value")
-	(property_list [BuildContext_ProjectKB_Instance_10065]))
-
-([BuildContext_ProjectKB_Instance_10065] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10066] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:size")
-	(property_list [BuildContext_ProjectKB_Instance_10067]))
-
-([BuildContext_ProjectKB_Instance_10067] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10068] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:range")
-	(property_list [BuildContext_ProjectKB_Instance_10069]))
-
-([BuildContext_ProjectKB_Instance_10069] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10070] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:age")
-	(property_list [BuildContext_ProjectKB_Instance_10071]))
-
-([BuildContext_ProjectKB_Instance_10071] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10072] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:gender")
-	(property_list [BuildContext_ProjectKB_Instance_10073]))
-
-([BuildContext_ProjectKB_Instance_10073] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10077] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:value")
-	(property_list [BuildContext_ProjectKB_Instance_10078]))
-
-([BuildContext_ProjectKB_Instance_10078] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10079] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:size")
-	(property_list [BuildContext_ProjectKB_Instance_10080]))
-
-([BuildContext_ProjectKB_Instance_10080] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10081] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:range")
-	(property_list [BuildContext_ProjectKB_Instance_10082]))
-
-([BuildContext_ProjectKB_Instance_10082] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10083] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:age")
-	(property_list [BuildContext_ProjectKB_Instance_10084]))
-
-([BuildContext_ProjectKB_Instance_10084] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_10085] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:gender")
-	(property_list [BuildContext_ProjectKB_Instance_10086]))
-
-([BuildContext_ProjectKB_Instance_10086] of  Property_List
-)
-
-([BuildContext_ProjectKB_Instance_101] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([BuildContext_ProjectKB_Instance_102] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
 
 ([BuildContext_ProjectKB_Instance_11] of  Property_List
 )
@@ -272,6 +86,31 @@
 	(is_hidden TRUE)
 	(property_list [BuildContext_ProjectKB_Instance_21])
 	(widget_class_name "edu.stanford.smi.protegex.owl.swrl.ui.tab.SWRLTab"))
+
+([BuildContext_ProjectKB_Instance_20170] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([BuildContext_ProjectKB_Instance_20171] of  String
+
+	(name "owl:Class")
+	(string_value "%3ANAME"))
+
+([BuildContext_ProjectKB_Instance_20172] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([BuildContext_ProjectKB_Instance_20173] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([BuildContext_ProjectKB_Instance_20174] of  String
+
+	(name "owl:Thing")
+	(string_value "%3ANAME"))
 
 ([BuildContext_ProjectKB_Instance_21] of  Property_List
 )
@@ -384,7 +223,43 @@
 ([BuildContext_ProjectKB_Instance_43] of  Property_List
 )
 
+([BuildContext_ProjectKB_Instance_44] of  Widget
+
+	(is_hidden FALSE)
+	(name "context:isRelativeTo")
+	(property_list [BuildContext_ProjectKB_Instance_45]))
+
+([BuildContext_ProjectKB_Instance_45] of  Property_List
+)
+
+([BuildContext_ProjectKB_Instance_46] of  Widget
+
+	(is_hidden FALSE)
+	(name "context:isRelativeTo")
+	(property_list [BuildContext_ProjectKB_Instance_47]))
+
+([BuildContext_ProjectKB_Instance_47] of  Property_List
+)
+
+([BuildContext_ProjectKB_Instance_48] of  Widget
+
+	(is_hidden FALSE)
+	(name "context:isRelativeTo")
+	(property_list [BuildContext_ProjectKB_Instance_49]))
+
+([BuildContext_ProjectKB_Instance_49] of  Property_List
+)
+
 ([BuildContext_ProjectKB_Instance_5] of  Property_List
+)
+
+([BuildContext_ProjectKB_Instance_50] of  Widget
+
+	(is_hidden FALSE)
+	(name "context:isRelativeTo")
+	(property_list [BuildContext_ProjectKB_Instance_51]))
+
+([BuildContext_ProjectKB_Instance_51] of  Property_List
 )
 
 ([BuildContext_ProjectKB_Instance_6] of  Widget
@@ -404,16 +279,6 @@
 
 ([BuildContext_ProjectKB_Instance_9] of  Property_List
 )
-
-([BuildContext_ProjectKB_Instance_98] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([BuildContext_ProjectKB_Instance_99] of  String
-
-	(name "owl:Class")
-	(string_value "%3ANAME"))
 
 ([BuildEnvironment_ProjectKB_Instance_10054] of  Widget
 
@@ -2317,8 +2182,8 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[KB_420361_Instance_54]
-		[Instance_1005]
 		[KB_379625_Instance_617]
+		[Instance_1005]
 		[STANDARD_FACET_FORM_WIDGET]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[KB_691299_Instance_398]
@@ -2328,16 +2193,16 @@
 		[STANDARD_SLOT_FORM_WIDGET]
 		[KB_303942_Instance_68]
 		[KB_764103_Instance_545]
-		[Instance_443]
 		[KB_465546_Instance_567]
-		[PAL_FORM_WIDGET]
+		[Instance_443]
 		[KB_553917_Instance_637]
-		[KB_301165_Instance_856]
+		[PAL_FORM_WIDGET]
 		[KB_301165_Instance_1013]
+		[KB_301165_Instance_856]
 		[KB_868747_Instance_76]
 		[KB_379625_Instance_777]
-		[STANDARD_CLASS_FORM_WIDGET]
-		[KB_691299_Instance_537])
+		[KB_691299_Instance_537]
+		[STANDARD_CLASS_FORM_WIDGET])
 	(default_cls_metaclass "owl:Class")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget")
@@ -2375,8 +2240,8 @@
 		":SYSTEM-CLASS"
 		"rdfs:Alt"
 		"rdfs:Literal"
-		"owl:hasValue"
 		"ExternalResource"
+		"owl:hasValue"
 		"rdfs:Seq"
 		":OWL-INFERRED-SUBCLASSES"
 		"owl:allValuesFrom"
@@ -3229,11 +3094,7 @@
 		[KB_635552_Instance_20]
 		[KB_635552_Instance_22]
 		[KB_635552_Instance_24]
-		[BuildContext_ProjectKB_Instance_10064]
-		[BuildContext_ProjectKB_Instance_10066]
-		[BuildContext_ProjectKB_Instance_10068]
-		[BuildContext_ProjectKB_Instance_10070]
-		[BuildContext_ProjectKB_Instance_10072]))
+		[BuildContext_ProjectKB_Instance_50]))
 
 ([XY_Instance_2] of  Widget
 
@@ -4199,7 +4060,8 @@
 		[KB_140180_Instance_285]
 		[KB_140180_Instance_287]
 		[KB_140180_Instance_289]
-		[KB_140180_Instance_291]))
+		[KB_140180_Instance_291]
+		[BuildContext_ProjectKB_Instance_104]))
 
 ([XY_Instance_410] of  Widget
 
@@ -4787,11 +4649,7 @@
 		[KB_635552_Instance_4]
 		[KB_635552_Instance_6]
 		[KB_635552_Instance_8]
-		[BuildContext_ProjectKB_Instance_10044]
-		[BuildContext_ProjectKB_Instance_10046]
-		[BuildContext_ProjectKB_Instance_10048]
-		[BuildContext_ProjectKB_Instance_10050]
-		[BuildContext_ProjectKB_Instance_10052]))
+		[BuildContext_ProjectKB_Instance_44]))
 
 ([XY_Instance_541] of  Widget
 
@@ -5020,11 +4878,7 @@
 		[BuildEnvironment_ProjectKB_Instance_10066]
 		[BuildEnvironment_ProjectKB_Instance_10068]
 		[BuildEnvironment_ProjectKB_Instance_10072]
-		[BuildContext_ProjectKB_Instance_10054]
-		[BuildContext_ProjectKB_Instance_10056]
-		[BuildContext_ProjectKB_Instance_10058]
-		[BuildContext_ProjectKB_Instance_10060]
-		[BuildContext_ProjectKB_Instance_10062]))
+		[BuildContext_ProjectKB_Instance_46]))
 
 ([XY_Instance_592] of  Widget
 
@@ -5929,11 +5783,7 @@
 		[KB_635552_Instance_30]
 		[KB_635552_Instance_32]
 		[KB_635552_Instance_34]
-		[BuildContext_ProjectKB_Instance_10077]
-		[BuildContext_ProjectKB_Instance_10079]
-		[BuildContext_ProjectKB_Instance_10081]
-		[BuildContext_ProjectKB_Instance_10083]
-		[BuildContext_ProjectKB_Instance_10085]))
+		[BuildContext_ProjectKB_Instance_48]))
 
 ([XY_Instance_789] of  Widget
 
