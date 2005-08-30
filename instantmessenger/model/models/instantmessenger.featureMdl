@@ -204,6 +204,7 @@
           </config>
         </groupChildren>
       </featureChildren>
+      <constraints text="if (//AWTGUI) then not (//LCDUIGUI) else true()"/>
     </modelChildren>
     <modelChildren xsi:type="featureMdl:RootFeature" guid="/resource/UML1CaseStudies-instantmessenger-model/models/instantmessenger.featureMdl@-6b11d8bf:105e35e58fd:-799d" name="Network" type="None">
       <config guid="/resource/UML1CaseStudies-instantmessenger-model/models/instantmessenger.featureMdl@-6b11d8bf:105e35e58fd:-79b0" name="RootFeature">
@@ -702,7 +703,7 @@
           <featureChildren xsi:type="featureMdl:ConfFeatureGroup" guid="/resource/UML1CaseStudies-instantmessenger-model/models/instantmessenger.featureMdl@-6b11d8bf:105e35e58fd:-78ee" maxOccur="3" origin="//@model/@modelChildren.0/@featureChildren.0">
             <groupChildren xsi:type="featureMdl:ConfGroupedFeature" guid="/resource/UML1CaseStudies-instantmessenger-model/models/instantmessenger.featureMdl@-6b11d8bf:105e35e58fd:-78ed" name="AWTGUI" origin="//@model/@modelChildren.0/@featureChildren.0/@groupChildren.0" checked="true"/>
             <groupChildren xsi:type="featureMdl:ConfGroupedFeature" guid="/resource/UML1CaseStudies-instantmessenger-model/models/instantmessenger.featureMdl@-6b11d8bf:105e35e58fd:-78ec" name="SwingGUI" origin="//@model/@modelChildren.0/@featureChildren.0/@groupChildren.1" checked="true"/>
-            <groupChildren xsi:type="featureMdl:ConfGroupedFeature" guid="/resource/UML1CaseStudies-instantmessenger-model/models/instantmessenger.featureMdl@-6b11d8bf:105e35e58fd:-78eb" name="LCDUIGUI" origin="//@model/@modelChildren.0/@featureChildren.0/@groupChildren.2" checked="true"/>
+            <groupChildren xsi:type="featureMdl:ConfGroupedFeature" guid="/resource/UML1CaseStudies-instantmessenger-model/models/instantmessenger.featureMdl@-6b11d8bf:105e35e58fd:-78eb" name="LCDUIGUI" origin="//@model/@modelChildren.0/@featureChildren.0/@groupChildren.2"/>
           </featureChildren>
         </featureChildren>
         <featureChildren xsi:type="featureMdl:ConfSolitaryFeature" guid="/resource/UML1CaseStudies-instantmessenger-model/models/instantmessenger.featureMdl@-6b11d8bf:105e35e58fd:-78ea" name="Network" origin="//@model/@modelChildren.1" checked="true">
@@ -820,6 +821,8 @@
           </config>
         </featureChildren>
       </specRootFeatures>
+      <constraints text="if (//AWTGUI) then not (//LCDUIGUI) else true()"/>
+      <constraints text="if (//SwingGUI) then not (//LCDUIGUI) else true()"/>
     </modelChildren>
   </model>
   <metaModel guid="/resource/UML1CaseStudies-instantmessenger-model/models/instantmessenger.featureMdl@-6b11d8bf:105e35e58fd:-7ffc" name="Feature Meta-Model">
