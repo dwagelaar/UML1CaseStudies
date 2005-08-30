@@ -1,4 +1,4 @@
-; Tue May 31 14:32:15 CEST 2005
+; Tue Aug 30 14:21:48 CEST 2005
 ; 
 ;+ (version "3.0")
 ;+ (build "Build 141")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[refinements_ProjectKB_Instance_60192]
-		[refinements_ProjectKB_Instance_60193]
-		[refinements_ProjectKB_Instance_60194]
-		[refinements_ProjectKB_Instance_60195]
-		[refinements_ProjectKB_Instance_60196]))
+		[refinements_ProjectKB_Instance_70713]
+		[refinements_ProjectKB_Instance_70714]
+		[refinements_ProjectKB_Instance_70715]
+		[refinements_ProjectKB_Instance_70716]
+		[refinements_ProjectKB_Instance_70717]))
 
 ([CLSES_TAB] of  Widget
 
@@ -1869,27 +1869,27 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[KB_420361_Instance_54]
-		[KB_379625_Instance_617]
-		[Instance_1005]
-		[STANDARD_FACET_FORM_WIDGET]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[KB_691299_Instance_398]
-		[KB_313796_Instance_943]
 		[KB_313796_Instance_852]
 		[Instance_581]
+		[KB_764103_Instance_545]
+		[KB_553917_Instance_637]
+		[KB_868747_Instance_76]
+		[KB_691299_Instance_537]
+		[Instance_1005]
+		[KB_379625_Instance_617]
+		[STANDARD_FACET_FORM_WIDGET]
+		[KB_691299_Instance_398]
+		[KB_313796_Instance_943]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[KB_303942_Instance_68]
-		[KB_764103_Instance_545]
 		[Instance_443]
 		[KB_465546_Instance_567]
 		[PAL_FORM_WIDGET]
-		[KB_553917_Instance_637]
 		[KB_301165_Instance_856]
 		[KB_301165_Instance_1013]
-		[KB_868747_Instance_76]
 		[KB_379625_Instance_777]
-		[STANDARD_CLASS_FORM_WIDGET]
-		[KB_691299_Instance_537])
+		[STANDARD_CLASS_FORM_WIDGET])
 	(default_cls_metaclass "owl:Class")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget")
@@ -1898,12 +1898,12 @@
 		"owl:maxCardinality"
 		":OWL-INFERRED-SUPERCLASSES"
 		"rdf:value"
-		"rdf:type"
 		"rdfs:Container"
-		"owl:someValuesFrom"
+		"rdf:type"
 		"owl:cardinality"
-		"rdf:Property"
+		"owl:someValuesFrom"
 		"rdf:predicate"
+		"rdf:Property"
 		"rdf:object"
 		"rdf:List"
 		"owl:differentFrom"
@@ -1920,20 +1920,20 @@
 		"owl:DatatypeProperty"
 		":OWL-ANONYMOUS-ROOT"
 		"rdf:rest"
-		"rdf:Statement"
 		":FROM"
+		"rdf:Statement"
 		"rdf:first"
 		"rdfs:Bag"
 		":SYSTEM-CLASS"
-		"rdfs:Literal"
 		"rdfs:Alt"
+		"rdfs:Literal"
 		"ExternalResource"
 		"owl:hasValue"
 		"rdfs:Seq"
 		":OWL-INFERRED-SUBCLASSES"
-		":DIRECTED-BINARY-RELATION"
-		"owl:Nothing"
 		"owl:allValuesFrom"
+		"owl:Nothing"
+		":DIRECTED-BINARY-RELATION"
 		"rdf:subject"
 		"owl:oneOf")
 	(next_frame_number 0)
@@ -1981,7 +1981,7 @@
 ([refinements_ProjectKB_Instance_10046] of  Widget
 
 	(is_hidden FALSE)
-	(name "buildsOnJavaUtilPlatform")
+	(name "context:isRelativeTo")
 	(property_list [refinements_ProjectKB_Instance_30047]))
 
 ([refinements_ProjectKB_Instance_10047] of  Widget
@@ -2284,17 +2284,20 @@
 ([refinements_ProjectKB_Instance_30048] of  Widget
 
 	(is_hidden FALSE)
-	(name "buildsOnJavaUtilPlatform")
+	(name "context:isRelativeTo")
 	(property_list [refinements_ProjectKB_Instance_30049]))
 
 ([refinements_ProjectKB_Instance_30049] of  Property_List
 )
 
-([refinements_ProjectKB_Instance_30055] of  Widget
+([refinements_ProjectKB_Instance_30053] of  Widget
 
 	(is_hidden FALSE)
-	(name "buildsOnJavaUtilPlatform")
-	(property_list [refinements_ProjectKB_Instance_40056]))
+	(name "context:isRelativeTo")
+	(property_list [refinements_ProjectKB_Instance_30054]))
+
+([refinements_ProjectKB_Instance_30054] of  Property_List
+)
 
 ([refinements_ProjectKB_Instance_30056] of  Property_List
 )
@@ -2374,9 +2377,6 @@
 	(property_list [refinements_ProjectKB_Instance_41])
 	(widget_class_name "edu.stanford.smi.RemoteKBTab.UMLSTab"))
 
-([refinements_ProjectKB_Instance_40056] of  Property_List
-)
-
 ([refinements_ProjectKB_Instance_40092] of  Property_List
 )
 
@@ -2422,7 +2422,7 @@
 ([refinements_ProjectKB_Instance_44] of  Widget
 
 	(is_hidden FALSE)
-	(name "buildsOnJavaUtilPlatform")
+	(name "context:isRelativeTo")
 	(property_list [refinements_ProjectKB_Instance_45]))
 
 ([refinements_ProjectKB_Instance_45] of  Property_List
@@ -2518,33 +2518,33 @@
 	(property_list [refinements_ProjectKB_Instance_7])
 	(widget_class_name "script.ProtegeScriptTab"))
 
-([refinements_ProjectKB_Instance_60192] of  String
+([refinements_ProjectKB_Instance_7] of  Property_List
+)
 
-	(name "owl:Class")
-	(string_value "%3ANAME"))
-
-([refinements_ProjectKB_Instance_60193] of  String
+([refinements_ProjectKB_Instance_70713] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([refinements_ProjectKB_Instance_60194] of  String
+([refinements_ProjectKB_Instance_70714] of  String
+
+	(name "owl:Class")
+	(string_value "%3ANAME"))
+
+([refinements_ProjectKB_Instance_70715] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([refinements_ProjectKB_Instance_60195] of  String
+([refinements_ProjectKB_Instance_70716] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([refinements_ProjectKB_Instance_60196] of  String
+([refinements_ProjectKB_Instance_70717] of  String
 
 	(name "owl:Thing")
 	(string_value "%3ANAME"))
-
-([refinements_ProjectKB_Instance_7] of  Property_List
-)
 
 ([refinements_ProjectKB_Instance_8] of  Widget
 
@@ -3382,11 +3382,7 @@
 		[KB_635552_Instance_20]
 		[KB_635552_Instance_22]
 		[KB_635552_Instance_24]
-		[refinements_ProjectKB_Instance_20064]
-		[refinements_ProjectKB_Instance_20066]
-		[refinements_ProjectKB_Instance_20068]
-		[refinements_ProjectKB_Instance_20070]
-		[refinements_ProjectKB_Instance_20072]))
+		[refinements_ProjectKB_Instance_30048]))
 
 ([XY_Instance_2] of  Widget
 
@@ -4586,11 +4582,7 @@
 		[refinements_ProjectKB_Instance_40093]
 		[refinements_ProjectKB_Instance_40095]
 		[refinements_ProjectKB_Instance_40097]
-		[refinements_ProjectKB_Instance_50124]
-		[refinements_ProjectKB_Instance_50126]
-		[refinements_ProjectKB_Instance_50128]
-		[refinements_ProjectKB_Instance_50130]
-		[refinements_ProjectKB_Instance_50132]))
+		[refinements_ProjectKB_Instance_10046]))
 
 ([XY_Instance_463] of  Widget
 
@@ -4950,11 +4942,7 @@
 		[KB_635552_Instance_4]
 		[KB_635552_Instance_6]
 		[KB_635552_Instance_8]
-		[refinements_ProjectKB_Instance_10044]
-		[refinements_ProjectKB_Instance_20046]
-		[refinements_ProjectKB_Instance_20048]
-		[refinements_ProjectKB_Instance_20050]
-		[refinements_ProjectKB_Instance_20052]))
+		[refinements_ProjectKB_Instance_44]))
 
 ([XY_Instance_541] of  Widget
 
@@ -5988,11 +5976,7 @@
 		[KB_635552_Instance_30]
 		[KB_635552_Instance_32]
 		[KB_635552_Instance_34]
-		[refinements_ProjectKB_Instance_10047]
-		[refinements_ProjectKB_Instance_10049]
-		[refinements_ProjectKB_Instance_10051]
-		[refinements_ProjectKB_Instance_10053]
-		[refinements_ProjectKB_Instance_10055]))
+		[refinements_ProjectKB_Instance_30053]))
 
 ([XY_Instance_789] of  Widget
 
