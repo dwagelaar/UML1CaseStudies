@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:context="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:java="http://ssel.vub.ac.be/codamos/2005/04/java.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://local/UML1CaseStudies/transformations/EclipseBuildContext.owl#"
+    xmlns:units="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#"
+  xml:base="http://local/UML1CaseStudies/transformations/EclipseBuildContext.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl"/>
+    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl"/>
+  </owl:Ontology>
+  <context:Version rdf:ID="version5">
+    <context:versionNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >5</context:versionNumber>
+  </context:Version>
+  <java:JDK rdf:ID="jdk1.5.0">
+    <java:hasJDKVersion>
+      <context:Version rdf:ID="version1.5">
+        <context:hasSubVersion rdf:resource="#version5"/>
+        <context:versionNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</context:versionNumber>
+      </context:Version>
+    </java:hasJDKVersion>
+  </java:JDK>
+  <context:Platform rdf:ID="eclipseBuildPlatform">
+    <context:providesSoftware rdf:resource="#jdk1.5.0"/>
+  </context:Platform>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 1.3, Build 225.4)  http://protege.stanford.edu -->
