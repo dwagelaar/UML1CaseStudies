@@ -1,63 +1,66 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:context="http://ssel.vub.ac.be/codamos/2005/03/context.owl#"
-    xmlns:java="http://ssel.vub.ac.be/codamos/2005/03/java.owl#"
-    xmlns="http://www.owl-ontologies.com/BuildContext.owl#"
+    xmlns:context="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:java="http://ssel.vub.ac.be/codamos/2005/04/java.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:feature="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#"
-  xml:base="http://www.owl-ontologies.com/BuildContext.owl">
+    xmlns:units="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#"
+    xmlns="http://local/UML1CaseStudies/transformations/BuildContext.owl#"
+    xmlns:feature="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#"
+  xml:base="http://local/UML1CaseStudies/transformations/BuildContext.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/context.owl"/>
-    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/java.owl"/>
-    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl"/>
+    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl"/>
+    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl"/>
+    <owl:imports rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl"/>
   </owl:Ontology>
   <owl:Class rdf:ID="JDKandCLDC">
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
-            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/java.owl#JDK"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JDK"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/java.owl#CLDC"/>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#CLDC"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#InvalidConfiguration"/>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#InvalidConfiguration"/>
   </owl:Class>
   <owl:Class rdf:ID="WirelessToolKit">
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/java.owl#MIDP2"/>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#MIDP2"/>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#J2MEWMA"/>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#J2MEMMAPI"/>
   </owl:Class>
-  <java:JDK rdf:ID="jdk1.5.0">
-    <java:hasJDKVersion>
-      <context:Version rdf:ID="version1.5">
-        <context:hasSubVersion>
-          <context:Version rdf:ID="version5">
+  <context:Version rdf:ID="version5">
+    <context:versionNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+    >5</context:versionNumber>
+  </context:Version>
+  <context:Platform rdf:ID="buildPlatform">
+    <context:providesSoftware>
+      <WirelessToolKit rdf:ID="wtk2.2"/>
+    </context:providesSoftware>
+    <context:providesSoftware>
+      <java:JDK rdf:ID="jdk1.5.0">
+        <java:hasJDKVersion>
+          <context:Version rdf:ID="version1.5">
             <context:versionNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-            >5</context:versionNumber>
+            >1</context:versionNumber>
+            <context:hasSubVersion rdf:resource="#version5"/>
           </context:Version>
-        </context:hasSubVersion>
-        <context:versionNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</context:versionNumber>
-      </context:Version>
-    </java:hasJDKVersion>
-  </java:JDK>
-  <context:Platform rdf:ID="eclipseBuildPlatform">
-    <context:providesSoftware rdf:resource="#jdk1.5.0"/>
+        </java:hasJDKVersion>
+      </java:JDK>
+    </context:providesSoftware>
   </context:Platform>
   <context:Version rdf:ID="version2">
     <context:versionNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
     >2</context:versionNumber>
   </context:Version>
-  <WirelessToolKit rdf:ID="wtk2.2"/>
-  <context:Platform rdf:ID="wtkBuildPlatform">
-    <context:providesSoftware rdf:resource="#wtk2.2"/>
-  </context:Platform>
 </rdf:RDF>
 
 <!-- Created with Protege (with OWL Plugin 1.3, Build 225.4)  http://protege.stanford.edu -->
