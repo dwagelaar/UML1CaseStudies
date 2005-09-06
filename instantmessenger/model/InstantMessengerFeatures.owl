@@ -1,115 +1,64 @@
 <?xml version="1.0"?>
 <rdf:RDF
-    xmlns:context="http://ssel.vub.ac.be/codamos/2005/03/context.owl#"
-    xmlns:java="http://ssel.vub.ac.be/codamos/2005/03/java.owl#"
-    xmlns:buildContext="http://www.owl-ontologies.com/BuildContext.owl#"
+    xmlns:context="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns="http://www.owl-ontologies.com/InstantMessengerFeatures.owl#"
+    xmlns:java="http://ssel.vub.ac.be/codamos/2005/04/java.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
-    xmlns:feature="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#"
-  xml:base="http://www.owl-ontologies.com/InstantMessengerFeatures.owl">
+    xmlns:units="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#"
+    xmlns:feature="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#"
+    xmlns="http://local/UML1CaseStudies/instantmessenger/model/InstantMessengerFeatures.owl#"
+  xml:base="http://local/UML1CaseStudies/instantmessenger/model/InstantMessengerFeatures.owl">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl"/>
-    <owl:imports rdf:resource="http://www.owl-ontologies.com/BuildContext.owl"/>
-    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/java.owl"/>
-    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/context.owl"/>
+    <owl:imports rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl"/>
+    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl"/>
+    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:ID="DefaultJabber">
+  <owl:Class rdf:ID="J2MEWMAPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#J2MEWMA"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="InstantMessagingClient">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="JavaFeature"/>
+    </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#impliesFeature"/>
-        <owl:someValuesFrom rdf:resource="#DefaultJabber"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="CLDCJavaUtilPlatform"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="JabberFrontend"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#JabberFrontend">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="Jabber"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="RequiredJabberWookiePlatform">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/context.owl#providesSoftware"/>
-            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/java.owl#JDKJavaUtil"/>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/context.owl#providesSoftware"/>
-            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/java.owl#StreamJavaIO"/>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/context.owl#Platform"/>
-  </owl:Class>
-  <owl:Class rdf:ID="JabberWookie">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Jabber"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="MEJabber">
-    <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#MEJabber"/>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#impliesFeature"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="#JabberFrontend"/>
-  </owl:Class>
-  <owl:Class rdf:ID="MultipleJabber">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
-            <owl:someValuesFrom rdf:resource="#DefaultJabber"/>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:someValuesFrom rdf:resource="#MEJabber"/>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#InvalidConfiguration"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Local">
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#Local"/>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#InstantMessagingClient"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="Network"/>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="CLDCJavaLangPlatform"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="SwingAndLCDUI">
+  <owl:Class rdf:ID="JavaxMicroeditionLCDUIPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
     <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
-            <owl:someValuesFrom>
-              <owl:Class rdf:ID="LCDUIGUI"/>
-            </owl:someValuesFrom>
-          </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
-            <owl:someValuesFrom>
-              <owl:Class rdf:ID="SwingGUI"/>
-            </owl:someValuesFrom>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaxMicroeditionLCDUI"/>
+      </owl:Restriction>
     </owl:equivalentClass>
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#InvalidConfiguration"/>
   </owl:Class>
   <owl:Class rdf:ID="AWTGUI">
     <rdfs:subClassOf>
@@ -117,158 +66,325 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#impliesFeature"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="JavaAWTEventPlatform"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
         <owl:someValuesFrom rdf:resource="#AWTGUI"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#UserInterface">
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#Feature"/>
-  </owl:Class>
-  <owl:Class rdf:about="#SwingGUI">
-    <rdfs:subClassOf rdf:resource="#UserInterface"/>
+  <owl:Class rdf:ID="Jabber">
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#impliesFeature"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#CLDCJavaUtilPlatform"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Network"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="StreamJavaIOPlatform"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="JavaxMicroeditionIOPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaxMicroeditionIO"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+  </owl:Class>
+  <owl:Class rdf:about="#CLDCJavaUtilPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#CLDCJavaUtil"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+  </owl:Class>
+  <owl:Class rdf:about="#CLDCJavaLangPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#CLDCJavaLang"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaFeature">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaVM"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#Feature"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SwingGUI">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="JavaxSwingPlatform"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
         <owl:someValuesFrom rdf:resource="#SwingGUI"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="InstantMessagingClient">
     <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#InstantMessagingClient"/>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#impliesFeature"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#Feature"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Jabber">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Network"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="SMS">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="#Network"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#SMS"/>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#impliesFeature"/>
-      </owl:Restriction>
+      <owl:Class rdf:about="#UserInterface"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#Network">
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#Feature"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#CLDCJavaLangPlatform"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#JavaFeature"/>
   </owl:Class>
-  <owl:Class rdf:ID="AWTAndLCDUI">
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#InvalidConfiguration"/>
+  <owl:Class rdf:ID="Local">
+    <rdfs:subClassOf rdf:resource="#Network"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Local"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#UserInterface">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+        <owl:allValuesFrom rdf:resource="#CLDCJavaUtilPlatform"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#CLDCJavaLangPlatform"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#JavaFeature"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LCDUIGUI">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#LCDUIGUI"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#UserInterface"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+        <owl:allValuesFrom rdf:resource="#JavaxMicroeditionLCDUIPlatform"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="JabberWookie">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#JabberWookie"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Jabber"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MEJabber">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#MEJabber"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+        <owl:allValuesFrom rdf:resource="#JavaxMicroeditionIOPlatform"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="JabberFrontend"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#StreamJavaIOPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#StreamJavaIO"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="SMS">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#SMS"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="#Network"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#J2MEWMAPlatform"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="JabberWookieWithoutFrontend">
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#InvalidConfiguration"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
-            <owl:someValuesFrom rdf:resource="#AWTGUI"/>
+            <owl:someValuesFrom rdf:resource="#JabberWookie"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
           </owl:Restriction>
-          <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="#LCDUIGUI"/>
-            </owl:someValuesFrom>
-          </owl:Restriction>
+          <owl:Class>
+            <owl:complementOf>
+              <owl:Restriction>
+                <owl:someValuesFrom>
+                  <owl:Class rdf:about="#JabberFrontend"/>
+                </owl:someValuesFrom>
+                <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+              </owl:Restriction>
+            </owl:complementOf>
+          </owl:Class>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
   </owl:Class>
+  <owl:Class rdf:ID="DefaultJabber">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="JavaNetPlatform"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#DefaultJabber"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JabberFrontend"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#JabberFrontend">
+    <rdfs:subClassOf rdf:resource="#Jabber"/>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaxSwingPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaxSwing"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaNetPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaNet"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaAWTEventPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaAWTEvent"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+  </owl:Class>
   <owl:Class rdf:ID="MandatoryFeatures">
-    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#ValidConfiguration"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
             <owl:someValuesFrom rdf:resource="#InstantMessagingClient"/>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
             <owl:someValuesFrom rdf:resource="#Local"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
             <owl:someValuesFrom rdf:resource="#UserInterface"/>
-            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#ValidConfiguration"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MultipleJabberFrontend">
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#InvalidConfiguration"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#DefaultJabber"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#MEJabber"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
   </owl:Class>
-  <owl:Class rdf:about="#LCDUIGUI">
-    <rdfs:subClassOf rdf:resource="#UserInterface"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/02/feature.owl#impliesFeature"/>
-        <owl:someValuesFrom rdf:resource="#LCDUIGUI"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <Local rdf:ID="local">
+  <JabberWookie rdf:ID="jabberWookie">
+    <feature:impliesFeature rdf:resource="#jabberWookie"/>
+  </JabberWookie>
+  <DefaultJabber rdf:ID="defaultJabber">
     <feature:impliesFeature>
       <InstantMessagingClient rdf:ID="instantMessagingClient">
         <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >../models/InstantMessengerCopy.xmi</feature:implementation>
-        <feature:impliesFeature>
-          <DefaultJabber rdf:ID="defaultJabber">
-            <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
-            <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >../launch/IMJabber.launch</feature:implementation>
-            <feature:impliesFeature>
-              <JabberWookie rdf:ID="jabberWookie">
-                <feature:impliesFeature rdf:resource="#jabberWookie"/>
-              </JabberWookie>
-            </feature:impliesFeature>
-            <feature:impliesFeature rdf:resource="#defaultJabber"/>
-          </DefaultJabber>
-        </feature:impliesFeature>
-        <feature:impliesFeature rdf:resource="#jabberWookie"/>
         <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
       </InstantMessagingClient>
     </feature:impliesFeature>
-    <feature:impliesFeature rdf:resource="#local"/>
-  </Local>
-  <LCDUIGUI rdf:ID="lcduiGUI">
+    <feature:impliesFeature rdf:resource="#defaultJabber"/>
     <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >../launch/IMLCDUI.launch</feature:implementation>
-    <feature:impliesFeature rdf:resource="#lcduiGUI"/>
-    <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
-  </LCDUIGUI>
-  <feature:Configuration rdf:ID="midpConfiguration">
-    <feature:impliesFeature rdf:resource="#lcduiGUI"/>
-    <feature:impliesFeature>
-      <SMS rdf:ID="sms">
-        <feature:impliesFeature rdf:resource="#sms"/>
-        <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >../launch/IMSMS.launch</feature:implementation>
-        <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
-      </SMS>
-    </feature:impliesFeature>
-    <feature:impliesFeature>
-      <MEJabber rdf:ID="meJabber">
-        <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
-        <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >../launch/IMMEJabber.launch</feature:implementation>
-        <feature:impliesFeature rdf:resource="#jabberWookie"/>
-        <feature:impliesFeature rdf:resource="#meJabber"/>
-      </MEJabber>
-    </feature:impliesFeature>
-  </feature:Configuration>
+    >../launch/IMJabber.launch</feature:implementation>
+    <feature:impliesFeature rdf:resource="#jabberWookie"/>
+  </DefaultJabber>
   <feature:Configuration rdf:ID="defaultConfiguration">
     <feature:impliesFeature>
-      <SwingGUI rdf:ID="swingGUI">
-        <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >../launch/IMSwing.launch</feature:implementation>
-        <feature:impliesFeature rdf:resource="#swingGUI"/>
+      <Local rdf:ID="local">
+        <feature:impliesFeature rdf:resource="#local"/>
         <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
-      </SwingGUI>
+      </Local>
     </feature:impliesFeature>
     <feature:impliesFeature>
       <AWTGUI rdf:ID="awtGUI">
@@ -280,9 +396,44 @@
     </feature:impliesFeature>
     <feature:impliesFeature rdf:resource="#defaultJabber"/>
   </feature:Configuration>
-  <feature:Configuration rdf:ID="ppConfiguration">
+  <feature:Configuration rdf:ID="swingConfiguration">
+    <feature:impliesFeature rdf:resource="#defaultJabber"/>
+    <feature:impliesFeature rdf:resource="#local"/>
+    <feature:impliesFeature>
+      <SwingGUI rdf:ID="swingGUI">
+        <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
+        <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >../launch/IMSwing.launch</feature:implementation>
+        <feature:impliesFeature rdf:resource="#swingGUI"/>
+      </SwingGUI>
+    </feature:impliesFeature>
+  </feature:Configuration>
+  <MEJabber rdf:ID="meJabber">
+    <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
+    <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >../launch/IMMEJabber.launch</feature:implementation>
+    <feature:impliesFeature rdf:resource="#jabberWookie"/>
     <feature:impliesFeature rdf:resource="#meJabber"/>
-    <feature:impliesFeature rdf:resource="#awtGUI"/>
+  </MEJabber>
+  <feature:Configuration rdf:ID="midpConfiguration">
+    <feature:impliesFeature rdf:resource="#local"/>
+    <feature:impliesFeature>
+      <LCDUIGUI rdf:ID="lcduiGUI">
+        <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >../launch/IMLCDUI.launch</feature:implementation>
+        <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
+        <feature:impliesFeature rdf:resource="#lcduiGUI"/>
+      </LCDUIGUI>
+    </feature:impliesFeature>
+    <feature:impliesFeature>
+      <SMS rdf:ID="sms">
+        <feature:implementation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >../launch/IMSMS.launch</feature:implementation>
+        <feature:impliesFeature rdf:resource="#sms"/>
+        <feature:impliesFeature rdf:resource="#instantMessagingClient"/>
+      </SMS>
+    </feature:impliesFeature>
+    <feature:impliesFeature rdf:resource="#meJabber"/>
   </feature:Configuration>
 </rdf:RDF>
 

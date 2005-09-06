@@ -1,4 +1,4 @@
-; Tue Aug 23 15:38:46 CEST 2005
+; Wed Aug 31 15:00:41 CEST 2005
 ; 
 ;+ (version "3.0")
 ;+ (build "Build 141")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[InstantMessengerFeatures_ProjectKB_Instance_40576]
-		[InstantMessengerFeatures_ProjectKB_Instance_40577]
-		[InstantMessengerFeatures_ProjectKB_Instance_40578]
-		[InstantMessengerFeatures_ProjectKB_Instance_40579]
-		[InstantMessengerFeatures_ProjectKB_Instance_40580]))
+		[InstantMessengerFeatures_ProjectKB_Instance_30535]
+		[InstantMessengerFeatures_ProjectKB_Instance_30536]
+		[InstantMessengerFeatures_ProjectKB_Instance_30537]
+		[InstantMessengerFeatures_ProjectKB_Instance_30538]
+		[InstantMessengerFeatures_ProjectKB_Instance_30539]))
 
 ([CLSES_TAB] of  Widget
 
@@ -258,6 +258,15 @@
 	(property_list [InstantMessengerFeatures_ProjectKB_Instance_11])
 	(widget_class_name "edu.stanford.smi.RemoteKBTab.WordNetTab"))
 
+([InstantMessengerFeatures_ProjectKB_Instance_10000] of  Widget
+
+	(is_hidden FALSE)
+	(name "context:isRelativeTo")
+	(property_list [InstantMessengerFeatures_ProjectKB_Instance_10001]))
+
+([InstantMessengerFeatures_ProjectKB_Instance_10001] of  Property_List
+)
+
 ([InstantMessengerFeatures_ProjectKB_Instance_10044] of  Widget
 
 	(is_hidden FALSE)
@@ -447,6 +456,31 @@
 	(property_list [InstantMessengerFeatures_ProjectKB_Instance_31])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
 
+([InstantMessengerFeatures_ProjectKB_Instance_30535] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([InstantMessengerFeatures_ProjectKB_Instance_30536] of  String
+
+	(name "owl:Class")
+	(string_value "%3ANAME"))
+
+([InstantMessengerFeatures_ProjectKB_Instance_30537] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([InstantMessengerFeatures_ProjectKB_Instance_30538] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([InstantMessengerFeatures_ProjectKB_Instance_30539] of  String
+
+	(name "owl:Thing")
+	(string_value "%3ANAME"))
+
 ([InstantMessengerFeatures_ProjectKB_Instance_31] of  Property_List
 )
 
@@ -524,58 +558,6 @@
 
 ([InstantMessengerFeatures_ProjectKB_Instance_40373] of  Property_List
 )
-
-([InstantMessengerFeatures_ProjectKB_Instance_40478] of  Widget
-
-	(height 60)
-	(is_hidden FALSE)
-	(name "feature:impliesFeature")
-	(property_list [InstantMessengerFeatures_ProjectKB_Instance_40479])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLInstanceFieldWidget")
-	(width 200)
-	(x 0)
-	(y 240))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40479] of  Property_List
-
-	(properties
-		[InstantMessengerFeatures_ProjectKB_Instance_40480]
-		[InstantMessengerFeatures_ProjectKB_Instance_40481]))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40480] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value  "))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40481] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40576] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40577] of  String
-
-	(name "owl:Class")
-	(string_value "%3ANAME"))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40578] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40579] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([InstantMessengerFeatures_ProjectKB_Instance_40580] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
 
 ([InstantMessengerFeatures_ProjectKB_Instance_41] of  Property_List
 )
@@ -4340,7 +4322,8 @@
 		[InstantMessengerFeatures_ProjectKB_Instance_46]
 		[InstantMessengerFeatures_ProjectKB_Instance_48]
 		[InstantMessengerFeatures_ProjectKB_Instance_50]
-		[InstantMessengerFeatures_ProjectKB_Instance_52]))
+		[InstantMessengerFeatures_ProjectKB_Instance_52]
+		[InstantMessengerFeatures_ProjectKB_Instance_10000]))
 
 ([XY_Instance_463] of  Widget
 
@@ -5262,19 +5245,6 @@
 ([XY_Instance_667] of  Property_List
 )
 
-([XY_Instance_668] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name ":OWL-DIFFERENT-FROM")
-	(property_list [XY_Instance_669])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([XY_Instance_669] of  Property_List
-)
-
 ([XY_Instance_670] of  Widget
 
 	(height 0)
@@ -5315,33 +5285,6 @@
 ([XY_Instance_675] of  Property_List
 )
 
-([XY_Instance_676] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name ":OWL-SAME-AS")
-	(property_list [XY_Instance_677])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([XY_Instance_677] of  Property_List
-)
-
-([XY_Instance_678] of  Widget
-
-	(height 160)
-	(is_hidden FALSE)
-	(name "rdfs:seeAlso")
-	(property_list [XY_Instance_679])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.metadata.AnnotationsWidget")
-	(width 300)
-	(x 300)
-	(y 0))
-
-([XY_Instance_679] of  Property_List
-)
-
 ([XY_Instance_680] of  Property_List
 
 	(name "layout properties")
@@ -5358,64 +5301,6 @@
 
 	(name "vertical_stretcher")
 	(string_value "<<all>>"))
-
-([XY_Instance_683] of  Widget
-
-	(is_hidden FALSE)
-	(name ":TO")
-	(property_list [XY_Instance_684]))
-
-([XY_Instance_684] of  Property_List
-)
-
-([XY_Instance_685] of  Widget
-
-	(is_hidden FALSE)
-	(name ":FROM")
-	(property_list [XY_Instance_686]))
-
-([XY_Instance_686] of  Property_List
-)
-
-([XY_Instance_687] of  Widget
-
-	(height 160)
-	(is_hidden FALSE)
-	(name "rdfs:comment")
-	(property_list [XY_Instance_688])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.metadata.OWLMetadataWidget")
-	(width 300)
-	(x 0)
-	(y 0))
-
-([XY_Instance_688] of  Property_List
-)
-
-([XY_Instance_689] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "rdfs:member")
-	(property_list [XY_Instance_690])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([XY_Instance_690] of  Property_List
-)
-
-([XY_Instance_691] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(name "rdf:value")
-	(property_list [XY_Instance_692])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([XY_Instance_692] of  Property_List
-)
 
 ([XY_Instance_693] of  Widget
 
