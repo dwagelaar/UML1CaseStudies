@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue May 24 15:45:30 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Sep 07 12:36:37 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -715,7 +715,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           isQuery = 'false'>
                           <UML:Method.body>
                             <UML:ProcedureExpression xmi.id = 'I10c3af31m103d4bb57famm1f6a' language = 'java'
-                              body = '        im.InstantMessagingClient.getInstance().play(getClass().getResource(&quot;pop.wav&quot;));&#10;'/>
+                              body = '        try {&#10;            im.InstantMessagingClient.getInstance().play(getClass().getResource(&quot;pop.wav&quot;));&#10;        } catch (Exception e) {&#10;            //some VMs may not support this&#10;        }&#10;'/>
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'I10c3af31m103d4bb57famm1f68'/>
