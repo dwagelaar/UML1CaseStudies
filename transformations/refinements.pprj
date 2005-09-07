@@ -1,4 +1,4 @@
-; Wed Aug 31 15:17:23 CEST 2005
+; Wed Sep 07 13:13:26 CEST 2005
 ; 
 ;+ (version "3.0")
 ;+ (build "Build 141")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[refinements_ProjectKB_Instance_70264]
-		[refinements_ProjectKB_Instance_70265]
-		[refinements_ProjectKB_Instance_70266]
-		[refinements_ProjectKB_Instance_70267]
-		[refinements_ProjectKB_Instance_70268]))
+		[refinements_ProjectKB_Instance_50093]
+		[refinements_ProjectKB_Instance_50094]
+		[refinements_ProjectKB_Instance_50095]
+		[refinements_ProjectKB_Instance_50096]
+		[refinements_ProjectKB_Instance_50097]))
 
 ([CLSES_TAB] of  Widget
 
@@ -1869,27 +1869,27 @@
 	(browser_slot_names [BROWSER_SLOT_NAMES])
 	(customized_instance_widgets
 		[KB_420361_Instance_54]
-		[INSTANCE_ANNOTATION_FORM_WIDGET]
-		[KB_313796_Instance_852]
-		[Instance_581]
-		[KB_764103_Instance_545]
-		[KB_553917_Instance_637]
-		[KB_868747_Instance_76]
-		[KB_691299_Instance_537]
 		[Instance_1005]
 		[KB_379625_Instance_617]
 		[STANDARD_FACET_FORM_WIDGET]
+		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[KB_691299_Instance_398]
 		[KB_313796_Instance_943]
+		[KB_313796_Instance_852]
+		[Instance_581]
 		[STANDARD_SLOT_FORM_WIDGET]
 		[KB_303942_Instance_68]
-		[Instance_443]
+		[KB_764103_Instance_545]
 		[KB_465546_Instance_567]
+		[Instance_443]
 		[PAL_FORM_WIDGET]
-		[KB_301165_Instance_856]
+		[KB_553917_Instance_637]
 		[KB_301165_Instance_1013]
+		[KB_301165_Instance_856]
+		[KB_868747_Instance_76]
 		[KB_379625_Instance_777]
-		[STANDARD_CLASS_FORM_WIDGET])
+		[STANDARD_CLASS_FORM_WIDGET]
+		[KB_691299_Instance_537])
 	(default_cls_metaclass "owl:Class")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget")
@@ -1898,12 +1898,12 @@
 		"owl:maxCardinality"
 		":OWL-INFERRED-SUPERCLASSES"
 		"rdf:value"
-		"rdfs:Container"
 		"rdf:type"
-		"owl:cardinality"
+		"rdfs:Container"
 		"owl:someValuesFrom"
-		"rdf:predicate"
+		"owl:cardinality"
 		"rdf:Property"
+		"rdf:predicate"
 		"rdf:object"
 		"rdf:List"
 		"owl:differentFrom"
@@ -1920,20 +1920,20 @@
 		"owl:DatatypeProperty"
 		":OWL-ANONYMOUS-ROOT"
 		"rdf:rest"
-		":FROM"
 		"rdf:Statement"
+		":FROM"
 		"rdf:first"
 		"rdfs:Bag"
 		":SYSTEM-CLASS"
-		"rdfs:Alt"
 		"rdfs:Literal"
-		"ExternalResource"
+		"rdfs:Alt"
 		"owl:hasValue"
+		"ExternalResource"
 		"rdfs:Seq"
 		":OWL-INFERRED-SUBCLASSES"
-		"owl:allValuesFrom"
-		"owl:Nothing"
 		":DIRECTED-BINARY-RELATION"
+		"owl:Nothing"
+		"owl:allValuesFrom"
 		"rdf:subject"
 		"owl:oneOf")
 	(next_frame_number 0)
@@ -1968,15 +1968,6 @@
 	(is_hidden TRUE)
 	(property_list [refinements_ProjectKB_Instance_11])
 	(widget_class_name "edu.stanford.smi.RemoteKBTab.WordNetTab"))
-
-([refinements_ProjectKB_Instance_10044] of  Widget
-
-	(is_hidden FALSE)
-	(name "javaAccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_10045]))
-
-([refinements_ProjectKB_Instance_10045] of  Property_List
-)
 
 ([refinements_ProjectKB_Instance_10046] of  Widget
 
@@ -2044,96 +2035,6 @@
 	(property_list [refinements_ProjectKB_Instance_21])
 	(widget_class_name "edu.stanford.smi.protegex.owl.swrl.ui.tab.SWRLTab"))
 
-([refinements_ProjectKB_Instance_20044] of  Widget
-
-	(is_hidden FALSE)
-	(name "awtAppletRequires")
-	(property_list [refinements_ProjectKB_Instance_20045]))
-
-([refinements_ProjectKB_Instance_20045] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_20046] of  Widget
-
-	(is_hidden FALSE)
-	(name "awtAppletRequires")
-	(property_list [refinements_ProjectKB_Instance_20047]))
-
-([refinements_ProjectKB_Instance_20047] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_20048] of  Widget
-
-	(is_hidden FALSE)
-	(name "java2AccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_20049]))
-
-([refinements_ProjectKB_Instance_20049] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_20050] of  Widget
-
-	(is_hidden FALSE)
-	(name "javaAccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_20051]))
-
-([refinements_ProjectKB_Instance_20051] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_20052] of  Widget
-
-	(is_hidden FALSE)
-	(name "awtAppletRequires")
-	(property_list [refinements_ProjectKB_Instance_20053]))
-
-([refinements_ProjectKB_Instance_20053] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_20054] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:age")
-	(property_list [refinements_ProjectKB_Instance_20055]))
-
-([refinements_ProjectKB_Instance_20055] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_20056] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:range")
-	(property_list [refinements_ProjectKB_Instance_20057]))
-
-([refinements_ProjectKB_Instance_20057] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_20058] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:size")
-	(property_list [refinements_ProjectKB_Instance_20059]))
-
-([refinements_ProjectKB_Instance_20059] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_20060] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:gender")
-	(property_list [refinements_ProjectKB_Instance_20061]))
-
-([refinements_ProjectKB_Instance_20061] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_20062] of  Widget
-
-	(is_hidden FALSE)
-	(name "context:value")
-	(property_list [refinements_ProjectKB_Instance_20063]))
-
-([refinements_ProjectKB_Instance_20063] of  Property_List
-)
-
 ([refinements_ProjectKB_Instance_20089] of  Widget
 
 	(is_hidden FALSE)
@@ -2199,21 +2100,6 @@
 	(is_hidden TRUE)
 	(property_list [refinements_ProjectKB_Instance_31])
 	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
-
-([refinements_ProjectKB_Instance_30044] of  Widget
-
-	(is_hidden FALSE)
-	(name "runsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_30045]))
-
-([refinements_ProjectKB_Instance_30045] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_30046] of  Widget
-
-	(is_hidden FALSE)
-	(name "javaAccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_40047]))
 
 ([refinements_ProjectKB_Instance_30047] of  Property_List
 )
@@ -2311,57 +2197,6 @@
 	(property_list [refinements_ProjectKB_Instance_41])
 	(widget_class_name "edu.stanford.smi.RemoteKBTab.UMLSTab"))
 
-([refinements_ProjectKB_Instance_40046] of  Widget
-
-	(is_hidden FALSE)
-	(name "buildsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_50047]))
-
-([refinements_ProjectKB_Instance_40047] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_40048] of  Widget
-
-	(is_hidden FALSE)
-	(name "java2AccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_50049]))
-
-([refinements_ProjectKB_Instance_40054] of  Widget
-
-	(is_hidden FALSE)
-	(name "java2AccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_40055]))
-
-([refinements_ProjectKB_Instance_40055] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_40056] of  Widget
-
-	(is_hidden FALSE)
-	(name "javaAccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_40057]))
-
-([refinements_ProjectKB_Instance_40057] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_40058] of  Widget
-
-	(is_hidden FALSE)
-	(name "awtAppletRequires")
-	(property_list [refinements_ProjectKB_Instance_40059]))
-
-([refinements_ProjectKB_Instance_40059] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_40060] of  Widget
-
-	(is_hidden FALSE)
-	(name "java2AccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_40061]))
-
-([refinements_ProjectKB_Instance_40061] of  Property_List
-)
-
 ([refinements_ProjectKB_Instance_40092] of  Property_List
 )
 
@@ -2440,17 +2275,30 @@
 	(name "rdfs:label")
 	(property_list [refinements_ProjectKB_Instance_51]))
 
-([refinements_ProjectKB_Instance_50047] of  Property_List
-)
+([refinements_ProjectKB_Instance_50093] of  String
 
-([refinements_ProjectKB_Instance_50048] of  Widget
+	(name "owl:Class")
+	(string_value "%3ANAME"))
 
-	(is_hidden FALSE)
-	(name "runsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_60049]))
+([refinements_ProjectKB_Instance_50094] of  String
 
-([refinements_ProjectKB_Instance_50049] of  Property_List
-)
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([refinements_ProjectKB_Instance_50095] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([refinements_ProjectKB_Instance_50096] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([refinements_ProjectKB_Instance_50097] of  String
+
+	(name "owl:Thing")
+	(string_value "%3ANAME"))
 
 ([refinements_ProjectKB_Instance_51] of  Property_List
 )
@@ -2470,82 +2318,7 @@
 	(property_list [refinements_ProjectKB_Instance_7])
 	(widget_class_name "script.ProtegeScriptTab"))
 
-([refinements_ProjectKB_Instance_60049] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_60050] of  Widget
-
-	(is_hidden FALSE)
-	(name "buildsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_60051]))
-
-([refinements_ProjectKB_Instance_60051] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_60052] of  Widget
-
-	(is_hidden FALSE)
-	(name "runsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_60053]))
-
-([refinements_ProjectKB_Instance_60053] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_60054] of  Widget
-
-	(is_hidden FALSE)
-	(name "buildsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_60055]))
-
-([refinements_ProjectKB_Instance_60055] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_60056] of  Widget
-
-	(is_hidden FALSE)
-	(name "runsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_60057]))
-
-([refinements_ProjectKB_Instance_60057] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_60058] of  Widget
-
-	(is_hidden FALSE)
-	(name "buildsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_60059]))
-
-([refinements_ProjectKB_Instance_60059] of  Property_List
-)
-
 ([refinements_ProjectKB_Instance_7] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_70052] of  Widget
-
-	(is_hidden FALSE)
-	(name "buildsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_70053]))
-
-([refinements_ProjectKB_Instance_70053] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_70054] of  Widget
-
-	(is_hidden FALSE)
-	(name "java2AccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_70055]))
-
-([refinements_ProjectKB_Instance_70055] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_70056] of  Widget
-
-	(is_hidden FALSE)
-	(name "runsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_70057]))
-
-([refinements_ProjectKB_Instance_70057] of  Property_List
 )
 
 ([refinements_ProjectKB_Instance_70058] of  Widget
@@ -2557,87 +2330,6 @@
 ([refinements_ProjectKB_Instance_70059] of  Property_List
 )
 
-([refinements_ProjectKB_Instance_70060] of  Widget
-
-	(is_hidden FALSE)
-	(name "javaAccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_70061]))
-
-([refinements_ProjectKB_Instance_70061] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_70080] of  Widget
-
-	(is_hidden FALSE)
-	(name "buildsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_70081]))
-
-([refinements_ProjectKB_Instance_70081] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_70082] of  Widget
-
-	(is_hidden FALSE)
-	(name "java2AccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_70083]))
-
-([refinements_ProjectKB_Instance_70083] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_70084] of  Widget
-
-	(is_hidden FALSE)
-	(name "runsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_70085]))
-
-([refinements_ProjectKB_Instance_70085] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_70088] of  Widget
-
-	(is_hidden FALSE)
-	(name "javaAccessorsRequires")
-	(property_list [refinements_ProjectKB_Instance_70089]))
-
-([refinements_ProjectKB_Instance_70089] of  Property_List
-)
-
-([refinements_ProjectKB_Instance_70100] of  Widget
-
-	(height 240)
-	(is_hidden FALSE)
-	(name "requires")
-	(property_list [refinements_ProjectKB_Instance_70101])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLInstanceListWidget")
-	(width 200)
-	(x 400)
-	(y 0))
-
-([refinements_ProjectKB_Instance_70101] of  Property_List
-
-	(properties
-		[refinements_ProjectKB_Instance_70102]
-		[refinements_ProjectKB_Instance_70103]))
-
-([refinements_ProjectKB_Instance_70102] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-View References to Value  "))
-
-([refinements_ProjectKB_Instance_70103] of  Boolean
-
-	(boolean_value FALSE)
-	(name "ButtonDisplayed-Delete Instance"))
-
-([refinements_ProjectKB_Instance_70108] of  Widget
-
-	(is_hidden FALSE)
-	(name "runsOnPlatform")
-	(property_list [refinements_ProjectKB_Instance_70109]))
-
-([refinements_ProjectKB_Instance_70109] of  Property_List
-)
-
 ([refinements_ProjectKB_Instance_70110] of  Widget
 
 	(is_hidden FALSE)
@@ -2646,31 +2338,6 @@
 
 ([refinements_ProjectKB_Instance_70111] of  Property_List
 )
-
-([refinements_ProjectKB_Instance_70264] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([refinements_ProjectKB_Instance_70265] of  String
-
-	(name "owl:Class")
-	(string_value "%3ANAME"))
-
-([refinements_ProjectKB_Instance_70266] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([refinements_ProjectKB_Instance_70267] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([refinements_ProjectKB_Instance_70268] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
 
 ([refinements_ProjectKB_Instance_8] of  Widget
 
