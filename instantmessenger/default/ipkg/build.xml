@@ -12,11 +12,7 @@
 	<property name="ipk.installed-size" value="640KB"/>
 	
 	<target name="clean">
-        <delete>
-        	<fileset dir=".">
-	       		<include name="build/**"/>
-        	</fileset>
-        </delete>
+        <delete dir="build"/>
     </target>
 
 	<target name="prepare" depends="clean">
@@ -35,10 +31,10 @@
 
 	<target name="data" depends="prepare">
 		<tar destfile="build/data.tar.gz" compression="gzip">
-			<tarfileset dir="build/data" username="root" group="qpe" uid="0" gid="500">
+			<tarfileset dir="build/data" prefix="./" username="root" group="qpe" uid="0" gid="500">
 				<exclude name="**/bin/**"/>
 			</tarfileset>
-			<tarfileset dir="build/data" username="root" group="qpe" uid="0" gid="500" mode="755">
+			<tarfileset dir="build/data" prefix="./" username="root" group="qpe" uid="0" gid="500" mode="755">
 				<include name="**/bin/**"/>
 			</tarfileset>
 		</tar>
@@ -57,20 +53,31 @@ Installed-Size: ${ipk.installed-size}
 Description: ${ipk.description}
 </echo>
 		<tar destfile="build/control.tar.gz" compression="gzip">
-			<tarfileset dir="build/control" username="root" group="qpe" uid="0" gid="500"/>
+			<tarfileset dir="build/control" prefix="./" username="root" group="qpe" uid="0" gid="500"/>
 		</tar>
 	</target>
 	
 	<target name="ipk" depends="control">
-		<echo file="build/debian-binary">2.0</echo>
+		<echo file="build/debian-binary">2.0
+</echo>
 		<tar destfile="${ipk.name}_${ipk.version}_${ipk.arch}.ipk" compression="gzip">
-			<tarfileset dir="build" username="root" group="qpe" uid="0" gid="500">
-				<include name="control.tar.gz"/>
-				<include name="data.tar.gz"/>
+			<tarfileset dir="build" prefix="./" username="root" group="qpe" uid="0" gid="500">
 				<include name="debian-binary"/>
+				<include name="data.tar.gz"/>
+				<include name="control.tar.gz"/>
 			</tarfileset>
 		</tar>
 	</target>
 	
-	<target name="all" depends="ipk"/>
+	<target name="deploy" depends="ipk">
+		<scp todir="dwagelaa@ssel.vub.ac.be:/var/www/html/cddtoolkit/instantmessenger/default/ipk"
+			 keyfile="${user.home}/.ssh/id_rsa"
+			 passphrase="${passphrase}">
+			<fileset dir=".">
+				<include name="*.ipk"/>
+			</fileset>
+		</scp>
+	</target>
+	
+	<target name="all" depends="deploy"/>
 </project>

@@ -30,5 +30,16 @@
 		<copy file="../../../microjabberwookie/jar/MicroJabberWookie.jar" todir="."/>
 	</target>
 	
-	<target name="all" depends="jar-sign,jabberwookie"/>
+	<target name="deploy" depends="jar-sign,jabberwookie">
+		<scp todir="dwagelaa@ssel.vub.ac.be:/var/www/html/cddtoolkit/instantmessenger/default/applet"
+			 keyfile="${user.home}/.ssh/id_rsa"
+			 passphrase="${passphrase}">
+			<fileset dir=".">
+				<exclude name="build.xml"/>
+				<exclude name="runim"/>
+			</fileset>
+		</scp>
+	</target>
+	
+	<target name="all" depends="deploy"/>
 </project>
