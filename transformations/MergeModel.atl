@@ -1,0 +1,982 @@
+-- $Id: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa $
+module MergeModel;
+
+create OUT : UML refining IN : UML, MERGE : UML;
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper def : inElements : Set(UML!Element) = UML!Element.allInstancesFrom('IN');
+helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('MERGE');
+
+helper context UML!ModelElement def : isInPackage() : Boolean =
+	not UML!Package.allInstances()->select(p|
+		p=self.namespace and p.oclIsTypeOf(UML!Package))->isEmpty();
+
+helper context UML!ModelElement def : qName() : String =
+	if self.isInPackage() then
+		self.namespace.qName() + '.' + self.name
+	else
+		self.name
+	endif;
+
+------------------------------- Model -----------------------------------
+
+helper def : inModels : Set(UML!Model) = UML!Model.allInstancesFrom('IN');
+
+helper context UML!Model def : notInSourceModel() : Boolean =
+	false;
+
+helper context UML!Model def : fromSourceModel() : UML!Model =
+	thisModule.inModels->asSequence()->first();
+
+------------------------------- Classifier ------------------------------
+
+helper def : inClassifiers : Set(UML!Classifier) = UML!Classifier.allInstancesFrom('IN');
+
+helper context UML!Classifier def : notInSourceModel() : Boolean =
+	thisModule.inClassifiers->select(e|e.qName()=self.qName())->isEmpty();
+
+helper context UML!Classifier def : fromSourceModel() : UML!Classifier =
+	thisModule.inClassifiers->select(e|e.qName()=self.qName())->first();
+
+------------------------------- Package ---------------------------------
+
+helper def : inPackages : Set(UML!Package) = UML!Package.allInstancesFrom('IN');
+
+helper context UML!Package def : notInSourceModel() : Boolean =
+	thisModule.inPackages->select(e|e.qName()=self.qName())->isEmpty();
+
+helper context UML!Package def : fromSourceModel() : UML!Package =
+	thisModule.inPackages->select(e|e.qName()=self.qName())->first();
+
+------------------------------- TagDefinition ---------------------------
+
+helper def : inTagDefinitions : Set(UML!TagDefinition) = UML!TagDefinition.allInstancesFrom('IN');
+
+helper context UML!TagDefinition def : notInSourceModel() : Boolean =
+	thisModule.inTagDefinitions->select(e|e.qName()=self.qName())->isEmpty();
+
+helper context UML!TagDefinition def : fromSourceModel() : UML!TagDefinition =
+	thisModule.inTagDefinitions->select(e|e.qName()=self.qName())->first();
+
+------------------------------- Stereotype ------------------------------
+
+helper def : inStereotypes : Set(UML!Stereotype) = UML!Stereotype.allInstancesFrom('IN');
+
+helper context UML!Stereotype def : notInSourceModel() : Boolean =
+	thisModule.inStereotypes->select(e|e.qName()=self.qName())->isEmpty();
+
+helper context UML!Stereotype def : fromSourceModel() : UML!Stereotype =
+	thisModule.inStereotypes->select(e|e.qName()=self.qName())->first();
+
+------------------------------- Association -----------------------------
+
+helper def : inAssociationEnds : Set(UML!AssociationEnd) = UML!AssociationEnd.allInstancesFrom('IN');
+
+helper context UML!Association def : notInSourceModel() : Boolean =
+	not self.connection->forAll(c|c.inSourceModel());
+
+helper context UML!AssociationEnd def : inSourceModel() : Boolean =
+	if self.isNavigable then
+		not thisModule.inAssociationsEnds->select(e|e.isNavigable)->select(e|
+			e.name=self.name and e.participant.qName()=self.participant.qName())->isEmpty()
+	else if self.otherEnd().isNavigable then
+		self.otherEnd().inSourceModel()
+	else
+		true
+	endif endif;
+
+helper context UML!AssociationEnd def : notInSourceModel() : Boolean =
+	self.association.notInSourceModel();
+
+helper context UML!AssociationEnd def : otherEnd() : UML!AssociationEnd =
+	self.association.connection->select(x|x<>self)->first();
+
+------------------------------- TaggedValue -----------------------------
+
+helper context UML!TaggedValue def : notInSourceModel() : Boolean =
+	self.modelElement.notInSourceModel();
+
+------------------------------- StructuralFeature -----------------------
+
+helper context UML!StructuralFeature def : notInSourceModel() : Boolean =
+	if self.owner.notInSourceModel() then
+		true
+	else
+		self.owner.fromSourceModel().feature->select(f|
+			f.name=self.name and f.oclIsKindOf(UML!StructuralFeature))
+	endif;
+
+------------------------------- Operation -------------------------------
+
+helper context UML!Operation def : notInSourceModel() : Boolean =
+	if self.owner.notInSourceModel() then
+		true
+	else
+		self.owner.fromSourceModel().feature->select(f|
+			f.name=self.name and f.oclIsKindOf(UML!Operation))->select(o|
+				o.hasSameParametersAs(self))->isEmpty()
+	endif;
+
+helper context UML!BehavioralFeature def : hasSameParametersAs(f : UML!BehavioralFeature) : Boolean =
+	f.parameter->select(p|not self.hasSameParameter(p))->isEmpty();
+	
+helper context UML!BehavioralFeature def : hasSameParameter(p : UML!Parameter) : Boolean =
+	not self.parameter->select(sp|sp.kind=p.kind and sp.type.qName()=p.type.qName())->isEmpty();
+
+------------------------------- Method ----------------------------------
+
+helper context UML!Method def : notInSourceModel() : Boolean =
+	if self.owner.notInSourceModel() then
+		true
+	else
+		self.specification.notInSourceModel()
+	endif;
+
+------------------------------- Dependency ------------------------------
+
+helper def : inDependencies : Set(UML!Dependency) = UML!Dependency.allInstancesFrom('IN');
+
+helper context UML!Dependency def : notInSourceModel() : Boolean =
+	thisModule.inDependencies->select(d|
+		d.supplier->forAll(s1|self.supplier->forAll(s2|s1.qName()=s2.qName())) and
+		d.client->forAll(c1|self.client->forAll(c2|c1.qName()=c2.qName())))->isEmpty();
+
+------------------------------- Generalization --------------------------
+
+helper def : inGeneralizations : Set(UML!Generalization) = UML!Generalization.allInstancesFrom('IN');
+
+helper context UML!Generalization def : notInSourceModel() : Boolean =
+	thisModule.inGeneralizations->select(g|
+		g.parent.qName()=self.parent.qName() and
+		g.child.qName()=self.child.qName())->isEmpty();
+
+------------------------------- Parameter -------------------------------
+
+helper context UML!Parameter def : notInSourceModel() : Boolean =
+	if self.behavioralFeature.oclIsUndefined() then
+		not UML!Event.allInstances()->select(e|
+			e.parameter->includes(self) and e.notInSourceModel())->isEmpty()
+	else
+		self.behavioralFeature.notInSourceModel()
+	endif;
+
+------------------------------- Event -----------------------------------
+
+helper context UML!Event def : notInSourceModel() : Boolean =
+	not UML!Transition.allInstances()->select(t|
+		t.trigger=self and t.notInSourceModel())->isEmpty();
+
+------------------------------- Action ----------------------------------
+
+helper context UML!Action def : notInSourceModel() : Boolean =
+	not UML!Transition.allInstances()->select(t|
+		t.effect=self and t.notInSourceModel())->isEmpty();
+
+------------------------------- Guard -----------------------------------
+
+helper context UML!Guard def : notInSourceModel() : Boolean =
+	self.transition.notInSourceModel();
+
+------------------------------- Transition ------------------------------
+
+helper context UML!Transition def : notInSourceModel() : Boolean =
+	self.source.notInSourceModel() or self.target.notInSourceModel();
+
+------------------------------- State -----------------------------------
+
+helper context UML!StateVertex def : svNotInSourceModel() : Boolean =
+	if self.container.notInSourceModel() then
+		true
+	else
+		self.container.fromSourceModel().subvertex->select(v|
+			v.name=self.name)->isEmpty()
+	endif;
+
+helper context UML!StateVertex def : notInSourceModel() : Boolean =
+	self.svNotInSourceModel();
+
+helper context UML!StateVertex def : svFromSourceModel() : UML!StateVertex =
+	self.container.fromSourceModel().subvertex->select(v|
+		v.name=self.name)->first();
+
+helper context UML!StateVertex def : fromSourceModel() : UML!StateVertex =
+	self.svFromSourceModel();
+
+helper context UML!State def : notInSourceModel() : Boolean =
+	if self.container.oclIsUndefined() then
+		self.stateMachine.notInSourceModel()
+	else
+		self.svNotInSourceModel()
+	endif;
+
+helper context UML!State def : fromSourceModel() : UML!State =
+	if self.container.oclIsUndefined() then
+		self.stateMachine.fromSourceModel().top
+	else
+		self.svFromSourceModel()
+	endif;
+
+------------------------------- StateMachine ----------------------------
+
+helper context UML!StateMachine def : notInSourceModel() : Boolean =
+	if self."context".notInSourceModel() then
+		true
+	else
+		self."context".fromSourceModel().behavior->isEmpty()
+	endif;
+
+helper context UML!StateMachine def : fromSourceModel() : UML!StateMachine =
+	self."context".fromSourceModel().behavior->asSequence()->first();
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- model merge begin
+-- ======================================================================
+
+rule MergeAssociation {
+    from s : UML!Association (s.oclIsTypeOf(UML!Association) and
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Association mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        generalization <- s.generalization,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        connection <- s.connection,
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeTaggedValue {
+    from s : UML!TaggedValue (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!TaggedValue mapsTo s (
+        dataValue <- s.dataValue,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        referenceValue <- s.referenceValue,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+        type <- if s.type.notInSourceModel()
+			then s.type
+			else s.type.fromSourceModel() endif)
+}
+
+rule MergeOperation {
+    from s : UML!Operation (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Operation mapsTo s (
+        ownerScope <- s.ownerScope,
+        visibility <- s.visibility,
+        isQuery <- s.isQuery,
+        isAbstract <- s.isAbstract,
+        concurrency <- s.concurrency,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isRoot <- s.isRoot,
+        isLeaf <- s.isLeaf,
+        specification <- s.specification,
+        templateParameter <- s.templateParameter,
+        parameter <- s.parameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow)
+}
+
+rule MergeAbstraction {
+    from s : UML!Abstraction (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Abstraction mapsTo s (
+        mapping <- s.mapping,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        client <- s.client->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        supplier <- s.supplier->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeParameter {
+    from s : UML!Parameter (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Parameter mapsTo s (
+        kind <- s.kind,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        defaultValue <- s.defaultValue,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        type <- if s.type.notInSourceModel()
+			then s.type
+			else s.type.fromSourceModel() endif,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow)
+}
+
+rule MergeClass {
+    from s : UML!Class (s.oclIsTypeOf(UML!Class) and
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Class mapsTo s (
+        isRoot <- s.isRoot,
+        isActive <- s.isActive,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        generalization <- s.generalization,
+        comment <- s.comment,
+        powertypeRange <- s.powertypeRange,
+        feature <- s.feature,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeInterface {
+    from s : UML!Interface (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Interface mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        generalization <- s.generalization,
+        comment <- s.comment,
+        powertypeRange <- s.powertypeRange,
+        feature <- s.feature,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeDataType {
+    from s : UML!DataType (s.oclIsTypeOf(UML!DataType) and
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!DataType mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        generalization <- s.generalization,
+        comment <- s.comment,
+        powertypeRange <- s.powertypeRange,
+        feature <- s.feature,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergePackage {
+    from s : UML!Package (s.oclIsTypeOf(UML!Package) and
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Package mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        generalization <- s.generalization,
+        comment <- s.comment,
+        elementImport <- s.elementImport,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeAssociationEnd {
+    from s : UML!AssociationEnd (s.oclIsTypeOf(UML!AssociationEnd) and
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!AssociationEnd mapsTo s (
+        targetScope <- s.targetScope,
+        isNavigable <- s.isNavigable,
+        ordering <- s.ordering,
+        changeability <- s.changeability,
+        multiplicity <- s.multiplicity,
+        aggregation <- s.aggregation,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        qualifier <- s.qualifier,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        participant <- if s.participant.notInSourceModel()
+			then s.participant
+			else s.participant.fromSourceModel() endif,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        specification <- s.specification,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow)
+}
+
+rule MergeAttribute {
+    from s : UML!Attribute (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Attribute mapsTo s (
+        targetScope <- s.targetScope,
+        initialValue <- s.initialValue,
+        ownerScope <- s.ownerScope,
+        visibility <- s.visibility,
+        changeability <- s.changeability,
+        ordering <- s.ordering,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        multiplicity <- s.multiplicity,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        type <- if s.type.notInSourceModel()
+			then s.type
+			else s.type.fromSourceModel() endif,
+        sourceFlow <- s.sourceFlow)
+}
+
+rule MergeGeneralization {
+    from s : UML!Generalization (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Generalization mapsTo s (
+        discriminator <- s.discriminator,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        powertype <- s.powertype,
+        parent <- if s.parent.notInSourceModel()
+			then s.parent
+			else s.parent.fromSourceModel() endif,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        child <- if s.child.notInSourceModel()
+			then s.child
+			else s.child.fromSourceModel() endif,
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeDependency {
+    from s : UML!Dependency (s.oclIsTypeOf(UML!Dependency) and
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Dependency mapsTo s (
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        client <- s.client->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        supplier <- s.supplier->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeTagDefinition {
+    from s : UML!TagDefinition (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!TagDefinition mapsTo s (
+        tagType <- s.tagType,
+        multiplicity <- s.multiplicity,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeStereotype {
+    from s : UML!Stereotype (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Stereotype mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        baseClass <- s.baseClass,
+        visibility <- s.visibility,
+        name <- s.name,
+        icon <- s.icon,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        templateParameter <- s.templateParameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        generalization <- s.generalization,
+        comment <- s.comment,
+        definedTag <- s.definedTag,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow,
+        stereotypeConstraint <- s.stereotypeConstraint,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeMethod {
+    from s : UML!Method (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Method mapsTo s (
+        body <- s.body,
+        ownerScope <- s.ownerScope,
+        visibility <- s.visibility,
+        isQuery <- s.isQuery,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        parameter <- s.parameter,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        comment <- s.comment,
+        specification <- s.specification,
+        constraint <- s.constraint,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+        sourceFlow <- s.sourceFlow)
+}
+
+rule MergeException {
+    from s : UML!Exception (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Exception mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        taggedValue <- s.taggedValue,
+        sourceFlow <- s.sourceFlow,
+        targetFlow <- s.targetFlow,
+        clientDependency <- s.clientDependency,
+        powertypeRange <- s.powertypeRange,
+        "context" <- s."context",
+        ownedElement <- s.ownedElement,
+        templateParameter <- s.templateParameter,
+        constraint <- s.constraint,
+        feature <- s.feature,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        generalization <- s.generalization,
+        comment <- s.comment,
+		namespace <- if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeCallEvent {
+    from s : UML!CallEvent (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!CallEvent mapsTo s (
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        operation <- if s.operation.oclIsUndefined()
+			then s.operation
+			else if s.operation.notInSourceModel()
+			then s.operation
+			else s.operation.fromSourceModel() endif endif,
+        parameter <- s.parameter,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.oclIsUndefined()
+			then s.namespace
+			else if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif endif)
+}
+
+rule MergeCallAction {
+    from s : UML!CallAction (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!CallAction mapsTo s (
+        script <- s.script,
+        target <- s.target,
+        visibility <- s.visibility,
+        isAsynchronous <- s.isAsynchronous,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        recurrence <- s.recurrence,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        actualArgument <- s.actualArgument,
+        operation <- if s.operation.oclIsUndefined()
+			then s.operation
+			else if s.operation.notInSourceModel()
+			then s.operation
+			else s.operation.fromSourceModel() endif endif,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.oclIsUndefined()
+			then s.namespace
+			else if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif endif)
+}
+
+rule MergeStateMachine {
+    from s : UML!StateMachine (s.oclIsTypeOf(UML!StateMachine) and
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!StateMachine mapsTo s (
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        submachineState <- s.submachineState,
+        comment <- s.comment,
+        top <- s.top,
+        taggedValue <- s.taggedValue,
+        transitions <- s.transitions,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        sourceFlow <- s.sourceFlow,
+		"context" <- if s."context".notInSourceModel()
+			then s."context"
+			else s."context".fromSourceModel() endif)
+}
+
+rule MergeCompositeState {
+    from s : UML!CompositeState (s.oclIsTypeOf(UML!CompositeState) and
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!CompositeState mapsTo s (
+        isConcurrent <- s.isConcurrent,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        entry <- s.entry,
+        deferrableEvent <- s.deferrableEvent,
+        taggedValue <- s.taggedValue,
+        incoming <- s.incoming,
+        clientDependency <- s.clientDependency,
+        doActivity <- s.doActivity,
+        constraint <- s.constraint,
+        exit <- s.exit,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        subvertex <- s.subvertex,
+        outgoing <- s.outgoing,
+        internalTransition <- s.internalTransition,
+        sourceFlow <- s.sourceFlow,
+		stateMachine <- if s.stateMachine.oclIsUndefined()
+			then s.stateMachine
+			else if s.stateMachine.notInSourceModel()
+			then s.stateMachine
+			else s.stateMachine.fromSourceModel() endif endif,
+		container <- if s.container.oclIsUndefined()
+        	then s.container
+			else if s.container.notInSourceModel()
+			then s.container
+			else s.container.fromSourceModel() endif endif)
+}
+
+rule MergePseudostate {
+    from s : UML!Pseudostate (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Pseudostate mapsTo s (
+        visibility <- s.visibility,
+        kind <- s.kind,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        taggedValue <- s.taggedValue,
+        incoming <- s.incoming,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        outgoing <- s.outgoing,
+        sourceFlow <- s.sourceFlow,
+		container <- if s.container.notInSourceModel()
+			then s.container
+			else s.container.fromSourceModel() endif)
+}
+
+rule MergeSimpleState {
+    from s : UML!SimpleState (s.oclIsTypeOf(UML!SimpleState) and
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!SimpleState mapsTo s (
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        entry <- s.entry,
+        deferrableEvent <- s.deferrableEvent,
+        taggedValue <- s.taggedValue,
+        incoming <- s.incoming,
+        clientDependency <- s.clientDependency,
+        doActivity <- s.doActivity,
+        constraint <- s.constraint,
+        exit <- s.exit,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        outgoing <- s.outgoing,
+        internalTransition <- s.internalTransition,
+        sourceFlow <- s.sourceFlow,
+		container <- if s.container.notInSourceModel()
+			then s.container
+			else s.container.fromSourceModel() endif)
+}
+
+rule MergeTransition {
+    from s : UML!Transition (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Transition mapsTo s (
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        guard <- s.guard,
+        comment <- s.comment,
+        trigger <- s.trigger,
+		target <- if s.target.notInSourceModel()
+			then s.target
+			else s.target.fromSourceModel() endif,
+        effect <- s.effect,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+		source <- if s.source.notInSourceModel()
+			then s.source
+			else s.source.fromSourceModel() endif,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        sourceFlow <- s.sourceFlow,
+		stateMachine <- if s.stateMachine.oclIsUndefined()
+			then s.stateMachine
+			else if s.stateMachine.notInSourceModel()
+			then s.stateMachine
+			else s.stateMachine.fromSourceModel() endif endif)
+}
+
+rule MergeGuard {
+    from s : UML!Guard (
+    	thisModule.mergeElements->includes(s) and
+    	s.notInSourceModel())
+    to t : UML!Guard mapsTo s (
+        expression <- s.expression,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype->collect(e|if e.notInSourceModel()
+        	then e else e.fromSourceModel() endif),
+        sourceFlow <- s.sourceFlow,
+		namespace <- if s.namespace.oclIsUndefined()
+			then s.namespace
+			else if s.namespace.notInSourceModel()
+			then s.namespace
+			else s.namespace.fromSourceModel() endif endif)
+}
+
+-- ======================================================================
+-- model merge end
+-- ======================================================================
+
+-- ======================================================================
+-- model copy begin
+-- ======================================================================
+-- Generated by: ModelCopyGenerator.atl 1515 2005-06-15 14:41:07Z dwagelaa $
+
+rule Model {
+    from s : UML!Model (
+    	thisModule.inElements->includes(s))
+    to t : UML!Model mapsTo s (
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        templateParameter <- s.templateParameter,
+        elementImport <- s.elementImport,
+        comment <- s.comment,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow)
+}
+
+-- ======================================================================
+-- model copy end
+-- ======================================================================
