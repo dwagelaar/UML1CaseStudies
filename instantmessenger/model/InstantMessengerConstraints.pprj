@@ -1,4 +1,4 @@
-; Wed Sep 07 13:29:05 CEST 2005
+; Mon Sep 12 17:32:09 CEST 2005
 ; 
 ;+ (version "3.0")
 ;+ (build "Build 141")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[InstantMessengerConstraints_ProjectKB_Instance_10]
-		[InstantMessengerConstraints_ProjectKB_Instance_11]
-		[InstantMessengerConstraints_ProjectKB_Instance_12]
-		[InstantMessengerConstraints_ProjectKB_Instance_13]
-		[InstantMessengerConstraints_ProjectKB_Instance_14]))
+		[InstantMessengerConstraints_ProjectKB_Instance_0]
+		[InstantMessengerConstraints_ProjectKB_Instance_1]
+		[InstantMessengerConstraints_ProjectKB_Instance_2]
+		[InstantMessengerConstraints_ProjectKB_Instance_3]
+		[InstantMessengerConstraints_ProjectKB_Instance_4]))
 
 ([CLSES_TAB] of  Widget
 
@@ -243,27 +243,27 @@
 	(property_list [Instance_88])
 	(widget_class_name "edu.stanford.smi.protege.widget.InstancesTab"))
 
-([InstantMessengerConstraints_ProjectKB_Instance_10] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([InstantMessengerConstraints_ProjectKB_Instance_11] of  String
+([InstantMessengerConstraints_ProjectKB_Instance_0] of  String
 
 	(name "owl:Class")
 	(string_value "%3ANAME"))
 
-([InstantMessengerConstraints_ProjectKB_Instance_12] of  String
+([InstantMessengerConstraints_ProjectKB_Instance_1] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([InstantMessengerConstraints_ProjectKB_Instance_2] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([InstantMessengerConstraints_ProjectKB_Instance_13] of  String
+([InstantMessengerConstraints_ProjectKB_Instance_3] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([InstantMessengerConstraints_ProjectKB_Instance_14] of  String
+([InstantMessengerConstraints_ProjectKB_Instance_4] of  String
 
 	(name "owl:Thing")
 	(string_value "%3ANAME"))
@@ -2201,16 +2201,16 @@
 		[STANDARD_SLOT_FORM_WIDGET]
 		[KB_303942_Instance_68]
 		[KB_764103_Instance_545]
-		[Instance_443]
 		[KB_465546_Instance_567]
-		[KB_553917_Instance_637]
+		[Instance_443]
 		[PAL_FORM_WIDGET]
-		[KB_301165_Instance_856]
+		[KB_553917_Instance_637]
 		[KB_301165_Instance_1013]
+		[KB_301165_Instance_856]
 		[KB_868747_Instance_76]
 		[KB_379625_Instance_777]
-		[KB_691299_Instance_537]
-		[STANDARD_CLASS_FORM_WIDGET])
+		[STANDARD_CLASS_FORM_WIDGET]
+		[KB_691299_Instance_537])
 	(default_cls_metaclass "owl:Class")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget")
@@ -2219,12 +2219,12 @@
 		"owl:maxCardinality"
 		":OWL-INFERRED-SUPERCLASSES"
 		"rdf:value"
-		"rdfs:Container"
 		"rdf:type"
-		"owl:cardinality"
+		"rdfs:Container"
 		"owl:someValuesFrom"
-		"rdf:predicate"
+		"owl:cardinality"
 		"rdf:Property"
+		"rdf:predicate"
 		"rdf:object"
 		"rdf:List"
 		"owl:differentFrom"
@@ -2241,20 +2241,20 @@
 		"owl:DatatypeProperty"
 		":OWL-ANONYMOUS-ROOT"
 		"rdf:rest"
-		":FROM"
 		"rdf:Statement"
+		":FROM"
 		"rdf:first"
 		"rdfs:Bag"
 		":SYSTEM-CLASS"
-		"rdfs:Alt"
 		"rdfs:Literal"
-		"ExternalResource"
+		"rdfs:Alt"
 		"owl:hasValue"
+		"ExternalResource"
 		"rdfs:Seq"
 		":OWL-INFERRED-SUBCLASSES"
-		"owl:allValuesFrom"
-		":DIRECTED-BINARY-RELATION"
 		"owl:Nothing"
+		":DIRECTED-BINARY-RELATION"
+		"owl:allValuesFrom"
 		"rdf:subject"
 		"owl:oneOf")
 	(next_frame_number 0)
