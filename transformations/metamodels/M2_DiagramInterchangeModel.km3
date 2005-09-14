@@ -1,58 +1,78 @@
 package uml {
-	datatype Boolean;
-
-	datatype Double;
-
-	datatype Float;
-
-	datatype Integer;
-
-	datatype Long;
-
-	datatype String;
-
-	class UseCase extends Classifier {
-		reference extend[*] : Extend oppositeOf extension;
-		reference include[*] : Include oppositeOf base;
-		reference extensionPoint[*] container : ExtensionPoint oppositeOf useCase;
+	class Collaboration extends GeneralizableElement, Namespace {
+		reference representedOperation[0-1] : Operation;
+		reference usedCollaboration[*] : Collaboration;
+		reference constrainingElement[*] : ModelElement;
+		reference interaction[*] container : Interaction;
+		reference representedClassifier[0-1] : Classifier;
 		
 	}
 
-	class Actor extends Classifier {
+	class ClassifierRole extends Classifier {
+		reference conformingInstance[*] : Instance;
+		reference availableContents[*] : ModelElement;
+		reference base[1-*] : Classifier;
+		reference availableFeature[*] : Feature;
+		reference multiplicity[0-1] container : Multiplicity;
 		
 	}
 
-	class UseCaseInstance extends Instance {
+	class AssociationRole extends Association {
+		reference conformingLink[*] : Link;
+		reference base[0-1] : Association;
+		reference message[*] : Message;
+		reference multiplicity[0-1] container : Multiplicity;
 		
 	}
 
-	class Extend extends Relationship {
-		reference extension : UseCase oppositeOf extend;
-		reference base : UseCase;
-		reference extensionPoint[1-*] ordered : ExtensionPoint;
-		reference condition : BooleanExpression;
+	class AssociationEndRole extends AssociationEnd {
+		reference availableQualifier[*] : Attribute;
+		reference base[0-1] : AssociationEnd;
+		reference collaborationMultiplicity[0-1] container : Multiplicity;
 		
 	}
 
-	class Include extends Relationship {
-		reference base : UseCase oppositeOf include;
-		reference addition : UseCase;
+	class Message extends ModelElement {
+		reference sender : ClassifierRole;
+		reference action : Action;
+		reference activator[0-1] : Message;
+		reference communicationConnection[0-1] : AssociationRole;
+		reference conformingStimulus[*] : Stimulus;
+		reference predecessor[*] : Message;
+		reference receiver : ClassifierRole;
+		reference interaction : Interaction;
 		
 	}
 
-	class ExtensionPoint extends ModelElement {
-		reference useCase : UseCase oppositeOf extensionPoint;
-		attribute location : String;
+	class Interaction extends ModelElement {
+		reference context : Collaboration;
+		reference message[1-*] container : Message;
+		
+	}
+
+	class InteractionInstanceSet extends ModelElement {
+		reference participatingStimulus[1-*] : Stimulus;
+		reference context : CollaborationInstanceSet;
+		reference interaction[0-1] : Interaction;
+		
+	}
+
+	class CollaborationInstanceSet extends ModelElement {
+		reference collaboration[0-1] : Collaboration;
+		reference participatingLink[*] : Link;
+		reference participatingInstance[1-*] : Instance;
+		reference constrainingElement[*] : ModelElement;
+		reference interactionInstanceSet[*] container : InteractionInstanceSet;
 		
 	}
 
 	abstract class Instance extends ModelElement {
-		reference ownedInstance[*] container : Instance;
-		reference componentInstance[0-1] : ComponentInstance oppositeOf resident;
-		reference linkEnd[*] : LinkEnd oppositeOf instance;
-		reference classifier[1-*] : Classifier;
 		reference ownedLink[*] container : Link;
-		reference slot[*] container : AttributeLink oppositeOf instance;
+		reference componentInstance[0-1] : ComponentInstance;
+		reference linkEnd[*] : LinkEnd;
+		reference classifier[1-*] : Classifier;
+		reference slot[*] container : AttributeLink;
+		reference ownedInstance[*] container : Instance;
 		
 	}
 
@@ -62,12 +82,12 @@ package uml {
 	}
 
 	abstract class Action extends ModelElement {
-		reference actualArgument[*] ordered container : Argument oppositeOf action;
-		reference actionSequence[0-1] : ActionSequence oppositeOf action;
-		reference recurrence[0-1] : IterationExpression;
-		reference target[0-1] : ObjectSetExpression;
+		reference actionSequence[0-1] : ActionSequence;
+		reference actualArgument[*] ordered container : Argument;
+		reference recurrence[0-1] container : IterationExpression;
+		reference target[0-1] container : ObjectSetExpression;
 		attribute isAsynchronous : Boolean;
-		reference script[0-1] : ActionExpression;
+		reference script[0-1] container : ActionExpression;
 		
 	}
 
@@ -85,8 +105,8 @@ package uml {
 	}
 
 	class AttributeLink extends ModelElement {
-		reference linkEnd[0-1] : LinkEnd oppositeOf qualifiedValue;
-		reference instance[0-1] : Instance oppositeOf slot;
+		reference linkEnd[0-1] : LinkEnd;
+		reference instance[0-1] : Instance;
 		reference value : Instance;
 		reference "attribute" : Attribute;
 		
@@ -97,8 +117,8 @@ package uml {
 	}
 
 	class Link extends ModelElement {
+		reference connection[2-*] container : LinkEnd;
 		reference association : Association;
-		reference connection[2-*] container : LinkEnd oppositeOf link;
 		
 	}
 
@@ -121,13 +141,13 @@ package uml {
 	}
 
 	class ActionSequence extends Action {
-		reference action[*] ordered container : Action oppositeOf actionSequence;
+		reference action[*] ordered container : Action;
 		
 	}
 
 	class Argument extends ModelElement {
-		reference action[0-1] : Action oppositeOf actualArgument;
-		reference value : Expression;
+		reference action[0-1] : Action;
+		reference value container : Expression;
 		
 	}
 
@@ -141,10 +161,10 @@ package uml {
 	}
 
 	class LinkEnd extends ModelElement {
-		reference link : Link oppositeOf connection;
 		reference associationEnd : AssociationEnd;
-		reference qualifiedValue[*] ordered container : AttributeLink oppositeOf linkEnd;
-		reference instance : Instance oppositeOf linkEnd;
+		reference instance : Instance;
+		reference qualifiedValue[*] ordered container : AttributeLink;
+		reference link : Link;
 		
 	}
 
@@ -158,10 +178,10 @@ package uml {
 
 	class Stimulus extends ModelElement {
 		reference receiver : Instance;
-		reference communicationLink[0-1] : Link;
-		reference sender : Instance;
 		reference dispatchAction : Action;
+		reference sender : Instance;
 		reference argument[*] ordered : Instance;
+		reference communicationLink[0-1] : Link;
 		
 	}
 
@@ -170,469 +190,17 @@ package uml {
 	}
 
 	class ComponentInstance extends Instance {
-		reference resident[*] : Instance oppositeOf componentInstance;
-		reference nodeInstance[0-1] : NodeInstance oppositeOf resident;
+		reference nodeInstance[0-1] : NodeInstance;
+		reference resident[*] : Instance;
 		
 	}
 
 	class NodeInstance extends Instance {
-		reference resident[*] : ComponentInstance oppositeOf nodeInstance;
+		reference resident[*] : ComponentInstance;
 		
 	}
 
 	class SubsystemInstance extends Instance {
-		
-	}
-
-	class StateMachine extends ModelElement {
-		reference top container : State oppositeOf stateMachine;
-		reference transitions[*] container : Transition oppositeOf stateMachine;
-		reference submachineState[*] : SubmachineState oppositeOf submachine;
-		reference context[0-1] : ModelElement;
-		
-	}
-
-	abstract class Event extends ModelElement {
-		reference parameter[*] ordered container : Parameter;
-		
-	}
-
-	abstract class StateVertex extends ModelElement {
-		reference outgoing[*] : Transition oppositeOf source;
-		reference incoming[*] : Transition oppositeOf target;
-		reference "container"[0-1] : CompositeState oppositeOf subvertex;
-		
-	}
-
-	abstract class State extends StateVertex {
-		reference entry[0-1] container : Action;
-		reference exit[0-1] container : Action;
-		reference internalTransition[*] container : Transition;
-		reference stateMachine[0-1] : StateMachine oppositeOf top;
-		reference deferrableEvent[*] : Event;
-		reference doActivity[0-1] container : Action;
-		
-	}
-
-	class TimeEvent extends Event {
-		reference when : TimeExpression;
-		
-	}
-
-	class CallEvent extends Event {
-		reference "operation" : Operation;
-		
-	}
-
-	class SignalEvent extends Event {
-		reference signal : Signal;
-		
-	}
-
-	class Transition extends ModelElement {
-		reference trigger[0-1] : Event;
-		reference stateMachine[0-1] : StateMachine oppositeOf transitions;
-		reference effect[0-1] container : Action;
-		reference target : StateVertex oppositeOf incoming;
-		reference guard[0-1] container : Guard oppositeOf transition;
-		reference source : StateVertex oppositeOf outgoing;
-		
-	}
-
-	class CompositeState extends State {
-		reference subvertex[*] container : StateVertex oppositeOf "container";
-		attribute isConcurrent : Boolean;
-		
-	}
-
-	class ChangeEvent extends Event {
-		reference changeExpression : BooleanExpression;
-		
-	}
-
-	class Guard extends ModelElement {
-		reference transition : Transition oppositeOf guard;
-		reference expression : BooleanExpression;
-		
-	}
-
-	class Pseudostate extends StateVertex {
-		attribute kind : PseudostateKind;
-		
-	}
-
-	class SimpleState extends State {
-		
-	}
-
-	class SubmachineState extends CompositeState {
-		reference submachine : StateMachine oppositeOf submachineState;
-		
-	}
-
-	class SynchState extends StateVertex {
-		attribute bound : Integer;
-		
-	}
-
-	class StubState extends StateVertex {
-		attribute referenceState : String;
-		
-	}
-
-	class FinalState extends State {
-		
-	}
-
-	abstract class Element {
-		
-	}
-
-	abstract class ModelElement extends Element {
-		reference templateParameter[*] ordered container : TemplateParameter oppositeOf template;
-		reference stereotype[*] : Stereotype;
-		reference targetFlow[*] : Flow oppositeOf target;
-		reference clientDependency[*] : Dependency oppositeOf client;
-		reference taggedValue[*] container : TaggedValue oppositeOf modelElement;
-		reference sourceFlow[*] : Flow oppositeOf source;
-		reference constraint[*] : Constraint oppositeOf constrainedElement;
-		reference namespace[0-1] : Namespace oppositeOf ownedElement;
-		reference comment[*] : Comment oppositeOf annotatedElement;
-		attribute name[0-1] : String;
-		attribute visibility[0-1] : VisibilityKind;
-		attribute isSpecification : Boolean;
-		
-	}
-
-	abstract class GeneralizableElement extends ModelElement {
-		reference generalization[*] : Generalization oppositeOf child;
-		attribute isRoot : Boolean;
-		attribute isLeaf : Boolean;
-		attribute isAbstract : Boolean;
-		
-	}
-
-	abstract class Namespace extends ModelElement {
-		reference ownedElement[*] container : ModelElement oppositeOf namespace;
-		
-	}
-
-	abstract class Classifier extends GeneralizableElement, Namespace {
-		reference powertypeRange[*] : Generalization oppositeOf powertype;
-		reference feature[*] ordered container : Feature oppositeOf owner;
-		
-	}
-
-	class Class extends Classifier {
-		attribute isActive : Boolean;
-		
-	}
-
-	class DataType extends Classifier {
-		
-	}
-
-	abstract class Feature extends ModelElement {
-		reference owner[0-1] : Classifier oppositeOf feature;
-		attribute ownerScope : ScopeKind;
-		
-	}
-
-	abstract class StructuralFeature extends Feature {
-		reference type : Classifier;
-		reference multiplicity[0-1] : Multiplicity;
-		attribute changeability[0-1] : ChangeableKind;
-		attribute targetScope[0-1] : ScopeKind;
-		attribute ordering[0-1] : OrderingKind;
-		
-	}
-
-	class AssociationEnd extends ModelElement {
-		reference association : Association oppositeOf connection;
-		reference qualifier[*] ordered container : Attribute oppositeOf associationEnd;
-		reference participant : Classifier;
-		reference specification[*] : Classifier;
-		attribute isNavigable : Boolean;
-		attribute ordering[0-1] : OrderingKind;
-		attribute aggregation[0-1] : AggregationKind;
-		attribute targetScope[0-1] : ScopeKind;
-		reference multiplicity[0-1] : Multiplicity;
-		attribute changeability[0-1] : ChangeableKind;
-		
-	}
-
-	class Interface extends Classifier {
-		
-	}
-
-	class Constraint extends ModelElement {
-		reference constrainedElement[*] ordered : ModelElement oppositeOf constraint;
-		reference body[0-1] : BooleanExpression;
-		
-	}
-
-	abstract class Relationship extends ModelElement {
-		
-	}
-
-	class Association extends GeneralizableElement, Relationship {
-		reference connection[2-*] ordered container : AssociationEnd oppositeOf association;
-		
-	}
-
-	class Attribute extends StructuralFeature {
-		reference associationEnd[0-1] : AssociationEnd oppositeOf qualifier;
-		reference initialValue[0-1] : Expression;
-		
-	}
-
-	abstract class BehavioralFeature extends Feature {
-		reference parameter[*] ordered container : Parameter oppositeOf behavioralFeature;
-		attribute isQuery : Boolean;
-		
-	}
-
-	class Operation extends BehavioralFeature {
-		attribute concurrency[0-1] : CallConcurrencyKind;
-		attribute isRoot : Boolean;
-		attribute isLeaf : Boolean;
-		attribute isAbstract : Boolean;
-		attribute specification[0-1] : String;
-		
-	}
-
-	class Parameter extends ModelElement {
-		reference type : Classifier;
-		reference behavioralFeature[0-1] : BehavioralFeature oppositeOf parameter;
-		reference defaultValue[0-1] : Expression;
-		attribute kind : ParameterDirectionKind;
-		
-	}
-
-	class Method extends BehavioralFeature {
-		reference specification : Operation;
-		reference body : ProcedureExpression;
-		
-	}
-
-	class Generalization extends Relationship {
-		reference powertype[0-1] : Classifier oppositeOf powertypeRange;
-		reference child : GeneralizableElement oppositeOf generalization;
-		reference parent : GeneralizableElement;
-		attribute discriminator[0-1] : String;
-		
-	}
-
-	class AssociationClass extends Association, Class {
-		
-	}
-
-	class Dependency extends Relationship {
-		reference client[1-*] : ModelElement oppositeOf clientDependency;
-		reference supplier[1-*] : ModelElement;
-		
-	}
-
-	class Abstraction extends Dependency {
-		reference mapping[0-1] : MappingExpression;
-		
-	}
-
-	abstract class PresentationElement extends Element {
-		reference subject[*] : ModelElement;
-		
-	}
-
-	class Usage extends Dependency {
-		
-	}
-
-	class Binding extends Dependency {
-		reference argument[1-*] ordered container : TemplateArgument oppositeOf binding;
-		
-	}
-
-	class Component extends Classifier {
-		reference implementation[*] : Artifact;
-		reference residentElement[*] container : ElementResidence oppositeOf "container";
-		reference deploymentLocation[*] : Node oppositeOf deployedComponent;
-		
-	}
-
-	class Node extends Classifier {
-		reference deployedComponent[*] : Component oppositeOf deploymentLocation;
-		
-	}
-
-	class Permission extends Dependency {
-		
-	}
-
-	class Comment extends ModelElement {
-		reference annotatedElement[*] : ModelElement oppositeOf comment;
-		attribute body : String;
-		
-	}
-
-	class Flow extends Relationship {
-		reference source[*] : ModelElement oppositeOf sourceFlow;
-		reference target[*] : ModelElement oppositeOf targetFlow;
-		
-	}
-
-	class ElementResidence {
-		reference "container" : Component oppositeOf residentElement;
-		reference resident : ModelElement;
-		attribute visibility[0-1] : VisibilityKind;
-		
-	}
-
-	class TemplateParameter {
-		reference defaultElement[0-1] : ModelElement;
-		reference template : ModelElement oppositeOf templateParameter;
-		reference parameter container : ModelElement;
-		
-	}
-
-	class Primitive extends DataType {
-		
-	}
-
-	class Enumeration extends DataType {
-		reference "literal"[1-*] ordered container : EnumerationLiteral oppositeOf "enumeration";
-		
-	}
-
-	class EnumerationLiteral extends ModelElement {
-		reference "enumeration" : Enumeration oppositeOf "literal";
-		
-	}
-
-	class Stereotype extends GeneralizableElement {
-		reference stereotypeConstraint[*] container : Constraint;
-		reference definedTag[*] container : TagDefinition oppositeOf owner;
-		attribute icon[0-1] : String;
-		attribute baseClass[1-*] : String;
-		
-	}
-
-	class TagDefinition extends ModelElement {
-		reference owner[0-1] : Stereotype oppositeOf definedTag;
-		attribute tagType[0-1] : String;
-		reference multiplicity[0-1] : Multiplicity;
-		
-	}
-
-	class TaggedValue extends ModelElement {
-		reference type : TagDefinition;
-		reference referenceValue[*] : ModelElement;
-		reference modelElement : ModelElement oppositeOf taggedValue;
-		attribute dataValue[*] : String;
-		
-	}
-
-	class ProgrammingLanguageDataType extends DataType {
-		reference expression : TypeExpression;
-		
-	}
-
-	class Artifact extends Classifier {
-		
-	}
-
-	class TemplateArgument {
-		reference binding : Binding oppositeOf argument;
-		reference modelElement : ModelElement;
-		
-	}
-
-	class Package extends GeneralizableElement, Namespace {
-		reference elementImport[*] container : ElementImport oppositeOf "package";
-		
-	}
-
-	class Model extends Package {
-		
-	}
-
-	class Subsystem extends Package, Classifier {
-		attribute isInstantiable : Boolean;
-		
-	}
-
-	class ElementImport {
-		reference "package" : Package oppositeOf elementImport;
-		reference importedElement : ModelElement;
-		attribute visibility[0-1] : VisibilityKind;
-		attribute alias[0-1] : String;
-		attribute isSpecification : Boolean;
-		
-	}
-
-	class Collaboration extends GeneralizableElement, Namespace {
-		reference usedCollaboration[*] : Collaboration;
-		reference representedClassifier[0-1] : Classifier;
-		reference representedOperation[0-1] : Operation;
-		reference constrainingElement[*] : ModelElement;
-		reference interaction[*] container : Interaction oppositeOf context;
-		
-	}
-
-	class ClassifierRole extends Classifier {
-		reference base[1-*] : Classifier;
-		reference availableFeature[*] : Feature;
-		reference availableContents[*] : ModelElement;
-		reference conformingInstance[*] : Instance;
-		reference multiplicity[0-1] : Multiplicity;
-		
-	}
-
-	class AssociationRole extends Association {
-		reference base[0-1] : Association;
-		reference message[*] : Message oppositeOf communicationConnection;
-		reference conformingLink[*] : Link;
-		reference multiplicity[0-1] : Multiplicity;
-		
-	}
-
-	class AssociationEndRole extends AssociationEnd {
-		reference base[0-1] : AssociationEnd;
-		reference availableQualifier[*] : Attribute;
-		reference collaborationMultiplicity[0-1] : Multiplicity;
-		
-	}
-
-	class Message extends ModelElement {
-		reference predecessor[*] : Message;
-		reference communicationConnection[0-1] : AssociationRole oppositeOf message;
-		reference interaction : Interaction oppositeOf message;
-		reference action : Action;
-		reference conformingStimulus[*] : Stimulus;
-		reference receiver : ClassifierRole;
-		reference activator[0-1] : Message;
-		reference sender : ClassifierRole;
-		
-	}
-
-	class Interaction extends ModelElement {
-		reference context : Collaboration oppositeOf interaction;
-		reference message[1-*] container : Message oppositeOf interaction;
-		
-	}
-
-	class InteractionInstanceSet extends ModelElement {
-		reference interaction[0-1] : Interaction;
-		reference context : CollaborationInstanceSet oppositeOf interactionInstanceSet;
-		reference participatingStimulus[1-*] : Stimulus;
-		
-	}
-
-	class CollaborationInstanceSet extends ModelElement {
-		reference interactionInstanceSet[*] container : InteractionInstanceSet oppositeOf context;
-		reference participatingInstance[1-*] : Instance;
-		reference constrainingElement[*] : ModelElement;
-		reference participatingLink[*] : Link;
-		reference collaboration[0-1] : Collaboration;
 		
 	}
 
@@ -649,51 +217,51 @@ package uml {
 	}
 
 	class BezierPoint {
-		reference base : Point;
-		reference control1 : Point;
-		reference control2 : Point;
+		reference base container : Point;
+		reference control1 container : Point;
+		reference control2 container : Point;
 		
 	}
 
 	abstract class DiagramElement {
-		reference "container"[0-1] : GraphElement oppositeOf contained;
-		reference "reference"[*] : Reference oppositeOf referenced;
+		reference "container"[0-1] : GraphElement;
+		reference "reference"[*] : Reference;
 		reference property[*] container : Property;
 		attribute isVisible : Boolean;
 		
 	}
 
 	abstract class GraphElement extends DiagramElement {
-		reference contained[*] ordered container : DiagramElement oppositeOf "container";
-		reference link[*] container : DiagramLink oppositeOf graphElement;
-		reference anchorage[*] container : GraphConnector oppositeOf graphElement;
-		reference semanticModel container : SemanticModelBridge oppositeOf graphElement;
-		reference position : Point;
+		reference semanticModel container : SemanticModelBridge;
+		reference link[*] container : DiagramLink;
+		reference anchorage[*] container : GraphConnector;
+		reference contained[*] ordered container : DiagramElement;
+		reference position container : Point;
 		
 	}
 
 	abstract class SemanticModelBridge {
-		reference graphElement : GraphElement oppositeOf semanticModel;
-		reference diagram[0-1] : Diagram oppositeOf owner;
+		reference graphElement : GraphElement;
+		reference diagram[0-1] : Diagram;
 		attribute presentation : String;
 		
 	}
 
 	class GraphEdge extends GraphElement {
-		reference anchor[2-2] ordered : GraphConnector oppositeOf graphEdge;
-		reference waypoints[2-*] ordered : BezierPoint;
+		reference anchor[2-2] ordered : GraphConnector;
+		reference waypoints[2-*] ordered container : BezierPoint;
 		
 	}
 
 	class GraphNode extends GraphElement {
-		reference size[0-1] : Dimension;
+		reference size[0-1] container : Dimension;
 		
 	}
 
 	class GraphConnector {
-		reference graphEdge[*] : GraphEdge oppositeOf anchor;
-		reference graphElement : GraphElement oppositeOf anchorage;
-		reference position : Point;
+		reference graphEdge[*] : GraphEdge;
+		reference graphElement : GraphElement;
+		reference position container : Point;
 		
 	}
 
@@ -702,7 +270,7 @@ package uml {
 	}
 
 	class Reference extends DiagramElement {
-		reference referenced : DiagramElement oppositeOf "reference";
+		reference referenced : DiagramElement;
 		attribute isIndividualPresentation : Boolean;
 		
 	}
@@ -717,13 +285,13 @@ package uml {
 	}
 
 	class Polyline extends GraphicPrimitive {
-		reference waypoints[2-*] ordered : BezierPoint;
+		reference waypoints[2-*] ordered container : BezierPoint;
 		attribute closed : Boolean;
 		
 	}
 
 	class Ellipse extends GraphicPrimitive {
-		reference center : Point;
+		reference center container : Point;
 		attribute radiusX : Double;
 		attribute radiusY : Double;
 		attribute rotation : Double;
@@ -759,61 +327,19 @@ package uml {
 	}
 
 	class DiagramLink {
-		reference diagram : Diagram oppositeOf diagramLink;
-		reference graphElement : GraphElement oppositeOf link;
+		reference graphElement : GraphElement;
+		reference diagram : Diagram;
 		attribute zoom : Double;
-		reference viewport : Point;
+		reference viewport container : Point;
 		
 	}
 
 	class Diagram extends GraphNode {
-		reference owner container : SemanticModelBridge oppositeOf diagram;
-		reference diagramLink[*] : DiagramLink oppositeOf diagram;
+		reference owner container : SemanticModelBridge;
+		reference diagramLink[*] : DiagramLink;
 		attribute name : String;
 		attribute zoom : Double;
-		reference viewport : Point;
-		
-	}
-
-	class ActivityGraph extends StateMachine {
-		reference partition[*] container : Partition oppositeOf activityGraph;
-		
-	}
-
-	class Partition extends ModelElement {
-		reference contents[*] : ModelElement;
-		reference activityGraph : ActivityGraph oppositeOf partition;
-		
-	}
-
-	class SubactivityState extends SubmachineState {
-		attribute isDynamic : Boolean;
-		reference dynamicArguments[0-1] : ArgListsExpression;
-		reference dynamicMultiplicity[0-1] : Multiplicity;
-		
-	}
-
-	class ActionState extends SimpleState {
-		attribute isDynamic : Boolean;
-		reference dynamicArguments[0-1] : ArgListsExpression;
-		reference dynamicMultiplicity[0-1] : Multiplicity;
-		
-	}
-
-	class CallState extends ActionState {
-		
-	}
-
-	class ObjectFlowState extends SimpleState {
-		reference parameter[*] : Parameter;
-		reference type : Classifier;
-		attribute isSynch : Boolean;
-		
-	}
-
-	class ClassifierInState extends Classifier {
-		reference inState[1-*] : State;
-		reference type : Classifier;
+		reference viewport container : Point;
 		
 	}
 
@@ -860,12 +386,12 @@ package uml {
 	}
 
 	class Multiplicity {
-		reference range[1-*] container : MultiplicityRange oppositeOf multiplicity;
+		reference range[1-*] container : MultiplicityRange;
 		
 	}
 
 	class MultiplicityRange {
-		reference multiplicity : Multiplicity oppositeOf range;
+		reference multiplicity : Multiplicity;
 		attribute lower : Integer;
 		attribute upper : Integer;
 		
@@ -921,6 +447,480 @@ package uml {
 		literal pk_join;
 		literal pk_junction;
 		literal pk_shallowHistory;
+	}
+
+	datatype Boolean;
+
+	datatype Double;
+
+	datatype Float;
+
+	datatype Integer;
+
+	datatype Long;
+
+	datatype String;
+
+	class StateMachine extends ModelElement {
+		reference context[0-1] : ModelElement;
+		reference submachineState[*] : SubmachineState;
+		reference top container : State;
+		reference transitions[*] container : Transition;
+		
+	}
+
+	abstract class Event extends ModelElement {
+		reference parameter[*] ordered container : Parameter;
+		
+	}
+
+	abstract class StateVertex extends ModelElement {
+		reference outgoing[*] : Transition;
+		reference "container"[0-1] : CompositeState;
+		reference incoming[*] : Transition;
+		
+	}
+
+	abstract class State extends StateVertex {
+		reference deferrableEvent[*] : Event;
+		reference exit[0-1] container : Action;
+		reference entry[0-1] container : Action;
+		reference doActivity[0-1] container : Action;
+		reference stateMachine[0-1] : StateMachine;
+		reference internalTransition[*] container : Transition;
+		
+	}
+
+	class TimeEvent extends Event {
+		reference when container : TimeExpression;
+		
+	}
+
+	class CallEvent extends Event {
+		reference "operation" : Operation;
+		
+	}
+
+	class SignalEvent extends Event {
+		reference signal : Signal;
+		
+	}
+
+	class Transition extends ModelElement {
+		reference guard[0-1] container : Guard;
+		reference trigger[0-1] : Event;
+		reference target : StateVertex;
+		reference source : StateVertex;
+		reference effect[0-1] container : Action;
+		reference stateMachine[0-1] : StateMachine;
+		
+	}
+
+	class CompositeState extends State {
+		reference subvertex[*] container : StateVertex;
+		attribute isConcurrent : Boolean;
+		
+	}
+
+	class ChangeEvent extends Event {
+		reference changeExpression container : BooleanExpression;
+		
+	}
+
+	class Guard extends ModelElement {
+		reference transition : Transition;
+		reference expression container : BooleanExpression;
+		
+	}
+
+	class Pseudostate extends StateVertex {
+		attribute kind : PseudostateKind;
+		
+	}
+
+	class SimpleState extends State {
+		
+	}
+
+	class SubmachineState extends CompositeState {
+		reference submachine : StateMachine;
+		
+	}
+
+	class SynchState extends StateVertex {
+		attribute bound : Integer;
+		
+	}
+
+	class StubState extends StateVertex {
+		attribute referenceState : String;
+		
+	}
+
+	class FinalState extends State {
+		
+	}
+
+	class Package extends GeneralizableElement, Namespace {
+		reference elementImport[*] container : ElementImport;
+		
+	}
+
+	class Model extends Package {
+		
+	}
+
+	class Subsystem extends Package, Classifier {
+		attribute isInstantiable : Boolean;
+		
+	}
+
+	class ElementImport {
+		reference "package" : Package;
+		reference importedElement : ModelElement;
+		attribute visibility[0-1] : VisibilityKind;
+		attribute alias[0-1] : String;
+		attribute isSpecification : Boolean;
+		
+	}
+
+	class ActivityGraph extends StateMachine {
+		reference partition[*] container : Partition;
+		
+	}
+
+	class Partition extends ModelElement {
+		reference contents[*] : ModelElement;
+		reference activityGraph : ActivityGraph;
+		
+	}
+
+	class SubactivityState extends SubmachineState {
+		attribute isDynamic : Boolean;
+		reference dynamicArguments[0-1] container : ArgListsExpression;
+		reference dynamicMultiplicity[0-1] container : Multiplicity;
+		
+	}
+
+	class ActionState extends SimpleState {
+		attribute isDynamic : Boolean;
+		reference dynamicArguments[0-1] container : ArgListsExpression;
+		reference dynamicMultiplicity[0-1] container : Multiplicity;
+		
+	}
+
+	class CallState extends ActionState {
+		
+	}
+
+	class ObjectFlowState extends SimpleState {
+		reference type : Classifier;
+		reference parameter[*] : Parameter;
+		attribute isSynch : Boolean;
+		
+	}
+
+	class ClassifierInState extends Classifier {
+		reference type : Classifier;
+		reference inState[1-*] : State;
+		
+	}
+
+	abstract class Element {
+		
+	}
+
+	abstract class ModelElement extends Element {
+		reference stereotype[*] : Stereotype;
+		reference comment[*] : Comment;
+		reference taggedValue[*] container : TaggedValue;
+		reference templateParameter[*] ordered container : TemplateParameter;
+		reference namespace[0-1] : Namespace;
+		reference clientDependency[*] : Dependency;
+		reference targetFlow[*] : Flow;
+		reference constraint[*] : Constraint;
+		reference sourceFlow[*] : Flow;
+		attribute name[0-1] : String;
+		attribute visibility[0-1] : VisibilityKind;
+		attribute isSpecification : Boolean;
+		
+	}
+
+	abstract class GeneralizableElement extends ModelElement {
+		reference generalization[*] : Generalization;
+		attribute isRoot : Boolean;
+		attribute isLeaf : Boolean;
+		attribute isAbstract : Boolean;
+		
+	}
+
+	abstract class Namespace extends ModelElement {
+		reference ownedElement[*] container : ModelElement;
+		
+	}
+
+	abstract class Classifier extends GeneralizableElement, Namespace {
+		reference powertypeRange[*] : Generalization;
+		reference feature[*] ordered container : Feature;
+		
+	}
+
+	class Class extends Classifier {
+		attribute isActive : Boolean;
+		
+	}
+
+	class DataType extends Classifier {
+		
+	}
+
+	abstract class Feature extends ModelElement {
+		reference owner[0-1] : Classifier;
+		attribute ownerScope : ScopeKind;
+		
+	}
+
+	abstract class StructuralFeature extends Feature {
+		reference type : Classifier;
+		reference multiplicity[0-1] container : Multiplicity;
+		attribute changeability[0-1] : ChangeableKind;
+		attribute targetScope[0-1] : ScopeKind;
+		attribute ordering[0-1] : OrderingKind;
+		
+	}
+
+	class AssociationEnd extends ModelElement {
+		reference specification[*] : Classifier;
+		reference participant : Classifier;
+		reference qualifier[*] ordered container : Attribute;
+		reference association : Association;
+		attribute isNavigable : Boolean;
+		attribute ordering[0-1] : OrderingKind;
+		attribute aggregation[0-1] : AggregationKind;
+		attribute targetScope[0-1] : ScopeKind;
+		reference multiplicity[0-1] container : Multiplicity;
+		attribute changeability[0-1] : ChangeableKind;
+		
+	}
+
+	class Interface extends Classifier {
+		
+	}
+
+	class Constraint extends ModelElement {
+		reference constrainedElement[*] ordered : ModelElement;
+		reference body[0-1] container : BooleanExpression;
+		
+	}
+
+	abstract class Relationship extends ModelElement {
+		
+	}
+
+	class Association extends GeneralizableElement, Relationship {
+		reference connection[2-*] ordered container : AssociationEnd;
+		
+	}
+
+	class Attribute extends StructuralFeature {
+		reference associationEnd[0-1] : AssociationEnd;
+		reference initialValue[0-1] container : Expression;
+		
+	}
+
+	abstract class BehavioralFeature extends Feature {
+		reference parameter[*] ordered container : Parameter;
+		attribute isQuery : Boolean;
+		
+	}
+
+	class Operation extends BehavioralFeature {
+		attribute concurrency[0-1] : CallConcurrencyKind;
+		attribute isRoot : Boolean;
+		attribute isLeaf : Boolean;
+		attribute isAbstract : Boolean;
+		attribute specification[0-1] : String;
+		
+	}
+
+	class Parameter extends ModelElement {
+		reference behavioralFeature[0-1] : BehavioralFeature;
+		reference type : Classifier;
+		reference defaultValue[0-1] container : Expression;
+		attribute kind : ParameterDirectionKind;
+		
+	}
+
+	class Method extends BehavioralFeature {
+		reference specification : Operation;
+		reference body container : ProcedureExpression;
+		
+	}
+
+	class Generalization extends Relationship {
+		reference child : GeneralizableElement;
+		reference powertype[0-1] : Classifier;
+		reference parent : GeneralizableElement;
+		attribute discriminator[0-1] : String;
+		
+	}
+
+	class AssociationClass extends Association, Class {
+		
+	}
+
+	class Dependency extends Relationship {
+		reference client[1-*] : ModelElement;
+		reference supplier[1-*] : ModelElement;
+		
+	}
+
+	class Abstraction extends Dependency {
+		reference mapping[0-1] container : MappingExpression;
+		
+	}
+
+	abstract class PresentationElement extends Element {
+		reference subject[*] : ModelElement;
+		
+	}
+
+	class Usage extends Dependency {
+		
+	}
+
+	class Binding extends Dependency {
+		reference argument[1-*] ordered container : TemplateArgument;
+		
+	}
+
+	class Component extends Classifier {
+		reference deploymentLocation[*] : Node;
+		reference residentElement[*] container : ElementResidence;
+		reference implementation[*] : Artifact;
+		
+	}
+
+	class Node extends Classifier {
+		reference deployedComponent[*] : Component;
+		
+	}
+
+	class Permission extends Dependency {
+		
+	}
+
+	class Comment extends ModelElement {
+		reference annotatedElement[*] : ModelElement;
+		attribute body : String;
+		
+	}
+
+	class Flow extends Relationship {
+		reference source[*] : ModelElement;
+		reference target[*] : ModelElement;
+		
+	}
+
+	class ElementResidence {
+		reference "container" : Component;
+		reference resident : ModelElement;
+		attribute visibility[0-1] : VisibilityKind;
+		
+	}
+
+	class TemplateParameter {
+		reference template : ModelElement;
+		reference parameter container : ModelElement;
+		reference defaultElement[0-1] : ModelElement;
+		
+	}
+
+	class Primitive extends DataType {
+		
+	}
+
+	class Enumeration extends DataType {
+		reference "literal"[1-*] ordered container : EnumerationLiteral;
+		
+	}
+
+	class EnumerationLiteral extends ModelElement {
+		reference "enumeration" : Enumeration;
+		
+	}
+
+	class Stereotype extends GeneralizableElement {
+		reference definedTag[*] container : TagDefinition;
+		reference stereotypeConstraint[*] container : Constraint;
+		attribute icon[0-1] : String;
+		attribute baseClass[1-*] : String;
+		
+	}
+
+	class TagDefinition extends ModelElement {
+		reference owner[0-1] : Stereotype;
+		attribute tagType[0-1] : String;
+		reference multiplicity[0-1] container : Multiplicity;
+		
+	}
+
+	class TaggedValue extends ModelElement {
+		reference type : TagDefinition;
+		reference modelElement : ModelElement;
+		reference referenceValue[*] : ModelElement;
+		attribute dataValue[*] : String;
+		
+	}
+
+	class ProgrammingLanguageDataType extends DataType {
+		reference expression container : TypeExpression;
+		
+	}
+
+	class Artifact extends Classifier {
+		
+	}
+
+	class TemplateArgument {
+		reference modelElement : ModelElement;
+		reference binding : Binding;
+		
+	}
+
+	class UseCase extends Classifier {
+		reference include[*] : Include;
+		reference extend[*] : Extend;
+		reference extensionPoint[*] container : ExtensionPoint;
+		
+	}
+
+	class Actor extends Classifier {
+		
+	}
+
+	class UseCaseInstance extends Instance {
+		
+	}
+
+	class Extend extends Relationship {
+		reference extension : UseCase;
+		reference extensionPoint[1-*] ordered : ExtensionPoint;
+		reference base : UseCase;
+		reference condition container : BooleanExpression;
+		
+	}
+
+	class Include extends Relationship {
+		reference base : UseCase;
+		reference addition : UseCase;
+		
+	}
+
+	class ExtensionPoint extends ModelElement {
+		reference useCase : UseCase;
+		attribute location : String;
+		
 	}
 
 }
