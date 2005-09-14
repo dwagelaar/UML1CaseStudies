@@ -415,7 +415,8 @@ rule StateMachine {
         constraint <- s.constraint,
         targetFlow <- s.targetFlow,
         stereotype <- s.stereotype,
-        sourceFlow <- s.sourceFlow)
+        sourceFlow <- s.sourceFlow,
+		"context" <- s."context")
 }
 
 rule CallAction {
