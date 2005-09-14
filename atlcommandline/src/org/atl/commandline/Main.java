@@ -29,7 +29,7 @@ import java.util.StringTokenizer;
 
 import org.atl.commandline.engine.AtlLauncher;
 import org.atl.commandline.engine.AtlModelHandler;
-import org.mda.asm.nativeimpl.ASMModel;
+import org.atl.engine.vm.nativelib.ASMModel;
 
 /**
  * Command-line interface to the ATLAS transformation engine.

@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-import org.mda.asm.nativeimpl.ASMMDRModel;
-import org.mda.asm.nativeimpl.ASMModel;
+import org.atl.engine.repositories.mdr4atl.ASMMDRModel;
+import org.atl.engine.vm.nativelib.ASMModel;
 
 /**
  * @author JOUAULT
@@ -43,19 +43,19 @@ public class AtlMDRModelHandler extends AtlModelHandler{
 	public ASMModel loadModel(String name, ASMModel metamodel, InputStream in)
             throws Exception {
 		ASMModel ret = null;
-		ret = ASMMDRModel.loadASMMDRModel(name, (ASMMDRModel)metamodel, in);
+		ret = ASMMDRModel.loadASMMDRModel(name, (ASMMDRModel)metamodel, in, null);
 		return ret;
 	}
 	public ASMModel newModel(String name, ASMModel metamodel) throws Exception {
 		ASMModel ret = null;
-		ret = ASMMDRModel.newASMMDRModel(name, (ASMMDRModel)metamodel);
+		ret = ASMMDRModel.newASMMDRModel(name, (ASMMDRModel)metamodel, null);
 		return ret;
 	}
 
 	protected AtlMDRModelHandler() throws Exception {
 		URL atlurl = AtlMDRModelHandler.class.getResource("resources/ATL-0.2.xmi");
-		mofmm = ASMMDRModel.createMOF();
-		atlmm = ASMMDRModel.loadASMMDRModel("ATL", mofmm, atlurl);
+		mofmm = ASMMDRModel.createMOF(null);
+		atlmm = ASMMDRModel.loadASMMDRModel("ATL", mofmm, atlurl, null);
 	}
 	
 	public ASMModel getBuiltInMetaModel(String name) {
