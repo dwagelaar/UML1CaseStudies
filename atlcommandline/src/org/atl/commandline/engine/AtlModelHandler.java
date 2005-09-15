@@ -30,7 +30,10 @@ public abstract class AtlModelHandler {
 			if(AMH_MDR.equals(repository)) {
 				ret = new AtlMDRModelHandler();
 				defaultModelHandlers.put(AMH_MDR, ret);
-			}
+            } else if(AMH_EMF.equals(repository)) {
+                ret = new AtlEMFModelHandler();
+                defaultModelHandlers.put(AMH_EMF, ret);             
+            }
 		}
 		
 		return ret;

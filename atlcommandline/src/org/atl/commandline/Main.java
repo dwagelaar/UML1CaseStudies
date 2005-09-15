@@ -39,18 +39,18 @@ public class Main implements Runnable {
     public static final String USAGE =
         "Usage: <this program> " +
         "--trans <transformation url> " +
-        "[--in <id>=<model> <id>=<metamodel>] " +
-        "[--out <id>=<model> <id>=<metamodel>] " +
+        "[--in <id>=<model> <id>=<metamodel> <MDR|EMF>] " +
+        "[--out <id>=<model> <id>=<metamodel> <MDR|EMF>] " +
         "[--lib <id>=<library url>] " +
         "--next --trans ...";
     
     public URL trans = null;
-    public String handler = AtlModelHandler.AMH_MDR;
     public Map in = new HashMap();
     public HashMap out = new HashMap();
     public HashMap libs = new HashMap();
     public HashMap paths = new HashMap();
     public HashMap modelCache = new HashMap();
+    public HashMap handlers = new HashMap();
     
     private int argPos = 0;
     
@@ -86,11 +86,11 @@ public class Main implements Runnable {
                     i++;
                     trans = new URL(args[i]);
                 } else if (args[i].equals("--in")) {
-                    i++; i++;
-                    addInputModel(args[i-1], args[i]);
+                    i++; i++; i++;
+                    addInputModel(args[i-2], args[i-1], args[i]);
                 } else if (args[i].equals("--out")) {
-                    i++; i++;
-                    addOutputModel(args[i-1], args[i]);
+                    i++; i++; i++;
+                    addOutputModel(args[i-2], args[i-1], args[i]);
                 } else if (args[i].equals("--lib")) {
                     i++;
                     addLib(args[i]);
@@ -116,9 +116,11 @@ public class Main implements Runnable {
      * Parses --in arguments and adds them to the internal list
      * @param model
      * @param metamodel
+     * @param repository
      * @throws Exception
      */
-    public void addInputModel(String model, String metamodel) throws Exception {
+    public void addInputModel(String model, String metamodel, String repository)
+            throws Exception {
         StringTokenizer mdl = new StringTokenizer(model, "=");
         String modelid = mdl.nextToken();
         String modelpath = mdl.nextToken();
@@ -126,7 +128,7 @@ public class Main implements Runnable {
         String metaid = metamdl.nextToken();
         String metapath = metamdl.nextToken();
 
-        AtlModelHandler amh = AtlModelHandler.getDefault(handler);
+        AtlModelHandler amh = AtlModelHandler.getDefault(repository);
         ASMModel metaModel;
         ASMModel inputModel;
         if (metaid.equals("MOF")) {
@@ -136,11 +138,12 @@ public class Main implements Runnable {
         else {
             metaModel = (ASMModel) in.get(metaid);
             if (metaModel == null || !metapath.equals(paths.get(metaid))) {
-                System.out.println("Input metamodel " + metaid + " not yet loaded - loading from " + metapath);
+                System.out.println("Input metamodel " + metaid + " @ " + amh + " not yet loaded - loading from " + metapath);
                 metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
                 in.put(metaid, metaModel);
             }
         }
+        handlers.put(metaid, repository);
         System.out.println("Using input metamodel " + metaModel);
         inputModel = (ASMModel) modelCache.get(modelid);
         if (inputModel == null || 
@@ -159,9 +162,11 @@ public class Main implements Runnable {
      * Parses --out arguments and adds them to the internal list
      * @param model
      * @param metamodel
+     * @param repository
      * @throws Exception
      */
-    public void addOutputModel(String model, String metamodel) throws Exception {
+    public void addOutputModel(String model, String metamodel, String repository)
+            throws Exception {
         StringTokenizer mdl = new StringTokenizer(model, "=");
         String modelid = mdl.nextToken();
         String modelpath = mdl.nextToken();
@@ -169,7 +174,7 @@ public class Main implements Runnable {
         String metaid = metamdl.nextToken();
         String metapath = metamdl.nextToken();
 
-        AtlModelHandler amh = AtlModelHandler.getDefault(handler);
+        AtlModelHandler amh = AtlModelHandler.getDefault(repository);
         ASMModel metaModel;
         ASMModel outputModel;
         if (metaid.equals("MOF")) {
@@ -179,11 +184,12 @@ public class Main implements Runnable {
         else {
             metaModel = (ASMModel) in.get(metaid);
             if (metaModel == null || !metapath.equals(paths.get(metaid))) {
-                System.out.println("Loading output metamodel " + metaid + " from " + metapath);
+                System.out.println("Loading output metamodel " + metaid + " @ " + amh + " from " + metapath);
                 metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
                 in.put(metaid, metaModel);
             }
         }
+        handlers.put(metaid, repository);
         System.out.println("Using output metamodel " + metaModel);
         System.out.println("Creating new model " + modelid + " for output");
         outputModel = amh.newModel(modelid, metaModel);
@@ -210,8 +216,15 @@ public class Main implements Runnable {
     public void run() {
         try {
             System.out.println("Starting model transformation " + trans);
-            AtlModelHandler amh = AtlModelHandler.getDefault(handler);
+//            AtlModelHandler amh = AtlModelHandler.getDefault(repository);
             Map models = new HashMap();
+            Map atlModelHandler = new HashMap();
+            // add handlers
+//            for(Iterator i = handlers.keySet().iterator() ; i.hasNext() ; ) {
+//                String hName = (String)i.next();
+//                if (!atlModelHandler.containsKey(hName) && !hName.equals(""))
+//                    atlModelHandler.put(hName, AtlModelHandler.getDefault(hName));
+//            }
             // add input models
             for(Iterator i = in.keySet().iterator() ; i.hasNext() ; ) {
                 String mName = (String)i.next();
@@ -222,8 +235,8 @@ public class Main implements Runnable {
                 String mName = (String)i.next();
                 models.put(mName, out.get(mName));
             }
-            models.put("ATL", amh.getAtl());
-            models.put("MOF", amh.getMof());
+//            models.put("ATL", amh.getAtl());
+//            models.put("MOF", amh.getMof());
             Map params = Collections.EMPTY_MAP;
             AtlLauncher myLauncher = AtlLauncher.getDefault();
             myLauncher.launch(trans, libs, models, params);
@@ -232,7 +245,8 @@ public class Main implements Runnable {
             for(Iterator i = out.keySet().iterator(); i.hasNext() ; ) {
                 String mName = (String)i.next();
                 ASMModel currentOutModel = (ASMModel)out.get(mName);
-                amh.saveModel(currentOutModel, (String) paths.get(mName));
+                String mmName = currentOutModel.getMetamodel().getName();
+                AtlModelHandler.getDefault((String)handlers.get(mmName)).saveModel(currentOutModel, (String) paths.get(mName));
                 System.out.println("Wrote " + (String) paths.get(mName));
                 modelCache.put(mName, currentOutModel);
                 i.remove();

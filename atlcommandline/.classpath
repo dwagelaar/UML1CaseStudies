@@ -10,5 +10,11 @@
 	<classpathentry kind="lib" path="lib/mof.jar"/>
 	<classpathentry kind="lib" path="lib/nbmdr.jar"/>
 	<classpathentry kind="lib" path="lib/openide-util.jar"/>
+	<classpathentry kind="lib" path="lib/common.jar"/>
+	<classpathentry kind="lib" path="lib/ecore.jar"/>
+	<classpathentry kind="lib" path="lib/ecore.xmi.jar"/>
+	<classpathentry kind="lib" path="lib/runtime.jar"/>
+	<classpathentry kind="lib" path="lib/emf4atl.jar"/>
+	<classpathentry kind="lib" path="lib/ebnfinjector.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
