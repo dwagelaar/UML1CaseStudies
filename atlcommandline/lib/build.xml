@@ -13,7 +13,7 @@
         	<include name="**"/>
         	<manifest>
         		<attribute name="Main-Class" value="org.atl.commandline.Main"/>
-        		<attribute name="Class-Path" value="atl.jar jmi.jar jmiutils.jar mdr4atl.jar mdrapi.jar mof.jar nbmdr.jar openide-util.jar"/>
+        		<attribute name="Class-Path" value="atl.jar jmi.jar jmiutils.jar mdr4atl.jar mdrapi.jar mof.jar nbmdr.jar openide-util.jar emf4atl.jar common.jar ecore.jar ecore.xmi.jar runtime.jar ebnfinjector.jar"/>
         	</manifest>
         </jar>
     </target>
