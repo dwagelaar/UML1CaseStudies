@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/atl.jar"/>
 	<classpathentry kind="lib" path="lib/jmi.jar"/>
 	<classpathentry kind="lib" path="lib/jmiutils.jar"/>
 	<classpathentry kind="lib" path="lib/mdr4atl.jar"/>
@@ -16,5 +15,6 @@
 	<classpathentry kind="lib" path="lib/runtime.jar"/>
 	<classpathentry kind="lib" path="lib/emf4atl.jar"/>
 	<classpathentry kind="lib" path="lib/ebnfinjector.jar"/>
+	<classpathentry kind="lib" path="lib/vm.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
