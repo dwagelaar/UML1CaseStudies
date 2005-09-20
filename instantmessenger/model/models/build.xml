@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DefaultInstantMessenger" default="all">
+	<path id="atl.class.path">
+		<fileset dir="../../../atlcommandline/lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="toEcore">
+		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
+			<classpath refid="atl.class.path"/>
+			<arg value="--trans"/>
+				<arg value="file:../../../transformations/ModelCopy.asm"/>
+			<arg value="--in"/>
+				<arg value="IN=${model}.xmi"/>
+				<arg value="INMODEL=../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="MDR"/>
+			<arg value="--out"/>
+				<arg value="OUT=${model}.emf.xmi"/>
+				<arg value="OUTMODEL=../../../transformations/metamodels/M2_DiagramInterchangeModel.ecore"/>
+				<arg value="EMF"/>
+		</java>
+	</target>
+	
+	<target name="allToEcore">
+		<antcall target="toEcore"><param name="model" value="InstantMessengerAWT"/></antcall>
+		<antcall target="toEcore"><param name="model" value="InstantMessengerDefaultJabber"/></antcall>
+		<antcall target="toEcore"><param name="model" value="InstantMessengerJabber"/></antcall>
+		<antcall target="toEcore"><param name="model" value="InstantMessengerLCDUI"/></antcall>
+		<antcall target="toEcore"><param name="model" value="InstantMessengerLocal"/></antcall>
+		<antcall target="toEcore"><param name="model" value="InstantMessengerMEJabber"/></antcall>
+		<antcall target="toEcore"><param name="model" value="InstantMessengerModel"/></antcall>
+		<antcall target="toEcore"><param name="model" value="InstantMessengerSMS"/></antcall>
+		<antcall target="toEcore"><param name="model" value="InstantMessengerSwing"/></antcall>
+	</target>
+	
+	<target name="all" depends="allToEcore"/>
+</project>
