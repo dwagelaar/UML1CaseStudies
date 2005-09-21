@@ -23,16 +23,14 @@ helper def : newElements : Sequence(UML!Element) = Sequence{
 		UML!Generalization.allInstancesFrom('JAVATYPES')->select(g|g.notInSourceModel())
 	}->flatten();
 
-helper context UML!ModelElement def : isInPackage() : Boolean =
-	not UML!Package.allInstances()->select(p|
-		p=self.namespace and p.oclIsTypeOf(UML!Package))->isEmpty();
-
 helper context UML!ModelElement def : qName() : String =
-	if self.isInPackage() then
+	if self.namespace.oclIsUndefined() then
+		self.name
+	else if self.namespace.oclIsTypeOf(UML!Package) then
 		self.namespace.qName() + '.' + self.name
 	else
 		self.name
-	endif;
+	endif endif;
 
 ------------------------------- Model -----------------------------------
 
@@ -170,6 +168,10 @@ helper context UML!Parameter def : notInSourceModel() : Boolean =
 -- ======================================================================
 
 helper def : inExpressions : Set(UML!Expression) = UML!Expression.allInstancesFrom('ACCESSORS');
+
+helper def : javaUtilObservable : UML!Class = 'java.util.Observable'.qClass();
+helper def : javaUtilObserver : UML!Interface = 'java.util.Observer'.qInterface();
+helper def : javaLangObject : UML!Class = 'java.lang.Object'.qClass();
 
 helper context UML!Attribute def : javaSetterNotify(body : String) : String =
 	'// Begin Observable stanza\n' +
@@ -310,6 +312,58 @@ helper context UML!Operation def : javaSubscribe(body : String) : String =
 		body
 	endif endif endif;
 
+helper context UML!Method def : isPlainMethod() : Boolean =
+	if self.specification.isAccessor() then
+		if self.owner.isObservableKind() then
+			false
+		else if self.owner.isObserverKind() and	self.specification.isSubscriber() then
+			false
+		else
+			true
+		endif endif
+	else
+		true
+	endif;
+
+helper context UML!Method def : isNotifyMethod() : Boolean =
+	if self.specification.isAccessor() then
+		if not self.owner.isObservableKind() then
+			false
+		else if self.owner.isObserverKind() and self.specification.isSubscriber() then
+			false
+		else
+			true
+		endif endif
+	else
+		false
+	endif;
+	
+helper context UML!Method def : isNotifySubscribeMethod() : Boolean =
+	if self.specification.isAccessor() then
+		if not self.owner.isObservableKind() then
+			false
+		else if self.owner.isObserverKind() and self.specification.isSubscriber() then
+			true
+		else
+			false
+		endif endif
+	else
+		false
+	endif;
+	
+helper context UML!Method def : isSubscribeMethod() : Boolean =
+	if self.specification.isAccessor() then
+		if self.owner.isObservableKind() then
+			false
+		else if self.owner.isObserverKind() and self.specification.isSubscriber() then
+			true
+		else
+			false
+		endif endif
+	else
+		false
+	endif;
+	
 -- ======================================================================
 -- model-specific helpers end
 -- ======================================================================
@@ -325,7 +379,7 @@ rule ObservableClass {
 		else false endif)
 	to t : UML!Generalization (
 	   	namespace <- s.namespace,
-		parent <- 'java.util.Observable'.qClass(),
+		parent <- thisModule.javaUtilObservable,
 		child <- s)
 }
 
@@ -337,7 +391,7 @@ rule ObserverClass {
 	to t : UML!Abstraction (
 	   	namespace <- s.namespace,
 		stereotype <- 'realize'.stereotype(),
-		supplier <- Set{'java.util.Observer'.qInterface()},
+		supplier <- Set{thisModule.javaUtilObserver},
 		client <- Set{s}),
 	   op : UML!Operation (
 	   	name <- 'update',
@@ -349,12 +403,12 @@ rule ObserverClass {
 	   o : UML!Parameter (
 	   	name <- 'o',
 		behavioralFeature <- op,
-		type <- 'java.util.Observable'.qClass(),
+		type <- thisModule.javaUtilObservable,
 		kind <- #pdk_in),
 	   arg : UML!Parameter (
 	   	name <- 'arg',
 		behavioralFeature <- op,
-		type <- 'java.lang.Object'.qClass(),
+		type <- thisModule.javaLangObject,
 		kind <- #pdk_in),
 	   mbody : UML!ProcedureExpression (
 	   	language <- 'java',
@@ -376,11 +430,7 @@ rule ObserverClass {
 rule ProcedureExpression {
 	from s : UML!ProcedureExpression (
 		if thisModule.inExpressions->includes(s) then
-		not (
-		 s.method().specification.isAccessor() and
-		 (s.method().owner.isObservableKind() or
-		  (s.method().owner.isObserverKind() and
-		   s.method().specification.isSubscriber())))
+			s.method().isPlainMethod()
 		else false endif)
 	to t : UML!ProcedureExpression mapsTo s (
 		language <- s.language,
@@ -390,10 +440,7 @@ rule ProcedureExpression {
 rule NotifyProcedureExpression {
 	from s : UML!ProcedureExpression (
 		if thisModule.inExpressions->includes(s) then
-		 s.method().specification.isAccessor() and
-		 s.method().owner.isObservableKind() and
-		 not (s.method().owner.isObserverKind() and
-		      s.method().specification.isSubscriber())
+			s.method().isNotifyMethod()
 		else false endif)
 	to t : UML!ProcedureExpression mapsTo s (
 		language <- s.language,
@@ -403,10 +450,7 @@ rule NotifyProcedureExpression {
 rule NotifySubscribeProcedureExpression {
 	from s : UML!ProcedureExpression (
 		if thisModule.inExpressions->includes(s) then
-		 s.method().specification.isAccessor() and
-		 s.method().owner.isObservableKind() and
-		 s.method().owner.isObserverKind() and
-		 s.method().specification.isSubscriber()
+		 	s.method().isNotifySubscribeMethod()
 		else false endif)
 	to t : UML!ProcedureExpression mapsTo s (
 		language <- s.language,
@@ -417,10 +461,7 @@ rule NotifySubscribeProcedureExpression {
 rule SubscribeProcedureExpression {
 	from s : UML!ProcedureExpression (
 		if thisModule.inExpressions->includes(s) then
-		 s.method().specification.isAccessor() and
-		 not s.method().owner.isObservableKind() and
-		 s.method().owner.isObserverKind() and
-		 s.method().specification.isSubscriber()
+		 	s.method().isSubscribeMethod()
 		else false endif)
 	to t : UML!ProcedureExpression mapsTo s (
 		language <- s.language,
@@ -433,6 +474,7 @@ rule Class {
 			s.oclIsTypeOf(UML!Class)
 		else false endif)
     to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
         isLeaf <- s.isLeaf,
         isRoot <- s.isRoot,
         visibility <- s.visibility,
