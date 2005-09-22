@@ -98,7 +98,11 @@ helper context UML!AssociationEnd def : notInSourceModel() : Boolean =
 ------------------------------- TaggedValue -----------------------------
 
 helper context UML!TaggedValue def : notInSourceModel() : Boolean =
-	thisModule.newElements->includes(self.modelElement);
+	if thisModule.newElements->includes(self.modelElement) then
+		true
+	else
+		self.modelElement.notInSourceModel()
+	endif;
 
 ------------------------------- StructuralFeature -----------------------
 
