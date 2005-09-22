@@ -151,6 +151,7 @@ public class Main implements Runnable {
                 !metaid.equals(inputModel.getMetamodel().getName())) {
             System.out.println("Loading input model " + modelid + " from " + modelpath);
             inputModel = amh.loadModel(modelid, metaModel, new FileInputStream(modelpath));
+            modelCache.put(modelid, inputModel);
         }
         System.out.println("Using input model " + inputModel);
         in.put(modelid, inputModel);
@@ -216,15 +217,8 @@ public class Main implements Runnable {
     public void run() {
         try {
             System.out.println("Starting model transformation " + trans);
-//            AtlModelHandler amh = AtlModelHandler.getDefault(repository);
             Map models = new HashMap();
             Map atlModelHandler = new HashMap();
-            // add handlers
-//            for(Iterator i = handlers.keySet().iterator() ; i.hasNext() ; ) {
-//                String hName = (String)i.next();
-//                if (!atlModelHandler.containsKey(hName) && !hName.equals(""))
-//                    atlModelHandler.put(hName, AtlModelHandler.getDefault(hName));
-//            }
             // add input models
             for(Iterator i = in.keySet().iterator() ; i.hasNext() ; ) {
                 String mName = (String)i.next();
@@ -235,8 +229,6 @@ public class Main implements Runnable {
                 String mName = (String)i.next();
                 models.put(mName, out.get(mName));
             }
-//            models.put("ATL", amh.getAtl());
-//            models.put("MOF", amh.getMof());
             Map params = Collections.EMPTY_MAP;
             AtlLauncher myLauncher = AtlLauncher.getDefault();
             myLauncher.launch(trans, libs, models, params);
