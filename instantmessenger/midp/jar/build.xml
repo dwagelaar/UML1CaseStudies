@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SwingInstantMessenger" default="all">
+	<target name="deploy">
+		<scp todir="dwagelaa@ssel.vub.ac.be:/var/www/html/cddtoolkit/instantmessenger/midp"
+			 keyfile="${user.home}/.ssh/id_rsa"
+			 passphrase="${passphrase}">
+			<fileset dir=".">
+				<include name="instantmessenger.*"/>
+				<include name="index.html"/>
+			</fileset>
+		</scp>
+	</target>
+	
+	<target name="all" depends="deploy"/>
+</project>
