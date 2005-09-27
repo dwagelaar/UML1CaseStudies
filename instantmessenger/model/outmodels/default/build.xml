@@ -64,131 +64,90 @@
 		</antcall>
 	</target>
 	
-	<target name="refine" depends="mergeFeatures">
+	<target name="refine">
 		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
 			<classpath refid="atl.class.path"/>
 			<arg value="--trans"/>
-				<arg value="${transf.uri}AssociationAttributes.asm"/>
+				<arg value="${transf.uri}${model.transf}"/>
 			<arg value="--in"/>
-				<arg value="IN=im-default-04-Local.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--in"/>
-				<arg value="OCLTYPES=${rmodel.ocltypes}"/>
+				<arg value="IN=${model.in}"/>
 				<arg value="UML=${mmodel.uml}"/>
 				<arg value="EMF"/>
 			<arg value="--out"/>
-				<arg value="ATTRIBUTES=im-default-11-Attributes.xmi"/>
+				<arg value="OUT=${model.out}"/>
 				<arg value="UML=${mmodel.uml}"/>
 				<arg value="EMF"/>
 			<arg value="--lib"/><arg value="Java=${lib.java}"/>
 			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
-		</java>
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}Accessors.asm"/>
-			<arg value="--in"/>
-				<arg value="ATTRIBUTES=im-default-11-Attributes.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--in"/>
-				<arg value="OCLTYPES=${rmodel.ocltypes}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="ACCESSORS=im-default-12-Accessors.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--lib"/><arg value="Java=${lib.java}"/>
-			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
-		</java>
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}JavaObserver.asm"/>
-			<arg value="--in"/>
-				<arg value="ACCESSORS=im-default-12-Accessors.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--in"/>
-				<arg value="JAVATYPES=${rmodel.javatypes}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="OBSERVER=im-default-13-Observer.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--lib"/><arg value="Java=${lib.java}"/>
-			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
-		</java>
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}Singleton.asm"/>
-			<arg value="--in"/>
-				<arg value="OBSERVER=im-default-13-Observer.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="SINGLETON=im-default-14-Singleton.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--lib"/><arg value="Java=${lib.java}"/>
-			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
-		</java>
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}Applet.asm"/>
-			<arg value="--in"/>
-				<arg value="SINGLETON=im-default-14-Singleton.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--in"/>
-				<arg value="APPLETTYPES=${rmodel.applet}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="APPLET=im-default-15-Applet.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--lib"/><arg value="Java=${lib.java}"/>
-			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
-		</java>
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}DataTypes.asm"/>
-			<arg value="--in"/>
-				<arg value="APPLET=im-default-15-Applet.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--in"/>
-				<arg value="JAVATYPES=${rmodel.javatypes}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="DATATYPES=im-default-16-DataTypes.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-		</java>
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}AsyncMethods.asm"/>
-			<arg value="--in"/>
-				<arg value="DATATYPES=im-default-16-DataTypes.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="ASYNC=im-default-17-Async.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
 		</java>
 	</target>
 	
-	<target name="output" depends="refine">
+	<target name="refineWithMerge">
+		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
+			<classpath refid="atl.class.path"/>
+			<arg value="--trans"/>
+				<arg value="${transf.uri}${model.transf}"/>
+			<arg value="--in"/>
+				<arg value="IN=${model.in}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
+			<arg value="--in"/>
+				<arg value="MERGE=${model.merge}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
+			<arg value="--out"/>
+				<arg value="OUT=${model.out}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
+			<arg value="--lib"/><arg value="Java=${lib.java}"/>
+			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
+		</java>
+	</target>
+	
+	<target name="refineAll" depends="mergeFeatures">
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="AssociationAttributes.asm"/>
+			<param name="model.in" value="im-default-04-Local.xmi"/>
+			<param name="model.merge" value="${rmodel.ocltypes}"/>
+			<param name="model.out" value="im-default-11-Attributes.xmi"/>
+		</antcall>
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="Accessors.asm"/>
+			<param name="model.in" value="im-default-11-Attributes.xmi"/>
+			<param name="model.merge" value="${rmodel.ocltypes}"/>
+			<param name="model.out" value="im-default-12-Accessors.xmi"/>
+		</antcall>
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="JavaObserver.asm"/>
+			<param name="model.in" value="im-default-12-Accessors.xmi"/>
+			<param name="model.merge" value="${rmodel.javatypes}"/>
+			<param name="model.out" value="im-default-13-Observer.xmi"/>
+		</antcall>
+		<antcall target="refine">
+			<param name="model.transf" value="Singleton.asm"/>
+			<param name="model.in" value="im-default-13-Observer.xmi"/>
+			<param name="model.out" value="im-default-14-Singleton.xmi"/>
+		</antcall>
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="Applet.asm"/>
+			<param name="model.in" value="im-default-14-Singleton.xmi"/>
+			<param name="model.merge" value="${rmodel.applet}"/>
+			<param name="model.out" value="im-default-15-Applet.xmi"/>
+		</antcall>
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="DataTypes.asm"/>
+			<param name="model.in" value="im-default-15-Applet.xmi"/>
+			<param name="model.merge" value="${rmodel.javatypes}"/>
+			<param name="model.out" value="im-default-16-DataTypes.xmi"/>
+		</antcall>
+		<antcall target="refine">
+			<param name="model.transf" value="AsyncMethods.asm"/>
+			<param name="model.in" value="im-default-16-DataTypes.xmi"/>
+			<param name="model.out" value="im-default-17-Async.xmi"/>
+		</antcall>
+	</target>
+	
+	<target name="output" depends="refineAll">
 		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
 			<classpath refid="atl.class.path"/>
 			<arg value="--trans"/>

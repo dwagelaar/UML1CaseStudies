@@ -5,206 +5,171 @@
 			<include name="**/*.jar"/>
 		</fileset>
 	</path>
-	
-	<target name="im-midp-refine" depends="im-midp-05-Local">
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/AssociationAttributes.asm"/>
-			<arg value="--in"/>
-				<arg value="IN=im-midp-05-Local.xmi"/>
-				<arg value="INMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--in"/>
-				<arg value="OCLTYPES=../../../../transformations/models/OclTypes.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--out"/>
-				<arg value="ATTRIBUTES=im-midp-11-Attributes.xmi"/>
-				<arg value="ATTRIBUTESM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--lib"/>
-				<arg value="Java=file:../../../../transformations/lib/Java.asm"/>
-			<arg value="--lib"/>
-				<arg value="strings=file:../../../../atlcommandline/src/org/atl/commandline/engine/resources/strings.asm"/>
 
-			<arg value="--next"/>
-			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/Accessors.asm"/>
-			<arg value="--in"/>
-				<arg value="ATTRIBUTES=im-midp-11-Attributes.xmi"/>
-				<arg value="ATTRIBUTESM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--in"/>
-				<arg value="OCLTYPES=../../../../transformations/models/OclTypes.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--out"/>
-				<arg value="ACCESSORS=im-midp-12-Accessors.xmi"/>
-				<arg value="ACCESSORSM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--lib"/>
-				<arg value="Java=file:../../../../transformations/lib/Java.asm"/>
-			<arg value="--lib"/>
-				<arg value="strings=file:../../../../atlcommandline/src/org/atl/commandline/engine/resources/strings.asm"/>
-
-			<arg value="--next"/>
-			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/Observer.asm"/>
-			<arg value="--in"/>
-				<arg value="ACCESSORS=im-midp-12-Accessors.xmi"/>
-				<arg value="ACCESSORSM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--in"/>
-				<arg value="OBSERVERTYPES=../../../../transformations/models/Observer.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--out"/>
-				<arg value="OBSERVER=im-midp-13-Observer.xmi"/>
-				<arg value="OBSERVERM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--lib"/>
-				<arg value="Java=file:../../../../transformations/lib/Java.asm"/>
-			<arg value="--lib"/>
-				<arg value="strings=file:../../../../atlcommandline/src/org/atl/commandline/engine/resources/strings.asm"/>
-
-			<arg value="--next"/>
-			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/Singleton.asm"/>
-			<arg value="--in"/>
-				<arg value="OBSERVER=im-midp-13-Observer.xmi"/>
-				<arg value="OBSERVERM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--out"/>
-				<arg value="SINGLETON=im-midp-14-Singleton.xmi"/>
-				<arg value="SINGLETONM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--lib"/>
-				<arg value="Java=file:../../../../transformations/lib/Java.asm"/>
-			<arg value="--lib"/>
-				<arg value="strings=file:../../../../atlcommandline/src/org/atl/commandline/engine/resources/strings.asm"/>
-
-			<arg value="--next"/>
-			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/MIDlet.asm"/>
-			<arg value="--in"/>
-				<arg value="SINGLETON=im-midp-14-Singleton.xmi"/>
-				<arg value="SINGLETONM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--in"/>
-				<arg value="MIDLETTYPES=../../../../transformations/models/MIDlet.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--out"/>
-				<arg value="APPLET=im-midp-15-MIDlet.xmi"/>
-				<arg value="APPLETM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--lib"/>
-				<arg value="Java=file:../../../../transformations/lib/Java.asm"/>
-			<arg value="--lib"/>
-				<arg value="strings=file:../../../../atlcommandline/src/org/atl/commandline/engine/resources/strings.asm"/>
-
-			<arg value="--next"/>
-			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/DataTypes.asm"/>
-			<arg value="--in"/>
-				<arg value="APPLET=im-midp-15-MIDlet.xmi"/>
-				<arg value="APPLETM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--in"/>
-				<arg value="JAVATYPES=../../../../transformations/models/JavaTypes.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--out"/>
-				<arg value="DATATYPES=im-midp-16-DataTypes.xmi"/>
-				<arg value="DATATYPESM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-
-			<arg value="--next"/>
-			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/AsyncMethods.asm"/>
-			<arg value="--in"/>
-				<arg value="DATATYPES=im-midp-16-DataTypes.xmi"/>
-				<arg value="DATATYPESM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--out"/>
-				<arg value="ASYNC=im-midp-17-Async.xmi"/>
-				<arg value="ASYNCM=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-		</java>
-	</target>
+	<property name="transf.path" value="../../../../transformations/"/>
+	<property name="transf.uri" value="file:${transf.path}"/>
+	<property name="lib.strings" value="file:../../../../atlcommandline/src/org/atl/commandline/engine/resources/strings.asm"/>
+	<property name="lib.java" value="${transf.uri}lib/Java.asm"/>
+	<property name="mmodel.path" value="../../../../transformations/metamodels/"/>
+	<property name="mmodel.uml" value="${mmodel.path}M2_DiagramInterchangeModel.ecore"/>
+	<property name="mmodel.mdruml" value="${mmodel.path}M2_DiagramInterchangeModel.xmi"/>
+	<property name="model.path" value="../../models/"/>
+	<property name="rmodel.path" value="../../../../transformations/models/"/>
+	<property name="rmodel.ocltypes" value="${rmodel.path}OclTypes.emf.xmi"/>
+	<property name="rmodel.javatypes" value="${rmodel.path}JavaTypes.emf.xmi"/>
+	<property name="rmodel.observer" value="${rmodel.path}Observer.emf.xmi"/>
+	<property name="rmodel.applet" value="${rmodel.path}Applet.emf.xmi"/>
+	<property name="rmodel.midlet" value="${rmodel.path}MIDlet.emf.xmi"/>
 		
-	<target name="im-midp-01-LCDUI">
+	<target name="mergeFeature">
 		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
 			<classpath refid="atl.class.path"/>
 			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/ModelMerge.asm"/>
+				<arg value="${transf.uri}MergeModel.asm"/>
 			<arg value="--in"/>
-				<arg value="IN=../../models/InstantMessengerModel.xmi"/>
-				<arg value="INMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="IN=${model.in}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
 			<arg value="--in"/>
-				<arg value="MERGE=../../models/InstantMessengerLCDUI.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="MERGE=${model.path}${model.merge}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
 			<arg value="--out"/>
-				<arg value="OUT=im-midp-01-LCDUI.xmi"/>
-				<arg value="OUTMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="OUT=${model.out}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
 		</java>
 	</target>
 	
-	<target name="im-midp-02-SMS" depends="im-midp-01-LCDUI">
+	<target name="mergeFeatures">
+		<antcall target="mergeFeature">
+			<param name="model.in" value="${model.path}InstantMessengerModel.emf.xmi"/>
+			<param name="model.merge" value="InstantMessengerLCDUI.emf.xmi"/>
+			<param name="model.out" value="im-midp-01-LCDUI.xmi"/>
+		</antcall>
+		<antcall target="mergeFeature">
+			<param name="model.in" value="im-midp-01-LCDUI.xmi"/>
+			<param name="model.merge" value="InstantMessengerSMS.emf.xmi"/>
+			<param name="model.out" value="im-midp-02-SMS.xmi"/>
+		</antcall>
+		<antcall target="mergeFeature">
+			<param name="model.in" value="im-midp-02-SMS.xmi"/>
+			<param name="model.merge" value="InstantMessengerJabber.emf.xmi"/>
+			<param name="model.out" value="im-midp-03-Jabber.xmi"/>
+		</antcall>
+		<antcall target="mergeFeature">
+			<param name="model.in" value="im-midp-03-Jabber.xmi"/>
+			<param name="model.merge" value="InstantMessengerMEJabber.emf.xmi"/>
+			<param name="model.out" value="im-midp-04-MEJabber.xmi"/>
+		</antcall>
+		<antcall target="mergeFeature">
+			<param name="model.in" value="im-midp-04-MEJabber.xmi"/>
+			<param name="model.merge" value="InstantMessengerLocal.emf.xmi"/>
+			<param name="model.out" value="im-midp-05-Local.xmi"/>
+		</antcall>
+	</target>
+	
+	<target name="refine">
 		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
 			<classpath refid="atl.class.path"/>
 			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/ModelMerge.asm"/>
+				<arg value="${transf.uri}${model.transf}"/>
 			<arg value="--in"/>
-				<arg value="IN=im-midp-01-LCDUI.xmi"/>
-				<arg value="INMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--in"/>
-				<arg value="MERGE=../../models/InstantMessengerSMS.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="IN=${model.in}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
 			<arg value="--out"/>
-				<arg value="OUT=im-midp-02-SMS.xmi"/>
-				<arg value="OUTMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="OUT=${model.out}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
+			<arg value="--lib"/><arg value="Java=${lib.java}"/>
+			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
 		</java>
 	</target>
 	
-	<target name="im-midp-03-Jabber" depends="im-midp-02-SMS">
+	<target name="refineWithMerge">
 		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
 			<classpath refid="atl.class.path"/>
 			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/ModelMerge.asm"/>
+				<arg value="${transf.uri}${model.transf}"/>
 			<arg value="--in"/>
-				<arg value="IN=im-midp-02-SMS.xmi"/>
-				<arg value="INMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="IN=${model.in}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
 			<arg value="--in"/>
-				<arg value="MERGE=../../models/InstantMessengerJabber.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="MERGE=${model.merge}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
 			<arg value="--out"/>
-				<arg value="OUT=im-midp-03-Jabber.xmi"/>
-				<arg value="OUTMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="OUT=${model.out}"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
+			<arg value="--lib"/><arg value="Java=${lib.java}"/>
+			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
 		</java>
 	</target>
 	
-	<target name="im-midp-04-MEJabber" depends="im-midp-03-Jabber">
+	<target name="refineAll" depends="mergeFeatures">
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="AssociationAttributes.asm"/>
+			<param name="model.in" value="im-midp-05-Local.xmi"/>
+			<param name="model.merge" value="${rmodel.ocltypes}"/>
+			<param name="model.out" value="im-midp-11-Attributes.xmi"/>
+		</antcall>
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="Accessors.asm"/>
+			<param name="model.in" value="im-midp-11-Attributes.xmi"/>
+			<param name="model.merge" value="${rmodel.ocltypes}"/>
+			<param name="model.out" value="im-midp-12-Accessors.xmi"/>
+		</antcall>
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="Observer.asm"/>
+			<param name="model.in" value="im-midp-12-Accessors.xmi"/>
+			<param name="model.merge" value="${rmodel.observer}"/>
+			<param name="model.out" value="im-midp-13-Observer.xmi"/>
+		</antcall>
+		<antcall target="refine">
+			<param name="model.transf" value="Singleton.asm"/>
+			<param name="model.in" value="im-midp-13-Observer.xmi"/>
+			<param name="model.out" value="im-midp-14-Singleton.xmi"/>
+		</antcall>
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="MIDlet.asm"/>
+			<param name="model.in" value="im-midp-14-Singleton.xmi"/>
+			<param name="model.merge" value="${rmodel.midlet}"/>
+			<param name="model.out" value="im-midp-15-MIDlet.xmi"/>
+		</antcall>
+		<antcall target="refineWithMerge">
+			<param name="model.transf" value="DataTypes.asm"/>
+			<param name="model.in" value="im-midp-15-MIDlet.xmi"/>
+			<param name="model.merge" value="${rmodel.javatypes}"/>
+			<param name="model.out" value="im-midp-16-DataTypes.xmi"/>
+		</antcall>
+		<antcall target="refine">
+			<param name="model.transf" value="AsyncMethods.asm"/>
+			<param name="model.in" value="im-midp-16-DataTypes.xmi"/>
+			<param name="model.out" value="im-midp-17-Async.xmi"/>
+		</antcall>
+	</target>
+	
+	<target name="output" depends="refineAll">
 		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
 			<classpath refid="atl.class.path"/>
 			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/ModelMerge.asm"/>
+				<arg value="${transf.uri}ModelCopy.asm"/>
 			<arg value="--in"/>
-				<arg value="IN=im-midp-03-Jabber.xmi"/>
-				<arg value="INMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--in"/>
-				<arg value="MERGE=../../models/InstantMessengerMEJabber.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="IN=im-midp-17-Async.xmi"/>
+				<arg value="INMODEL=${mmodel.uml}"/>
+				<arg value="EMF"/>
 			<arg value="--out"/>
-				<arg value="OUT=im-midp-04-MEJabber.xmi"/>
-				<arg value="OUTMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="OUT=im-midp-mdr.xmi"/>
+				<arg value="OUTMODEL=${mmodel.mdruml}"/>
+				<arg value="MDR"/>
 		</java>
-	</target>
-	
-	<target name="im-midp-05-Local" depends="im-midp-04-MEJabber">
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="file:../../../../transformations/ModelMerge.asm"/>
-			<arg value="--in"/>
-				<arg value="IN=im-midp-04-MEJabber.xmi"/>
-				<arg value="INMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--in"/>
-				<arg value="MERGE=../../models/InstantMessengerLocal.xmi"/>
-				<arg value="MERGEMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-			<arg value="--out"/>
-				<arg value="OUT=im-midp-05-Local.xmi"/>
-				<arg value="OUTMODEL=../../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
-		</java>
-	</target>
-	
-	<target name="output" depends="im-midp-refine">
-		<exec dir="." executable="../../../../transformations/forOutput.sh" output="im-midp-output.xmi" logError="true">
-			<arg line="im-midp-17-Async.xmi"/>
+		<exec dir="." executable="${transf.path}forOutput.sh" output="im-midp-output.xmi" logError="true">
+			<arg line="im-midp-mdr.xmi"/>
 		</exec>
 	</target>
-	
+
 	<target name="all" depends="output"/>
 </project>
