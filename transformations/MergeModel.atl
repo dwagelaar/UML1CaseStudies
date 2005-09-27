@@ -221,6 +221,7 @@ rule MergeOperation {
     to t : UML!Operation mapsTo s (
 		owner <- if thisModule.newElements->includes(s.owner)
 			then s.owner else s.owner.fromSourceModel() endif,
+		parameter <- s.parameter,
 		ownerScope <- s.ownerScope,
         visibility <- s.visibility,
         isQuery <- s.isQuery,
@@ -264,7 +265,6 @@ rule MergeParameter {
 	    	s.notInSourceModel()
 		else false endif)
     to t : UML!Parameter mapsTo s (
-		behavioralFeature <- s.behavioralFeature,
         kind <- s.kind,
         visibility <- s.visibility,
         name <- s.name,
