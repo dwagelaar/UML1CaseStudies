@@ -1,28 +1,105 @@
 <?xml version="1.0" encoding="ASCII"?>
 <uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.omg.org/UML" name="InstantMessengerModel" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-  <taggedValue isSpecification="false" type="//@ownedElement.10">
+  <taggedValue isSpecification="false" type="//@ownedElement.19">
     <dataValue>&lt;p>(C) 2005, Dennis Wagelaar, System and Software Engineering Lab, Vrije Universiteit Brussel&lt;/p>&#xA;&lt;p>All rights reserved.&lt;/p>&#xA;&lt;p>Redistribution and use in source and binary forms, with or without&#xA;modification, are permitted provided that the following conditions are met:&lt;/p>&#xA;&lt;ul>&#xA;&lt;li>Redistributions of source code must retain the above copyright notice,&#xA;this list of conditions and the following disclaimer.&lt;/li>&#xA;&lt;li>Redistributions in binary form must reproduce the above copyright notice,&#xA;this list of conditions and the following disclaimer in the documentation&#xA;and/or other materials provided with the distribution.&lt;/li>&#xA;&lt;li>Neither the name of JabberWookie nor the names of its contributors may be used&#xA;to endorse or promote products derived from this software without specific&#xA;prior written permission.&lt;/li>&#xA;&lt;/ul>&#xA;&lt;p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND&#xA;ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED&#xA;WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE&#xA;DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR&#xA;ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES&#xA;(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;&#xA;LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON&#xA;ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT&#xA;(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS&#xA;SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p></dataValue>
   </taggedValue>
-  <ownedElement xsi:type="uml:DataType" name="Exception" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-  <ownedElement xsi:type="uml:Stereotype" name="Socket" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Class</baseClass>
+  <ownedElement xsi:type="uml:Stereotype" name="initializer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Operation</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="instantiates" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Dependency</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="subscribe" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Association</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Package" name="ocl" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <ownedElement xsi:type="uml:DataType" name="Real" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Bag" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="String" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Collection" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Sequence" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Integer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Set" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="OclAny" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="OclType" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Boolean" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
   </ownedElement>
   <ownedElement xsi:type="uml:Stereotype" name="accessor" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
     <baseClass>Dependency</baseClass>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="initializer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Operation</baseClass>
+  <ownedElement xsi:type="uml:Stereotype" name="Singleton" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Class</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:TagDefinition" name="AppletInfo" isSpecification="false">
+    <multiplicity>
+      <range lower="1" upper="1"/>
+    </multiplicity>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="Socket" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Class</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="exception" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Classifier</baseClass>
   </ownedElement>
   <ownedElement xsi:type="uml:Stereotype" name="Applet" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
     <baseClass>Class</baseClass>
   </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="Observer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Class</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="Observable" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Class</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:TagDefinition" name="final" isSpecification="false">
+    <multiplicity>
+      <range lower="1" upper="1"/>
+    </multiplicity>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Package" name="im" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <ownedElement xsi:type="uml:Package" name="networking" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+      <ownedElement xsi:type="uml:Package" name="local" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+        <ownedElement xsi:type="uml:Class" clientDependency="//@ownedElement.13/@ownedElement.0/@ownedElement.1" name="Local" isSpecification="false" generalization="//@ownedElement.13/@ownedElement.0/@ownedElement.3" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
+          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.18" name="Local" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.13/@ownedElement.0/@ownedElement.0/@ownedElement.0" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="send" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="msg" isSpecification="false" type="//@ownedElement.13/@ownedElement.2/@ownedElement.0"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.13/@ownedElement.0/@ownedElement.0/@ownedElement.0/@feature.1">
+            <body language="java" body="        msg.setRecipient(msg.getSender());&#xA;        setRecvMsg(msg);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.13/@ownedElement.0/@ownedElement.0/@ownedElement.0/@feature.0">
+            <body language="java" body="        setName(&quot;Local&quot;);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="report" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="e" isSpecification="false" type="//@ownedElement.14"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.13/@ownedElement.0/@ownedElement.0/@ownedElement.0/@feature.4">
+            <body language="java" body="        im.model.Message msg = new im.model.Message();&#xA;        msg.setSender(&quot;System&quot;);&#xA;        msg.setContent(e.toString());&#xA;        send(msg);&#xA;        e.printStackTrace();&#xA;"/>
+          </feature>
+        </ownedElement>
+      </ownedElement>
+      <ownedElement xsi:type="uml:Abstraction" stereotype="//@ownedElement.21" isSpecification="false" client="//@ownedElement.13/@ownedElement.0/@ownedElement.0/@ownedElement.0" supplier="//@ownedElement.13/@ownedElement.1"/>
+      <ownedElement xsi:type="uml:Class" stereotype="//@ownedElement.11" name="Network" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="true" isActive="false"/>
+      <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.13/@ownedElement.0/@ownedElement.0/@ownedElement.0" parent="//@ownedElement.13/@ownedElement.0/@ownedElement.2"/>
+    </ownedElement>
+    <ownedElement xsi:type="uml:Interface" name="ExceptionReporter" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:Package" name="model" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+      <ownedElement xsi:type="uml:Class" name="Message" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+    </ownedElement>
+  </ownedElement>
+  <ownedElement xsi:type="uml:DataType" name="Exception" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+  <ownedElement xsi:type="uml:Stereotype" name="ValueObject" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Class</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="invariant" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Constraint</baseClass>
+  </ownedElement>
   <ownedElement xsi:type="uml:Stereotype" name="postcondition" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
     <baseClass>Constraint</baseClass>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="use" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Dependency</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:TagDefinition" name="ParameterInfo" isSpecification="false">
+  <ownedElement xsi:type="uml:Stereotype" name="create" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+  <ownedElement xsi:type="uml:TagDefinition" name="documentation" isSpecification="false">
     <multiplicity>
       <range lower="1" upper="1"/>
     </multiplicity>
@@ -32,84 +109,8 @@
       <range lower="1" upper="1"/>
     </multiplicity>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="Observer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Class</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:TagDefinition" name="documentation" isSpecification="false">
-    <multiplicity>
-      <range lower="1" upper="1"/>
-    </multiplicity>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="ValueObject" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Class</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="invariant" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Constraint</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Package" name="ocl" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <ownedElement xsi:type="uml:DataType" name="Collection" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Set" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="String" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="OclType" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="OclAny" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Real" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Bag" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Boolean" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Sequence" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Integer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="subscribe" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Association</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="Singleton" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Class</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Package" name="im" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <ownedElement xsi:type="uml:Package" name="networking" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-      <ownedElement xsi:type="uml:Package" name="local" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-        <ownedElement xsi:type="uml:Class" clientDependency="//@ownedElement.16/@ownedElement.0/@ownedElement.2" name="Local" isSpecification="false" generalization="//@ownedElement.16/@ownedElement.0/@ownedElement.3" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
-          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.25" name="Local" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.16/@ownedElement.0/@ownedElement.0/@ownedElement.0" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="send" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="msg" isSpecification="false" type="//@ownedElement.16/@ownedElement.2/@ownedElement.0"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.16/@ownedElement.0/@ownedElement.0/@ownedElement.0/@feature.1">
-            <body language="java" body="        msg.setRecipient(msg.getSender());&#xA;        setRecvMsg(msg);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.16/@ownedElement.0/@ownedElement.0/@ownedElement.0/@feature.0">
-            <body language="java" body="        setName(&quot;Local&quot;);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="report" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="e" isSpecification="false" type="//@ownedElement.0"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.16/@ownedElement.0/@ownedElement.0/@ownedElement.0/@feature.4">
-            <body language="java" body="        im.model.Message msg = new im.model.Message();&#xA;        msg.setSender(&quot;System&quot;);&#xA;        msg.setContent(e.toString());&#xA;        send(msg);&#xA;        e.printStackTrace();&#xA;"/>
-          </feature>
-        </ownedElement>
-      </ownedElement>
-      <ownedElement xsi:type="uml:Class" stereotype="//@ownedElement.17" name="Network" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="true" isActive="false"/>
-      <ownedElement xsi:type="uml:Abstraction" stereotype="//@ownedElement.23" isSpecification="false" client="//@ownedElement.16/@ownedElement.0/@ownedElement.0/@ownedElement.0" supplier="//@ownedElement.16/@ownedElement.1"/>
-      <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.16/@ownedElement.0/@ownedElement.0/@ownedElement.0" parent="//@ownedElement.16/@ownedElement.0/@ownedElement.1"/>
-    </ownedElement>
-    <ownedElement xsi:type="uml:Interface" name="ExceptionReporter" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:Package" name="model" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-      <ownedElement xsi:type="uml:Class" name="Message" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-    </ownedElement>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="Observable" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Class</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:TagDefinition" name="AppletInfo" isSpecification="false">
-    <multiplicity>
-      <range lower="1" upper="1"/>
-    </multiplicity>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="exception" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Classifier</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="instantiates" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Dependency</baseClass>
+  <ownedElement xsi:type="uml:Stereotype" name="realize" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Abstraction</baseClass>
   </ownedElement>
   <ownedElement xsi:type="uml:Stereotype" name="process" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
     <baseClass>Classifier</baseClass>
@@ -119,13 +120,12 @@
       <range lower="1" upper="1"/>
     </multiplicity>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="realize" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Abstraction</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:TagDefinition" name="final" isSpecification="false">
+  <ownedElement xsi:type="uml:TagDefinition" name="ParameterInfo" isSpecification="false">
     <multiplicity>
       <range lower="1" upper="1"/>
     </multiplicity>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="create" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+  <ownedElement xsi:type="uml:Stereotype" name="use" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Dependency</baseClass>
+  </ownedElement>
 </uml:Model>
