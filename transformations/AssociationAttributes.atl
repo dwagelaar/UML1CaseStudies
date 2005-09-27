@@ -1,7 +1,7 @@
 -- $Id$
 module AssociationAttributes;
 
-create ATTRIBUTES : UML refining IN : UML, OCLTYPES : UML;
+create OUT : UML refining IN : UML, MERGE : UML;
 
 uses Java;
 
@@ -11,16 +11,16 @@ uses Java;
 -- From: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa
 
 helper def : inElements : Set(UML!Element) = UML!Element.allInstancesFrom('IN');
-helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('OCLTYPES');
+helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('MERGE');
 
 helper def : newElements : Sequence(UML!Element) = Sequence{
-		UML!Classifier.allInstancesFrom('OCLTYPES')->select(c|c.notInSourceModel()),
-		UML!Package.allInstancesFrom('OCLTYPES')->select(p|p.notInSourceModel()),
-		UML!TagDefinition.allInstancesFrom('OCLTYPES')->select(t|t.notInSourceModel()),
-		UML!Stereotype.allInstancesFrom('OCLTYPES')->select(s|s.notInSourceModel()),
-		UML!Association.allInstancesFrom('OCLTYPES')->select(a|a.notInSourceModel()),
-		UML!Dependency.allInstancesFrom('OCLTYPES')->select(d|d.notInSourceModel()),
-		UML!Generalization.allInstancesFrom('OCLTYPES')->select(g|g.notInSourceModel())
+		UML!Classifier.allInstancesFrom('MERGE')->select(c|c.notInSourceModel()),
+		UML!Package.allInstancesFrom('MERGE')->select(p|p.notInSourceModel()),
+		UML!TagDefinition.allInstancesFrom('MERGE')->select(t|t.notInSourceModel()),
+		UML!Stereotype.allInstancesFrom('MERGE')->select(s|s.notInSourceModel()),
+		UML!Association.allInstancesFrom('MERGE')->select(a|a.notInSourceModel()),
+		UML!Dependency.allInstancesFrom('MERGE')->select(d|d.notInSourceModel()),
+		UML!Generalization.allInstancesFrom('MERGE')->select(g|g.notInSourceModel())
 	}->flatten();
 
 helper context UML!ModelElement def : isInPackage() : Boolean =
@@ -173,6 +173,9 @@ helper context UML!Parameter def : notInSourceModel() : Boolean =
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def : oclCollection : UML!DataType = 'Collection'.dataType();
+helper def : oclSequence : UML!DataType = 'Sequence'.dataType();
+
 helper context String def : dataType() : UML!DataType =
 	UML!DataType.allInstances()->select(c|c.name=self)->select(d|
 		thisModule.inElements->includes(d) or 
@@ -188,9 +191,9 @@ helper context UML!AssociationEnd def : type() : UML!Classifier =
 	if self.isSingle() then
 		self.participant
 	else if self.ordering = #ok_ordered then
-		'Sequence'.dataType()
+		thisModule.oclSequence
 	else
-		'Collection'.dataType()
+		thisModule.oclCollection
 	endif endif;
 
 helper context UML!ModelElement def : hasTaggedValue(type : String) : Boolean =
@@ -248,6 +251,7 @@ rule AssociationEnd {
 			s.oclIsTypeOf(UML!AssociationEnd)
 		else false endif)
     to t : UML!AssociationEnd mapsTo s (
+		association <- s.association,
         multiplicity <- s.multiplicity,
         aggregation <- s.aggregation,
         visibility <- s.visibility,
@@ -277,7 +281,7 @@ rule AssociationEnd {
 -- ======================================================================
 -- model merge begin
 -- ======================================================================
--- From: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa
+-- From: MergeModel.atl 2229 2005-09-27 11:19:15Z dwagelaa
 
 rule MergeAssociation {
     from s : UML!Association (
@@ -330,6 +334,7 @@ rule MergeOperation {
     to t : UML!Operation mapsTo s (
 		owner <- if thisModule.newElements->includes(s.owner)
 			then s.owner else s.owner.fromSourceModel() endif,
+		parameter <- s.parameter,
 		ownerScope <- s.ownerScope,
         visibility <- s.visibility,
         isQuery <- s.isQuery,
@@ -373,7 +378,6 @@ rule MergeParameter {
 	    	s.notInSourceModel()
 		else false endif)
     to t : UML!Parameter mapsTo s (
-		behavioralFeature <- s.behavioralFeature,
         kind <- s.kind,
         visibility <- s.visibility,
         name <- s.name,

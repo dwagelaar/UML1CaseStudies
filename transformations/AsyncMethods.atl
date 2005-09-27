@@ -1,7 +1,7 @@
 -- $Id$
 module AsyncMethods;
 
-create ASYNC : UML refining DATATYPES : UML;
+create OUT : UML refining IN : UML;
 
 -- ======================================================================
 -- model-specific helpers begin

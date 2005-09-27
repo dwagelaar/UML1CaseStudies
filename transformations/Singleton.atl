@@ -1,7 +1,7 @@
 -- $Id: SingletonProcess.atl 1000 2005-05-03 15:56:05Z dwagelaa $
 module Singleton;
 
-create SINGLETON : UML refining OBSERVER : UML;
+create OUT : UML refining IN : UML;
 
 uses Java;
 

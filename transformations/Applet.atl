@@ -1,7 +1,7 @@
 -- $Id: SingletonProcess.atl 988 2005-05-02 20:03:54Z dwagelaa $
 module Applet;
 
-create APPLET : UML refining SINGLETON : UML, APPLETTYPES : UML;
+create OUT : UML refining IN : UML, MERGE : UML;
 
 uses Java;
 
@@ -10,17 +10,17 @@ uses Java;
 -- ======================================================================
 -- From: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa
 
-helper def : inElements : Set(UML!Element) = UML!Element.allInstancesFrom('SINGLETON');
-helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('APPLETTYPES');
+helper def : inElements : Set(UML!Element) = UML!Element.allInstancesFrom('IN');
+helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('MERGE');
 
 helper def : newElements : Sequence(UML!Element) = Sequence{
-		UML!Classifier.allInstancesFrom('APPLETTYPES')->select(c|c.notInSourceModel()),
-		UML!Package.allInstancesFrom('APPLETTYPES')->select(p|p.notInSourceModel()),
-		UML!TagDefinition.allInstancesFrom('APPLETTYPES')->select(t|t.notInSourceModel()),
-		UML!Stereotype.allInstancesFrom('APPLETTYPES')->select(s|s.notInSourceModel()),
-		UML!Association.allInstancesFrom('APPLETTYPES')->select(a|a.notInSourceModel()),
-		UML!Dependency.allInstancesFrom('APPLETTYPES')->select(d|d.notInSourceModel()),
-		UML!Generalization.allInstancesFrom('APPLETTYPES')->select(g|g.notInSourceModel())
+		UML!Classifier.allInstancesFrom('MERGE')->select(c|c.notInSourceModel()),
+		UML!Package.allInstancesFrom('MERGE')->select(p|p.notInSourceModel()),
+		UML!TagDefinition.allInstancesFrom('MERGE')->select(t|t.notInSourceModel()),
+		UML!Stereotype.allInstancesFrom('MERGE')->select(s|s.notInSourceModel()),
+		UML!Association.allInstancesFrom('MERGE')->select(a|a.notInSourceModel()),
+		UML!Dependency.allInstancesFrom('MERGE')->select(d|d.notInSourceModel()),
+		UML!Generalization.allInstancesFrom('MERGE')->select(g|g.notInSourceModel())
 	}->flatten();
 
 helper context UML!ModelElement def : qName() : String =
@@ -38,39 +38,39 @@ helper context UML!Model def : notInSourceModel() : Boolean =
 	false;
 
 helper context UML!Model def : fromSourceModel() : UML!Model =
-	UML!Model.allInstancesFrom('SINGLETON')->asSequence()->first();
+	UML!Model.allInstancesFrom('IN')->asSequence()->first();
 
 ------------------------------- Classifier ------------------------------
 
 helper context UML!Classifier def : notInSourceModel() : Boolean =
-	UML!Classifier.allInstancesFrom('SINGLETON')->select(e|e.qName()=self.qName())->isEmpty();
+	UML!Classifier.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
 
 helper context UML!Classifier def : fromSourceModel() : UML!Classifier =
-	UML!Classifier.allInstancesFrom('SINGLETON')->select(e|e.qName()=self.qName())->first();
+	UML!Classifier.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
 
 ------------------------------- Package ---------------------------------
 
 helper context UML!Package def : notInSourceModel() : Boolean =
-	UML!Package.allInstancesFrom('SINGLETON')->select(e|e.qName()=self.qName())->isEmpty();
+	UML!Package.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
 
 helper context UML!Package def : fromSourceModel() : UML!Package =
-	UML!Package.allInstancesFrom('SINGLETON')->select(e|e.qName()=self.qName())->first();
+	UML!Package.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
 
 ------------------------------- TagDefinition ---------------------------
 
 helper context UML!TagDefinition def : notInSourceModel() : Boolean =
-	UML!TagDefinition.allInstancesFrom('SINGLETON')->select(e|e.qName()=self.qName())->isEmpty();
+	UML!TagDefinition.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
 
 helper context UML!TagDefinition def : fromSourceModel() : UML!TagDefinition =
-	UML!TagDefinition.allInstancesFrom('SINGLETON')->select(e|e.qName()=self.qName())->first();
+	UML!TagDefinition.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
 
 ------------------------------- Stereotype ------------------------------
 
 helper context UML!Stereotype def : notInSourceModel() : Boolean =
-	UML!Stereotype.allInstancesFrom('SINGLETON')->select(e|e.qName()=self.qName())->isEmpty();
+	UML!Stereotype.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
 
 helper context UML!Stereotype def : fromSourceModel() : UML!Stereotype =
-	UML!Stereotype.allInstancesFrom('SINGLETON')->select(e|e.qName()=self.qName())->first();
+	UML!Stereotype.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
 
 ------------------------------- Association -----------------------------
 
@@ -79,7 +79,7 @@ helper context UML!Association def : notInSourceModel() : Boolean =
 
 helper context UML!AssociationEnd def : inSourceModel() : Boolean =
 	if self.isNavigable then
-		not UML!AssociationEnd.allInstancesFrom('SINGLETON')->select(e|e.isNavigable)->select(e|
+		not UML!AssociationEnd.allInstancesFrom('IN')->select(e|e.isNavigable)->select(e|
 			e.name=self.name and e.participant.qName()=self.participant.qName())->isEmpty()
 	else if self.otherEnd().isNavigable then
 		self.otherEnd().inSourceModel()
@@ -143,14 +143,14 @@ helper context UML!Method def : notInSourceModel() : Boolean =
 ------------------------------- Dependency ------------------------------
 
 helper context UML!Dependency def : notInSourceModel() : Boolean =
-	UML!Dependency.allInstancesFrom('SINGLETON')->select(d|
+	UML!Dependency.allInstancesFrom('IN')->select(d|
 		d.supplier->forAll(s1|self.supplier->forAll(s2|s1.qName()=s2.qName())) and
 		d.client->forAll(c1|self.client->forAll(c2|c1.qName()=c2.qName())))->isEmpty();
 
 ------------------------------- Generalization --------------------------
 
 helper context UML!Generalization def : notInSourceModel() : Boolean =
-	UML!Generalization.allInstancesFrom('SINGLETON')->select(g|
+	UML!Generalization.allInstancesFrom('IN')->select(g|
 		g.parent.qName()=self.parent.qName() and
 		g.child.qName()=self.child.qName())->isEmpty();
 
@@ -371,7 +371,7 @@ rule Class {
 -- ======================================================================
 -- model merge begin
 -- ======================================================================
--- From: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa
+-- From: MergeModel.atl 2229 2005-09-27 11:19:15Z dwagelaa
 
 rule MergeAssociation {
     from s : UML!Association (
@@ -424,6 +424,7 @@ rule MergeOperation {
     to t : UML!Operation mapsTo s (
 		owner <- if thisModule.newElements->includes(s.owner)
 			then s.owner else s.owner.fromSourceModel() endif,
+		parameter <- s.parameter,
 		ownerScope <- s.ownerScope,
         visibility <- s.visibility,
         isQuery <- s.isQuery,
@@ -467,7 +468,6 @@ rule MergeParameter {
 	    	s.notInSourceModel()
 		else false endif)
     to t : UML!Parameter mapsTo s (
-		behavioralFeature <- s.behavioralFeature,
         kind <- s.kind,
         visibility <- s.visibility,
         name <- s.name,
