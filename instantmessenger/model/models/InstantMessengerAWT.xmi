@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Sep 07 12:35:36 CEST 2005'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue Sep 27 15:56:22 CEST 2005'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -206,7 +206,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                           isQuery = 'false'>
                           <UML:Method.body>
                             <UML:ProcedureExpression xmi.id = 'Im2d596f98m10363d93b95mm38a6' language = 'java'
-                              body = '        addContactBtn.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                notifyAddClicked();&#10;            }&#10;        });&#10;        removeContactBtn.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                notifyRemoveClicked();&#10;            }&#10;        });&#10;        list.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                notifyContactAction();&#10;            }&#10;        });&#10;        setLayout(new BorderLayout());&#10;        add(list, BorderLayout.CENTER);&#10;        btnPanel.setLayout(new FlowLayout());&#10;        btnPanel.add(addContactBtn);&#10;        btnPanel.add(removeContactBtn);&#10;        add(btnPanel, BorderLayout.SOUTH);&#10;        im.InstantMessagingClient.getInstance().add(this);&#10;'/>
+                              body = '        addContactBtn.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                notifyAddClicked();&#10;            }&#10;        });&#10;        removeContactBtn.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                notifyRemoveClicked();&#10;            }&#10;        });&#10;        list.addActionListener(new ActionListener() {&#10;            public void actionPerformed(ActionEvent e) {&#10;                notifyContactAction();&#10;            }&#10;        });&#10;        setLayout(new BorderLayout());&#10;        add(list, BorderLayout.CENTER);&#10;        btnPanel.setLayout(new FlowLayout());&#10;        btnPanel.add(addContactBtn);&#10;        btnPanel.add(removeContactBtn);&#10;        add(btnPanel, BorderLayout.SOUTH);&#10;        im.InstantMessagingClient.getInstance().setLayout(new BorderLayout());&#10;        im.InstantMessagingClient.getInstance().add(this, BorderLayout.CENTER);&#10;'/>
                           </UML:Method.body>
                           <UML:Method.specification>
                             <UML:Operation xmi.idref = 'Im2d596f98m10363d93b95mm38a8'/>
