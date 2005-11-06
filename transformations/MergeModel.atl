@@ -1,4 +1,4 @@
--- $Id: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa $
+-- $Id$
 module MergeModel;
 
 create OUT : UML refining IN : UML, MERGE : UML;
