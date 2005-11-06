@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="/UML1CaseStudies-microjabberwookie"/>
+	<classpathentry kind="src" path="/uml1cs-microjabberwookie"/>
 	<classpathentry kind="lib" path="/UML1CaseStudies-microjabberwookie/jar/MicroJabberWookie.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
