@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SwingInstantMessenger" default="all">
+<project name="DefaultInstantMessenger" default="all">
 	<property name="jabberwookie.path" value="../../uml1cs-microjabberwookie/jar/"/>
 	<property name="certificate.path" value="../../local/certificate.p12"/>
 
