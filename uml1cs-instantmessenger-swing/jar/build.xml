@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SwingInstantMessenger" default="all">
+	<property name="jabberwookie.path" value="../../uml1cs-microjabberwookie/jar/"/>
+	<property name="certificate.path" value="../../local/certificate.p12"/>
+
     <target name="clean">
         <delete>
         	<fileset dir=".">
@@ -8,6 +11,10 @@
         </delete>
     </target>
 
+	<target name="jabberwookie" depends="clean">
+		<copy file="${jabberwookie.path}MicroJabberWookie.jar" todir="."/>
+	</target>
+	
     <target name="jar" depends="clean">
         <jar destfile="im.jar" basedir="../bin">
         	<include name="**"/>
@@ -21,15 +28,11 @@
 	<target name="jar-sign" depends="jar">
 		<signjar jar="im.jar" 
 			alias="dennis.wagelaar@vub.ac.be"
-			keystore="../../../local/certificate.p12"
+			keystore="${certificate.path}"
 			storetype="pkcs12"
-			storepass="Pwd#jc"/>
+			storepass="${passphrase}"/>
 	</target>
 
-	<target name="jabberwookie" depends="clean">
-		<copy file="../../../microjabberwookie/jar/MicroJabberWookie.jar" todir="."/>
-	</target>
-	
 	<target name="deploy" depends="jar-sign,jabberwookie">
 		<scp todir="dwagelaa@ssel.vub.ac.be:/var/www/html/cddtoolkit/instantmessenger/java2/applet"
 			 keyfile="${user.home}/.ssh/id_rsa"
