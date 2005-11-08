@@ -2,6 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/common.jar"/>
+	<classpathentry kind="lib" path="lib/ebnfinjector.jar"/>
+	<classpathentry kind="lib" path="lib/ecore.jar"/>
+	<classpathentry kind="lib" path="lib/ecore.xmi.jar"/>
+	<classpathentry kind="lib" path="lib/emf4atl.jar"/>
 	<classpathentry kind="lib" path="lib/jmi.jar"/>
 	<classpathentry kind="lib" path="lib/jmiutils.jar"/>
 	<classpathentry kind="lib" path="lib/mdr4atl.jar"/>
@@ -9,12 +14,7 @@
 	<classpathentry kind="lib" path="lib/mof.jar"/>
 	<classpathentry kind="lib" path="lib/nbmdr.jar"/>
 	<classpathentry kind="lib" path="lib/openide-util.jar"/>
-	<classpathentry kind="lib" path="lib/common.jar"/>
-	<classpathentry kind="lib" path="lib/ecore.jar"/>
-	<classpathentry kind="lib" path="lib/ecore.xmi.jar"/>
 	<classpathentry kind="lib" path="lib/runtime.jar"/>
-	<classpathentry kind="lib" path="lib/emf4atl.jar"/>
-	<classpathentry kind="lib" path="lib/ebnfinjector.jar"/>
 	<classpathentry kind="lib" path="lib/vm.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
