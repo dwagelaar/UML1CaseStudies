@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SwingInstantMessenger" default="all">
+<project name="MIDPInstantMessenger" default="all">
 	<target name="deploy">
 		<scp todir="dwagelaa@ssel.vub.ac.be:/var/www/html/cddtoolkit/instantmessenger/midp"
 			 keyfile="${user.home}/.ssh/id_rsa"
