@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="DefaultInstantMessenger" default="all">
+	<property name="atlcommandline.path" value="../../../uml1cs-atlcommandline/"/>
+	<property name="transf.path" value="../../../uml1cs-transformations/"/>
+	<property name="transf.uri" value="file:${transf.path}"/>
+	<property name="mmodel.path" value="${transf.path}metamodels/"/>
+	<property name="mmodel.uml" value="${mmodel.path}M2_DiagramInterchangeModel.ecore"/>
+	<property name="mmodel.mdruml" value="${mmodel.path}M2_DiagramInterchangeModel.xmi"/>
+
 	<path id="atl.class.path">
-		<fileset dir="../../../atlcommandline/lib">
+		<fileset dir="${atlcommandline.path}lib">
 			<include name="**/*.jar"/>
 		</fileset>
 	</path>
@@ -10,14 +17,14 @@
 		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
 			<classpath refid="atl.class.path"/>
 			<arg value="--trans"/>
-				<arg value="file:../../../transformations/ModelCopy.asm"/>
+				<arg value="${transf.uri}ModelCopy.asm"/>
 			<arg value="--in"/>
 				<arg value="IN=${model}.xmi"/>
-				<arg value="INMODEL=../../../transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+				<arg value="INMODEL=${mmodel.mdruml}"/>
 				<arg value="MDR"/>
 			<arg value="--out"/>
 				<arg value="OUT=${model}.emf.xmi"/>
-				<arg value="OUTMODEL=../../../transformations/metamodels/M2_DiagramInterchangeModel.ecore"/>
+				<arg value="OUTMODEL=${mmodel.uml}"/>
 				<arg value="EMF"/>
 		</java>
 	</target>
