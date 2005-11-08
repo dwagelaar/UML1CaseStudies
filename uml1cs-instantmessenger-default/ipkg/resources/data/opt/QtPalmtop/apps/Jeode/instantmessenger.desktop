@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Instant Messenger
+Comment=Instant Messenger
+Exec=run_im
+Icon=instantmessenger
+Type=Application
+CanFastLoad=0
+HidePrivilige=1
+NeedSpace=4096
