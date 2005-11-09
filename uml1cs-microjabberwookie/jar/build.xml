@@ -14,13 +14,5 @@
         </jar>
     </target>
 	
-	<target name="jar-sign" depends="jar">
-		<signjar jar="MicroJabberWookie.jar" 
-			alias="dennis.wagelaar@vub.ac.be"
-			keystore="../../local/certificate.p12"
-			storetype="pkcs12"
-			storepass="Pwd#jc"/>
-	</target>
-
-	<target name="all" depends="jar-sign"/>
+	<target name="all" depends="jar"/>
 </project>
