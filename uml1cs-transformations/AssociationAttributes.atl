@@ -24,8 +24,8 @@ helper def : newElements : Sequence(UML!Element) = Sequence{
 	}->flatten();
 
 helper context UML!ModelElement def : isInPackage() : Boolean =
-	not UML!Package.allInstances()->select(p|
-		p=self.namespace and p.oclIsTypeOf(UML!Package))->isEmpty();
+	UML!Package.allInstances()->select(p|
+		p=self.namespace and p.oclIsTypeOf(UML!Package))->notEmpty();
 
 helper context UML!ModelElement def : qName() : String =
 	if self.isInPackage() then
@@ -131,7 +131,7 @@ helper context UML!BehavioralFeature def : hasSameParametersAs(f : UML!Behaviora
 	f.parameter->select(p|not self.hasSameParameter(p))->isEmpty();
 	
 helper context UML!BehavioralFeature def : hasSameParameter(p : UML!Parameter) : Boolean =
-	not self.parameter->select(sp|sp.kind=p.kind and sp.type.qName()=p.type.qName())->isEmpty();
+	self.parameter->select(sp|sp.kind=p.kind and sp.type.qName()=p.type.qName())->notEmpty();
 
 ------------------------------- Method ----------------------------------
 
@@ -197,7 +197,7 @@ helper context UML!AssociationEnd def : type() : UML!Classifier =
 	endif endif;
 
 helper context UML!ModelElement def : hasTaggedValue(type : String) : Boolean =
-	not self.taggedValue->select(v|v.type.name=type)->isEmpty();
+	self.taggedValue->select(v|v.type.name=type)->notEmpty();
 
 helper context UML!ModelElement def : taggedValue(type : String) : UML!TaggedValue =
 	self.taggedValue->select(v|v.type.name=type)->first();
