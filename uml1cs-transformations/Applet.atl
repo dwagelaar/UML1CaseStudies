@@ -1,4 +1,4 @@
--- $Id: SingletonProcess.atl 988 2005-05-02 20:03:54Z dwagelaa $
+-- $Id$
 module Applet;
 
 create OUT : UML refining IN : UML, MERGE : UML;

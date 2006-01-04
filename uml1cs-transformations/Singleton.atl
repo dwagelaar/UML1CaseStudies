@@ -1,4 +1,4 @@
--- $Id: SingletonProcess.atl 1000 2005-05-03 15:56:05Z dwagelaa $
+-- $Id$
 module Singleton;
 
 create OUT : UML refining IN : UML;
