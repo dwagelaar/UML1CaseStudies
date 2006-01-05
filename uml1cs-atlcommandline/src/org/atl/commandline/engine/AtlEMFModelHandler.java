@@ -43,12 +43,16 @@ public class AtlEMFModelHandler extends AtlModelHandler {
 	}
 	
 	protected AtlEMFModelHandler() {
-		URL atlurl = AtlEMFModelHandler.class.getResource("resources/ATL-0.2.ecore");
+        //Use InputStream instead of URL to cross OSGI borders
+		InputStream atl = AtlEMFModelHandler.class.getResourceAsStream("resources/ATL-0.2.ecore");
+        if (atl == null) {
+            System.err.println("Input stream is null!");
+        }
 		
 		mofmm = org.atl.engine.repositories.emf4atl.ASMEMFModel.createMOF(null);
 			
 		try {
-			atlmm = ASMEMFModel.loadASMEMFModel("ATL", mofmm, atlurl, null);
+			atlmm = ASMEMFModel.loadASMEMFModel("ATL", mofmm, atl, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

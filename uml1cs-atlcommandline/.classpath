@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="lib/ebnfinjector.jar"/>
 	<classpathentry kind="lib" path="lib/ecore.jar"/>
 	<classpathentry kind="lib" path="lib/ecore.xmi.jar"/>
-	<classpathentry kind="lib" path="lib/emf4atl.jar"/>
+	<classpathentry sourcepath="/org.atl.engine.repositories.emf4atl/src" kind="lib" path="lib/emf4atl.jar"/>
 	<classpathentry kind="lib" path="lib/jmi.jar"/>
 	<classpathentry kind="lib" path="lib/jmiutils.jar"/>
 	<classpathentry kind="lib" path="lib/mdr4atl.jar"/>
