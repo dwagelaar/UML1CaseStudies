@@ -193,18 +193,6 @@ helper context UML!Classifier def : hasNoOperation(name : String) : Boolean =
 helper context UML!ProcedureExpression def : method() : UML!Method =
 	UML!Method.allInstances()->select(m|m.body=self)->first();
 
-helper context UML!ModelElement def : hasTaggedValue(name : String) : Boolean =
-	if self.taggedValue->select(t|t.type.name = name)->isEmpty() then
-		false
-	else
-		not self.taggedValue->select(t|t.type.name = name)
-			->first().dataValue->isEmpty()
-	endif;
-
-helper context UML!ModelElement def : taggedValue(name : String) : String =
-	self.taggedValue->select(t|t.type.name = name)
-			->first().dataValue->asSequence()->first();
-
 helper context UML!Method def : isSingletonInitMethod() : Boolean =
 	if self.specification.name = 'init' then
 		self.owner.isSingleton() and
@@ -219,27 +207,76 @@ helper context UML!Method def : isSingletonInitMethod() : Boolean =
 -- ======================================================================
 
 -- ======================================================================
--- non-mapsTo rules begin
+-- transformation rules begin
 -- ======================================================================
 
-rule AppletClass {
+rule AppletClassWithInit {
 	from s : UML!Class (
 		if thisModule.inElements->includes(s) then
-			s.isApplet()
+			s.oclIsTypeOf(UML!Class) and
+			s.isApplet() and
+			not s.hasNoOperation('init')
 		else false endif)
-	to g : UML!Generalization (
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   g : UML!Generalization (
 	   	namespace <- s.namespace,
 		parent <- thisModule.javaApplet,
 		child <- s)
 }
 
-rule NewAppletInitOperation {
+rule AppletClassWithoutInit {
 	from s : UML!Class (
 		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
 			s.isApplet() and
 			s.hasNoOperation('init')
 		else false endif)
-	to op : UML!Operation (
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   g : UML!Generalization (
+	   	namespace <- s.namespace,
+		parent <- thisModule.javaApplet,
+		child <- s),
+	   op : UML!Operation (
 	   	name <- 'init',
 		owner <- s,
 		visibility <- #vk_public,
@@ -255,91 +292,11 @@ rule NewAppletInitOperation {
 		specification <- op)
 }
 
-rule AppletInfo {
-    from s : UML!Class (
-		if thisModule.inElements->includes(s) then
-    		s.hasTaggedValue('AppletInfo')
-		else false endif)
-	to op : UML!Operation (
-        name <- 'getAppletInfo',
-		owner <- s,
-        visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential),
-	   return : UML!Parameter (
-	   	name <- 'return',
-		behavioralFeature <- op,
-		type <- thisModule.javaLangString,
-		kind <- #pdk_return),
-	   mbody : UML!ProcedureExpression (
-	   	language <- 'java',
-		body <- 'return "' + s.taggedValue('AppletInfo') + '";'),
-	   meth : UML!Method (
-	   	owner <- s,
-		body <- mbody,
-		specification <- op)
-}
-
-rule ParameterInfo {
-    from s : UML!Class (
-		if thisModule.inElements->includes(s) then
-    		s.hasTaggedValue('ParameterInfo')
-		else false endif)
-    to op : UML!Operation (
-        name <- 'getParameterInfo',
-		owner <- s,
-        visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential),
-	   return : UML!Parameter (
-	   	name <- 'return',
-		behavioralFeature <- op,
-		type <- thisModule.javaLangStringAA,
-		kind <- #pdk_return),
-	   mbody : UML!ProcedureExpression (
-	   	language <- 'java',
-		body <- 'String[][] pinfo = ' + s.taggedValue('ParameterInfo') + ';\nreturn pinfo;'),
-	   meth : UML!Method (
-	   	owner <- s,
-		body <- mbody,
-		specification <- op)
-}
-
--- ======================================================================
--- non-mapsTo rules end
--- ======================================================================
-
--- ======================================================================
--- mapsTo rules begin
--- ======================================================================
-
-rule AppletInitProcedureExpression {
-    from s : UML!ProcedureExpression (
-		if thisModule.inElements->includes(s) then
-    		s.method().isSingletonInitMethod()
-		else false endif)
-    to t : UML!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- s.method().owner.isSingleton().
-			javaAppletInitBody() + '\n' + s.body)
-}
-
-rule ProcedureExpression {
-    from s : UML!ProcedureExpression (
-		if thisModule.inElements->includes(s) then
-    		not s.method().isSingletonInitMethod()
-    	else false endif)
-    to t : UML!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- s.body)
-}
-
 rule Class {
     from s : UML!Class (
     	if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML!Class)
+			s.oclIsTypeOf(UML!Class) and
+			not s.isApplet()
 		else false endif)
     to t : UML!Class mapsTo s (
 		namespace <- s.namespace,
@@ -364,8 +321,115 @@ rule Class {
         sourceFlow <- s.sourceFlow)
 }
 
+rule AppletInfo {
+    from s : UML!TaggedValue (
+		if thisModule.inElements->includes(s) then
+    		s.type.name = 'AppletInfo' and
+			s.dataValue.notEmpty()
+		else false endif)
+	using { c : UML!Class = UML!Class.allInstances()->select(c|c = s.modelElement)->first(); }
+    to t : UML!TaggedValue mapsTo s (
+        dataValue <- s.dataValue,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        type <- s.type,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype,
+        referenceValue <- s.referenceValue,
+        sourceFlow <- s.sourceFlow),
+	   op : UML!Operation (
+        name <- 'getAppletInfo',
+		owner <- c,
+        visibility <- #vk_public,
+		ownerScope <- #sk_instance,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   return : UML!Parameter (
+	   	name <- 'return',
+		behavioralFeature <- op,
+		type <- thisModule.javaLangString,
+		kind <- #pdk_return),
+	   mbody : UML!ProcedureExpression (
+	   	language <- 'java',
+		body <- 'return "' + s.dataValue->asSequence()->first() + '";'),
+	   meth : UML!Method (
+	   	owner <- c,
+		body <- mbody,
+		specification <- op)
+}
+
+rule ParameterInfo {
+    from s : UML!TaggedValue (
+		if thisModule.inElements->includes(s) then
+    		s.type.name = 'ParameterInfo' and
+			s.dataValue.notEmpty()
+		else false endif)
+	using { c : UML!Class = UML!Class.allInstances()->select(c|c = s.modelElement)->first(); }
+    to t : UML!TaggedValue mapsTo s (
+        dataValue <- s.dataValue,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        type <- s.type,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype,
+        referenceValue <- s.referenceValue,
+        sourceFlow <- s.sourceFlow),
+	   op : UML!Operation (
+        name <- 'getParameterInfo',
+		owner <- c,
+        visibility <- #vk_public,
+		ownerScope <- #sk_instance,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   return : UML!Parameter (
+	   	name <- 'return',
+		behavioralFeature <- op,
+		type <- thisModule.javaLangStringAA,
+		kind <- #pdk_return),
+	   mbody : UML!ProcedureExpression (
+	   	language <- 'java',
+		body <- 'String[][] pinfo = ' + s.dataValue->asSequence()->first() + ';\nreturn pinfo;'),
+	   meth : UML!Method (
+	   	owner <- c,
+		body <- mbody,
+		specification <- op)
+}
+
+rule AppletInitProcedureExpression {
+    from s : UML!ProcedureExpression (
+		if thisModule.inElements->includes(s) then
+    		s.method().isSingletonInitMethod()
+		else false endif)
+    to t : UML!ProcedureExpression mapsTo s (
+        language <- s.language,
+        body <- s.method().owner.isSingleton().
+			javaAppletInitBody() + '\n' + s.body)
+}
+
+rule ProcedureExpression {
+    from s : UML!ProcedureExpression (
+		if thisModule.inElements->includes(s) then
+    		not s.method().isSingletonInitMethod()
+    	else false endif)
+    to t : UML!ProcedureExpression mapsTo s (
+        language <- s.language,
+        body <- s.body)
+}
+
 -- ======================================================================
--- mapsTo rules end
+-- transformation rules end
 -- ======================================================================
 
 -- ======================================================================

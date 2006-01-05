@@ -404,15 +404,37 @@ helper context UML!Method def : isSubscribeMethod() : Boolean =
 -- ======================================================================
 
 -- ======================================================================
--- non-mapsTo rules begin
+-- transformation rules begin
 -- ======================================================================
 
 rule ObservableClass {
 	from s : UML!Class (
 		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
 			s.isObservableType()
 		else false endif)
-	to observers : UML!Attribute (
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   observers : UML!Attribute (
 	   	name <- 'observers',
 		owner <- s,
 		type <- thisModule.javaUtilVector,
@@ -488,8 +510,33 @@ rule ObservableClass {
 }
 
 rule ObserverClass {
-	from s : UML!Class (s.isObserverType())
-	to t : UML!Abstraction (
+	from s : UML!Class (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
+			s.isObserverType()
+		else false endif)
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   abs : UML!Abstraction (
 	   	namespace <- s.namespace,
 		stereotype <- thisModule.realize,
 		supplier <- Set{thisModule.observerObserver},
@@ -520,13 +567,35 @@ rule ObserverClass {
 		specification <- op)
 }
 
--- ======================================================================
--- non-mapsTo rules end
--- ======================================================================
-
--- ======================================================================
--- mapsTo rules begin
--- ======================================================================
+rule Class {
+    from s : UML!Class (
+    	if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
+			not s.isObservableType() and
+			not s.isObserverType()
+		else false endif)
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow)
+}
 
 rule ProcedureExpression {
 	from s : UML!ProcedureExpression (
@@ -569,36 +638,8 @@ rule SubscribeProcedureExpression {
 		body <- s.method().specification.javaSubscribe(s.body))
 }
 
-rule Class {
-    from s : UML!Class (
-    	if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML!Class)
-		else false endif)
-    to t : UML!Class mapsTo s (
-		namespace <- s.namespace,
-        isLeaf <- s.isLeaf,
-        isRoot <- s.isRoot,
-        visibility <- s.visibility,
-        name <- s.name,
-        isSpecification <- s.isSpecification,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        templateParameter <- s.templateParameter,
-        comment <- s.comment,
-        feature <- s.feature,
-        ownedElement <- s.ownedElement,
-        taggedValue <- s.taggedValue,
-        powertypeRange <- s.powertypeRange,
-        clientDependency <- s.clientDependency,
-        constraint <- s.constraint,
-        targetFlow <- s.targetFlow,
-        generalization <- s.generalization,
-        stereotype <- s.stereotype,
-        sourceFlow <- s.sourceFlow)
-}
-
 -- ======================================================================
--- mapsTo rules end
+-- transformation rules end
 -- ======================================================================
 
 -- ======================================================================

@@ -20,12 +20,34 @@ helper context UML!GeneralizableElement def : isSingleton() : Boolean =
 -- ======================================================================
 
 -- ======================================================================
--- non-mapsTo rules begin
+-- transformation rules begin
 -- ======================================================================
 
 rule SingletonClass {
-	from s : UML!Class (s.isSingleton())
-	to op : UML!Operation (
+	from s : UML!Class (s.oclIsTypeOf(UML!Class) and
+		s.isSingleton())
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   op : UML!Operation (
 	   	name <- 'getInstance',
 		owner <- s,
 		visibility <- #vk_public,
@@ -53,16 +75,9 @@ rule SingletonClass {
 		changeability <- #ck_changeable)
 }
 
--- ======================================================================
--- non-mapsTo rules end
--- ======================================================================
-
--- ======================================================================
--- mapsTo rules begin
--- ======================================================================
-
 rule Class {
-    from s : UML!Class (s.oclIsTypeOf(UML!Class))
+    from s : UML!Class (s.oclIsTypeOf(UML!Class) and
+    	not s.isSingleton())
     to t : UML!Class mapsTo s (
 		namespace <- s.namespace,
         isLeaf <- s.isLeaf,
@@ -87,5 +102,5 @@ rule Class {
 }
 	
 -- ======================================================================
--- mapsTo rules end
+-- transformation rules end
 -- ======================================================================

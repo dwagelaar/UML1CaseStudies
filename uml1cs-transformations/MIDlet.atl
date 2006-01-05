@@ -167,7 +167,7 @@ helper context UML!Parameter def : notInSourceModel() : Boolean =
 -- model-specific helpers begin
 -- ======================================================================
 
-helper def : javaxMicroeditionMIDlet : UML!Class = 'javax.microedition.midlet.MIDlet'.qClass();
+helper def : AppletMIDlet : UML!Class = 'midlet.AppletMIDlet'.qClass();
 helper def : oclBoolean : UML!DataType = 'Boolean'.dataType();
 helper def : oclString : UML!DataType = 'String'.dataType();
 
@@ -219,133 +219,72 @@ helper context UML!Method def : isSingletonInitMethod() : Boolean =
 -- ======================================================================
 
 -- ======================================================================
--- non-mapsTo rules begin
+-- transformation rules begin
 -- ======================================================================
 
-rule AppletClass {
+rule AppletClassWithInit {
 	from s : UML!Class (
 		if thisModule.inElements->includes(s) then
-			s.isApplet()
+			s.oclIsTypeOf(UML!Class) and
+			s.isApplet() and
+			not s.hasNoOperation('init')
 		else false endif)
-	to g : UML!Generalization (
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   g : UML!Generalization (
 	   	namespace <- s.namespace,
-		parent <- thisModule.javaxMicroeditionMIDlet,
-		child <- s),
-	   initialized : UML!Attribute (
-	   	name <- 'initialized',
-		owner <- s,
-		type <- thisModule.oclBoolean,
-		visibility <- #vk_private,
-		ownerScope <- #sk_instance,
-		changeability <- #ck_changeable,
-		initialValue <- v),
-	   v : UML!Expression (
-	   	language <- 'java',
-		body <- 'false'),
-	   getParameter : UML!Operation (
-	   	name <- 'getParameter',
-		owner <- s,
-		visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential),
-	   name : UML!Parameter (
-	   	name <- 'name',
-		behavioralFeature <- getParameter,
-		type <- thisModule.oclString,
-		kind <- #pdk_in),
-	   return : UML!Parameter (
-	   	name <- 'return',
-		behavioralFeature <- getParameter,
-		type <- thisModule.oclString,
-		kind <- #pdk_return),
-	   getParameterBody : UML!ProcedureExpression (
-	   	language <- 'java',
-		body <- 'return getAppProperty(name);'),
-	   getParameterMeth : UML!Method (
-	   	owner <- s,
-		body <- getParameterBody,
-		specification <- getParameter)
+		parent <- thisModule.AppletMIDlet,
+		child <- s)
 }
 
-rule NewAppletStartAppOperation {
+rule AppletClassWithoutInit {
 	from s : UML!Class (
 		if thisModule.inElements->includes(s) then
-			s.isApplet() and
-			s.hasNoOperation('startApp')
-		else false endif)
-	to op : UML!Operation (
-	   	name <- 'startApp',
-		owner <- s,
-		visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential),
-	   mbody : UML!ProcedureExpression (
-	   	language <- 'java',
-		body <- thisModule.javaMIDletStartAppBody()),
-	   meth : UML!Method (
-	   	owner <- s,
-		body <- mbody,
-		specification <- op)
-}
-
-rule NewAppletPauseAppOperation {
-	from s : UML!Class (
-		if thisModule.inElements->includes(s) then
-			s.isApplet() and
-			s.hasNoOperation('pauseApp')
-		else false endif)
-	to op : UML!Operation (
-	   	name <- 'pauseApp',
-		owner <- s,
-		visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential),
-	   mbody : UML!ProcedureExpression (
-	   	language <- 'java',
-		body <- 'stop();'),
-	   meth : UML!Method (
-	   	owner <- s,
-		body <- mbody,
-		specification <- op)
-}
-
-rule NewAppletDestroyAppOperation {
-	from s : UML!Class (
-		if thisModule.inElements->includes(s) then
-			s.isApplet() and
-			s.hasNoOperation('destroyApp')
-		else false endif)
-	to op : UML!Operation (
-	   	name <- 'destroyApp',
-		owner <- s,
-		visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential),
-	   par : UML!Parameter (
-	   	name <- 'unconditional',
-		behavioralFeature <- op,
-		type <- thisModule.oclBoolean,
-		kind <- #pdk_in),
-	   mbody : UML!ProcedureExpression (
-	   	language <- 'java',
-		body <- 'stop();\ndestroy();'),
-	   meth : UML!Method (
-	   	owner <- s,
-		body <- mbody,
-		specification <- op)
-}
-
-rule NewAppletInitOperation {
-	from s : UML!Class (
-		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
 			s.isApplet() and
 			s.hasNoOperation('init')
 		else false endif)
-	to op : UML!Operation (
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   op : UML!Operation (
 	   	name <- 'init',
 		owner <- s,
 		visibility <- #vk_public,
@@ -361,84 +300,11 @@ rule NewAppletInitOperation {
 		specification <- op)
 }
 
-rule NewAppletDestroyOperation {
-	from s : UML!Class (
-		if thisModule.inElements->includes(s) then
-			s.isApplet() and
-			s.hasNoOperation('destroy')
-		else false endif)
-	to op : UML!Operation (
-	   	name <- 'destroy',
-		owner <- s,
-		visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential)
-}
-
-rule NewAppletStartOperation {
-	from s : UML!Class (
-		if thisModule.inElements->includes(s) then
-			s.isApplet() and
-			s.hasNoOperation('start')
-		else false endif)
-	to op : UML!Operation (
-	   	name <- 'start',
-		owner <- s,
-		visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential)
-}
-
-rule NewAppletStopOperation {
-	from s : UML!Class (
-		if thisModule.inElements->includes(s) then
-			s.isApplet() and
-			s.hasNoOperation('stop')
-		else false endif)
-	to op : UML!Operation (
-	   	name <- 'stop',
-		owner <- s,
-		visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential)
-}
-
--- ======================================================================
--- non-mapsTo rules end
--- ======================================================================
-
--- ======================================================================
--- mapsTo rules begin
--- ======================================================================
-
-rule AppletInitProcedureExpression {
-    from s : UML!ProcedureExpression (
-		if thisModule.inElements->includes(s) then
-    		s.method().isSingletonInitMethod()
-		else false endif)
-    to t : UML!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- s.method().owner.isSingleton().
-			javaMIDletInitBody() + '\n' + s.body)
-}
-
-rule ProcedureExpression {
-    from s : UML!ProcedureExpression (
-		if thisModule.inElements->includes(s) then
-    		not s.method().isSingletonInitMethod()
-    	else false endif)
-    to t : UML!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- s.body)
-}
-
 rule Class {
     from s : UML!Class (
     	if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML!Class)
+			s.oclIsTypeOf(UML!Class) and
+			not s.isApplet()
 		else false endif)
     to t : UML!Class mapsTo s (
 		namespace <- s.namespace,
@@ -461,6 +327,27 @@ rule Class {
         generalization <- s.generalization,
         stereotype <- s.stereotype,
         sourceFlow <- s.sourceFlow)
+}
+
+rule AppletInitProcedureExpression {
+    from s : UML!ProcedureExpression (
+		if thisModule.inElements->includes(s) then
+    		s.method().isSingletonInitMethod()
+		else false endif)
+    to t : UML!ProcedureExpression mapsTo s (
+        language <- s.language,
+        body <- s.method().owner.isSingleton().
+			javaMIDletInitBody() + '\n' + s.body)
+}
+
+rule ProcedureExpression {
+    from s : UML!ProcedureExpression (
+		if thisModule.inElements->includes(s) then
+    		not s.method().isSingletonInitMethod()
+    	else false endif)
+    to t : UML!ProcedureExpression mapsTo s (
+        language <- s.language,
+        body <- s.body)
 }
 
 -- ======================================================================

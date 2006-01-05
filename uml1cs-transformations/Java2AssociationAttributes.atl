@@ -214,7 +214,7 @@ helper context UML!AssociationEnd def : instance() : String =
 -- ======================================================================
 	
 -- ======================================================================
--- non-mapsTo rules begin
+-- transformation rules begin
 -- ======================================================================
 
 rule AssociationEndAttribute {
@@ -224,7 +224,29 @@ rule AssociationEndAttribute {
 			s.isNavigable and
 			s.navigableFrom().oclIsKindOf(UML!Class)
 		else false endif)
-	to t : UML!Attribute (
+    to t : UML!AssociationEnd mapsTo s (
+		association <- s.association,
+        multiplicity <- s.multiplicity,
+        aggregation <- s.aggregation,
+        visibility <- s.visibility,
+        targetScope <- s.targetScope,
+        changeability <- s.changeability,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        ordering <- s.ordering,
+        isNavigable <- s.isNavigable,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        qualifier <- s.qualifier,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        specification <- s.specification,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype,
+        participant <- s.participant,
+        sourceFlow <- s.sourceFlow),
+	   a : UML!Attribute (
 		name <- s.name,
 		owner <- s.navigableFrom(),
 		type <- s.type(),
@@ -237,18 +259,12 @@ rule AssociationEndAttribute {
 		body <- s.instance())
 }
 
--- ======================================================================
--- non-mapsTo rules end
--- ======================================================================
-	
--- ======================================================================
--- mapsTo rules begin
--- ======================================================================
-
 rule AssociationEnd {
     from s : UML!AssociationEnd (
     	if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML!AssociationEnd)
+			s.oclIsTypeOf(UML!AssociationEnd) and not
+			(s.isNavigable and
+			s.navigableFrom().oclIsKindOf(UML!Class))
 		else false endif)
     to t : UML!AssociationEnd mapsTo s (
 		association <- s.association,
@@ -275,7 +291,7 @@ rule AssociationEnd {
 }
 
 -- ======================================================================
--- mapsTo rules end
+-- transformation rules end
 -- ======================================================================
 	
 -- ======================================================================

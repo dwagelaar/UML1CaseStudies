@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="DefaultInstantMessenger" default="all">
 	<path id="atl.class.path">
-		<fileset dir="../../atlcommandline/lib">
+		<fileset dir="../../uml1cs-atlcommandline/lib">
 			<include name="**/*.jar"/>
 		</fileset>
 	</path>

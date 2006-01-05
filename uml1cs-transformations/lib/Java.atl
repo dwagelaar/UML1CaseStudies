@@ -354,12 +354,6 @@ helper context Boolean def : javaMIDletInitBody() : String =
 		''
 	endif;
 
-helper def : javaMIDletStartAppBody() : String =
-	'if (!initialized) {\n' +
-	'    init();\n' +
-	'}\n' +
-	'start();';
-
 -- ======================================================================
 -- generic helpers end
 -- ======================================================================

@@ -290,86 +290,202 @@ helper context UML!ModelElement def : qName() : String =
 -- ======================================================================
 	
 -- ======================================================================
--- non-mapsTo rules begin
+-- transformation rules begin
 -- ======================================================================
 
-rule PublicAttributeSetter {
+rule PublicAttributeSingle {
 	from s : UML!Attribute (
 		if thisModule.inElements->includes(s) then
 			s.visibility = #vk_public and
 			not s.type.name.isCollection()
 		else false endif)
-	using { baseName : String = s.name.stringFirstToUpper(); }
-	to op : UML!Operation (
+	using { vis : UML!VisibilityKind =
+				if s.visibility = #vk_public then #vk_private else s.visibility	endif;
+		    baseName : String = s.name.stringFirstToUpper();
+			endS : String = s.type.name.s(); }
+    to t : UML!Attribute mapsTo s (
+		owner <- s.owner,
+        multiplicity <- s.multiplicity,
+        initialValue <- s.initialValue,
+        changeability <- s.changeability,
+        name <- s.name,
+        ordering <- s.ordering,
+        visibility <- vis,
+        isSpecification <- s.isSpecification,
+        targetScope <- s.targetScope,
+        ownerScope <- s.ownerScope,
+        stereotype <- s.stereotype,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        type <- s.type,
+        sourceFlow <- s.sourceFlow),
+	-- Set --
+	   setOp : UML!Operation (
 	   	name <- 'set' + baseName,
 		owner <- s.owner,
 		visibility <- s.visibility,
 		ownerScope <- s.ownerScope,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   par : UML!Parameter (
+	   setPar : UML!Parameter (
 	   	name <- s.name,
-		behavioralFeature <- op,
+		behavioralFeature <- setOp,
 		type <- s.type,
 		kind <- #pdk_in),
-	   mbody : UML!ProcedureExpression (
+	   setMbody : UML!ProcedureExpression (
 	   	language <- 'java',
 		body <- s.setter()),
-	   meth : UML!Method (
+	   setMeth : UML!Method (
 	   	owner <- s.owner,
-		body <- mbody,
-		specification <- op),
-	   dep : UML!Dependency (
+		body <- setMbody,
+		specification <- setOp),
+	   setDep : UML!Dependency (
 	   	name <- 'accessor ' + 'set' + baseName + '()',
 		namespace <- s.owner.namespace,
 		stereotype <- thisModule.accessor,
-		client <- op,
-		supplier <- s)
-}
-
-rule PublicAttributeGetter {
-	from s : UML!Attribute (
-		if thisModule.inElements->includes(s) then
-			s.visibility = #vk_public
-		else false endif)
-	using { baseName : String = s.name.stringFirstToUpper();
-			endS : String = s.type.name.s(); }
-	to op : UML!Operation (
+		client <- setOp,
+		supplier <- s),
+	-- Get --
+	   getOp : UML!Operation (
 	   	name <- 'get' + baseName + endS,
 		owner <- s.owner,
 		visibility <- s.visibility,
 		ownerScope <- s.ownerScope,
 		isAbstract <- false,
 		concurrency <- #cck_sequential),
-	   par : UML!Parameter (
+	   getPar : UML!Parameter (
 	   	name <- 'return',
-		behavioralFeature <- op,
+		behavioralFeature <- getOp,
 		type <- s.type,
 		kind <- #pdk_return),
-	   mbody : UML!ProcedureExpression (
+	   getMbody : UML!ProcedureExpression (
 	   	language <- 'java',
 		body <- s.name.javaGetter()),
-	   meth : UML!Method (
+	   getMeth : UML!Method (
 	   	owner <- s.owner,
-		body <- mbody,
-		specification <- op),
-	   dep : UML!Dependency (
+		body <- getMbody,
+		specification <- getOp),
+	   getDep : UML!Dependency (
 	   	name <- 'accessor ' + 'get' + baseName + endS + '()',
 		namespace <- s.owner.namespace,
 		stereotype <- thisModule.accessor,
-		client <- op,
+		client <- getOp,
 		supplier <- s)
 }
 
-rule PublicAttributeGetAtAndInsert {
+rule PublicAttributeSequence {
 	from s : UML!Attribute (
 		if thisModule.inElements->includes(s) then
 			s.visibility = #vk_public and
 			s.type.name.isSequence()
 		else false endif)
-	using { baseName : String = s.name.stringFirstToUpper();
+	using { vis : UML!VisibilityKind =
+				if s.visibility = #vk_public then #vk_private else s.visibility	endif;
+			baseName : String = s.name.stringFirstToUpper();
+			endS : String = s.type.name.s();
 			originalType : UML!Classifier = s.originalType(); }
-	to 
+    to t : UML!Attribute mapsTo s (
+		owner <- s.owner,
+        multiplicity <- s.multiplicity,
+        initialValue <- s.initialValue,
+        changeability <- s.changeability,
+        name <- s.name,
+        ordering <- s.ordering,
+        visibility <- vis,
+        isSpecification <- s.isSpecification,
+        targetScope <- s.targetScope,
+        ownerScope <- s.ownerScope,
+        stereotype <- s.stereotype,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        type <- s.type,
+        sourceFlow <- s.sourceFlow),
+	-- Get --
+	   getOp : UML!Operation (
+	   	name <- 'get' + baseName + endS,
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   getPar : UML!Parameter (
+	   	name <- 'return',
+		behavioralFeature <- getOp,
+		type <- s.type,
+		kind <- #pdk_return),
+	   getMbody : UML!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.name.javaGetter()),
+	   getMeth : UML!Method (
+	   	owner <- s.owner,
+		body <- getMbody,
+		specification <- getOp),
+	   getDep : UML!Dependency (
+	   	name <- 'accessor ' + 'get' + baseName + endS + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- thisModule.accessor,
+		client <- getOp,
+		supplier <- s),
+	-- Add --
+	   addOp : UML!Operation (
+	   	name <- 'add' + baseName,
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   addPar : UML!Parameter (
+	   	name <- s.name,
+		behavioralFeature <- addOp,
+		type <- originalType,
+		kind <- #pdk_in),
+	   addMbody : UML!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.adder()),
+	   addMeth : UML!Method (
+	   	owner <- s.owner,
+		body <- addMbody,
+		specification <- addOp),
+	   addDep : UML!Dependency (
+	   	name <- 'accessor ' + 'add' + baseName + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- thisModule.accessor,
+		client <- addOp,
+		supplier <- s),
+	-- Remove --
+	   removeOp : UML!Operation (
+	   	name <- 'remove' + baseName,
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   removePar : UML!Parameter (
+	   	name <- s.name,
+		behavioralFeature <- removeOp,
+		type <- originalType,
+		kind <- #pdk_in),
+	   removeMbody : UML!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.remover()),
+	   removeMeth : UML!Method (
+	   	owner <- s.owner,
+		body <- removeMbody,
+		specification <- removeOp),
+	   removeDep : UML!Dependency (
+	   	name <- 'accessor ' + 'remove' + baseName + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- thisModule.accessor,
+		client <- removeOp,
+		supplier <- s),
 	-- GetAt --
 	   getAtOp : UML!Operation (
 	   	name <- 'get' + baseName + 'At',
@@ -434,15 +550,64 @@ rule PublicAttributeGetAtAndInsert {
 		supplier <- s)
 }
 
-rule PublicAttributeAdderAndRemover {
+rule PublicAttributeCollection {
 	from s : UML!Attribute (
 		if thisModule.inElements->includes(s) then
 			s.visibility = #vk_public and
-			s.type.name.isCollection()
+			s.type.name.isCollection() and
+			not s.type.name.isSequence()
 		else false endif)
-	using { baseName : String = s.name.stringFirstToUpper();
+	using { vis : UML!VisibilityKind =
+				if s.visibility = #vk_public then #vk_private else s.visibility	endif;
+			baseName : String = s.name.stringFirstToUpper();
+			endS : String = s.type.name.s();
 			originalType : UML!Classifier = s.originalType(); }
-	to
+    to t : UML!Attribute mapsTo s (
+		owner <- s.owner,
+        multiplicity <- s.multiplicity,
+        initialValue <- s.initialValue,
+        changeability <- s.changeability,
+        name <- s.name,
+        ordering <- s.ordering,
+        visibility <- vis,
+        isSpecification <- s.isSpecification,
+        targetScope <- s.targetScope,
+        ownerScope <- s.ownerScope,
+        stereotype <- s.stereotype,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        type <- s.type,
+        sourceFlow <- s.sourceFlow),
+	-- Get --
+	   getOp : UML!Operation (
+	   	name <- 'get' + baseName + endS,
+		owner <- s.owner,
+		visibility <- s.visibility,
+		ownerScope <- s.ownerScope,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   getPar : UML!Parameter (
+	   	name <- 'return',
+		behavioralFeature <- getOp,
+		type <- s.type,
+		kind <- #pdk_return),
+	   getMbody : UML!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.name.javaGetter()),
+	   getMeth : UML!Method (
+	   	owner <- s.owner,
+		body <- getMbody,
+		specification <- getOp),
+	   getDep : UML!Dependency (
+	   	name <- 'accessor ' + 'get' + baseName + endS + '()',
+		namespace <- s.owner.namespace,
+		stereotype <- thisModule.accessor,
+		client <- getOp,
+		supplier <- s),
 	-- Add --
 	   addOp : UML!Operation (
 	   	name <- 'add' + baseName,
@@ -497,19 +662,11 @@ rule PublicAttributeAdderAndRemover {
 		supplier <- s)
 }
 
--- ======================================================================
--- non-mapsTo rules end
--- ======================================================================
-
--- ======================================================================
--- mapsTo rules begin
--- ======================================================================
-
-rule Attribute {
+rule NonPublicAttribute {
     from s : UML!Attribute (
-    	thisModule.inElements->includes(s))
-	using { vis : UML!VisibilityKind =
-		if s.visibility = #vk_public then #vk_private else s.visibility	endif; }
+		if thisModule.inElements->includes(s) then
+			not (s.visibility = #vk_public)
+		else false endif)
     to t : UML!Attribute mapsTo s (
 		owner <- s.owner,
         multiplicity <- s.multiplicity,
@@ -517,7 +674,7 @@ rule Attribute {
         changeability <- s.changeability,
         name <- s.name,
         ordering <- s.ordering,
-        visibility <- vis,
+        visibility <- s.visibility,
         isSpecification <- s.isSpecification,
         targetScope <- s.targetScope,
         ownerScope <- s.ownerScope,
@@ -533,7 +690,7 @@ rule Attribute {
 }
 
 -- ======================================================================
--- mapsTo rules end
+-- transformation rules end
 -- ======================================================================
 
 -- ======================================================================
