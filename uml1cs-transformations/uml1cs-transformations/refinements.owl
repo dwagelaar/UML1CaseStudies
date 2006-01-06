@@ -1,0 +1,598 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:context="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://local/UML1CaseStudies/transformations/refinements.owl#"
+    xmlns:java="http://ssel.vub.ac.be/codamos/2005/04/java.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:units="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#"
+    xmlns:feature="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#"
+  xml:base="http://local/UML1CaseStudies/transformations/refinements.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl"/>
+    <owl:imports rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl"/>
+    <owl:imports rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="JDKJavaUtilPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JDKJavaUtil"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+  </owl:Class>
+  <owl:Class rdf:ID="BothJavaUtils">
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#InvalidConfiguration"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="CLDCJavaUtilFeature"/>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Java2UtilFeature"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="JavaAssociationAttributes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AssociationAttributes"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CLDCJavaUtilFeature"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#JavaAssociationAttributes"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Java2DataTypes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Java2UtilFeature"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="DataTypes"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#Java2DataTypes"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="JavaAccessors">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#JavaAccessors"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Accessors"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CLDCJavaUtilFeature"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Java2UtilPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#Java2Util"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Java2UtilFeature">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="JavaUtilFeature"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Java2UtilPlatform"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#AssociationAttributes">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#AssociationAttributes"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="JavaFeature"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="JavaObserver">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Observer"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#JavaObserver"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="BothObserver">
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#InvalidConfiguration"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="JDKObserver"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#JavaObserver"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="JavaDataTypes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#DataTypes"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CLDCJavaUtilFeature"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#JavaDataTypes"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#CLDCJavaUtilFeature">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="CLDCJavaUtilPlatform"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaUtilFeature"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="BothAccessors">
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#InvalidConfiguration"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Java2Accessors"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#JavaAccessors"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="MIDlet">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Applet"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#MIDlet"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="MIDletPlatform"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AsyncMethods">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#AsyncMethods"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="CLDCJavaLangPlatform"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaFeature"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#DataTypes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaFeature"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:about="#CLDCJavaLangPlatform"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Accessors"/>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#AssociationAttributes"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Accessors">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#AssociationAttributes"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#JavaFeature"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="BothAssociationAttributes">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Java2AssociationAttributes"/>
+            </owl:someValuesFrom>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom rdf:resource="#JavaAssociationAttributes"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#InvalidConfiguration"/>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaFeature">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="JavaPlatform"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#Feature"/>
+  </owl:Class>
+  <owl:Class rdf:ID="BothDataTypes">
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#InvalidConfiguration"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Java2DataTypes"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#JavaDataTypes"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Java2AssociationAttributes">
+    <rdfs:subClassOf rdf:resource="#Java2UtilFeature"/>
+    <rdfs:subClassOf rdf:resource="#AssociationAttributes"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Java2AssociationAttributes"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="AWTApplet">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Applet"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="JavaAWTPlatform"/>
+        </owl:allValuesFrom>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#AWTApplet"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaVM"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaUtilFeature">
+    <rdfs:subClassOf rdf:resource="#JavaFeature"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Java2Accessors">
+    <rdfs:subClassOf rdf:resource="#Java2UtilFeature"/>
+    <rdfs:subClassOf rdf:resource="#Accessors"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#Java2Accessors"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="BothApplets">
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#InvalidConfiguration"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom rdf:resource="#AWTApplet"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom rdf:resource="#MIDlet"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="MandatoryFeatures">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom rdf:resource="#Accessors"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Applet"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#AssociationAttributes"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#DataTypes"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Observer"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Singleton"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#AsyncMethods"/>
+            <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#ValidConfiguration"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Applet">
+    <rdfs:subClassOf rdf:resource="#JavaFeature"/>
+  </owl:Class>
+  <owl:Class rdf:ID="JavaLangReflectPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaLangReflect"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaAWTPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaAWT"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Singleton">
+    <rdfs:subClassOf rdf:resource="#JavaFeature"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#Singleton"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#CLDCJavaUtilPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#CLDCJavaUtil"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+  </owl:Class>
+  <owl:Class rdf:about="#CLDCJavaLangPlatform">
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#CLDCJavaLang"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#JDKObserver">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+        <owl:allValuesFrom rdf:resource="#JavaLangReflectPlatform"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#impliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#JDKObserver"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#CLDCJavaLangPlatform"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#JDKJavaUtilPlatform"/>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#requires"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Observer"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#MIDletPlatform">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaxMicroeditionMIDlet"/>
+        <owl:onProperty rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#Platform"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Observer">
+    <rdfs:subClassOf rdf:resource="#JavaFeature"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://ssel.vub.ac.be/codamos/2005/03/feature.owl#transitivelyImpliesFeature"/>
+        <owl:someValuesFrom rdf:resource="#Accessors"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <JavaAssociationAttributes rdf:ID="javaAssociationAttributes">
+    <feature:impliesFeature rdf:resource="#javaAssociationAttributes"/>
+  </JavaAssociationAttributes>
+  <JavaDataTypes rdf:ID="javaDataTypes">
+    <feature:impliesFeature rdf:resource="#javaAssociationAttributes"/>
+    <feature:impliesFeature rdf:resource="#javaDataTypes"/>
+    <feature:impliesFeature>
+      <JavaAccessors rdf:ID="javaAccessors">
+        <feature:impliesFeature rdf:resource="#javaAccessors"/>
+        <feature:impliesFeature rdf:resource="#javaAssociationAttributes"/>
+      </JavaAccessors>
+    </feature:impliesFeature>
+  </JavaDataTypes>
+  <AsyncMethods rdf:ID="asyncMethods">
+    <feature:impliesFeature rdf:resource="#asyncMethods"/>
+  </AsyncMethods>
+  <feature:Configuration rdf:ID="java2Configuration">
+    <feature:impliesFeature>
+      <Singleton rdf:ID="singleton">
+        <feature:impliesFeature rdf:resource="#singleton"/>
+      </Singleton>
+    </feature:impliesFeature>
+    <feature:impliesFeature>
+      <AWTApplet rdf:ID="awtApplet">
+        <feature:impliesFeature rdf:resource="#awtApplet"/>
+      </AWTApplet>
+    </feature:impliesFeature>
+    <feature:impliesFeature>
+      <JDKObserver rdf:ID="jdkObserver">
+        <feature:impliesFeature rdf:resource="#jdkObserver"/>
+      </JDKObserver>
+    </feature:impliesFeature>
+    <feature:impliesFeature>
+      <Java2DataTypes rdf:ID="java2DataTypes">
+        <feature:impliesFeature>
+          <Java2Accessors rdf:ID="java2Accessors">
+            <feature:impliesFeature rdf:resource="#java2Accessors"/>
+            <feature:impliesFeature>
+              <Java2AssociationAttributes rdf:ID="java2AssociationAttributes">
+                <feature:impliesFeature rdf:resource="#java2AssociationAttributes"/>
+              </Java2AssociationAttributes>
+            </feature:impliesFeature>
+          </Java2Accessors>
+        </feature:impliesFeature>
+        <feature:impliesFeature rdf:resource="#java2DataTypes"/>
+        <feature:impliesFeature rdf:resource="#java2AssociationAttributes"/>
+      </Java2DataTypes>
+    </feature:impliesFeature>
+    <feature:impliesFeature rdf:resource="#asyncMethods"/>
+  </feature:Configuration>
+  <JavaObserver rdf:ID="javaObserver">
+    <feature:impliesFeature rdf:resource="#javaObserver"/>
+  </JavaObserver>
+  <MIDlet rdf:ID="midlet">
+    <feature:impliesFeature rdf:resource="#midlet"/>
+  </MIDlet>
+  <feature:Configuration rdf:ID="defaultConfiguration">
+    <feature:impliesFeature rdf:resource="#asyncMethods"/>
+    <feature:impliesFeature rdf:resource="#singleton"/>
+    <feature:impliesFeature rdf:resource="#jdkObserver"/>
+    <feature:impliesFeature rdf:resource="#javaDataTypes"/>
+    <feature:impliesFeature rdf:resource="#awtApplet"/>
+  </feature:Configuration>
+  <feature:Configuration rdf:ID="midpConfiguration">
+    <feature:impliesFeature rdf:resource="#asyncMethods"/>
+    <feature:impliesFeature rdf:resource="#javaObserver"/>
+    <feature:impliesFeature rdf:resource="#singleton"/>
+    <feature:impliesFeature rdf:resource="#javaDataTypes"/>
+    <feature:impliesFeature rdf:resource="#midlet"/>
+  </feature:Configuration>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 1.3, Build 225.4)  http://protege.stanford.edu -->

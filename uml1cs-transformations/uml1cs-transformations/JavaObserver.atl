@@ -1,0 +1,941 @@
+-- $Id$
+module JavaObserver;
+
+create OUT : UML refining IN : UML, MERGE : UML;
+
+uses Java;
+
+-- ======================================================================
+-- model merge helpers begin
+-- ======================================================================
+-- From: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa
+
+helper def : inElements : Set(UML!Element) = UML!Element.allInstancesFrom('IN');
+helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('MERGE');
+
+helper def : newElements : Sequence(UML!Element) = Sequence{
+		UML!Classifier.allInstancesFrom('MERGE')->select(c|c.notInSourceModel()),
+		UML!Package.allInstancesFrom('MERGE')->select(p|p.notInSourceModel()),
+		UML!TagDefinition.allInstancesFrom('MERGE')->select(t|t.notInSourceModel()),
+		UML!Stereotype.allInstancesFrom('MERGE')->select(s|s.notInSourceModel()),
+		UML!Association.allInstancesFrom('MERGE')->select(a|a.notInSourceModel()),
+		UML!Dependency.allInstancesFrom('MERGE')->select(d|d.notInSourceModel()),
+		UML!Generalization.allInstancesFrom('MERGE')->select(g|g.notInSourceModel())
+	}->flatten();
+
+helper context UML!ModelElement def : qName() : String =
+	if self.namespace.oclIsUndefined() then
+		self.name
+	else if self.namespace.oclIsTypeOf(UML!Package) then
+		self.namespace.qName() + '.' + self.name
+	else
+		self.name
+	endif endif;
+
+------------------------------- Model -----------------------------------
+
+helper context UML!Model def : notInSourceModel() : Boolean =
+	false;
+
+helper context UML!Model def : fromSourceModel() : UML!Model =
+	UML!Model.allInstancesFrom('IN')->asSequence()->first();
+
+------------------------------- Classifier ------------------------------
+
+helper context UML!Classifier def : notInSourceModel() : Boolean =
+	UML!Classifier.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
+
+helper context UML!Classifier def : fromSourceModel() : UML!Classifier =
+	UML!Classifier.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
+
+------------------------------- Package ---------------------------------
+
+helper context UML!Package def : notInSourceModel() : Boolean =
+	UML!Package.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
+
+helper context UML!Package def : fromSourceModel() : UML!Package =
+	UML!Package.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
+
+------------------------------- TagDefinition ---------------------------
+
+helper context UML!TagDefinition def : notInSourceModel() : Boolean =
+	UML!TagDefinition.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
+
+helper context UML!TagDefinition def : fromSourceModel() : UML!TagDefinition =
+	UML!TagDefinition.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
+
+------------------------------- Stereotype ------------------------------
+
+helper context UML!Stereotype def : notInSourceModel() : Boolean =
+	UML!Stereotype.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
+
+helper context UML!Stereotype def : fromSourceModel() : UML!Stereotype =
+	UML!Stereotype.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
+
+------------------------------- Association -----------------------------
+
+helper context UML!Association def : notInSourceModel() : Boolean =
+	not self.connection->forAll(c|c.inSourceModel());
+
+helper context UML!AssociationEnd def : inSourceModel() : Boolean =
+	if self.isNavigable then
+		not UML!AssociationEnd.allInstancesFrom('IN')->select(e|e.isNavigable)->select(e|
+			e.name=self.name and e.participant.qName()=self.participant.qName())->isEmpty()
+	else if self.otherEnd().isNavigable then
+		self.otherEnd().inSourceModel()
+	else
+		true
+	endif endif;
+
+helper context UML!AssociationEnd def : otherEnd() : UML!AssociationEnd =
+	self.association.connection->select(x|x<>self)->first();
+
+------------------------------- AssociationEnd --------------------------
+
+helper context UML!AssociationEnd def : notInSourceModel() : Boolean =
+	thisModule.newElements->includes(self.association);
+
+------------------------------- TaggedValue -----------------------------
+
+helper context UML!TaggedValue def : notInSourceModel() : Boolean =
+	if thisModule.newElements->includes(self.modelElement) then
+		true
+	else
+		self.modelElement.notInSourceModel()
+	endif;
+
+------------------------------- StructuralFeature -----------------------
+
+helper context UML!StructuralFeature def : notInSourceModel() : Boolean =
+	if thisModule.newElements->includes(self.owner) then
+		true
+	else
+		self.owner.fromSourceModel().feature->select(f|
+			f.name=self.name and f.oclIsKindOf(UML!StructuralFeature))
+	endif;
+
+------------------------------- Operation -------------------------------
+
+helper context UML!Operation def : notInSourceModel() : Boolean =
+	if thisModule.newElements->includes(self.owner) then
+		true
+	else
+		self.owner.fromSourceModel().feature->select(f|
+			f.name=self.name and f.oclIsKindOf(UML!Operation))->select(o|
+				o.hasSameParametersAs(self))->isEmpty()
+	endif;
+
+helper context UML!BehavioralFeature def : hasSameParametersAs(f : UML!BehavioralFeature) : Boolean =
+	f.parameter->select(p|not self.hasSameParameter(p))->isEmpty();
+	
+helper context UML!BehavioralFeature def : hasSameParameter(p : UML!Parameter) : Boolean =
+	not self.parameter->select(sp|sp.kind=p.kind and sp.type.qName()=p.type.qName())->isEmpty();
+
+------------------------------- Method ----------------------------------
+
+helper context UML!Method def : notInSourceModel() : Boolean =
+	if thisModule.newElements->includes(self.owner) then
+		true
+	else
+		self.specification.notInSourceModel()
+	endif;
+
+------------------------------- Dependency ------------------------------
+
+helper context UML!Dependency def : notInSourceModel() : Boolean =
+	UML!Dependency.allInstancesFrom('IN')->select(d|
+		d.supplier->forAll(s1|self.supplier->forAll(s2|s1.qName()=s2.qName())) and
+		d.client->forAll(c1|self.client->forAll(c2|c1.qName()=c2.qName())))->isEmpty();
+
+------------------------------- Generalization --------------------------
+
+helper context UML!Generalization def : notInSourceModel() : Boolean =
+	UML!Generalization.allInstancesFrom('IN')->select(g|
+		g.parent.qName()=self.parent.qName() and
+		g.child.qName()=self.child.qName())->isEmpty();
+
+------------------------------- Parameter -------------------------------
+
+helper context UML!Parameter def : notInSourceModel() : Boolean =
+	if self.behavioralFeature.oclIsUndefined() then
+		false
+	else
+		self.behavioralFeature.notInSourceModel()
+	endif;
+
+-- ======================================================================
+-- model merge helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper def : inExpressions : Set(UML!Expression) = UML!Expression.allInstancesFrom('IN');
+
+helper def : javaUtilObservable : UML!Class = 'java.util.Observable'.qClass();
+helper def : javaUtilObserver : UML!Interface = 'java.util.Observer'.qInterface();
+helper def : javaLangObject : UML!Class = 'java.lang.Object'.qClass();
+
+helper def : realize : Set(UML!Stereotype) = 'realize'.stereotype();
+
+helper context UML!Attribute def : javaSetterNotify(body : String) : String =
+	'// Begin Observable stanza\n' +
+	'if (this.' + self.name + ' != ' + self.name + ') {\n' +
+	'    // Begin original body\n' +
+	body +
+	'\n    // End original body\n' +
+	self.name.javaNotifyStanza(self.originalType().qName()) +
+	'}\n' +
+	'// End Observable stanza';
+	
+helper context UML!Attribute def : javaAdderNotify(body : String) : String =
+	'// Begin Observable stanza\n' +
+	'if (! this.' + self.name + '.contains(' + self.name + ')) {\n' +
+	'    // Begin original body\n' +
+	body +
+	'\n    // End original body\n' +
+	self.name.javaNotifyStanza(self.originalType().qName()) +
+	'}\n' +
+	'// End Observable stanza';
+	
+helper context UML!Attribute def : javaRemoverNotify(body : String) : String =
+	'// Begin Observable stanza\n' +
+	'if (this.' + self.name + '.contains(' + self.name + ')) {\n' +
+	'    // Begin original body\n' +
+	body +
+	'\n    // End original body\n' +
+	self.name.javaNotifyStanza(self.originalType().qName()) +
+	'}\n' +
+	'// End Observable stanza';
+
+helper context String def : qClass() : UML!Class =
+	UML!Class.allInstances()->select(c|c.qName()=self)->select(d|
+		thisModule.inElements->includes(d) or 
+		thisModule.newElements->includes(d))->first();
+
+helper context String def : qInterface() : UML!Interface =
+	UML!Interface.allInstances()->select(c|c.qName()=self)->select(d|
+		thisModule.inElements->includes(d) or 
+		thisModule.newElements->includes(d))->first();
+
+helper context String def : stereotype() : Set(UML!Stereotype) =
+	UML!Stereotype.allInstances()->select(s|s.name=self)->select(d|
+		thisModule.inElements->includes(d) or 
+		thisModule.newElements->includes(d));
+
+helper context UML!AssociationEnd def : otherEnd() : UML!AssociationEnd =
+	self.association.connection->select(x|x<>self)->first();
+
+helper context UML!AssociationEnd def : navigableFrom() : UML!Classifier =
+	self.otherEnd().participant;
+
+helper context UML!Attribute def : hasAssociationEnd() : Boolean =
+	not UML!AssociationEnd.allInstances()->select(a|
+		a.name=self.name and a.navigableFrom()=self.owner)->isEmpty();
+
+helper context UML!Attribute def : associationEnd() : UML!AssociationEnd =
+	UML!AssociationEnd.allInstances()->select(a|
+		a.name=self.name and a.navigableFrom()=self.owner)->first();
+
+helper context UML!Attribute def : originalType() : UML!Classifier =
+	if self.hasAssociationEnd() then
+		self.associationEnd().participant
+	else
+		self.type
+	endif;
+
+helper context UML!Dependency def : isAccessorDependency() : Boolean =
+	not self.stereotype->select(s|s.name='accessor')->isEmpty();
+	
+helper context UML!Operation def : isAccessor() : Boolean =
+	not self.clientDependency->select(d|d.isAccessorDependency())->isEmpty();
+
+helper context UML!Operation def : accessorDependency() : UML!Dependency =
+	self.clientDependency->select(d|d.isAccessorDependency())->first();
+
+helper context UML!Operation def : accessorFor() : UML!Attribute =
+	self.accessorDependency().supplier->select(a|
+		a.oclIsKindOf(UML!Attribute))->first();
+
+helper context UML!Operation def : isSubscriber() : Boolean =
+	if self.isAccessor() then
+		self.accessorFor().hasSubscribesAssociation()
+	else
+		false
+	endif;
+
+helper context UML!Attribute def : hasSubscribesAssociation() : Boolean =
+	if self.hasAssociationEnd() then
+		not self.associationEnd().association.stereotype
+			->select(s|s.name='subscribe')->isEmpty()
+	else
+		false
+	endif;
+	
+helper context UML!GeneralizableElement def : isObservableType() : Boolean =
+	not self.stereotype->select(s|s.name='Observable')->isEmpty();
+
+helper context UML!GeneralizableElement def : isObservableKind() : Boolean =
+	if self.isObservableType() then
+		true
+	else
+		not self.generalization->select(g|g.parent.isObservableKind())->isEmpty()
+	endif;
+
+helper context UML!GeneralizableElement def : isObserverType() : Boolean =
+	not self.stereotype->select(s|s.name='Observer')->isEmpty();
+
+helper context UML!GeneralizableElement def : isObserverKind() : Boolean =
+	if self.isObserverType() then
+		true
+	else
+		not self.generalization->select(g|g.parent.isObserverKind())->isEmpty()
+	endif;
+
+helper context UML!ProcedureExpression def : method() : UML!Method =
+	UML!Method.allInstances()->select(m|m.body=self)->first();
+
+helper context UML!Operation def : javaNotify(body : String) : String =
+	if self.name.stringStartsWith('remove') then
+		self.accessorFor().javaRemoverNotify(body)
+	else if self.name.stringStartsWith('add') or self.name.stringStartsWith('insert') then
+		self.accessorFor().javaAdderNotify(body)
+	else if self.name.stringStartsWith('set') then
+		self.accessorFor().javaSetterNotify(body)
+	else
+		body
+	endif endif endif;
+
+helper context UML!Operation def : javaSubscribe(body : String) : String =
+	if self.name.stringStartsWith('remove') then
+		self.accessorFor().name.javaRemoverSubscribe(body)
+	else if self.name.stringStartsWith('add') or self.name.stringStartsWith('insert') then
+		self.accessorFor().name.javaAdderSubscribe(body)
+	else if self.name.stringStartsWith('set') then
+		self.accessorFor().name.javaSetterSubscribe(body)
+	else
+		body
+	endif endif endif;
+
+helper context UML!Method def : isPlainMethod() : Boolean =
+	if self.specification.isAccessor() then
+		if self.owner.isObservableKind() then
+			false
+		else if self.owner.isObserverKind() and	self.specification.isSubscriber() then
+			false
+		else
+			true
+		endif endif
+	else
+		true
+	endif;
+
+helper context UML!Method def : isNotifyMethod() : Boolean =
+	if self.specification.isAccessor() then
+		if not self.owner.isObservableKind() then
+			false
+		else if self.owner.isObserverKind() and self.specification.isSubscriber() then
+			false
+		else
+			true
+		endif endif
+	else
+		false
+	endif;
+	
+helper context UML!Method def : isNotifySubscribeMethod() : Boolean =
+	if self.specification.isAccessor() then
+		if not self.owner.isObservableKind() then
+			false
+		else if self.owner.isObserverKind() and self.specification.isSubscriber() then
+			true
+		else
+			false
+		endif endif
+	else
+		false
+	endif;
+	
+helper context UML!Method def : isSubscribeMethod() : Boolean =
+	if self.specification.isAccessor() then
+		if self.owner.isObservableKind() then
+			false
+		else if self.owner.isObserverKind() and self.specification.isSubscriber() then
+			true
+		else
+			false
+		endif endif
+	else
+		false
+	endif;
+	
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule ObservableClass {
+	from s : UML!Class (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
+			s.isObservableType()
+		else false endif)
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   gen : UML!Generalization (
+	   	namespace <- s.namespace,
+		parent <- thisModule.javaUtilObservable,
+		child <- s)
+}
+
+rule ObserverClass {
+	from s : UML!Class (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
+			s.isObserverType()
+		else false endif)
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   abs : UML!Abstraction (
+	   	namespace <- s.namespace,
+		stereotype <- thisModule.realize,
+		supplier <- Set{thisModule.javaUtilObserver},
+		client <- Set{s}),
+	   op : UML!Operation (
+	   	name <- 'update',
+		owner <- s,
+		visibility <- #vk_public,
+		ownerScope <- #sk_instance,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   o : UML!Parameter (
+	   	name <- 'o',
+		behavioralFeature <- op,
+		type <- thisModule.javaUtilObservable,
+		kind <- #pdk_in),
+	   arg : UML!Parameter (
+	   	name <- 'arg',
+		behavioralFeature <- op,
+		type <- thisModule.javaLangObject,
+		kind <- #pdk_in),
+	   mbody : UML!ProcedureExpression (
+	   	language <- 'java',
+		body <- 'arg'.javaUpdater()),
+	   meth : UML!Method (
+	   	owner <- s,
+		body <- mbody,
+		specification <- op)
+}
+
+rule Class {
+    from s : UML!Class (
+    	if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
+			not s.isObservableType() and
+			not s.isObserverType()
+		else false endif)
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow)
+}
+
+rule ProcedureExpression {
+	from s : UML!ProcedureExpression (
+		if thisModule.inExpressions->includes(s) then
+			s.method().isPlainMethod()
+		else false endif)
+	to t : UML!ProcedureExpression mapsTo s (
+		language <- s.language,
+		body <- s.body)
+}
+
+rule NotifyProcedureExpression {
+	from s : UML!ProcedureExpression (
+		if thisModule.inExpressions->includes(s) then
+			s.method().isNotifyMethod()
+		else false endif)
+	to t : UML!ProcedureExpression mapsTo s (
+		language <- s.language,
+		body <- s.method().specification.javaNotify(s.body))
+}
+
+rule NotifySubscribeProcedureExpression {
+	from s : UML!ProcedureExpression (
+		if thisModule.inExpressions->includes(s) then
+		 	s.method().isNotifySubscribeMethod()
+		else false endif)
+	to t : UML!ProcedureExpression mapsTo s (
+		language <- s.language,
+		body <- s.method().specification.javaNotify(
+			s.method().specification.javaSubscribe(s.body)))
+}
+
+rule SubscribeProcedureExpression {
+	from s : UML!ProcedureExpression (
+		if thisModule.inExpressions->includes(s) then
+		 	s.method().isSubscribeMethod()
+		else false endif)
+	to t : UML!ProcedureExpression mapsTo s (
+		language <- s.language,
+		body <- s.method().specification.javaSubscribe(s.body))
+}
+
+-- ======================================================================
+-- transformation rules end
+-- ======================================================================
+
+-- ======================================================================
+-- model merge begin
+-- ======================================================================
+-- From: MergeModel.atl 2229 2005-09-27 11:19:15Z dwagelaa
+
+rule MergeAssociation {
+    from s : UML!Association (
+    	if thisModule.newElements->includes(s) then
+			s.oclIsTypeOf(UML!Association)
+		else false endif)
+    to t : UML!Association mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeTaggedValue {
+    from s : UML!TaggedValue (
+    	if thisModule.mergeElements->includes(s) then
+	    	s.notInSourceModel()
+		else false endif)
+    to t : UML!TaggedValue mapsTo s (
+        dataValue <- s.dataValue,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        referenceValue <- s.referenceValue,
+		modelElement <- s.modelElement,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+        clientDependency <- s.clientDependency,
+		type <- if thisModule.newElements->includes(s.type)
+			then s.type
+			else s.type.fromSourceModel() endif)
+}
+
+rule MergeOperation {
+    from s : UML!Operation (
+    	if thisModule.mergeElements->includes(s) then
+	    	s.notInSourceModel()
+		else false endif)
+    to t : UML!Operation mapsTo s (
+		owner <- if thisModule.newElements->includes(s.owner)
+			then s.owner else s.owner.fromSourceModel() endif,
+		parameter <- s.parameter,
+		ownerScope <- s.ownerScope,
+        visibility <- s.visibility,
+        isQuery <- s.isQuery,
+        isAbstract <- s.isAbstract,
+        concurrency <- s.concurrency,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isRoot <- s.isRoot,
+        isLeaf <- s.isLeaf,
+        specification <- s.specification,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif))
+}
+
+rule MergeAbstraction {
+    from s : UML!Abstraction (
+    	thisModule.newElements->includes(s))
+    to t : UML!Abstraction mapsTo s (
+        mapping <- s.mapping,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        comment <- s.comment,
+		client <- s.client->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		supplier <- s.supplier->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeParameter {
+    from s : UML!Parameter (
+    	if thisModule.mergeElements->includes(s) then
+	    	s.notInSourceModel()
+		else false endif)
+    to t : UML!Parameter mapsTo s (
+        kind <- s.kind,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        defaultValue <- s.defaultValue,
+        comment <- s.comment,
+		type <- if thisModule.newElements->includes(s.type)
+			then s.type
+			else s.type.fromSourceModel() endif,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif))
+}
+
+rule MergeClass {
+    from s : UML!Class (
+    	if thisModule.newElements->includes(s) then
+			s.oclIsTypeOf(UML!Class)
+		else false endif)
+    to t : UML!Class mapsTo s (
+        isRoot <- s.isRoot,
+        isActive <- s.isActive,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeInterface {
+    from s : UML!Interface (
+    	thisModule.newElements->includes(s))
+    to t : UML!Interface mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeDataType {
+    from s : UML!DataType (
+    	if thisModule.newElements->includes(s) then
+			s.oclIsTypeOf(UML!DataType)
+		else false endif)
+    to t : UML!DataType mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergePackage {
+    from s : UML!Package (
+    	if thisModule.newElements->includes(s) then
+			s.oclIsTypeOf(UML!Package)
+		else false endif)
+    to t : UML!Package mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeAssociationEnd {
+    from s : UML!AssociationEnd (
+    	if thisModule.mergeElements->includes(s) then
+	    	if s.oclIsTypeOf(UML!AssociationEnd) then
+	    		s.notInSourceModel()
+			else false endif
+		else false endif)
+    to t : UML!AssociationEnd mapsTo s (
+		association <- s.association,
+        targetScope <- s.targetScope,
+        isNavigable <- s.isNavigable,
+        ordering <- s.ordering,
+        changeability <- s.changeability,
+        multiplicity <- s.multiplicity,
+        aggregation <- s.aggregation,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        qualifier <- s.qualifier,
+		participant <- if thisModule.newElements->includes(s.participant)
+			then s.participant
+			else s.participant.fromSourceModel() endif,
+        comment <- s.comment,
+        constraint <- s.constraint,
+        specification <- s.specification->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif))
+}
+
+rule MergeAttribute {
+    from s : UML!Attribute (
+    	if thisModule.mergeElements->includes(s) then
+	    	s.notInSourceModel()
+		else false endif)
+    to t : UML!Attribute mapsTo s (
+		owner <- if thisModule.newElements->includes(s.owner)
+			then s.owner
+			else s.owner.fromSourceModel() endif,
+        targetScope <- s.targetScope,
+        initialValue <- s.initialValue,
+        ownerScope <- s.ownerScope,
+        visibility <- s.visibility,
+        changeability <- s.changeability,
+        ordering <- s.ordering,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        multiplicity <- s.multiplicity,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		type <- if thisModule.newElements->includes(s.type)
+			then s.type
+			else s.type.fromSourceModel() endif)
+}
+
+rule MergeGeneralization {
+    from s : UML!Generalization (
+    	thisModule.newElements->includes(s))
+    to t : UML!Generalization mapsTo s (
+        discriminator <- s.discriminator,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        powertype <- if s.powertype.oclIsUndefined()
+			then s.powertype
+			else if thisModule.newElements->includes(s.powertype)
+			then s.powertype
+			else s.powertype.fromSourceModel() endif endif,
+		parent <- if thisModule.newElements->includes(s.parent)
+			then s.parent
+			else s.parent.fromSourceModel() endif,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		child <- if thisModule.newElements->includes(s.child)
+			then s.child
+			else s.child.fromSourceModel() endif,
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeDependency {
+    from s : UML!Dependency (
+    	if thisModule.newElements->includes(s) then
+			s.oclIsTypeOf(UML!Dependency)
+		else false endif)
+    to t : UML!Dependency mapsTo s (
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        comment <- s.comment,
+		client <- s.client->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		supplier <- s.supplier->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeTagDefinition {
+    from s : UML!TagDefinition (
+    	thisModule.newElements->includes(s))
+    to t : UML!TagDefinition mapsTo s (
+		owner <- if thisModule.newElements->includes(s.owner)
+			then s.owner
+			else s.owner.fromSourceModel() endif,
+        tagType <- s.tagType,
+        multiplicity <- s.multiplicity,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeStereotype {
+    from s : UML!Stereotype (
+    	thisModule.newElements->includes(s))
+    to t : UML!Stereotype mapsTo s (
+        isRoot <- s.isRoot,
+        isAbstract <- s.isAbstract,
+        baseClass <- s.baseClass,
+        visibility <- s.visibility,
+        name <- s.name,
+        icon <- s.icon,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        comment <- s.comment,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+        stereotypeConstraint <- s.stereotypeConstraint,
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+rule MergeMethod {
+    from s : UML!Method (
+    	if thisModule.mergeElements->includes(s) then
+	    	s.notInSourceModel()
+		else false endif)
+    to t : UML!Method mapsTo s (
+		owner <- if thisModule.newElements->includes(s.owner)
+			then s.owner
+			else s.owner.fromSourceModel() endif,
+		body <- s.body,
+        ownerScope <- s.ownerScope,
+        visibility <- s.visibility,
+        isQuery <- s.isQuery,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        comment <- s.comment,
+        specification <- s.specification,
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif))
+}
+
+rule MergeException {
+    from s : UML!Exception (
+    	thisModule.newElements->includes(s))
+    to t : UML!Exception mapsTo s (
+        isRoot <- s.isRoot,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        visibility <- s.visibility,
+        isSpecification <- s.isSpecification,
+        isLeaf <- s.isLeaf,
+        "context" <- s."context"->collect(e|if e.notInSourceModel()
+			then e else e.fromSourceModel() endif),
+        constraint <- s.constraint,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+        comment <- s.comment,
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
+-- ======================================================================
+-- model merge end
+-- ======================================================================

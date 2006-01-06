@@ -1,0 +1,54 @@
+-- $Id$
+module CopyModel;
+
+create OUT : UML refining IN : UML;
+
+-- ======================================================================
+-- model copy begin
+-- ======================================================================
+
+rule Model {
+    from s : UML!Model
+    to t : UML!Model mapsTo s (
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        templateParameter <- s.templateParameter,
+        elementImport <- s.elementImport,
+        comment <- s.comment,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow)
+}
+
+rule StateMachine {
+    from s : UML!StateMachine (s.oclIsTypeOf(UML!StateMachine))
+    to t : UML!StateMachine mapsTo s (
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        submachineState <- s.submachineState,
+        comment <- s.comment,
+        top <- s.top,
+        taggedValue <- s.taggedValue,
+        transitions <- s.transitions,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow,
+		"context" <- s."context")
+}
+
+-- ======================================================================
+-- model copy end
+-- ======================================================================
