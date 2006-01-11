@@ -3,10 +3,16 @@
 	<name>uml1cs-instantmessenger-model</name>
 	<comment></comment>
 	<projects>
-		<project>UML1CaseStudies.transformations</project>
+		<project>uml1cs-transformations</project>
 	</projects>
 	<buildSpec>
+		<buildCommand>
+			<name>org.atl.eclipse.adt.builder.atlBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.atl.eclipse.adt.builder.atlNature</nature>
 	</natures>
 </projectDescription>
