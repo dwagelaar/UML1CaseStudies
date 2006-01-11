@@ -8,7 +8,7 @@ uses Java;
 -- ======================================================================
 -- model merge helpers begin
 -- ======================================================================
--- From: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa	
+-- From: MergeModel.atl 3125 2006-01-11 14:56:52Z dwagelaa
 
 helper def : inElements : Set(UML!Element) = UML!Element.allInstancesFrom('IN');
 helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('MERGE');
@@ -24,8 +24,7 @@ helper def : newElements : Sequence(UML!Element) = Sequence{
 	}->flatten();
 
 helper context UML!ModelElement def : isInPackage() : Boolean =
-	not UML!Package.allInstances()->select(p|
-		p=self.namespace and p.oclIsTypeOf(UML!Package))->isEmpty();
+	self.namespace.oclIsTypeOf(UML!Package);
 
 helper context UML!ModelElement def : qName() : String =
 	if self.isInPackage() then
@@ -214,9 +213,9 @@ helper context UML!Attribute def : dualSetter() : String =
 	if not self.associationEnd().otherEnd().isNavigable then
 		self.name.javaSetter()
 	else if self.associationEnd().otherEnd().isSingle() then
-		self.name.javaDualSetter(self.associationEnd().otherEnd().name.stringFirstToUpper())
+		self.name.javaDualSetter(self.associationEnd().otherEnd().name.firstToUpper())
 	else
-		self.name.javaAddRemoveSetter(self.associationEnd().otherEnd().name.stringFirstToUpper())
+		self.name.javaAddRemoveSetter(self.associationEnd().otherEnd().name.firstToUpper())
 	endif endif;
 	
 helper context UML!Attribute def : setter() : String =
@@ -230,18 +229,18 @@ helper context UML!Attribute def : dualAdder() : String =
 	if not self.associationEnd().otherEnd().isNavigable then
 		self.name.java2Adder()
 	else if self.associationEnd().otherEnd().isSingle() then
-		self.name.java2SetterAdder(self.associationEnd().otherEnd().name.stringFirstToUpper())
+		self.name.java2SetterAdder(self.associationEnd().otherEnd().name.firstToUpper())
 	else
-		self.name.java2DualAdder(self.associationEnd().otherEnd().name.stringFirstToUpper())
+		self.name.java2DualAdder(self.associationEnd().otherEnd().name.firstToUpper())
 	endif endif;
 	
 helper context UML!Attribute def : dualInsert() : String =
 	if not self.associationEnd().otherEnd().isNavigable then
 		self.name.java2Insert()
 	else if self.associationEnd().otherEnd().isSingle() then
-		self.name.java2SetterInsert(self.associationEnd().otherEnd().name.stringFirstToUpper())
+		self.name.java2SetterInsert(self.associationEnd().otherEnd().name.firstToUpper())
 	else
-		self.name.java2DualInsert(self.associationEnd().otherEnd().name.stringFirstToUpper())
+		self.name.java2DualInsert(self.associationEnd().otherEnd().name.firstToUpper())
 	endif endif;
 	
 helper context UML!Attribute def : adder() : String =
@@ -262,9 +261,9 @@ helper context UML!Attribute def : dualRemover() : String =
 	if not self.associationEnd().otherEnd().isNavigable then
 		self.name.java2Remover()
 	else if self.associationEnd().otherEnd().isSingle() then
-		self.name.java2SetterRemover(self.associationEnd().otherEnd().name.stringFirstToUpper())
+		self.name.java2SetterRemover(self.associationEnd().otherEnd().name.firstToUpper())
 	else
-		self.name.java2DualRemover(self.associationEnd().otherEnd().name.stringFirstToUpper())
+		self.name.java2DualRemover(self.associationEnd().otherEnd().name.firstToUpper())
 	endif endif;
 	
 helper context UML!Attribute def : remover() : String =
@@ -301,7 +300,7 @@ rule PublicAttributeSingle {
 		else false endif)
 	using { vis : UML!VisibilityKind =
 				if s.visibility = #vk_public then #vk_private else s.visibility	endif;
-		    baseName : String = s.name.stringFirstToUpper();
+		    baseName : String = s.name.firstToUpper();
 			endS : String = s.type.name.s(); }
     to t : UML!Attribute mapsTo s (
 		owner <- s.owner,
@@ -385,7 +384,7 @@ rule PublicAttributeSequence {
 		else false endif)
 	using { vis : UML!VisibilityKind =
 				if s.visibility = #vk_public then #vk_private else s.visibility	endif;
-			baseName : String = s.name.stringFirstToUpper();
+			baseName : String = s.name.firstToUpper();
 			endS : String = s.type.name.s();
 			originalType : UML!Classifier = s.originalType(); }
     to t : UML!Attribute mapsTo s (
@@ -559,7 +558,7 @@ rule PublicAttributeCollection {
 		else false endif)
 	using { vis : UML!VisibilityKind =
 				if s.visibility = #vk_public then #vk_private else s.visibility	endif;
-			baseName : String = s.name.stringFirstToUpper();
+			baseName : String = s.name.firstToUpper();
 			endS : String = s.type.name.s();
 			originalType : UML!Classifier = s.originalType(); }
     to t : UML!Attribute mapsTo s (
@@ -696,7 +695,7 @@ rule NonPublicAttribute {
 -- ======================================================================
 -- model merge begin
 -- ======================================================================
--- From: MergeModel.atl 2229 2005-09-27 11:19:15Z dwagelaa
+-- From: MergeModel.atl 3125 2006-01-11 14:56:52Z dwagelaa
 
 rule MergeAssociation {
     from s : UML!Association (

@@ -8,7 +8,7 @@ uses Java;
 -- ======================================================================
 -- model merge helpers begin
 -- ======================================================================
--- From: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa
+-- From: MergeModel.atl 3125 2006-01-11 14:56:52Z dwagelaa
 
 helper def : inElements : Set(UML!Element) = UML!Element.allInstancesFrom('IN');
 helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('MERGE');
@@ -23,14 +23,15 @@ helper def : newElements : Sequence(UML!Element) = Sequence{
 		UML!Generalization.allInstancesFrom('MERGE')->select(g|g.notInSourceModel())
 	}->flatten();
 
+helper context UML!ModelElement def : isInPackage() : Boolean =
+	self.namespace.oclIsTypeOf(UML!Package);
+
 helper context UML!ModelElement def : qName() : String =
-	if self.namespace.oclIsUndefined() then
-		self.name
-	else if self.namespace.oclIsTypeOf(UML!Package) then
+	if self.isInPackage() then
 		self.namespace.qName() + '.' + self.name
 	else
 		self.name
-	endif endif;
+	endif;
 
 ------------------------------- Model -----------------------------------
 
@@ -303,22 +304,22 @@ helper context UML!ProcedureExpression def : method() : UML!Method =
 	UML!Method.allInstances()->select(m|m.body=self)->first();
 
 helper context UML!Operation def : javaNotify(body : String) : String =
-	if self.name.stringStartsWith('remove') then
+	if self.name.startsWith('remove') then
 		self.accessorFor().javaRemoverNotify(body)
-	else if self.name.stringStartsWith('add') or self.name.stringStartsWith('insert') then
+	else if self.name.startsWith('add') or self.name.startsWith('insert') then
 		self.accessorFor().javaAdderNotify(body)
-	else if self.name.stringStartsWith('set') then
+	else if self.name.startsWith('set') then
 		self.accessorFor().javaSetterNotify(body)
 	else
 		body
 	endif endif endif;
 
 helper context UML!Operation def : javaSubscribe(body : String) : String =
-	if self.name.stringStartsWith('remove') then
+	if self.name.startsWith('remove') then
 		self.accessorFor().name.javaRemoverSubscribe(body)
-	else if self.name.stringStartsWith('add') or self.name.stringStartsWith('insert') then
+	else if self.name.startsWith('add') or self.name.startsWith('insert') then
 		self.accessorFor().name.javaAdderSubscribe(body)
-	else if self.name.stringStartsWith('set') then
+	else if self.name.startsWith('set') then
 		self.accessorFor().name.javaSetterSubscribe(body)
 	else
 		body
@@ -327,7 +328,7 @@ helper context UML!Operation def : javaSubscribe(body : String) : String =
 helper context UML!Classifier def : handlers() : Sequence(UML!Operation) =
 	self.feature->select(f|
 		if f.oclIsKindOf(UML!Operation) then
-			f.name.stringStartsWith('on') and f.name.stringEndsWith('Change') and f.name.size() > 8
+			f.name.startsWith('on') and f.name.endsWith('Change') and f.name.size() > 8
 		else
 			false
 		endif
@@ -645,7 +646,7 @@ rule SubscribeProcedureExpression {
 -- ======================================================================
 -- model merge begin
 -- ======================================================================
--- From: MergeModel.atl 2229 2005-09-27 11:19:15Z dwagelaa
+-- From: MergeModel.atl 3125 2006-01-11 14:56:52Z dwagelaa
 
 rule MergeAssociation {
     from s : UML!Association (

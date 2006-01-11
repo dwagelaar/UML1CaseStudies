@@ -6,7 +6,7 @@ create OUT : UML refining IN : UML, MERGE : UML;
 -- ======================================================================
 -- model merge helpers begin
 -- ======================================================================
--- From: MergeModel.atl 1525 2005-06-17 10:29:30Z dwagelaa
+-- From: MergeModel.atl 3125 2006-01-11 14:56:52Z dwagelaa
 
 helper def : inElements : Set(UML!Element) = UML!Element.allInstancesFrom('IN');
 helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('MERGE');
@@ -21,14 +21,15 @@ helper def : newElements : Sequence(UML!Element) = Sequence{
 		UML!Generalization.allInstancesFrom('MERGE')->select(g|g.notInSourceModel())
 	}->flatten();
 
+helper context UML!ModelElement def : isInPackage() : Boolean =
+	self.namespace.oclIsTypeOf(UML!Package);
+
 helper context UML!ModelElement def : qName() : String =
-	if self.namespace.oclIsUndefined() then
-		self.name
-	else if self.namespace.oclIsTypeOf(UML!Package) then
+	if self.isInPackage() then
 		self.namespace.qName() + '.' + self.name
 	else
 		self.name
-	endif endif;
+	endif;
 
 ------------------------------- Model -----------------------------------
 
@@ -363,7 +364,7 @@ rule Package {
 -- ======================================================================
 -- model merge begin
 -- ======================================================================
--- From: MergeModel.atl 2229 2005-09-27 11:19:15Z dwagelaa
+-- From: MergeModel.atl 3125 2006-01-11 14:56:52Z dwagelaa
 
 rule MergeAssociation {
     from s : UML!Association (

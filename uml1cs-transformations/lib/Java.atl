@@ -1,25 +1,6 @@
 -- $Id$
 library Java;
 
-uses strings;
-
--- ======================================================================
--- strings helpers forwarding begin
--- ======================================================================
-
-helper context String def : stringFirstToUpper() : String =
-	self.firstToUpper();
-
-helper context String def : stringStartsWith(s : String) : Boolean =
-	self.startsWith(s);
-
-helper context String def : stringEndsWith(s : String) : Boolean =
-	self.endsWith(s);
-
--- ======================================================================
--- strings helpers forwarding end
--- ======================================================================
-
 -- ======================================================================
 -- generic helpers begin
 -- ======================================================================
