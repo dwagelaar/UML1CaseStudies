@@ -3,7 +3,7 @@
 	<property name="atlcommandline.path" value="../../../uml1cs-atlcommandline/"/>
 	<property name="transf.path" value="../../../uml1cs-transformations/"/>
 	<property name="transf.uri" value="file:${transf.path}"/>
-	<property name="lib.strings" value="${transf.uri}lib/strings.asm"/>
+	<property name="lib.config" value="file:config.asm"/>
 	<property name="lib.java" value="${transf.uri}lib/Java.asm"/>
 	<property name="mmodel.path" value="${transf.path}metamodels/"/>
 	<property name="mmodel.uml" value="${mmodel.path}M2_DiagramInterchangeModel.ecore"/>
@@ -15,6 +15,7 @@
 	<property name="rmodel.observer" value="${rmodel.path}Observer.emf.xmi"/>
 	<property name="rmodel.applet" value="${rmodel.path}Applet.emf.xmi"/>
 	<property name="rmodel.midlet" value="${rmodel.path}MIDlet.emf.xmi"/>
+	<property name="target.path" value="../../../uml1cs-instantmessenger-midp/src/"/>
 		
 	<path id="atl.class.path">
 		<fileset dir="${atlcommandline.path}lib">
@@ -84,7 +85,6 @@
 				<arg value="UML=${mmodel.uml}"/>
 				<arg value="EMF"/>
 			<arg value="--lib"/><arg value="Java=${lib.java}"/>
-			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
 		</java>
 	</target>
 	
@@ -106,7 +106,6 @@
 				<arg value="UML=${mmodel.uml}"/>
 				<arg value="EMF"/>
 			<arg value="--lib"/><arg value="Java=${lib.java}"/>
-			<arg value="--lib"/><arg value="strings=${lib.strings}"/>
 		</java>
 	</target>
 	
@@ -175,5 +174,21 @@
 		</exec>
 	</target>
 
-	<target name="all" depends="output"/>
+	<target name="toJava" depends="refineAll">
+        <delete>
+        	<fileset dir="${target.path}"/>
+        </delete>
+		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
+			<classpath refid="atl.class.path"/>
+			<arg value="--trans"/>
+				<arg value="${transf.uri}UMLtoJava.asm"/>
+			<arg value="--in"/>
+				<arg value="IN=im-midp-17-Async.xmi"/>
+				<arg value="UML=${mmodel.uml}"/>
+				<arg value="EMF"/>
+			<arg value="--lib"/><arg value="config=${lib.config}"/>
+		</java>
+	</target>
+	
+	<target name="all" depends="toJava"/>
 </project>
