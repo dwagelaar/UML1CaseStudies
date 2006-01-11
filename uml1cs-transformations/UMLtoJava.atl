@@ -1,0 +1,179 @@
+-- $Id$
+query UMLtoJava = UML!Classifier.allInstances()->collect(e |
+	if e.ignore() then true
+	else e.toFileString().writeTo(e.pathName())
+	endif);
+
+uses config;
+
+-- ======================================================================
+-- plumbing helpers begin
+-- ======================================================================
+
+helper context UML!Classifier def : ignore() : Boolean =
+	true;
+
+helper context UML!Class def : ignore() : Boolean =
+	self.namespace.oclIsKindOf(UML!Classifier) or self.qName().ignore();
+
+helper context UML!Interface def : ignore() : Boolean =
+	self.namespace.oclIsKindOf(UML!Classifier) or self.qName().ignore();
+
+helper context UML!ModelElement def : isInPackage() : Boolean =
+	self.namespace.oclIsTypeOf(UML!Package);
+
+helper context UML!ModelElement def : qName() : String =
+	if self.isInPackage() then
+		self.namespace.qName() + '.' + self.name
+	else
+		self.name
+	endif;
+
+helper context UML!ModelElement def : typeName() : String =
+	self.qName();
+
+helper context UML!DataType def : typeName() : String =
+	self.name;
+
+helper context UML!ModelElement def : fileName() : String =
+	if self.isInPackage() then
+		self.namespace.fileName() + '/' + self.name
+	else
+		self.name
+	endif;
+
+helper context UML!ModelElement def : pathName() : String =
+	self.fileName().path() + '.java';
+
+helper context UML!ModelElement def : visibility() : String =
+	if self.visibility = #vk_private then 'private '
+	else if self.visibility = #vk_protected then 'protected '
+	else if self.visibility = #vk_public then 'public '
+	else '' endif endif endif;
+
+helper context UML!GeneralizableElement def : isAbstract() : String =
+	if self.isAbstract then 'abstract ' else '' endif;
+
+helper context UML!Operation def : isAbstract() : String =
+	if self.isAbstract then 'abstract ' else '' endif;
+
+helper context UML!Feature def : ownerScope() : String =
+	if self.ownerScope = #sk_classifier then 'static '
+	else '' endif;
+
+helper context UML!StructuralFeature def : final() : String =
+	if self.changeability = #ck_frozen then 'final '
+	else '' endif;
+
+helper context UML!Parameter def : final() : String =
+	if self.taggedValue->select(t | t.type.name = 'final' and t.dataValue->select(v | v = 'true')->notEmpty())->notEmpty()
+	then 'final '
+	else '' endif;
+
+helper context UML!BehavioralFeature def : isConstructor() : Boolean =
+	self.stereotype->select(s | s.name = 'create')->notEmpty();
+
+-- ======================================================================
+-- plumbing helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- code generation helpers begin
+-- ======================================================================
+
+helper context UML!Classifier def : toFileString() : String =
+	self.packageDecl() + self.importDecl() + '\n' +
+	self.toString();
+
+helper context UML!Classifier def : packageDecl() : String =
+	if self.isInPackage() then 'package ' + self.namespace.qName() + ';\n\n'
+	else '' endif;
+
+helper context UML!Classifier def : importDecl() : String =
+	self.clientDependency->select(e |
+		e.oclIsTypeOf(UML!Dependency))->iterate(e; acc : String = '' |
+			acc + 'import ' + e.supplier->first()->importName() + ';\n');
+
+helper context UML!ModelElement def : importName() : String =
+	self.qName();
+
+helper context UML!Package def : importName() : String =
+	self.qName() + '.*';
+
+helper context UML!Class def : toString() : String =
+	self.visibility() + self.isAbstract() + 'class ' + self.name +
+	self.extendsClause() + self.implementsClause() +
+	' {\n' +
+	self.ownedElement->select(e | e.oclIsKindOf(UML!Classifier))->iterate(e; acc : String = '' | acc + e.toString()) +
+	self.feature->select(f | f.oclIsKindOf(UML!Attribute))->iterate(e; acc : String = '' | acc + e.toString()) +
+	self.feature->select(f | f.oclIsKindOf(UML!Method))->iterate(e; acc : String = '' | acc + e.toString()) +
+	'}\n\n';
+
+helper context UML!Class def : extendsClause() : String =
+	self.generalization->iterate(e; acc : String = '' |
+		acc +
+		if acc = '' then ' extends ' + e.parent.qName()
+		else ', ' + e.parent.qName()
+		endif);
+
+helper context UML!Class def : implementsClause() : String =
+	self.clientDependency->select(e |
+		e.oclIsTypeOf(UML!Abstraction))->iterate(e; acc : String = '' |
+			acc + 
+			if acc = '' then ' implements ' + e.supplier->first()->qName()
+			else ', ' + e.supplier->first()->qName()
+			endif);
+
+helper context UML!Attribute def : toString() : String =
+	self.visibility() + self.ownerScope() + self.final() +
+	self.type.typeName() + ' ' + self.qName() +
+	if self.initialValue.oclIsUndefined() then ''
+	else if self.initialValue.body = '' then ''
+	else ' = ' + self.initialValue.body endif endif +
+	';\n\n';
+
+helper context UML!Method def : toString() : String =
+	self.specification.toString() +
+	if self.specification.isAbstract then ';\n\n'
+	else ' {\n' + self.body.body + '\n}\n\n'
+	endif;
+	
+helper context UML!Operation def : toString() : String =
+	self.visibility() + self.ownerScope() + self.isAbstract() +
+	self.returnParameter() + self.qName() + '(' + self.parameters() + ')' +
+	UML!Exception.allInstances()->select(x|x."context"->includes(self))->iterate(e; acc : String = '' |
+		acc +
+		if acc = '' then ' throws ' else ', ' endif +
+		e.namespace.qName());
+
+helper context UML!BehavioralFeature def : returnParameter() : String =
+	if self.isConstructor() then ''
+	else self.parameter->select(p | p.kind = #pdk_return)->iterate(e; acc : String = '' |
+		acc + e.type.typeName() + ' ')
+	endif;
+
+helper context UML!BehavioralFeature def : parameters() : String =
+	self.parameter->select(p | not (p.kind = #pdk_return))->iterate(e; acc : String = '' |
+		acc +
+		if acc = '' then '' else	', ' endif +
+		e.final() + e.type.typeName() + ' ' + e.name);
+
+helper context UML!Interface def : toString() : String =
+	self.visibility() + self.isAbstract() + 'interface ' + self.name +
+	self.extendsClause() +
+	' {\n' +
+	self.ownedElement->select(e | e.oclIsKindOf(UML!Classifier))->iterate(e; acc : String = '' | acc + e.toString()) +
+	self.feature->select(f | f.oclIsKindOf(UML!Method))->iterate(e; acc : String = '' | acc + e.toString()) +
+	'}\n\n';
+
+helper context UML!Interface def : extendsClause() : String =
+	self.clientDependency->select(e |
+		e.oclIsTypeOf(UML!Abstraction))->iterate(e; acc : String = '' |
+			acc + 
+			if acc = '' then ' extends ' + e.supplier->first()->qName()
+			else ', ' + e.supplier->first()->qName()
+			endif);
+
+-- ======================================================================
+-- code generation helpers end
+-- ======================================================================
