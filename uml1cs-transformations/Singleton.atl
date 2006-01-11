@@ -72,7 +72,11 @@ rule SingletonClass {
 		type <- s,
 		visibility <- #vk_private,
 		ownerScope <- #sk_classifier,
-		changeability <- #ck_changeable)
+		changeability <- #ck_changeable,
+		initialValue <- v),
+	   v : UML!Expression (
+	   	language <- 'java',
+		body <- 'null')
 }
 
 rule Class {
