@@ -134,7 +134,8 @@ helper context UML!Attribute def : toString() : String =
 
 helper context UML!Method def : toString() : String =
 	self.specification.toString() +
-	if self.specification.isAbstract then ';\n\n'
+	if self.specification.isAbstract or self.owner.oclIsKindOf(UML!Interface)
+	then ';\n\n'
 	else ' {\n' + self.body.body + '\n}\n\n'
 	endif;
 	
