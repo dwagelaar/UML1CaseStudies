@@ -54,6 +54,15 @@ public class Main implements Runnable {
     
     private int argPos = 0;
     
+    public Main() {
+        try {
+            libs.put("strings", 
+                    getClass().getResource("engine/resources/strings.asm"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String[] args) {
         int argsLeft = args.length;
         Main main = new Main();

@@ -7,8 +7,16 @@
         	</fileset>
         </delete>
     </target>
+	
+	<target name="atlmm">
+		<copy todir="../bin/org/atl/commandline/engine/resources">
+			<fileset dir="../src/org/atl/commandline/engine/resources">
+				<include name="ATL-0.2.ecore"/>
+			</fileset>
+		</copy>
+	</target>
 
-    <target name="jar" depends="clean">
+    <target name="jar" depends="clean, atlmm">
         <jar destfile="atlcommandline.jar" basedir="../bin">
         	<include name="**"/>
         	<manifest>
