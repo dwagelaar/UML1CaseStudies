@@ -21,8 +21,7 @@ helper def : newElements : Sequence(UML!Element) = Sequence{
 	}->flatten();
 
 helper context UML!ModelElement def : isInPackage() : Boolean =
-	not UML!Package.allInstances()->select(p|
-		p=self.namespace and p.oclIsTypeOf(UML!Package))->isEmpty();
+	self.namespace.oclIsTypeOf(UML!Package);
 
 helper context UML!ModelElement def : qName() : String =
 	if self.isInPackage() then
