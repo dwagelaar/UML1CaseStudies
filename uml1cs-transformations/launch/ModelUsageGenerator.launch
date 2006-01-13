@@ -4,19 +4,22 @@
 <mapEntry key="INMODEL" value="MDR"/>
 <mapEntry key="IN" value=""/>
 </mapAttribute>
-<stringAttribute key="ATL File Name" value="/UML1CaseStudies-transformations/ModelUsageGenerator.atl"/>
-<mapAttribute key="Libs"/>
+<stringAttribute key="ATL File Name" value="/uml1cs-transformations/ModelUsageGenerator.atl"/>
+<mapAttribute key="Libs">
+<mapEntry key="Config" value="/uml1cs-transformations/lib/Config.asm"/>
+</mapAttribute>
 <booleanAttribute key="Mode Debug" value="false"/>
 <mapAttribute key="ModelType">
 <mapEntry key="INMODEL" value="METAMODELINPUT"/>
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="INMODEL" value="/UML1CaseStudies-transformations/metamodels/M3_MOF_1.4.xmi"/>
-<mapEntry key="IN" value="/UML1CaseStudies-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="INMODEL" value="/uml1cs-transformations/metamodels/M3_MOF_1.4.xmi"/>
+<mapEntry key="IN" value="/uml1cs-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
 </mapAttribute>
-<stringAttribute key="Project Name" value="UML1CaseStudies-transformations"/>
+<stringAttribute key="Project Name" value="uml1cs-transformations"/>
 <mapAttribute key="Output"/>
+<booleanAttribute key="AllowInterModelReferences" value="false"/>
 <mapAttribute key="Input">
 <mapEntry key="IN" value="INMODEL"/>
 </mapAttribute>

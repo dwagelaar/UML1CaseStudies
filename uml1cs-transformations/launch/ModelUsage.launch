@@ -4,7 +4,7 @@
 <mapEntry key="INMODEL" value="MDR"/>
 <mapEntry key="IN" value=""/>
 </mapAttribute>
-<stringAttribute key="ATL File Name" value="/uml1cs-transformations/ModelCopyGenerator.atl"/>
+<stringAttribute key="ATL File Name" value="/uml1cs-transformations/ModelUsage.atl"/>
 <mapAttribute key="Libs">
 <mapEntry key="Config" value="/uml1cs-transformations/lib/Config.asm"/>
 </mapAttribute>
@@ -14,13 +14,13 @@
 <mapEntry key="IN" value="MODELINPUT"/>
 </mapAttribute>
 <mapAttribute key="Path">
-<mapEntry key="INMODEL" value="/uml1cs-transformations/metamodels/M3_MOF_1.4.xmi"/>
-<mapEntry key="IN" value="/uml1cs-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="INMODEL" value="/uml1cs-transformations/metamodels/M2_DiagramInterchangeModel.xmi"/>
+<mapEntry key="IN" value="/uml1cs-instantmessenger-model/models/InstantMessengerModel.xmi"/>
 </mapAttribute>
 <stringAttribute key="Project Name" value="uml1cs-transformations"/>
 <mapAttribute key="Output"/>
-<booleanAttribute key="AllowInterModelReferences" value="false"/>
 <mapAttribute key="Input">
 <mapEntry key="IN" value="INMODEL"/>
 </mapAttribute>
+<booleanAttribute key="AllowInterModelReferences" value="false"/>
 </launchConfiguration>
