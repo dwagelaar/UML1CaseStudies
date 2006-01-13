@@ -340,6 +340,25 @@ rule MergeDataType {
 			else s.namespace.fromSourceModel() endif)
 }
 
+rule MergeComponent {
+    from s : UML!Component(
+		thisModule.newElements->includes(s))
+    to t : UML!Component mapsTo s (
+        isSpecification <- s.isSpecification,
+        visibility <- s.visibility,
+        name <- s.name,
+        isAbstract <- s.isAbstract,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        constraint <- s.constraint,
+        comment <- s.comment,
+		stereotype <- s.stereotype->collect(e|if thisModule.newElements->includes(e)
+        	then e else e.fromSourceModel() endif),
+		namespace <- if thisModule.newElements->includes(s.namespace)
+			then s.namespace
+			else s.namespace.fromSourceModel() endif)
+}
+
 rule MergePackage {
     from s : UML!Package (
     	if thisModule.newElements->includes(s) then
