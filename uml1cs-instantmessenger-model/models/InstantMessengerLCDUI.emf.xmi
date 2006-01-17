@@ -1,320 +1,311 @@
 <?xml version="1.0" encoding="ASCII"?>
 <uml:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.omg.org/UML" name="InstantMessengerModel" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-  <taggedValue isSpecification="false" type="//@ownedElement.7">
+  <taggedValue isSpecification="false" type="//@ownedElement.26">
     <dataValue>&lt;p>(C) 2005, Dennis Wagelaar, System and Software Engineering Lab, Vrije Universiteit Brussel&lt;/p>&#xA;&lt;p>All rights reserved.&lt;/p>&#xA;&lt;p>Redistribution and use in source and binary forms, with or without&#xA;modification, are permitted provided that the following conditions are met:&lt;/p>&#xA;&lt;ul>&#xA;&lt;li>Redistributions of source code must retain the above copyright notice,&#xA;this list of conditions and the following disclaimer.&lt;/li>&#xA;&lt;li>Redistributions in binary form must reproduce the above copyright notice,&#xA;this list of conditions and the following disclaimer in the documentation&#xA;and/or other materials provided with the distribution.&lt;/li>&#xA;&lt;li>Neither the name of JabberWookie nor the names of its contributors may be used&#xA;to endorse or promote products derived from this software without specific&#xA;prior written permission.&lt;/li>&#xA;&lt;/ul>&#xA;&lt;p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND&#xA;ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED&#xA;WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE&#xA;DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR&#xA;ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES&#xA;(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;&#xA;LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON&#xA;ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT&#xA;(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS&#xA;SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p></dataValue>
   </taggedValue>
-  <ownedElement xsi:type="uml:Package" name="javax" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <ownedElement xsi:type="uml:Package" name="microedition" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2" supplier="//@ownedElement.0/@ownedElement.0/@ownedElement.2"/>
-      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0" supplier="//@ownedElement.0/@ownedElement.0/@ownedElement.2"/>
-      <ownedElement xsi:type="uml:Package" name="lcdui" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-        <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3" parent="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.1"/>
-        <ownedElement xsi:type="uml:Class" name="Form" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-        <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2" parent="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.6"/>
-        <ownedElement xsi:type="uml:Class" name="TextBox" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-        <ownedElement xsi:type="uml:Class" name="TextField" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-        <ownedElement xsi:type="uml:Class" name="ChoiceGroup" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-        <ownedElement xsi:type="uml:Class" name="List" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-        <ownedElement xsi:type="uml:Class" name="Displayable" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-        <ownedElement xsi:type="uml:Class" name="StringItem" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-        <ownedElement xsi:type="uml:Class" name="Command" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-        <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0" parent="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.1"/>
-      </ownedElement>
-      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3" supplier="//@ownedElement.0/@ownedElement.0/@ownedElement.2"/>
-    </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="initializer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Operation</baseClass>
   </ownedElement>
   <ownedElement xsi:type="uml:Stereotype" name="Socket" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Class</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:TagDefinition" name="AppletInfo" isSpecification="false">
-    <multiplicity>
-      <range lower="1" upper="1"/>
-    </multiplicity>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="Observer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
     <baseClass>Class</baseClass>
   </ownedElement>
   <ownedElement xsi:type="uml:Stereotype" name="accessor" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
     <baseClass>Dependency</baseClass>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="initializer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Operation</baseClass>
+  <ownedElement xsi:type="uml:Stereotype" name="Applet" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Class</baseClass>
   </ownedElement>
   <ownedElement xsi:type="uml:TagDefinition" name="ParameterInfo" isSpecification="false">
     <multiplicity>
       <range lower="1" upper="1"/>
     </multiplicity>
   </ownedElement>
-  <ownedElement xsi:type="uml:TagDefinition" name="documentation" isSpecification="false">
+  <ownedElement xsi:type="uml:Stereotype" name="subscribe" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Association</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Package" name="im" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0" supplier="//@ownedElement.6/@ownedElement.1"/>
+    <ownedElement xsi:type="uml:Package" name="view" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+      <ownedElement xsi:type="uml:Class" name="ViewFactory" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="true" isActive="false"/>
+      <ownedElement xsi:type="uml:Abstraction" stereotype="//@ownedElement.16" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0" supplier="//@ownedElement.6/@ownedElement.1/@ownedElement.2"/>
+      <ownedElement xsi:type="uml:Interface" name="ContactListView" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+      <ownedElement xsi:type="uml:Abstraction" stereotype="//@ownedElement.16" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2" supplier="//@ownedElement.6/@ownedElement.1/@ownedElement.8"/>
+      <ownedElement xsi:type="uml:Interface" name="NewContactDialogListener" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+      <ownedElement xsi:type="uml:Package" name="lcdui" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+        <ownedElement xsi:type="uml:Class" clientDependency="//@ownedElement.6/@ownedElement.0 //@ownedElement.7/@ownedElement.0/@ownedElement.1 //@ownedElement.23/@ownedElement.0/@ownedElement.2 //@ownedElement.6/@ownedElement.1/@ownedElement.1" name="LCDUIContactListView" isSpecification="false" generalization="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.2" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
+          <feature xsi:type="uml:Attribute" name="addContactBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.0">
+            <initialValue language="java" body="new Command(&quot;Add&quot;, Command.SCREEN, 1)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="removeContactBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.0">
+            <initialValue language="java" body="new Command(&quot;Remove&quot;, Command.ITEM, 1)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="contactActionBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.0">
+            <initialValue language="java" body="new Command(&quot;Message&quot;, Command.ITEM, 1)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="listeners" visibility="vk_private" isSpecification="false" type="//@ownedElement.7/@ownedElement.0/@ownedElement.3">
+            <initialValue language="java" body="new Vector()"/>
+          </feature>
+          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.20" name="LCDUIContactListView" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0/@feature.4">
+            <body language="java" body="        super(&quot;Instant Messenger&quot;, Choice.IMPLICIT);&#xA;        addCommand(addContactBtn);&#xA;        addCommand(contactActionBtn);&#xA;        addCommand(removeContactBtn);&#xA;        addCommand(exitBtn);&#xA;        setCommandListener(new CommandListener() {&#xA;            public void commandAction(Command c, Displayable d) {&#xA;                if (c.equals(addContactBtn)) {&#xA;                    notifyAddClicked();&#xA;                } else if (c.equals(removeContactBtn)) {&#xA;                    notifyRemoveClicked();&#xA;                } else if (c.equals(contactActionBtn)) {&#xA;                    notifyContactAction();&#xA;                } else {&#xA;                    im.InstantMessagingClient.getInstance().notifyDestroyed();&#xA;                }&#xA;            }&#xA;        });&#xA;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        Display.getDisplay(client).setCurrent(this);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="addContact" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="contact" isSpecification="false" type="//@ownedElement.13/@ownedElement.1"/>
+            <parameter name="index" isSpecification="false" type="//@ownedElement.13/@ownedElement.2"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0/@feature.6">
+            <body language="java" body="        insert(index, contact, null);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="removeContact" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="index" isSpecification="false" type="//@ownedElement.13/@ownedElement.2"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0/@feature.8">
+            <body language="java" body="        delete(index);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="getSelectedContact" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.13/@ownedElement.2" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0/@feature.10">
+            <body language="java" body="        return getSelectedIndex();&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="addListener" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="l" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.10"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0/@feature.12">
+            <body language="java" body="        listeners.addElement(l);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="notifyAddClicked" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0/@feature.14">
+            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ContactListViewListener) listeners.elementAt(i)).onContactListAdd();&#xA;        }&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="notifyRemoveClicked" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0/@feature.16">
+            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ContactListViewListener) listeners.elementAt(i)).onContactListRemove();&#xA;        }&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="notifyContactAction" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0/@feature.18">
+            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ContactListViewListener) listeners.elementAt(i)).onContactListAction();&#xA;        }&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="setEnabled" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="enabled" isSpecification="false" type="//@ownedElement.13/@ownedElement.8"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0/@feature.20">
+            <body language="java" body="        if (enabled) {&#xA;            im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;            Display.getDisplay(client).setCurrent(this);&#xA;        }&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="exitBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.0">
+            <initialValue language="java" body="new Command(&quot;Exit&quot;, Command.EXIT, 1)"/>
+          </feature>
+        </ownedElement>
+        <ownedElement xsi:type="uml:Class" clientDependency="//@ownedElement.23/@ownedElement.0/@ownedElement.1 //@ownedElement.6/@ownedElement.3 //@ownedElement.7/@ownedElement.0/@ownedElement.2 //@ownedElement.6/@ownedElement.1/@ownedElement.7" name="LCDUINewContactDialog" isSpecification="false" generalization="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.4" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
+          <feature xsi:type="uml:Attribute" name="okBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.0">
+            <initialValue language="java" body="new Command(&quot;OK&quot;, Command.OK, 1)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="cancelBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.0">
+            <initialValue language="java" body="new Command(&quot;Cancel&quot;, Command.CANCEL, 1)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="uidField" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.5">
+            <initialValue language="java" body="new TextField(&quot;User ID&quot;, &quot;&quot;, 64, TextField.ANY)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="nameField" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.5">
+            <initialValue language="java" body="new TextField(&quot;Name&quot;, &quot;&quot;, 64, TextField.ANY)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="networkField" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.10">
+            <initialValue language="java" body="new ChoiceGroup(&quot;Network&quot;, Choice.EXCLUSIVE)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="listeners" visibility="vk_private" isSpecification="false" type="//@ownedElement.7/@ownedElement.0/@ownedElement.3">
+            <initialValue language="java" body="new Vector()"/>
+          </feature>
+          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.20" name="LCDUINewContactDialog" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.6">
+            <body language="java" body="        super(&quot;Add new contact&quot;);&#xA;        append(networkField);&#xA;        append(uidField);&#xA;        append(nameField);&#xA;        append(passwordField);&#xA;        addCommand(okBtn);&#xA;        addCommand(cancelBtn);&#xA;        setCommandListener(new CommandListener() {&#xA;            public void commandAction(Command c, Displayable d) {&#xA;                if (c.equals(okBtn)) {&#xA;                    onOk();&#xA;                } else {&#xA;                    onCancel();&#xA;                }&#xA;            }&#xA;        });&#xA;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        Display.getDisplay(client).setCurrent(this);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="getUid" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.13/@ownedElement.1" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.8">
+            <body language="java" body="        return uidField.getString();&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="getName" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.13/@ownedElement.1" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.10">
+            <body language="java" body="        return nameField.getString();&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="getNetwork" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.13/@ownedElement.2" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.12">
+            <body language="java" body="        return networkField.getSelectedIndex();&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="addListener" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="l" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.4"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.14">
+            <body language="java" body="        listeners.addElement(l);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="onOk" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.16">
+            <body language="java" body="        notifyListeners(true);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="onCancel" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.18">
+            <body language="java" body="        notifyListeners(false);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="notifyListeners" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="okClicked" isSpecification="false" type="//@ownedElement.13/@ownedElement.8"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.20">
+            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((NewContactDialogListener) listeners.elementAt(i)).onNewContactDialogClose(okClicked, this);&#xA;        }&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="passwordField" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.5">
+            <initialValue language="java" body="new TextField(&quot;Password&quot;, &quot;&quot;, 64, TextField.PASSWORD)"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="getPassword" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.13/@ownedElement.1" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.23">
+            <body language="java" body="        return passwordField.getString();&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="addNetwork" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="n" isSpecification="false" type="//@ownedElement.13/@ownedElement.1"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1/@feature.25">
+            <body language="java" body="        networkField.append(n, null);&#xA;"/>
+          </feature>
+        </ownedElement>
+        <ownedElement xsi:type="uml:Class" clientDependency="//@ownedElement.7/@ownedElement.0/@ownedElement.0 //@ownedElement.6/@ownedElement.2 //@ownedElement.23/@ownedElement.0/@ownedElement.3 //@ownedElement.6/@ownedElement.1/@ownedElement.3" name="LCDUIConversationView" isSpecification="false" generalization="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.9" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
+          <feature xsi:type="uml:Attribute" name="messageField" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.5">
+            <initialValue language="java" body="new TextField(&quot;&quot;, &quot;&quot;, 256, TextField.ANY)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="sendBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.0">
+            <initialValue language="java" body="new Command(&quot;Send&quot;, Command.SCREEN, 1)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="closeBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.0">
+            <initialValue language="java" body="new Command(&quot;Close&quot;, Command.BACK, 1)"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="listeners" visibility="vk_private" isSpecification="false" type="//@ownedElement.7/@ownedElement.0/@ownedElement.3">
+            <initialValue language="java" body="new Vector()"/>
+          </feature>
+          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.20" name="LCDUIConversationView" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2/@feature.4">
+            <body language="java" body="        super(&quot;Message&quot;);&#xA;        append(messageField);&#xA;        addCommand(sendBtn);&#xA;        addCommand(closeBtn);&#xA;        setCommandListener(new CommandListener() {&#xA;            public void commandAction(Command c, Displayable d) {&#xA;                if (c.equals(sendBtn)) {&#xA;                    notifySendClicked();&#xA;                } else {&#xA;                    notifyClose();&#xA;                }&#xA;            }&#xA;        });&#xA;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        previousScreen = Display.getDisplay(client).getCurrent();&#xA;        Display.getDisplay(client).setCurrent(this);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="getContent" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.13/@ownedElement.0" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2/@feature.6">
+            <body language="java" body="        return messageField.getString();&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="addContent" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="content" isSpecification="false" type="//@ownedElement.13/@ownedElement.0"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2/@feature.8">
+            <body language="java" body="        if (content instanceof String) {&#xA;            append(content.toString() + &quot;\n&quot;);&#xA;        } else if (content instanceof Image) {&#xA;            Image im = (Image) content;&#xA;            append(im);&#xA;        }&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="addListener" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="l" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.9"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2/@feature.10">
+            <body language="java" body="        listeners.addElement(l);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="notifyClose" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2/@feature.12">
+            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ConversationViewListener) listeners.elementAt(i)).onConversationClose();&#xA;        }&#xA;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        Display.getDisplay(client).setCurrent(previousScreen);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Attribute" name="previousScreen" visibility="vk_private" isSpecification="false" type="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.7"/>
+          <feature xsi:type="uml:Operation" name="notifySendClicked" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2/@feature.15">
+            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ConversationViewListener) listeners.elementAt(i)).onConversationSend();&#xA;        }&#xA;        messageField.setString(&quot;&quot;);&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="toFront" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2/@feature.17">
+            <body language="java" body="        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        Display.getDisplay(client).setCurrent(this);&#xA;"/>
+          </feature>
+        </ownedElement>
+        <ownedElement xsi:type="uml:Class" name="LCDUIViewFactory" isSpecification="false" generalization="//@ownedElement.6/@ownedElement.1/@ownedElement.11" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
+          <feature xsi:type="uml:Operation" name="createContactListView" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.2" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.3/@feature.0">
+            <body language="java" body="        return new LCDUIContactListView();&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="createNewContactDialog" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.6" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.3/@feature.2">
+            <body language="java" body="        return new LCDUINewContactDialog();&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" name="createConversationView" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.8" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.3/@feature.4">
+            <body language="java" body="        return new LCDUIConversationView();&#xA;"/>
+          </feature>
+          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.20" name="LCDUIViewFactory" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
+            <parameter name="return" isSpecification="false" type="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.3" kind="pdk_return"/>
+          </feature>
+          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.3/@feature.6">
+            <body language="java" body="        // fail factory creation if LCDUI not available&#xA;        Class.forName(&quot;javax.microedition.lcdui.Display&quot;);&#xA;"/>
+          </feature>
+        </ownedElement>
+      </ownedElement>
+      <ownedElement xsi:type="uml:Interface" name="NewContactDialog" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+      <ownedElement xsi:type="uml:Abstraction" stereotype="//@ownedElement.16" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1" supplier="//@ownedElement.6/@ownedElement.1/@ownedElement.6"/>
+      <ownedElement xsi:type="uml:Interface" name="ConversationView" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+      <ownedElement xsi:type="uml:Interface" name="ConversationViewListener" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+      <ownedElement xsi:type="uml:Interface" name="ContactListViewListener" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+      <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.3" parent="//@ownedElement.6/@ownedElement.1/@ownedElement.0"/>
+    </ownedElement>
+    <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2" supplier="//@ownedElement.6/@ownedElement.1"/>
+    <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1" supplier="//@ownedElement.6/@ownedElement.1"/>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Package" name="java" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <ownedElement xsi:type="uml:Package" name="util" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2" supplier="//@ownedElement.7/@ownedElement.0/@ownedElement.3"/>
+      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0" supplier="//@ownedElement.7/@ownedElement.0/@ownedElement.3"/>
+      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1" supplier="//@ownedElement.7/@ownedElement.0/@ownedElement.3"/>
+      <ownedElement xsi:type="uml:Class" name="Vector" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+    </ownedElement>
+    <ownedElement xsi:type="uml:Package" name="lang" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+      <ownedElement xsi:type="uml:Class" stereotype="//@ownedElement.25" name="ClassNotFoundException" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
+        <ownedElement xsi:type="uml:Exception" name="lcduiViewFactoryException" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" context="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.3/@feature.6"/>
+      </ownedElement>
+    </ownedElement>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="Observer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Class</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="invariant" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Constraint</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:TagDefinition" name="AppletInfo" isSpecification="false">
     <multiplicity>
       <range lower="1" upper="1"/>
     </multiplicity>
   </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="postcondition" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Constraint</baseClass>
+  </ownedElement>
   <ownedElement xsi:type="uml:Stereotype" name="process" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
     <baseClass>Classifier</baseClass>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="use" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Dependency</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Package" name="im" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0" supplier="//@ownedElement.10/@ownedElement.2"/>
-    <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3" supplier="//@ownedElement.10/@ownedElement.2"/>
-    <ownedElement xsi:type="uml:Package" name="view" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-      <ownedElement xsi:type="uml:Interface" name="NewContactDialogListener" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-      <ownedElement xsi:type="uml:Interface" name="ContactListView" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-      <ownedElement xsi:type="uml:Interface" name="ConversationViewListener" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-      <ownedElement xsi:type="uml:Abstraction" stereotype="//@ownedElement.21" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3" supplier="//@ownedElement.10/@ownedElement.2/@ownedElement.11"/>
-      <ownedElement xsi:type="uml:Interface" name="ContactListViewListener" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-      <ownedElement xsi:type="uml:Interface" name="ConversationView" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-      <ownedElement xsi:type="uml:Package" name="lcdui" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-        <ownedElement xsi:type="uml:Class" clientDependency="//@ownedElement.0/@ownedElement.0/@ownedElement.1 //@ownedElement.10/@ownedElement.0 //@ownedElement.17/@ownedElement.0/@ownedElement.0 //@ownedElement.10/@ownedElement.2/@ownedElement.10" name="LCDUIConversationView" isSpecification="false" generalization="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.10" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
-          <feature xsi:type="uml:Attribute" name="messageField" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.4">
-            <initialValue language="java" body="new TextField(&quot;&quot;, &quot;&quot;, 256, TextField.ANY)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="sendBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.9">
-            <initialValue language="java" body="new Command(&quot;Send&quot;, Command.SCREEN, 1)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="closeBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.9">
-            <initialValue language="java" body="new Command(&quot;Close&quot;, Command.BACK, 1)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="listeners" visibility="vk_private" isSpecification="false" type="//@ownedElement.17/@ownedElement.0/@ownedElement.1">
-            <initialValue language="java" body="new Vector()"/>
-          </feature>
-          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.16" name="LCDUIConversationView" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0/@feature.4">
-            <body language="java" body="        super(&quot;Message&quot;);&#xA;        append(messageField);&#xA;        addCommand(sendBtn);&#xA;        addCommand(closeBtn);&#xA;        setCommandListener(new CommandListener() {&#xA;            public void commandAction(Command c, Displayable d) {&#xA;                if (c.equals(sendBtn)) {&#xA;                    notifySendClicked();&#xA;                } else {&#xA;                    notifyClose();&#xA;                }&#xA;            }&#xA;        });&#xA;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        previousScreen = Display.getDisplay(client).getCurrent();&#xA;        Display.getDisplay(client).setCurrent(this);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="getContent" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.11/@ownedElement.7" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0/@feature.6">
-            <body language="java" body="        return messageField.getString();&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="addContent" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="content" isSpecification="false" type="//@ownedElement.11/@ownedElement.7"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0/@feature.8">
-            <body language="java" body="        if (content instanceof String) {&#xA;            append(content.toString() + &quot;\n&quot;);&#xA;        } else if (content instanceof Image) {&#xA;            Image im = (Image) content;&#xA;            append(im);&#xA;        }&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="addListener" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="l" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.2"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0/@feature.10">
-            <body language="java" body="        listeners.addElement(l);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="notifyClose" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0/@feature.12">
-            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ConversationViewListener) listeners.elementAt(i)).onConversationClose();&#xA;        }&#xA;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        Display.getDisplay(client).setCurrent(previousScreen);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="previousScreen" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.7"/>
-          <feature xsi:type="uml:Operation" name="notifySendClicked" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0/@feature.15">
-            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ConversationViewListener) listeners.elementAt(i)).onConversationSend();&#xA;        }&#xA;        messageField.setString(&quot;&quot;);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="toFront" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0/@feature.17">
-            <body language="java" body="        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        Display.getDisplay(client).setCurrent(this);&#xA;"/>
-          </feature>
-        </ownedElement>
-        <ownedElement xsi:type="uml:Class" name="LCDUIViewFactory" isSpecification="false" generalization="//@ownedElement.10/@ownedElement.2/@ownedElement.7" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
-          <feature xsi:type="uml:Operation" name="createContactListView" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.1" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.1/@feature.0">
-            <body language="java" body="        return new LCDUIContactListView();&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="createNewContactDialog" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.11" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.1/@feature.2">
-            <body language="java" body="        return new LCDUINewContactDialog();&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="createConversationView" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.5" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.1/@feature.4">
-            <body language="java" body="        return new LCDUIConversationView();&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.16" name="LCDUIViewFactory" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.1" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.1/@feature.6">
-            <body language="java" body="        // fail factory creation if LCDUI not available&#xA;        Class.forName(&quot;javax.microedition.lcdui.Display&quot;);&#xA;"/>
-          </feature>
-        </ownedElement>
-        <ownedElement xsi:type="uml:Class" clientDependency="//@ownedElement.0/@ownedElement.0/@ownedElement.0 //@ownedElement.17/@ownedElement.0/@ownedElement.3 //@ownedElement.10/@ownedElement.3 //@ownedElement.10/@ownedElement.2/@ownedElement.8" name="LCDUIContactListView" isSpecification="false" generalization="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.2" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
-          <feature xsi:type="uml:Attribute" name="addContactBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.9">
-            <initialValue language="java" body="new Command(&quot;Add&quot;, Command.SCREEN, 1)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="removeContactBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.9">
-            <initialValue language="java" body="new Command(&quot;Remove&quot;, Command.ITEM, 1)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="contactActionBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.9">
-            <initialValue language="java" body="new Command(&quot;Message&quot;, Command.ITEM, 1)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="listeners" visibility="vk_private" isSpecification="false" type="//@ownedElement.17/@ownedElement.0/@ownedElement.1">
-            <initialValue language="java" body="new Vector()"/>
-          </feature>
-          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.16" name="LCDUIContactListView" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2/@feature.4">
-            <body language="java" body="        super(&quot;Instant Messenger&quot;, Choice.IMPLICIT);&#xA;        addCommand(addContactBtn);&#xA;        addCommand(contactActionBtn);&#xA;        addCommand(removeContactBtn);&#xA;        addCommand(exitBtn);&#xA;        setCommandListener(new CommandListener() {&#xA;            public void commandAction(Command c, Displayable d) {&#xA;                if (c.equals(addContactBtn)) {&#xA;                    notifyAddClicked();&#xA;                } else if (c.equals(removeContactBtn)) {&#xA;                    notifyRemoveClicked();&#xA;                } else if (c.equals(contactActionBtn)) {&#xA;                    notifyContactAction();&#xA;                } else {&#xA;                    im.InstantMessagingClient.getInstance().notifyDestroyed();&#xA;                }&#xA;            }&#xA;        });&#xA;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        Display.getDisplay(client).setCurrent(this);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="addContact" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="contact" isSpecification="false" type="//@ownedElement.11/@ownedElement.8"/>
-            <parameter name="index" isSpecification="false" type="//@ownedElement.11/@ownedElement.6"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2/@feature.6">
-            <body language="java" body="        insert(index, contact, null);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="removeContact" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="index" isSpecification="false" type="//@ownedElement.11/@ownedElement.6"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2/@feature.8">
-            <body language="java" body="        delete(index);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="getSelectedContact" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.11/@ownedElement.6" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2/@feature.10">
-            <body language="java" body="        return getSelectedIndex();&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="addListener" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="l" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.4"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2/@feature.12">
-            <body language="java" body="        listeners.addElement(l);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="notifyAddClicked" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2/@feature.14">
-            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ContactListViewListener) listeners.elementAt(i)).onContactListAdd();&#xA;        }&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="notifyRemoveClicked" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2/@feature.16">
-            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ContactListViewListener) listeners.elementAt(i)).onContactListRemove();&#xA;        }&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="notifyContactAction" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2/@feature.18">
-            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((ContactListViewListener) listeners.elementAt(i)).onContactListAction();&#xA;        }&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="setEnabled" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="enabled" isSpecification="false" type="//@ownedElement.11/@ownedElement.5"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2/@feature.20">
-            <body language="java" body="        if (enabled) {&#xA;            im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;            Display.getDisplay(client).setCurrent(this);&#xA;        }&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="exitBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.9">
-            <initialValue language="java" body="new Command(&quot;Exit&quot;, Command.EXIT, 1)"/>
-          </feature>
-        </ownedElement>
-        <ownedElement xsi:type="uml:Class" clientDependency="//@ownedElement.10/@ownedElement.1 //@ownedElement.17/@ownedElement.0/@ownedElement.2 //@ownedElement.0/@ownedElement.0/@ownedElement.3 //@ownedElement.10/@ownedElement.2/@ownedElement.3" name="LCDUINewContactDialog" isSpecification="false" generalization="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.0" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
-          <feature xsi:type="uml:Attribute" name="okBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.9">
-            <initialValue language="java" body="new Command(&quot;OK&quot;, Command.OK, 1)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="cancelBtn" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.9">
-            <initialValue language="java" body="new Command(&quot;Cancel&quot;, Command.CANCEL, 1)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="uidField" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.4">
-            <initialValue language="java" body="new TextField(&quot;User ID&quot;, &quot;&quot;, 64, TextField.ANY)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="nameField" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.4">
-            <initialValue language="java" body="new TextField(&quot;Name&quot;, &quot;&quot;, 64, TextField.ANY)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="networkField" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.5">
-            <initialValue language="java" body="new ChoiceGroup(&quot;Network&quot;, Choice.EXCLUSIVE)"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="listeners" visibility="vk_private" isSpecification="false" type="//@ownedElement.17/@ownedElement.0/@ownedElement.1">
-            <initialValue language="java" body="new Vector()"/>
-          </feature>
-          <feature xsi:type="uml:Operation" stereotype="//@ownedElement.16" name="LCDUINewContactDialog" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.6">
-            <body language="java" body="        super(&quot;Add new contact&quot;);&#xA;        append(networkField);&#xA;        append(uidField);&#xA;        append(nameField);&#xA;        append(passwordField);&#xA;        addCommand(okBtn);&#xA;        addCommand(cancelBtn);&#xA;        setCommandListener(new CommandListener() {&#xA;            public void commandAction(Command c, Displayable d) {&#xA;                if (c.equals(okBtn)) {&#xA;                    onOk();&#xA;                } else {&#xA;                    onCancel();&#xA;                }&#xA;            }&#xA;        });&#xA;        im.InstantMessagingClient client = im.InstantMessagingClient.getInstance();&#xA;        Display.getDisplay(client).setCurrent(this);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="getUid" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.11/@ownedElement.8" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.8">
-            <body language="java" body="        return uidField.getString();&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="getName" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.11/@ownedElement.8" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.10">
-            <body language="java" body="        return nameField.getString();&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="getNetwork" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.11/@ownedElement.6" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.12">
-            <body language="java" body="        return networkField.getSelectedIndex();&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="addListener" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="l" isSpecification="false" type="//@ownedElement.10/@ownedElement.2/@ownedElement.0"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.14">
-            <body language="java" body="        listeners.addElement(l);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="onOk" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.16">
-            <body language="java" body="        notifyListeners(true);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="onCancel" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.18">
-            <body language="java" body="        notifyListeners(false);&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="notifyListeners" visibility="vk_private" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="okClicked" isSpecification="false" type="//@ownedElement.11/@ownedElement.5"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.20">
-            <body language="java" body="        for (int i = 0; i &lt; listeners.size(); i++) {&#xA;            ((NewContactDialogListener) listeners.elementAt(i)).onNewContactDialogClose(okClicked, this);&#xA;        }&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Attribute" name="passwordField" visibility="vk_private" isSpecification="false" type="//@ownedElement.0/@ownedElement.0/@ownedElement.2/@ownedElement.4">
-            <initialValue language="java" body="new TextField(&quot;Password&quot;, &quot;&quot;, 64, TextField.PASSWORD)"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="getPassword" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="return" isSpecification="false" type="//@ownedElement.11/@ownedElement.8" kind="pdk_return"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.23">
-            <body language="java" body="        return passwordField.getString();&#xA;"/>
-          </feature>
-          <feature xsi:type="uml:Operation" name="addNetwork" isSpecification="false" isQuery="false" isRoot="false" isLeaf="false" isAbstract="false">
-            <parameter name="n" isSpecification="false" type="//@ownedElement.11/@ownedElement.8"/>
-          </feature>
-          <feature xsi:type="uml:Method" isSpecification="false" isQuery="false" specification="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3/@feature.25">
-            <body language="java" body="        networkField.append(n, null);&#xA;"/>
-          </feature>
-        </ownedElement>
-      </ownedElement>
-      <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.1" parent="//@ownedElement.10/@ownedElement.2/@ownedElement.9"/>
-      <ownedElement xsi:type="uml:Abstraction" stereotype="//@ownedElement.21" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2" supplier="//@ownedElement.10/@ownedElement.2/@ownedElement.1"/>
-      <ownedElement xsi:type="uml:Class" name="ViewFactory" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="true" isActive="false"/>
-      <ownedElement xsi:type="uml:Abstraction" stereotype="//@ownedElement.21" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0" supplier="//@ownedElement.10/@ownedElement.2/@ownedElement.5"/>
-      <ownedElement xsi:type="uml:Interface" name="NewContactDialog" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    </ownedElement>
-    <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2" supplier="//@ownedElement.10/@ownedElement.2"/>
-  </ownedElement>
   <ownedElement xsi:type="uml:Package" name="ocl" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <ownedElement xsi:type="uml:DataType" name="Set" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Sequence" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Collection" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="OclType" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Bag" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Boolean" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-    <ownedElement xsi:type="uml:DataType" name="Integer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
     <ownedElement xsi:type="uml:DataType" name="OclAny" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
     <ownedElement xsi:type="uml:DataType" name="String" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Integer" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
     <ownedElement xsi:type="uml:DataType" name="Real" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="Singleton" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Class</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="postcondition" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Constraint</baseClass>
+    <ownedElement xsi:type="uml:DataType" name="OclType" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Sequence" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Bag" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Collection" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Boolean" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+    <ownedElement xsi:type="uml:DataType" name="Set" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
   </ownedElement>
   <ownedElement xsi:type="uml:TagDefinition" name="gentleware-initialValue" isSpecification="false">
     <multiplicity>
@@ -326,47 +317,56 @@
       <range lower="1" upper="1"/>
     </multiplicity>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="create" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
-  <ownedElement xsi:type="uml:Package" name="java" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <ownedElement xsi:type="uml:Package" name="util" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.0" supplier="//@ownedElement.17/@ownedElement.0/@ownedElement.1"/>
-      <ownedElement xsi:type="uml:Class" name="Vector" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
-      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.3" supplier="//@ownedElement.17/@ownedElement.0/@ownedElement.1"/>
-      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.2" supplier="//@ownedElement.17/@ownedElement.0/@ownedElement.1"/>
-    </ownedElement>
-    <ownedElement xsi:type="uml:Package" name="lang" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-      <ownedElement xsi:type="uml:Class" stereotype="//@ownedElement.18" name="ClassNotFoundException" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false">
-        <ownedElement xsi:type="uml:Exception" name="lcduiViewFactoryException" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" context="//@ownedElement.10/@ownedElement.2/@ownedElement.6/@ownedElement.1/@feature.6"/>
-      </ownedElement>
-    </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="realize" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Abstraction</baseClass>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="exception" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Classifier</baseClass>
+  <ownedElement xsi:type="uml:Stereotype" name="ValueObject" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Class</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="use" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Dependency</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="Observable" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Class</baseClass>
+  </ownedElement>
+  <ownedElement xsi:type="uml:Stereotype" name="create" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false"/>
+  <ownedElement xsi:type="uml:Stereotype" name="instantiates" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Dependency</baseClass>
   </ownedElement>
   <ownedElement xsi:type="uml:TagDefinition" name="final" isSpecification="false">
     <multiplicity>
       <range lower="1" upper="1"/>
     </multiplicity>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="invariant" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Constraint</baseClass>
+  <ownedElement xsi:type="uml:Package" name="javax" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <ownedElement xsi:type="uml:Package" name="microedition" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+      <ownedElement xsi:type="uml:Package" name="lcdui" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+        <ownedElement xsi:type="uml:Class" name="Command" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+        <ownedElement xsi:type="uml:Class" name="Form" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+        <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0" parent="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.6"/>
+        <ownedElement xsi:type="uml:Class" name="StringItem" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+        <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1" parent="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.1"/>
+        <ownedElement xsi:type="uml:Class" name="TextField" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+        <ownedElement xsi:type="uml:Class" name="List" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+        <ownedElement xsi:type="uml:Class" name="Displayable" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+        <ownedElement xsi:type="uml:Class" name="TextBox" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+        <ownedElement xsi:type="uml:Generalization" isSpecification="false" child="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2" parent="//@ownedElement.23/@ownedElement.0/@ownedElement.0/@ownedElement.1"/>
+        <ownedElement xsi:type="uml:Class" name="ChoiceGroup" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false" isActive="false"/>
+      </ownedElement>
+      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.1" supplier="//@ownedElement.23/@ownedElement.0/@ownedElement.0"/>
+      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.0" supplier="//@ownedElement.23/@ownedElement.0/@ownedElement.0"/>
+      <ownedElement xsi:type="uml:Dependency" isSpecification="false" client="//@ownedElement.6/@ownedElement.1/@ownedElement.5/@ownedElement.2" supplier="//@ownedElement.23/@ownedElement.0/@ownedElement.0"/>
+    </ownedElement>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="realize" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Abstraction</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="instantiates" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Dependency</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="ValueObject" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+  <ownedElement xsi:type="uml:Stereotype" name="Singleton" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
     <baseClass>Class</baseClass>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="Observable" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Class</baseClass>
+  <ownedElement xsi:type="uml:Stereotype" name="exception" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
+    <baseClass>Classifier</baseClass>
   </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="subscribe" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Association</baseClass>
-  </ownedElement>
-  <ownedElement xsi:type="uml:Stereotype" name="Applet" isSpecification="false" isRoot="false" isLeaf="false" isAbstract="false">
-    <baseClass>Class</baseClass>
+  <ownedElement xsi:type="uml:TagDefinition" name="documentation" isSpecification="false">
+    <multiplicity>
+      <range lower="1" upper="1"/>
+    </multiplicity>
   </ownedElement>
 </uml:Model>
