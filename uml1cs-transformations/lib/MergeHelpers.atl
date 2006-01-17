@@ -4,11 +4,8 @@ library MergeHelpers;
 
 ------------------------------- General helpers -----------------------------------
 
-helper context UML!ModelElement def : isInPackage() : Boolean =
-	self.namespace.oclIsTypeOf(UML!Package);
-
 helper context UML!ModelElement def : qName() : String =
-	if self.isInPackage() then
+	if self.namespace.oclIsTypeOf(UML!Package) then
 		self.namespace.qName() + '.' + self.name
 	else
 		self.name
