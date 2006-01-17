@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="DefaultInstantMessenger" default="all">
-	<property name="atlcommandline.path" value="../../../uml1cs-atlcommandline/"/>
-	<property name="transf.path" value="../../../uml1cs-transformations/"/>
+	<property name="atlcommandline.path" value="../../uml1cs-atlcommandline/"/>
+	<property name="transf.path" value="../../uml1cs-transformations/"/>
 	<property name="transf.uri" value="file:${transf.path}"/>
 	<property name="mmodel.path" value="${transf.path}metamodels/"/>
 	<property name="mmodel.uml" value="${mmodel.path}M2_DiagramInterchangeModel.ecore"/>
