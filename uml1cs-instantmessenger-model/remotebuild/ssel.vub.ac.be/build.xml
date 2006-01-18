@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DeployCDDToolkitFeature" default="all">
+	<target name="send">
+		<exec dir="../../../" executable="rsync" logError="true">
+			<arg line="-rlvuzC"/>
+			<arg line="."/>
+			<arg line="dwagelaa@ssel.vub.ac.be:UML1CaseStudies/"/>
+		</exec>
+	</target>
+	
+	<target name="execute" depends="send">
+		<exec dir="." executable="ssh" logError="true">
+			<arg line="dwagelaa@ssel.vub.ac.be"/>
+			<arg line="cd UML1CaseStudies/uml1cs-instantmessenger-model/outmodels/ &amp;&amp; ant"/>
+		</exec>
+	</target>
+	
+	<target name="retrieve" depends="execute">
+		<exec dir="../../../" executable="rsync" logError="true">
+			<arg line="-rlvuzC"/>
+			<arg line="dwagelaa@ssel.vub.ac.be:UML1CaseStudies/"/>
+			<arg line="."/>
+		</exec>
+	</target>
+	
+	<target name="all" depends="retrieve"/>
+</project>
