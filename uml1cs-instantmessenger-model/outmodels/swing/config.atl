@@ -3,7 +3,7 @@
 library config;
 
 helper context String def : path() : String =
-	'/home/dennis/UML1CaseStudies/uml1cs-instantmessenger-swing/src/' + self;
+	'/home/dwagelaa/UML1CaseStudies/uml1cs-instantmessenger-swing/src/' + self;
 
 helper context String def : ignore() : Boolean =
 	self.startsWith('java') or self.startsWith('ocl') or self.startsWith('com');
