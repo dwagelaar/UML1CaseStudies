@@ -4,11 +4,18 @@ module MIDlet;
 create OUT : UML refining IN : UML, MERGE : UML;
 
 uses Java;
+uses MergeHelpers;
 
 -- ======================================================================
--- model merge helpers begin
+--
+-- Begin model merging section
+--
 -- ======================================================================
--- From: MergeModel.atl 3146 2006-01-13 14:00:05Z dwagelaa
+-- From: MergeModel.atl 3150 2006-01-16 13:32:57Z dwagelaa
+
+-- ======================================================================
+-- merge helper variables begin
+-- ======================================================================
 
 helper def : inElements : Set(UML!Element) = UML!Element.allInstancesFrom('IN');
 helper def : mergeElements : Set(UML!Element) = UML!Element.allInstancesFrom('MERGE');
@@ -23,342 +30,13 @@ helper def : newElements : Sequence(UML!Element) = Sequence{
 		UML!Generalization.allInstancesFrom('MERGE')->select(g|g.notInSourceModel())
 	}->flatten();
 
-helper context UML!ModelElement def : isInPackage() : Boolean =
-	self.namespace.oclIsTypeOf(UML!Package);
-
-helper context UML!ModelElement def : qName() : String =
-	if self.isInPackage() then
-		self.namespace.qName() + '.' + self.name
-	else
-		self.name
-	endif;
-
-------------------------------- Model -----------------------------------
-
-helper context UML!Model def : notInSourceModel() : Boolean =
-	false;
-
-helper context UML!Model def : fromSourceModel() : UML!Model =
-	UML!Model.allInstancesFrom('IN')->asSequence()->first();
-
-------------------------------- Classifier ------------------------------
-
-helper context UML!Classifier def : notInSourceModel() : Boolean =
-	UML!Classifier.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
-
-helper context UML!Classifier def : fromSourceModel() : UML!Classifier =
-	UML!Classifier.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
-
-------------------------------- Package ---------------------------------
-
-helper context UML!Package def : notInSourceModel() : Boolean =
-	UML!Package.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
-
-helper context UML!Package def : fromSourceModel() : UML!Package =
-	UML!Package.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
-
-------------------------------- TagDefinition ---------------------------
-
-helper context UML!TagDefinition def : notInSourceModel() : Boolean =
-	UML!TagDefinition.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
-
-helper context UML!TagDefinition def : fromSourceModel() : UML!TagDefinition =
-	UML!TagDefinition.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
-
-------------------------------- Stereotype ------------------------------
-
-helper context UML!Stereotype def : notInSourceModel() : Boolean =
-	UML!Stereotype.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->isEmpty();
-
-helper context UML!Stereotype def : fromSourceModel() : UML!Stereotype =
-	UML!Stereotype.allInstancesFrom('IN')->select(e|e.qName()=self.qName())->first();
-
-------------------------------- Association -----------------------------
-
-helper context UML!Association def : notInSourceModel() : Boolean =
-	not self.connection->forAll(c|c.inSourceModel());
-
-helper context UML!AssociationEnd def : inSourceModel() : Boolean =
-	if self.isNavigable then
-		not UML!AssociationEnd.allInstancesFrom('IN')->select(e|e.isNavigable)->select(e|
-			e.name=self.name and e.participant.qName()=self.participant.qName())->isEmpty()
-	else if self.otherEnd().isNavigable then
-		self.otherEnd().inSourceModel()
-	else
-		true
-	endif endif;
-
-helper context UML!AssociationEnd def : otherEnd() : UML!AssociationEnd =
-	self.association.connection->select(x|x<>self)->first();
-
-------------------------------- AssociationEnd --------------------------
-
-helper context UML!AssociationEnd def : notInSourceModel() : Boolean =
-	thisModule.newElements->includes(self.association);
-
-------------------------------- TaggedValue -----------------------------
-
-helper context UML!TaggedValue def : notInSourceModel() : Boolean =
-	if thisModule.newElements->includes(self.modelElement) then
-		true
-	else
-		self.modelElement.notInSourceModel()
-	endif;
-
-------------------------------- StructuralFeature -----------------------
-
-helper context UML!StructuralFeature def : notInSourceModel() : Boolean =
-	if thisModule.newElements->includes(self.owner) then
-		true
-	else
-		self.owner.fromSourceModel().feature->select(f|
-			f.name=self.name and f.oclIsKindOf(UML!StructuralFeature))
-	endif;
-
-------------------------------- Operation -------------------------------
-
-helper context UML!Operation def : notInSourceModel() : Boolean =
-	if thisModule.newElements->includes(self.owner) then
-		true
-	else
-		self.owner.fromSourceModel().feature->select(f|
-			f.name=self.name and f.oclIsKindOf(UML!Operation))->select(o|
-				o.hasSameParametersAs(self))->isEmpty()
-	endif;
-
-helper context UML!BehavioralFeature def : hasSameParametersAs(f : UML!BehavioralFeature) : Boolean =
-	f.parameter->select(p|not self.hasSameParameter(p))->isEmpty();
-	
-helper context UML!BehavioralFeature def : hasSameParameter(p : UML!Parameter) : Boolean =
-	not self.parameter->select(sp|sp.kind=p.kind and sp.type.qName()=p.type.qName())->isEmpty();
-
-------------------------------- Method ----------------------------------
-
-helper context UML!Method def : notInSourceModel() : Boolean =
-	if thisModule.newElements->includes(self.owner) then
-		true
-	else
-		self.specification.notInSourceModel()
-	endif;
-
-------------------------------- Dependency ------------------------------
-
-helper context UML!Dependency def : notInSourceModel() : Boolean =
-	UML!Dependency.allInstancesFrom('IN')->select(d|
-		d.supplier->forAll(s1|self.supplier->forAll(s2|s1.qName()=s2.qName())) and
-		d.client->forAll(c1|self.client->forAll(c2|c1.qName()=c2.qName())))->isEmpty();
-
-------------------------------- Generalization --------------------------
-
-helper context UML!Generalization def : notInSourceModel() : Boolean =
-	UML!Generalization.allInstancesFrom('IN')->select(g|
-		g.parent.qName()=self.parent.qName() and
-		g.child.qName()=self.child.qName())->isEmpty();
-
-------------------------------- Parameter -------------------------------
-
-helper context UML!Parameter def : notInSourceModel() : Boolean =
-	if self.behavioralFeature.oclIsUndefined() then
-		false
-	else
-		self.behavioralFeature.notInSourceModel()
-	endif;
-
 -- ======================================================================
--- model-specific helpers begin
--- ======================================================================
-
-helper def : AppletMIDlet : UML!Class = 'midlet.AppletMIDlet'.qClass();
-helper def : oclBoolean : UML!DataType = 'Boolean'.dataType();
-helper def : oclString : UML!DataType = 'String'.dataType();
-
-helper context String def : dataType() : UML!DataType =
-	UML!DataType.allInstances()->select(c|c.name=self)->select(d|
-		thisModule.inElements->includes(d) or 
-		thisModule.newElements->includes(d))->first();
-
-helper context String def : qClass() : UML!Class =
-	UML!Class.allInstances()->select(c|c.qName()=self)->select(d|
-		thisModule.inElements->includes(d) or 
-		thisModule.newElements->includes(d))->first();
-
-helper context UML!GeneralizableElement def : isApplet() : Boolean =
-	not self.stereotype->select(s|s.name='Applet')->isEmpty();
-
-helper context UML!GeneralizableElement def : isSingleton() : Boolean =
-	not self.stereotype->select(s|s.name='Singleton')->isEmpty();
-
-helper context UML!Classifier def : hasNoOperation(name : String) : Boolean =
-	self.feature->select(f|f.name=name and
-		f.oclIsKindOf(UML!Operation))->isEmpty();
-
-helper context UML!ProcedureExpression def : method() : UML!Method =
-	UML!Method.allInstances()->select(m|m.body=self)->first();
-
-helper context UML!ModelElement def : hasTaggedValue(name : String) : Boolean =
-	if self.taggedValue->select(t|t.type.name = name)->isEmpty() then
-		false
-	else
-		not self.taggedValue->select(t|t.type.name = name)
-			->first().dataValue->isEmpty()
-	endif;
-
-helper context UML!ModelElement def : taggedValue(name : String) : String =
-	self.taggedValue->select(t|t.type.name = name)
-			->first().dataValue->asSequence()->first();
-
-helper context UML!Method def : isSingletonInitMethod() : Boolean =
-	if self.specification.name = 'init' then
-		self.owner.isSingleton() and
-    	self.owner.isApplet()
-	else
-		false
-	endif;
-
--- ======================================================================
--- model-specific helpers end
--- ======================================================================
-
--- ======================================================================
--- transformation rules begin
--- ======================================================================
-
-rule AppletClassWithInit {
-	from s : UML!Class (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML!Class) and
-			s.isApplet() and
-			not s.hasNoOperation('init')
-		else false endif)
-    to t : UML!Class mapsTo s (
-		namespace <- s.namespace,
-        isLeaf <- s.isLeaf,
-        isRoot <- s.isRoot,
-        visibility <- s.visibility,
-        name <- s.name,
-        isSpecification <- s.isSpecification,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        templateParameter <- s.templateParameter,
-        comment <- s.comment,
-        feature <- s.feature,
-        ownedElement <- s.ownedElement,
-        taggedValue <- s.taggedValue,
-        powertypeRange <- s.powertypeRange,
-        clientDependency <- s.clientDependency,
-        constraint <- s.constraint,
-        targetFlow <- s.targetFlow,
-        generalization <- s.generalization,
-        stereotype <- s.stereotype,
-        sourceFlow <- s.sourceFlow),
-	   g : UML!Generalization (
-	   	namespace <- s.namespace,
-		parent <- thisModule.AppletMIDlet,
-		child <- s)
-}
-
-rule AppletClassWithoutInit {
-	from s : UML!Class (
-		if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML!Class) and
-			s.isApplet() and
-			s.hasNoOperation('init')
-		else false endif)
-    to t : UML!Class mapsTo s (
-		namespace <- s.namespace,
-        isLeaf <- s.isLeaf,
-        isRoot <- s.isRoot,
-        visibility <- s.visibility,
-        name <- s.name,
-        isSpecification <- s.isSpecification,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        templateParameter <- s.templateParameter,
-        comment <- s.comment,
-        feature <- s.feature,
-        ownedElement <- s.ownedElement,
-        taggedValue <- s.taggedValue,
-        powertypeRange <- s.powertypeRange,
-        clientDependency <- s.clientDependency,
-        constraint <- s.constraint,
-        targetFlow <- s.targetFlow,
-        generalization <- s.generalization,
-        stereotype <- s.stereotype,
-        sourceFlow <- s.sourceFlow),
-	   op : UML!Operation (
-	   	name <- 'init',
-		owner <- s,
-		visibility <- #vk_public,
-		ownerScope <- #sk_instance,
-		isAbstract <- false,
-		concurrency <- #cck_sequential),
-	   mbody : UML!ProcedureExpression (
-	   	language <- 'java',
-		body <- s.isSingleton().javaMIDletInitBody()),
-	   meth : UML!Method (
-	   	owner <- s,
-		body <- mbody,
-		specification <- op)
-}
-
-rule Class {
-    from s : UML!Class (
-    	if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML!Class) and
-			not s.isApplet()
-		else false endif)
-    to t : UML!Class mapsTo s (
-		namespace <- s.namespace,
-        isLeaf <- s.isLeaf,
-        isRoot <- s.isRoot,
-        visibility <- s.visibility,
-        name <- s.name,
-        isSpecification <- s.isSpecification,
-        isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
-        templateParameter <- s.templateParameter,
-        comment <- s.comment,
-        feature <- s.feature,
-        ownedElement <- s.ownedElement,
-        taggedValue <- s.taggedValue,
-        powertypeRange <- s.powertypeRange,
-        clientDependency <- s.clientDependency,
-        constraint <- s.constraint,
-        targetFlow <- s.targetFlow,
-        generalization <- s.generalization,
-        stereotype <- s.stereotype,
-        sourceFlow <- s.sourceFlow)
-}
-
-rule AppletInitProcedureExpression {
-    from s : UML!ProcedureExpression (
-		if thisModule.inElements->includes(s) then
-    		s.method().isSingletonInitMethod()
-		else false endif)
-    to t : UML!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- s.method().owner.isSingleton().
-			javaMIDletInitBody() + '\n' + s.body)
-}
-
-rule ProcedureExpression {
-    from s : UML!ProcedureExpression (
-		if thisModule.inElements->includes(s) then
-    		not s.method().isSingletonInitMethod()
-    	else false endif)
-    to t : UML!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- s.body)
-}
-
--- ======================================================================
--- mapsTo rules end
+-- merge helper variables end
 -- ======================================================================
 
 -- ======================================================================
 -- model merge begin
 -- ======================================================================
--- From: MergeModel.atl 3146 2006-01-13 14:00:05Z dwagelaa
 
 rule MergeAssociation {
     from s : UML!Association (
@@ -768,4 +446,201 @@ rule MergeException {
 
 -- ======================================================================
 -- model merge end
+-- ======================================================================
+
+-- ======================================================================
+--
+-- End model merging section
+--
+-- ======================================================================
+
+-- ======================================================================
+-- model-specific helpers begin
+-- ======================================================================
+
+helper def : AppletMIDlet : UML!Class = 'midlet.AppletMIDlet'.qClass();
+helper def : oclBoolean : UML!DataType = 'Boolean'.dataType();
+helper def : oclString : UML!DataType = 'String'.dataType();
+
+helper context String def : dataType() : UML!DataType =
+	UML!DataType.allInstances()->select(c|c.name=self)->select(d|
+		thisModule.inElements->includes(d) or 
+		thisModule.newElements->includes(d))->first();
+
+helper context String def : qClass() : UML!Class =
+	UML!Class.allInstances()->select(c|c.qName()=self)->select(d|
+		thisModule.inElements->includes(d) or 
+		thisModule.newElements->includes(d))->first();
+
+helper context UML!GeneralizableElement def : isApplet() : Boolean =
+	not self.stereotype->select(s|s.name='Applet')->isEmpty();
+
+helper context UML!GeneralizableElement def : isSingleton() : Boolean =
+	not self.stereotype->select(s|s.name='Singleton')->isEmpty();
+
+helper context UML!Classifier def : hasNoOperation(name : String) : Boolean =
+	self.feature->select(f|f.name=name and
+		f.oclIsKindOf(UML!Operation))->isEmpty();
+
+helper context UML!ProcedureExpression def : method() : UML!Method =
+	UML!Method.allInstances()->select(m|m.body=self)->first();
+
+helper context UML!ModelElement def : hasTaggedValue(name : String) : Boolean =
+	if self.taggedValue->select(t|t.type.name = name)->isEmpty() then
+		false
+	else
+		not self.taggedValue->select(t|t.type.name = name)
+			->first().dataValue->isEmpty()
+	endif;
+
+helper context UML!ModelElement def : taggedValue(name : String) : String =
+	self.taggedValue->select(t|t.type.name = name)
+			->first().dataValue->asSequence()->first();
+
+helper context UML!Method def : isSingletonInitMethod() : Boolean =
+	if self.specification.name = 'init' then
+		self.owner.isSingleton() and
+    	self.owner.isApplet()
+	else
+		false
+	endif;
+
+-- ======================================================================
+-- model-specific helpers end
+-- ======================================================================
+
+-- ======================================================================
+-- transformation rules begin
+-- ======================================================================
+
+rule AppletClassWithInit {
+	from s : UML!Class (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
+			s.isApplet() and
+			not s.hasNoOperation('init')
+		else false endif)
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   g : UML!Generalization (
+	   	namespace <- s.namespace,
+		parent <- thisModule.AppletMIDlet,
+		child <- s)
+}
+
+rule AppletClassWithoutInit {
+	from s : UML!Class (
+		if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
+			s.isApplet() and
+			s.hasNoOperation('init')
+		else false endif)
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow),
+	   op : UML!Operation (
+	   	name <- 'init',
+		owner <- s,
+		visibility <- #vk_public,
+		ownerScope <- #sk_instance,
+		isAbstract <- false,
+		concurrency <- #cck_sequential),
+	   mbody : UML!ProcedureExpression (
+	   	language <- 'java',
+		body <- s.isSingleton().javaMIDletInitBody()),
+	   meth : UML!Method (
+	   	owner <- s,
+		body <- mbody,
+		specification <- op)
+}
+
+rule Class {
+    from s : UML!Class (
+    	if thisModule.inElements->includes(s) then
+			s.oclIsTypeOf(UML!Class) and
+			not s.isApplet()
+		else false endif)
+    to t : UML!Class mapsTo s (
+		namespace <- s.namespace,
+        isLeaf <- s.isLeaf,
+        isRoot <- s.isRoot,
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        isAbstract <- s.isAbstract,
+        isActive <- s.isActive,
+        templateParameter <- s.templateParameter,
+        comment <- s.comment,
+        feature <- s.feature,
+        ownedElement <- s.ownedElement,
+        taggedValue <- s.taggedValue,
+        powertypeRange <- s.powertypeRange,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        generalization <- s.generalization,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow)
+}
+
+rule AppletInitProcedureExpression {
+    from s : UML!ProcedureExpression (
+		if thisModule.inElements->includes(s) then
+    		s.method().isSingletonInitMethod()
+		else false endif)
+    to t : UML!ProcedureExpression mapsTo s (
+        language <- s.language,
+        body <- s.method().owner.isSingleton().
+			javaMIDletInitBody() + '\n' + s.body)
+}
+
+rule ProcedureExpression {
+    from s : UML!ProcedureExpression (
+		if thisModule.inElements->includes(s) then
+    		not s.method().isSingletonInitMethod()
+    	else false endif)
+    to t : UML!ProcedureExpression mapsTo s (
+        language <- s.language,
+        body <- s.body)
+}
+
+-- ======================================================================
+-- mapsTo rules end
 -- ======================================================================
