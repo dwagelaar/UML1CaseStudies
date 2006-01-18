@@ -70,6 +70,19 @@ public class Main implements Runnable {
     }
     
     /**
+     * Logs the given strings, separated by spaces.
+     * @param strings
+     */
+    private void logStrings(String[] strings) {
+        StringBuffer output = new StringBuffer();
+        for (int i = 0; i < strings.length; i++) {
+            if (i > 0) { output.append(' '); }
+            output.append(strings[i]);
+        }
+        System.out.println(output.toString());
+    }
+    
+    /**
      * Parses the command line arguments
      * @param args
      * @return number of arguments left (e.g. if "--next" is used) or -1 if error
@@ -81,22 +94,26 @@ public class Main implements Runnable {
         }
         try {
             for (int i = argPos; i < args.length; i++) {
-                System.out.println(args[i]);
                 if (args[i].equals("--trans")) {
                     i++;
+                    logStrings(new String[] { args[i-1], args[i] });
                     trans = new URL(args[i]);
                 } else if (args[i].equals("--in")) {
                     i++; i++; i++;
+                    logStrings(new String[] { args[i-3], args[i-2], args[i-1], args[i] });
                     addInputModel(args[i-2], args[i-1], args[i]);
                 } else if (args[i].equals("--out")) {
                     i++; i++; i++;
+                    logStrings(new String[] { args[i-3], args[i-2], args[i-1], args[i] });
                     addOutputModel(args[i-2], args[i-1], args[i]);
                 } else if (args[i].equals("--lib")) {
                     i++;
+                    logStrings(new String[] { args[i-1], args[i] });
                     addLib(args[i]);
                 } else if (args[i].equals("--next")) {
                     i++;
                     argPos = i;
+                    logStrings(new String[] { args[i-1] });
                     return args.length - argPos;
                 } else {
                     System.out.print(USAGE);
