@@ -5,6 +5,7 @@
 	<property name="transf.uri" value="file:${transf.path}"/>
 	<property name="lib.config" value="file:config.asm"/>
 	<property name="lib.java" value="${transf.uri}lib/Java.asm"/>
+	<property name="lib.merge" value="${transf.uri}lib/MergeHelpers.asm"/>
 	<property name="mmodel.path" value="${transf.path}metamodels/"/>
 	<property name="mmodel.uml" value="${mmodel.path}M2_DiagramInterchangeModel.ecore"/>
 	<property name="mmodel.mdruml" value="${mmodel.path}M2_DiagramInterchangeModel.xmi"/>
@@ -40,6 +41,7 @@
 				<arg value="OUT=${model.out}"/>
 				<arg value="UML=${mmodel.uml}"/>
 				<arg value="EMF"/>
+			<arg value="--lib"/><arg value="MergeHelpers=${lib.merge}"/>
 		</java>
 	</target>
 	
@@ -101,6 +103,7 @@
 				<arg value="UML=${mmodel.uml}"/>
 				<arg value="EMF"/>
 			<arg value="--lib"/><arg value="Java=${lib.java}"/>
+			<arg value="--lib"/><arg value="MergeHelpers=${lib.merge}"/>
 		</java>
 	</target>
 	
