@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="DefaultInstantMessenger" default="all">
-	<property name="atlcommandline.path" value="../../../uml1cs-atlcommandline/"/>
-	<property name="transf.path" value="../../../uml1cs-transformations/"/>
-	<property name="transf.uri" value="file:${transf.path}"/>
-	<property name="lib.config" value="file:config.asm"/>
-	<property name="lib.java" value="${transf.uri}lib/Java.asm"/>
-	<property name="lib.merge" value="${transf.uri}lib/MergeHelpers.asm"/>
-	<property name="mmodel.path" value="${transf.path}metamodels/"/>
-	<property name="mmodel.uml" value="${mmodel.path}M2_DiagramInterchangeModel.ecore"/>
-	<property name="mmodel.mdruml" value="${mmodel.path}M2_DiagramInterchangeModel.xmi"/>
-	<property name="model.path" value="../../models/"/>
-	<property name="rmodel.path" value="${transf.path}models/"/>
-	<property name="rmodel.ocltypes" value="${rmodel.path}OclTypes.emf.xmi"/>
-	<property name="rmodel.javatypes" value="${rmodel.path}JavaTypes.emf.xmi"/>
-	<property name="rmodel.observer" value="${rmodel.path}Observer.emf.xmi"/>
-	<property name="rmodel.applet" value="${rmodel.path}Applet.emf.xmi"/>
-	<property name="rmodel.midlet" value="${rmodel.path}MIDlet.emf.xmi"/>
+	<import file="../common.xml"/>
 	<property name="target.path" value="../../../uml1cs-instantmessenger-default/src/"/>
-		
-	<path id="atl.class.path">
-		<fileset dir="${atlcommandline.path}lib">
-			<include name="**/*.jar"/>
-		</fileset>
-	</path>
 	
 	<target name="mergeFeature">
 		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
