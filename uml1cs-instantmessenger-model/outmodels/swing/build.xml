@@ -3,27 +3,6 @@
 	<import file="../common.xml"/>
 	<property name="target.path" value="../../../uml1cs-instantmessenger-swing/src/"/>
 
-	<target name="mergeFeature">
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}MergeModel.asm"/>
-			<arg value="--in"/>
-				<arg value="IN=${model.in}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--in"/>
-				<arg value="MERGE=${model.path}${model.merge}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="OUT=${model.out}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--lib"/><arg value="MergeHelpers=${lib.merge}"/>
-		</java>
-	</target>
-	
 	<target name="mergeFeatures">
 		<antcall target="mergeFeature">
 			<param name="model.in" value="${model.path}InstantMessengerModel.emf.xmi"/>
@@ -172,5 +151,107 @@
 		</java>
 	</target>
 	
-	<target name="all" depends="toJava"/>
+	<target name="clean">
+	    <delete>
+    		<fileset dir="${target.path}"/>
+	    </delete>
+	</target>
+	
+	<target name="transform" depends="clean">
+		<atl>
+			<!-- merge AWT -->
+			<arg line="--trans ${transf.uri}MergeModel.asm"/>
+			<arg line="--in IN=${model.path}InstantMessengerModel.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${model.path}InstantMessengerAWT.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-01-AWT.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--next"/>
+			<!-- merge Swing -->
+			<arg line="--trans ${transf.uri}MergeModel.asm"/>
+			<arg line="--in IN=im-swing-01-AWT.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${model.path}InstantMessengerSwing.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-02-Swing.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--next"/>
+			<!-- merge Jabber -->
+			<arg line="--trans ${transf.uri}MergeModel.asm"/>
+			<arg line="--in IN=im-swing-02-Swing.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${model.path}InstantMessengerJabber.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-03-Jabber.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--next"/>
+			<!-- merge DefaultJabber -->
+			<arg line="--trans ${transf.uri}MergeModel.asm"/>
+			<arg line="--in IN=im-swing-03-Jabber.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${model.path}InstantMessengerDefaultJabber.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-04-DefaultJabber.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--next"/>
+			<!-- merge Local -->
+			<arg line="--trans ${transf.uri}MergeModel.asm"/>
+			<arg line="--in IN=im-swing-04-DefaultJabber.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${model.path}InstantMessengerLocal.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-05-Local.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--next"/>
+			<!-- refine Java2AssociationAttributes -->
+			<arg line="--trans ${transf.uri}Java2AssociationAttributes.asm"/>
+			<arg line="--in IN=im-swing-05-Local.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.ocltypes} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-11-Attributes.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine Java2Accessors -->
+			<arg line="--trans ${transf.uri}Java2Accessors.asm"/>
+			<arg line="--in IN=im-swing-11-Attributes.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.ocltypes} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-12-Accessors.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine JavaObserver -->
+			<arg line="--trans ${transf.uri}JavaObserver.asm"/>
+			<arg line="--in IN=im-swing-12-Accessors.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.javatypes} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-13-Observer.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine Singleton -->
+			<arg line="--trans ${transf.uri}Singleton.asm"/>
+			<arg line="--in IN=im-swing-13-Observer.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-14-Singleton.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine Applet -->
+			<arg line="--trans ${transf.uri}Applet.asm"/>
+			<arg line="--in IN=im-swing-14-Singleton.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.applet} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-15-Applet.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine Java2DataTypes -->
+			<arg line="--trans ${transf.uri}Java2DataTypes.asm"/>
+			<arg line="--in IN=im-swing-15-Applet.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.javatypes} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-16-DataTypes.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine AsyncMethods -->
+			<arg line="--trans ${transf.uri}AsyncMethods.asm"/>
+			<arg line="--in IN=im-swing-16-DataTypes.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-swing-17-Async.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- Generate Java code -->
+			<arg line="--trans ${transf.uri}UMLtoJava.asm"/>
+			<arg line="--in IN=im-swing-17-Async.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib config=${lib.config}"/>
+		</atl>
+	</target>
+
+	<target name="all" depends="transform"/>
 </project>

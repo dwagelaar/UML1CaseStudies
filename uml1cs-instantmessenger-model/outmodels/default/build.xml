@@ -3,169 +3,100 @@
 	<import file="../common.xml"/>
 	<property name="target.path" value="../../../uml1cs-instantmessenger-default/src/"/>
 	
-	<target name="mergeFeature">
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}MergeModel.asm"/>
-			<arg value="--in"/>
-				<arg value="IN=${model.in}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--in"/>
-				<arg value="MERGE=${model.path}${model.merge}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="OUT=${model.out}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--lib"/><arg value="MergeHelpers=${lib.merge}"/>
-		</java>
+	<target name="clean">
+	    <delete>
+    		<fileset dir="${target.path}"/>
+	    </delete>
 	</target>
 	
-	<target name="mergeFeatures">
-		<antcall target="mergeFeature">
-			<param name="model.in" value="${model.path}InstantMessengerModel.emf.xmi"/>
-			<param name="model.merge" value="InstantMessengerAWT.emf.xmi"/>
-			<param name="model.out" value="im-default-01-AWT.xmi"/>
-		</antcall>
-		<antcall target="mergeFeature">
-			<param name="model.in" value="im-default-01-AWT.xmi"/>
-			<param name="model.merge" value="InstantMessengerJabber.emf.xmi"/>
-			<param name="model.out" value="im-default-02-Jabber.xmi"/>
-		</antcall>
-		<antcall target="mergeFeature">
-			<param name="model.in" value="im-default-02-Jabber.xmi"/>
-			<param name="model.merge" value="InstantMessengerDefaultJabber.emf.xmi"/>
-			<param name="model.out" value="im-default-03-DefaultJabber.xmi"/>
-		</antcall>
-		<antcall target="mergeFeature">
-			<param name="model.in" value="im-default-03-DefaultJabber.xmi"/>
-			<param name="model.merge" value="InstantMessengerLocal.emf.xmi"/>
-			<param name="model.out" value="im-default-04-Local.xmi"/>
-		</antcall>
+	<target name="transform" depends="clean">
+		<atl>
+			<!-- merge AWT -->
+			<arg line="--trans ${transf.uri}MergeModel.asm"/>
+			<arg line="--in IN=${model.path}InstantMessengerModel.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${model.path}InstantMessengerAWT.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-01-AWT.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--next"/>
+			<!-- merge Jabber -->
+			<arg line="--trans ${transf.uri}MergeModel.asm"/>
+			<arg line="--in IN=im-default-01-AWT.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${model.path}InstantMessengerJabber.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-02-Jabber.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--next"/>
+			<!-- merge DefaultJabber -->
+			<arg line="--trans ${transf.uri}MergeModel.asm"/>
+			<arg line="--in IN=im-default-02-Jabber.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${model.path}InstantMessengerDefaultJabber.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-03-DefaultJabber.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--next"/>
+			<!-- merge Local -->
+			<arg line="--trans ${transf.uri}MergeModel.asm"/>
+			<arg line="--in IN=im-default-03-DefaultJabber.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${model.path}InstantMessengerLocal.emf.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-04-Local.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--next"/>
+			<!-- refine AssociationAttributes -->
+			<arg line="--trans ${transf.uri}AssociationAttributes.asm"/>
+			<arg line="--in IN=im-default-04-Local.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.ocltypes} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-11-Attributes.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine Accessors -->
+			<arg line="--trans ${transf.uri}Accessors.asm"/>
+			<arg line="--in IN=im-default-11-Attributes.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.ocltypes} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-12-Accessors.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine JavaObserver -->
+			<arg line="--trans ${transf.uri}JavaObserver.asm"/>
+			<arg line="--in IN=im-default-12-Accessors.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.javatypes} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-13-Observer.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine Singleton -->
+			<arg line="--trans ${transf.uri}Singleton.asm"/>
+			<arg line="--in IN=im-default-13-Observer.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-14-Singleton.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine Applet -->
+			<arg line="--trans ${transf.uri}Applet.asm"/>
+			<arg line="--in IN=im-default-14-Singleton.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.applet} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-15-Applet.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine DataTypes -->
+			<arg line="--trans ${transf.uri}DataTypes.asm"/>
+			<arg line="--in IN=im-default-15-Applet.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--in MERGE=${rmodel.javatypes} UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-16-DataTypes.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib MergeHelpers=${lib.merge}"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- refine AsyncMethods -->
+			<arg line="--trans ${transf.uri}AsyncMethods.asm"/>
+			<arg line="--in IN=im-default-16-DataTypes.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--out OUT=im-default-17-Async.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib Java=${lib.java}"/>
+			<arg line="--next"/>
+			<!-- Generate Java code -->
+			<arg line="--trans ${transf.uri}UMLtoJava.asm"/>
+			<arg line="--in IN=im-default-17-Async.xmi UML=${mmodel.uml} EMF"/>
+			<arg line="--lib config=${lib.config}"/>
+		</atl>
 	</target>
 	
-	<target name="refine">
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}${model.transf}"/>
-			<arg value="--in"/>
-				<arg value="IN=${model.in}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="OUT=${model.out}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--lib"/><arg value="Java=${lib.java}"/>
-		</java>
-	</target>
-	
-	<target name="refineWithMerge">
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}${model.transf}"/>
-			<arg value="--in"/>
-				<arg value="IN=${model.in}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--in"/>
-				<arg value="MERGE=${model.merge}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="OUT=${model.out}"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--lib"/><arg value="Java=${lib.java}"/>
-			<arg value="--lib"/><arg value="MergeHelpers=${lib.merge}"/>
-		</java>
-	</target>
-	
-	<target name="refineAll" depends="mergeFeatures">
-		<antcall target="refineWithMerge">
-			<param name="model.transf" value="AssociationAttributes.asm"/>
-			<param name="model.in" value="im-default-04-Local.xmi"/>
-			<param name="model.merge" value="${rmodel.ocltypes}"/>
-			<param name="model.out" value="im-default-11-Attributes.xmi"/>
-		</antcall>
-		<antcall target="refineWithMerge">
-			<param name="model.transf" value="Accessors.asm"/>
-			<param name="model.in" value="im-default-11-Attributes.xmi"/>
-			<param name="model.merge" value="${rmodel.ocltypes}"/>
-			<param name="model.out" value="im-default-12-Accessors.xmi"/>
-		</antcall>
-		<antcall target="refineWithMerge">
-			<param name="model.transf" value="JavaObserver.asm"/>
-			<param name="model.in" value="im-default-12-Accessors.xmi"/>
-			<param name="model.merge" value="${rmodel.javatypes}"/>
-			<param name="model.out" value="im-default-13-Observer.xmi"/>
-		</antcall>
-		<antcall target="refine">
-			<param name="model.transf" value="Singleton.asm"/>
-			<param name="model.in" value="im-default-13-Observer.xmi"/>
-			<param name="model.out" value="im-default-14-Singleton.xmi"/>
-		</antcall>
-		<antcall target="refineWithMerge">
-			<param name="model.transf" value="Applet.asm"/>
-			<param name="model.in" value="im-default-14-Singleton.xmi"/>
-			<param name="model.merge" value="${rmodel.applet}"/>
-			<param name="model.out" value="im-default-15-Applet.xmi"/>
-		</antcall>
-		<antcall target="refineWithMerge">
-			<param name="model.transf" value="DataTypes.asm"/>
-			<param name="model.in" value="im-default-15-Applet.xmi"/>
-			<param name="model.merge" value="${rmodel.javatypes}"/>
-			<param name="model.out" value="im-default-16-DataTypes.xmi"/>
-		</antcall>
-		<antcall target="refine">
-			<param name="model.transf" value="AsyncMethods.asm"/>
-			<param name="model.in" value="im-default-16-DataTypes.xmi"/>
-			<param name="model.out" value="im-default-17-Async.xmi"/>
-		</antcall>
-	</target>
-	
-	<target name="toMDR" depends="refineAll">
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}ModelCopy.asm"/>
-			<arg value="--in"/>
-				<arg value="IN=im-default-17-Async.xmi"/>
-				<arg value="INMODEL=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--out"/>
-				<arg value="OUT=im-default-mdr.xmi"/>
-				<arg value="OUTMODEL=${mmodel.mdruml}"/>
-				<arg value="MDR"/>
-		</java>
-	</target>
-
-	<target name="output" depends="toMDR">
-		<exec dir="." executable="${transf.path}forOutput.sh" output="im-default-output.xmi" logError="true">
-			<arg line="im-default-mdr.xmi"/>
-		</exec>
-	</target>
-	
-	<target name="toJava" depends="refineAll">
-        <delete>
-        	<fileset dir="${target.path}"/>
-        </delete>
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}UMLtoJava.asm"/>
-			<arg value="--in"/>
-				<arg value="IN=im-default-17-Async.xmi"/>
-				<arg value="UML=${mmodel.uml}"/>
-				<arg value="EMF"/>
-			<arg value="--lib"/><arg value="config=${lib.config}"/>
-		</java>
-	</target>
-	
-	<target name="all" depends="toJava"/>
+	<target name="all" depends="transform"/>
 </project>

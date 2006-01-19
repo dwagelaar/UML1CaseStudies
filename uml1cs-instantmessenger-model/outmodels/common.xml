@@ -22,4 +22,14 @@
 			<include name="**/*.jar"/>
 		</fileset>
 	</path>
+
+	<macrodef name="atl">
+		<element name="args" implicit="true"/>
+		<sequential>
+			<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
+				<classpath refid="atl.class.path"/>
+				<args/>
+			</java>
+		</sequential>
+	</macrodef>
 </project>
