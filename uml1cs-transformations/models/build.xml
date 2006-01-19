@@ -1,34 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="DefaultInstantMessenger" default="all">
+	<property name="atlcommandline.path" value="../../uml1cs-atlcommandline/"/>
+	<property name="transf.path" value="../"/>
+	<property name="transf.uri" value="file:${transf.path}"/>
+	<property name="mmodel.path" value="${transf.path}metamodels/"/>
+	<property name="mmodel.uml" value="${mmodel.path}M2_DiagramInterchangeModel.ecore"/>
+	<property name="mmodel.mdruml" value="${mmodel.path}M2_DiagramInterchangeModel.xmi"/>
+
 	<path id="atl.class.path">
-		<fileset dir="../../uml1cs-atlcommandline/lib">
+		<fileset dir="${atlcommandline.path}lib">
 			<include name="**/*.jar"/>
 		</fileset>
 	</path>
 	
+	<macrodef name="atl">
+		<element name="args" implicit="true"/>
+		<sequential>
+			<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
+				<classpath refid="atl.class.path"/>
+				<args/>
+			</java>
+		</sequential>
+	</macrodef>
+
+	<property name="trans" value="--trans ${transf.uri}ModelCopy.asm"/>
+	<property name="in.pre" value="--in IN="/>
+	<property name="in.post" value=".xmi INMODEL=${mmodel.mdruml} MDR"/>
+	<property name="out.pre" value="--out OUT="/>
+	<property name="out.post" value=".ecore OUTMODEL=${mmodel.uml} EMF"/>
+
 	<target name="toEcore">
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="file:../ModelCopy.asm"/>
-			<arg value="--in"/>
-				<arg value="IN=${model}.xmi"/>
-				<arg value="INMODEL=../metamodels/M2_DiagramInterchangeModel.xmi"/>
-				<arg value="MDR"/>
-			<arg value="--out"/>
-				<arg value="OUT=${model}.emf.xmi"/>
-				<arg value="OUTMODEL=../metamodels/M2_DiagramInterchangeModel.ecore"/>
-				<arg value="EMF"/>
-		</java>
+		<atl>
+			<!-- Applet -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}Applet${in.post}"/>
+			<arg line="${out.pre}Applet${out.post}"/>
+			<arg line="--next"/>
+			<!-- JavaTypes -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}JavaTypes${in.post}"/>
+			<arg line="${out.pre}JavaTypes${out.post}"/>
+			<arg line="--next"/>
+			<!-- MIDlet -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}MIDlet${in.post}"/>
+			<arg line="${out.pre}MIDlet${out.post}"/>
+			<arg line="--next"/>
+			<!-- Observer -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}Observer${in.post}"/>
+			<arg line="${out.pre}Observer${out.post}"/>
+			<arg line="--next"/>
+			<!-- OclTypes -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}OclTypes${in.post}"/>
+			<arg line="${out.pre}OclTypes${out.post}"/>
+			<arg line="--next"/>
+		</atl>
 	</target>
 	
-	<target name="allToEcore">
-		<antcall target="toEcore"><param name="model" value="Applet"/></antcall>
-		<antcall target="toEcore"><param name="model" value="JavaTypes"/></antcall>
-		<antcall target="toEcore"><param name="model" value="MIDlet"/></antcall>
-		<antcall target="toEcore"><param name="model" value="Observer"/></antcall>
-		<antcall target="toEcore"><param name="model" value="OclTypes"/></antcall>
-	</target>
-	
-	<target name="all" depends="allToEcore"/>
+	<target name="all" depends="toEcore"/>
 </project>
