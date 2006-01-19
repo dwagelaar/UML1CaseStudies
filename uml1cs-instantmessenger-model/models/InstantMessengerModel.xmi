@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Jan 13 13:20:46 CET 2006'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Jan 19 18:41:05 CET 2006'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -2786,6 +2786,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
               isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:ModelElement.stereotype>
                 <UML:Stereotype xmi.idref = 'I3ac063b2m108c3b29d7cmm6f2d'/>
+                <UML:Stereotype xmi.idref = 'Im160e6027m10364dd6223mm69ae'/>
               </UML:ModelElement.stereotype>
               <UML:Classifier.feature>
                 <UML:Attribute xmi.id = 'I7b489351m108c2dd734fmm718a' name = 'network' visibility = 'public'
@@ -2954,7 +2955,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                   isQuery = 'false'>
                   <UML:Method.body>
                     <UML:ProcedureExpression xmi.id = 'I7b489351m108c2dd734fmm5924' language = 'java'
-                      body = '        InstantMessagingClient.getInstance().setNetworkPort(this);&#10;'/>
+                      body = '        if (sun.applet.AppletViewer.countApplets() == 0) {&#10;            sun.applet.AppletViewer.parse(new URL(&quot;file:index.html&quot;));&#10;        }&#10;'/>
                   </UML:Method.body>
                   <UML:Method.specification>
                     <UML:Operation xmi.idref = 'I7b489351m108c2dd734fmm5925'/>
@@ -3139,7 +3140,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
             <UML:Interface xmi.id = 'I7b489351m108c2dd734fmm713a' name = 'IClient' visibility = 'public'
               isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:Classifier.feature>
-                <UML:Operation xmi.id = 'I7b489351m108c2dd734fmm6f59' name = 'recvNetworkID'
+                <UML:Operation xmi.id = 'I7b489351m108c2dd734fmm6f59' name = 'networkAdded'
                   visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
                   isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
                   isAbstract = 'false'>
@@ -3257,41 +3258,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                 <UML:Interface xmi.idref = 'I7b489351m108c2dd734fmm713a'/>
               </UML:Dependency.supplier>
             </UML:Abstraction>
-            <UML:Association xmi.id = 'I7b489351m108c2dd734fmm5cf4' isSpecification = 'false'
-              isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-              <UML:Association.connection>
-                <UML:AssociationEnd xmi.id = 'I7b489351m108c2dd734fmm5cfa' visibility = 'public'
-                  isSpecification = 'false' isNavigable = 'false' ordering = 'unordered' aggregation = 'none'
-                  targetScope = 'instance' changeability = 'changeable'>
-                  <UML:AssociationEnd.multiplicity>
-                    <UML:Multiplicity xmi.id = 'I7b489351m108c2dd734fmm5cf8'>
-                      <UML:Multiplicity.range>
-                        <UML:MultiplicityRange xmi.id = 'I7b489351m108c2dd734fmm5cf9' lower = '1'
-                          upper = '1'/>
-                      </UML:Multiplicity.range>
-                    </UML:Multiplicity>
-                  </UML:AssociationEnd.multiplicity>
-                  <UML:AssociationEnd.participant>
-                    <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm3948'/>
-                  </UML:AssociationEnd.participant>
-                </UML:AssociationEnd>
-                <UML:AssociationEnd xmi.id = 'I7b489351m108c2dd734fmm5cf7' name = 'networkPort'
-                  visibility = 'public' isSpecification = 'false' isNavigable = 'true' ordering = 'unordered'
-                  aggregation = 'none' targetScope = 'instance' changeability = 'changeable'>
-                  <UML:AssociationEnd.multiplicity>
-                    <UML:Multiplicity xmi.id = 'I7b489351m108c2dd734fmm5cf5'>
-                      <UML:Multiplicity.range>
-                        <UML:MultiplicityRange xmi.id = 'I7b489351m108c2dd734fmm5cf6' lower = '1'
-                          upper = '1'/>
-                      </UML:Multiplicity.range>
-                    </UML:Multiplicity>
-                  </UML:AssociationEnd.multiplicity>
-                  <UML:AssociationEnd.participant>
-                    <UML:Class xmi.idref = 'I7b489351m108c2dd734fmm718b'/>
-                  </UML:AssociationEnd.participant>
-                </UML:AssociationEnd>
-              </UML:Association.connection>
-            </UML:Association>
           </UML:Namespace.ownedElement>
         </UML:Package>
         <UML:Stereotype xmi.id = 'Im2d596f98m10363d93b95mm369a' name = 'process'
@@ -3425,7 +3391,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
         <UML:Stereotype xmi.id = 'Im160e6027m10364dd6223mm69ae' name = 'Singleton'
           visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'>
-          <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
+          <UML:Stereotype.baseClass>Classifier</UML:Stereotype.baseClass>
         </UML:Stereotype>
         <UML:Stereotype xmi.id = 'I47da90f2m1037dab50c8mm6caa' name = 'accessor'
           isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
@@ -3656,17 +3622,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
             </UML:Multiplicity>
           </UML:TagDefinition.multiplicity>
         </UML:TagDefinition>
-        <UML:Class xmi.id = 'I7b489351m108c2dd734fmm70d6' name = 'java::lang::int'
-          visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
-          isAbstract = 'false' isActive = 'false'/>
-        <UML:Class xmi.id = 'I7b489351m108c2dd734fmm70d5' name = 'java::lang::void'
-          visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
-          isAbstract = 'false' isActive = 'false'/>
         <UML:Stereotype xmi.id = 'I7b489351m108c2dd734fmm590d' name = 'create' visibility = 'public'
           isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Stereotype.baseClass>BehavioralFeature</UML:Stereotype.baseClass>
         </UML:Stereotype>
-        <UML:Stereotype xmi.id = 'I3ac063b2m108c3b29d7cmm6f2d' name = 'controller'
+        <UML:Stereotype xmi.id = 'I3ac063b2m108c3b29d7cmm6f2d' name = 'Controller'
           visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
           isAbstract = 'false'>
           <UML:Stereotype.baseClass>Component</UML:Stereotype.baseClass>

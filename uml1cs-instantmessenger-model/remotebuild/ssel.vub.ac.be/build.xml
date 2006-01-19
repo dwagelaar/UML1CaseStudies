@@ -3,6 +3,7 @@
 	<target name="send">
 		<exec dir="../../../" executable="rsync" logError="true">
 			<arg line="-rlvuzC"/>
+			<arg line="--delete"/>
 			<arg line="."/>
 			<arg line="dwagelaa@ssel.vub.ac.be:UML1CaseStudies/"/>
 		</exec>

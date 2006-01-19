@@ -11,11 +11,11 @@
 	<property name="mmodel.mdruml" value="${mmodel.path}M2_DiagramInterchangeModel.xmi"/>
 	<property name="model.path" value="../../models/"/>
 	<property name="rmodel.path" value="${transf.path}models/"/>
-	<property name="rmodel.ocltypes" value="${rmodel.path}OclTypes.emf.xmi"/>
-	<property name="rmodel.javatypes" value="${rmodel.path}JavaTypes.emf.xmi"/>
-	<property name="rmodel.observer" value="${rmodel.path}Observer.emf.xmi"/>
-	<property name="rmodel.applet" value="${rmodel.path}Applet.emf.xmi"/>
-	<property name="rmodel.midlet" value="${rmodel.path}MIDlet.emf.xmi"/>
+	<property name="rmodel.ocltypes" value="${rmodel.path}OclTypes.ecore"/>
+	<property name="rmodel.javatypes" value="${rmodel.path}JavaTypes.ecore"/>
+	<property name="rmodel.observer" value="${rmodel.path}Observer.ecore"/>
+	<property name="rmodel.applet" value="${rmodel.path}Applet.ecore"/>
+	<property name="rmodel.midlet" value="${rmodel.path}MIDlet.ecore"/>
 
 	<path id="atl.class.path">
 		<fileset dir="${atlcommandline.path}lib">
