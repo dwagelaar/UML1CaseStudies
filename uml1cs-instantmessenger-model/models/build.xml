@@ -13,33 +13,70 @@
 		</fileset>
 	</path>
 	
+	<macrodef name="atl">
+		<element name="args" implicit="true"/>
+		<sequential>
+			<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
+				<classpath refid="atl.class.path"/>
+				<args/>
+			</java>
+		</sequential>
+	</macrodef>
+
+	<property name="trans" value="--trans ${transf.uri}ModelCopy.asm"/>
+	<property name="in.pre" value="--in IN="/>
+	<property name="in.post" value=".xmi INMODEL=${mmodel.mdruml} MDR"/>
+	<property name="out.pre" value="--out OUT="/>
+	<property name="out.post" value=".ecore OUTMODEL=${mmodel.uml} EMF"/>
+	
 	<target name="toEcore">
-		<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
-			<classpath refid="atl.class.path"/>
-			<arg value="--trans"/>
-				<arg value="${transf.uri}ModelCopy.asm"/>
-			<arg value="--in"/>
-				<arg value="IN=${model}.xmi"/>
-				<arg value="INMODEL=${mmodel.mdruml}"/>
-				<arg value="MDR"/>
-			<arg value="--out"/>
-				<arg value="OUT=${model}.emf.xmi"/>
-				<arg value="OUTMODEL=${mmodel.uml}"/>
-				<arg value="EMF"/>
-		</java>
+		<atl>
+			<!-- InstantMessengerAWT -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerAWT${in.post}"/>
+			<arg line="${out.pre}InstantMessengerAWT${out.post}"/>
+			<arg line="--next"/>
+			<!-- InstantMessengerDefaultJabber -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerDefaultJabber${in.post}"/>
+			<arg line="${out.pre}InstantMessengerDefaultJabber${out.post}"/>
+			<arg line="--next"/>
+			<!-- InstantMessengerJabber -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerJabber${in.post}"/>
+			<arg line="${out.pre}InstantMessengerJabber${out.post}"/>
+			<arg line="--next"/>
+			<!-- InstantMessengerLCDUI -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerLCDUI${in.post}"/>
+			<arg line="${out.pre}InstantMessengerLCDUI${out.post}"/>
+			<arg line="--next"/>
+			<!-- InstantMessengerLocal -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerLocal${in.post}"/>
+			<arg line="${out.pre}InstantMessengerLocal${out.post}"/>
+			<arg line="--next"/>
+			<!-- InstantMessengerMEJabber -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerMEJabber${in.post}"/>
+			<arg line="${out.pre}InstantMessengerMEJabber${out.post}"/>
+			<arg line="--next"/>
+			<!-- InstantMessengerModel -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerModel${in.post}"/>
+			<arg line="${out.pre}InstantMessengerModel${out.post}"/>
+			<arg line="--next"/>
+			<!-- InstantMessengerSMS -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerSMS${in.post}"/>
+			<arg line="${out.pre}InstantMessengerSMS${out.post}"/>
+			<arg line="--next"/>
+			<!-- InstantMessengerSwing -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerSwing${in.post}"/>
+			<arg line="${out.pre}InstantMessengerSwing${out.post}"/>
+		</atl>
 	</target>
 	
-	<target name="allToEcore">
-		<antcall target="toEcore"><param name="model" value="InstantMessengerAWT"/></antcall>
-		<antcall target="toEcore"><param name="model" value="InstantMessengerDefaultJabber"/></antcall>
-		<antcall target="toEcore"><param name="model" value="InstantMessengerJabber"/></antcall>
-		<antcall target="toEcore"><param name="model" value="InstantMessengerLCDUI"/></antcall>
-		<antcall target="toEcore"><param name="model" value="InstantMessengerLocal"/></antcall>
-		<antcall target="toEcore"><param name="model" value="InstantMessengerMEJabber"/></antcall>
-		<antcall target="toEcore"><param name="model" value="InstantMessengerModel"/></antcall>
-		<antcall target="toEcore"><param name="model" value="InstantMessengerSMS"/></antcall>
-		<antcall target="toEcore"><param name="model" value="InstantMessengerSwing"/></antcall>
-	</target>
-	
-	<target name="all" depends="allToEcore"/>
+	<target name="all" depends="toEcore"/>
 </project>
