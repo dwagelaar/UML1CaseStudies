@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Jan 19 18:41:05 CET 2006'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Jan 20 12:01:07 CET 2006'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -2830,22 +2830,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                 <UML:Abstraction xmi.idref = 'I7b489351m108c2dd734fmm7139'/>
               </UML:ModelElement.clientDependency>
               <UML:Classifier.feature>
-                <UML:Operation xmi.id = 'I7b489351m108c2dd734fmm5925' name = 'NetworkPort'
-                  visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
-                  isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                  isAbstract = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'I7b489351m108c2dd734fmm590d'/>
-                  </UML:ModelElement.stereotype>
-                  <UML:BehavioralFeature.parameter>
-                    <UML:Parameter xmi.id = 'I7b489351m108c2dd734fmm5902' name = 'return' isSpecification = 'false'
-                      kind = 'return'>
-                      <UML:Parameter.type>
-                        <UML:Class xmi.idref = 'I7b489351m108c2dd734fmm718b'/>
-                      </UML:Parameter.type>
-                    </UML:Parameter>
-                  </UML:BehavioralFeature.parameter>
-                </UML:Operation>
                 <UML:Operation xmi.id = 'I7b489351m108c2dd734fmm5c44' name = 'recvNetworkID'
                   visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
                   isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
@@ -2863,7 +2847,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                   isQuery = 'false'>
                   <UML:Method.body>
                     <UML:ProcedureExpression xmi.id = 'I7b489351m108c2dd734fmm5c47' language = 'java'
-                      body = ''/>
+                      body = '        setNetworkID(nwid);&#10;'/>
                   </UML:Method.body>
                   <UML:Method.specification>
                     <UML:Operation xmi.idref = 'I7b489351m108c2dd734fmm5c44'/>
@@ -2904,7 +2888,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                   isQuery = 'false'>
                   <UML:Method.body>
                     <UML:ProcedureExpression xmi.id = 'I7b489351m108c2dd734fmm5c43' language = 'java'
-                      body = ''/>
+                      body = '        im.model.Contact c = new im.model.Contact();&#10;        c.setUserId(uid);&#10;        c.setName(name);&#10;        c.setStatus(status);&#10;        im.InstantMessagingClient.getInstance().onRecvContactChange(c);&#10;'/>
                   </UML:Method.body>
                   <UML:Method.specification>
                     <UML:Operation xmi.idref = 'I7b489351m108c2dd734fmm5c3d'/>
@@ -2945,32 +2929,29 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                   isQuery = 'false'>
                   <UML:Method.body>
                     <UML:ProcedureExpression xmi.id = 'I7b489351m108c2dd734fmm5c3c' language = 'java'
-                      body = ''/>
+                      body = '        im.model.Message m = new im.model.Message();&#10;        m.setSender(sender);&#10;        m.setRecipient(recipient);&#10;        m.setContent(content);&#10;        im.InstantMessagingClient.getInstance().onRecvMsgChange(m);&#10;'/>
                   </UML:Method.body>
                   <UML:Method.specification>
                     <UML:Operation xmi.idref = 'I7b489351m108c2dd734fmm5c36'/>
                   </UML:Method.specification>
                 </UML:Method>
-                <UML:Method xmi.id = 'I7b489351m108c2dd734fmm5923' isSpecification = 'false'
-                  isQuery = 'false'>
-                  <UML:Method.body>
-                    <UML:ProcedureExpression xmi.id = 'I7b489351m108c2dd734fmm5924' language = 'java'
-                      body = '        if (sun.applet.AppletViewer.countApplets() == 0) {&#10;            sun.applet.AppletViewer.parse(new URL(&quot;file:index.html&quot;));&#10;        }&#10;'/>
-                  </UML:Method.body>
-                  <UML:Method.specification>
-                    <UML:Operation xmi.idref = 'I7b489351m108c2dd734fmm5925'/>
-                  </UML:Method.specification>
-                </UML:Method>
+                <UML:Attribute xmi.id = 'I154c2411m108e759cdb5mm6d1d' name = 'networkID'
+                  visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
+                  changeability = 'changeable'>
+                  <UML:Attribute.initialValue>
+                    <UML:Expression xmi.id = 'I154c2411m108e759cdb5mm6d0c' language = 'java'
+                      body = 'null'/>
+                  </UML:Attribute.initialValue>
+                  <UML:StructuralFeature.type>
+                    <UML:DataType xmi.idref = 'Im2d596f98m10363d93b95mm367c'/>
+                  </UML:StructuralFeature.type>
+                </UML:Attribute>
               </UML:Classifier.feature>
             </UML:Class>
             <UML:Interface xmi.id = 'I7b489351m108c2dd734fmm714a' name = 'INetwork'
               visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
               isAbstract = 'false'>
               <UML:Classifier.feature>
-                <UML:Operation xmi.id = 'I7b489351m108c2dd734fmm7018' name = 'getNetworkID'
-                  visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
-                  isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                  isAbstract = 'false'/>
                 <UML:Operation xmi.id = 'I7b489351m108c2dd734fmm70d4' name = 'login' visibility = 'public'
                   isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
@@ -3025,16 +3006,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                   </UML:Method.body>
                   <UML:Method.specification>
                     <UML:Operation xmi.idref = 'I7b489351m108c2dd734fmm7055'/>
-                  </UML:Method.specification>
-                </UML:Method>
-                <UML:Method xmi.id = 'I7b489351m108c2dd734fmm7016' isSpecification = 'false'
-                  isQuery = 'false'>
-                  <UML:Method.body>
-                    <UML:ProcedureExpression xmi.id = 'I7b489351m108c2dd734fmm7017' language = 'java'
-                      body = ''/>
-                  </UML:Method.body>
-                  <UML:Method.specification>
-                    <UML:Operation xmi.idref = 'I7b489351m108c2dd734fmm7018'/>
                   </UML:Method.specification>
                 </UML:Method>
                 <UML:Operation xmi.id = 'I7b489351m108c2dd734fmm5f1d' name = 'reportError'
@@ -3140,7 +3111,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
             <UML:Interface xmi.id = 'I7b489351m108c2dd734fmm713a' name = 'IClient' visibility = 'public'
               isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:Classifier.feature>
-                <UML:Operation xmi.id = 'I7b489351m108c2dd734fmm6f59' name = 'networkAdded'
+                <UML:Operation xmi.id = 'I7b489351m108c2dd734fmm6f59' name = 'recvNetworkID'
                   visibility = 'public' isSpecification = 'false' ownerScope = 'instance'
                   isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
                   isAbstract = 'false'>
