@@ -3,4 +3,4 @@ library Config;
 
 -- adapt the following helper to reflect your file path
 helper context String def : path() : String =
-	'/home/dennis/UML1CaseStudies/uml1cs-transformations/' + self;
+	'/home/dwagelaa/UML1CaseStudies/uml1cs-transformations/' + self;
