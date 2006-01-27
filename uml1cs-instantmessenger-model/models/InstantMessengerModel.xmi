@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Jan 20 12:01:07 CET 2006'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Jan 27 10:08:39 CET 2006'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -325,7 +325,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
               <UML:Classifier.feature>
                 <UML:Operation xmi.id = 'Im19d38ba1m1038378dc94mm6ba4' name = 'init' visibility = 'public'
                   isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                  <UML:ModelElement.stereotype>
+                    <UML:Stereotype xmi.idref = 'I694706b7m1039ca3fd82mm6754'/>
+                  </UML:ModelElement.stereotype>
+                </UML:Operation>
                 <UML:Operation xmi.id = 'Im2bb370d5m103f9739fb5mm529d' name = 'start' visibility = 'public'
                   isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
@@ -372,7 +376,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                   isQuery = 'false'>
                   <UML:Method.body>
                     <UML:ProcedureExpression xmi.id = 'Im19d38ba1m1038378dc94mm6ba3' language = 'java'
-                      body = '        if (instance == null) {&#10;            instance = this;&#10;        }&#10;        loadSettings();&#10;'/>
+                      body = '        try {&#10;            // ViewFactory&#10;            setViewFactory(im.view.ViewFactory.getDefault());&#10;            // Network&#10;            im.networking.Network[] networks = im.networking.Network.getDefault();&#10;            for (int i = 0; i &lt; networks.length; i++) {&#10;                addNetwork(networks[i]);&#10;            }&#10;            // Create and register edit/view&#10;            new im.edit.ContactListEdit(contactList);&#10;        } catch (Exception e) {&#10;            e.printStackTrace();&#10;        }&#10;'/>
                   </UML:Method.body>
                   <UML:Method.specification>
                     <UML:Operation xmi.idref = 'Im19d38ba1m1038378dc94mm6ba4'/>
@@ -390,10 +394,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                     </UML:Parameter>
                   </UML:BehavioralFeature.parameter>
                 </UML:Operation>
-                <UML:Operation xmi.id = 'Im2cb8f81bm103a15f60fdmm66e0' name = 'loadSettings'
-                  visibility = 'private' isSpecification = 'false' ownerScope = 'instance'
-                  isQuery = 'false' concurrency = 'sequential' isRoot = 'false' isLeaf = 'false'
-                  isAbstract = 'false'/>
                 <UML:Method xmi.id = 'I6e742d0m1039cde3951mm633b' isSpecification = 'false'
                   isQuery = 'false'>
                   <UML:Method.body>
@@ -402,16 +402,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                   </UML:Method.body>
                   <UML:Method.specification>
                     <UML:Operation xmi.idref = 'I6e742d0m1039cde3951mm633d'/>
-                  </UML:Method.specification>
-                </UML:Method>
-                <UML:Method xmi.id = 'Im2cb8f81bm103a15f60fdmm66de' isSpecification = 'false'
-                  isQuery = 'false'>
-                  <UML:Method.body>
-                    <UML:ProcedureExpression xmi.id = 'Im2cb8f81bm103a15f60fdmm66df' language = 'java'
-                      body = '        try {&#10;            // ViewFactory&#10;            setViewFactory(im.view.ViewFactory.getDefault());&#10;            // Network&#10;            im.networking.Network[] networks = im.networking.Network.getDefault();&#10;            for (int i = 0; i &lt; networks.length; i++) {&#10;                addNetwork(networks[i]);&#10;            }&#10;            // Create and register edit/view&#10;            new im.edit.ContactListEdit(contactList);&#10;        } catch (Exception e) {&#10;            e.printStackTrace();&#10;        }&#10;'/>
-                  </UML:Method.body>
-                  <UML:Method.specification>
-                    <UML:Operation xmi.idref = 'Im2cb8f81bm103a15f60fdmm66e0'/>
                   </UML:Method.specification>
                 </UML:Method>
                 <UML:Method xmi.id = 'Im2bb370d5m103f9739fb5mm529b' isSpecification = 'false'
@@ -3229,6 +3219,135 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
                 <UML:Interface xmi.idref = 'I7b489351m108c2dd734fmm713a'/>
               </UML:Dependency.supplier>
             </UML:Abstraction>
+            <UML:Collaboration xmi.id = 'I336d0490m1090af41c3bmm6f5e' name = 'Initialisation'
+              visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+              isAbstract = 'false'>
+              <UML:Namespace.ownedElement>
+                <UML:CollaborationInstanceSet xmi.id = 'I336d0490m1090af41c3bmm6f20' name = 'Collaboration_Instance_Set_1'
+                  isSpecification = 'false'>
+                  <UML:CollaborationInstanceSet.collaboration>
+                    <UML:Collaboration xmi.idref = 'I336d0490m1090af41c3bmm6f5e'/>
+                  </UML:CollaborationInstanceSet.collaboration>
+                </UML:CollaborationInstanceSet>
+                <UML:CallAction xmi.id = 'I336d0490m1090af41c3bmm6ef5' name = 'init' isSpecification = 'false'
+                  isAsynchronous = 'false'>
+                  <UML:CallAction.operation>
+                    <UML:Operation xmi.idref = 'Im19d38ba1m1038378dc94mm6ba4'/>
+                  </UML:CallAction.operation>
+                </UML:CallAction>
+                <UML:CollaborationInstanceSet xmi.id = 'I336d0490m1090af41c3bmm6ed2' name = 'Collaboration_Instance_Set_3'
+                  isSpecification = 'false'>
+                  <UML:CollaborationInstanceSet.interactionInstanceSet>
+                    <UML:InteractionInstanceSet xmi.id = 'I336d0490m1090af41c3bmm6ed1' name = 'Collaboration_Instance_Set_4'
+                      isSpecification = 'false'/>
+                  </UML:CollaborationInstanceSet.interactionInstanceSet>
+                  <UML:CollaborationInstanceSet.collaboration>
+                    <UML:Collaboration xmi.idref = 'I336d0490m1090af41c3bmm6f5e'/>
+                  </UML:CollaborationInstanceSet.collaboration>
+                  <UML:CollaborationInstanceSet.participatingInstance>
+                    <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ecd'/>
+                    <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ebc'/>
+                  </UML:CollaborationInstanceSet.participatingInstance>
+                  <UML:CollaborationInstanceSet.participatingLink>
+                    <UML:Link xmi.idref = 'I336d0490m1090af41c3bmm6e7c'/>
+                  </UML:CollaborationInstanceSet.participatingLink>
+                </UML:CollaborationInstanceSet>
+                <UML:Object xmi.id = 'I336d0490m1090af41c3bmm6ecd' name = 'viewer' visibility = 'public'
+                  isSpecification = 'false'>
+                  <UML:Instance.classifier>
+                    <UML:Actor xmi.idref = 'I336d0490m1090af41c3bmm6f36'/>
+                  </UML:Instance.classifier>
+                  <UML:Instance.linkEnd>
+                    <UML:LinkEnd xmi.idref = 'I336d0490m1090af41c3bmm6e7b'/>
+                  </UML:Instance.linkEnd>
+                  <UML:Instance.ownedLink>
+                    <UML:Link xmi.id = 'I336d0490m1090af41c3bmm6e7c' name = '' isSpecification = 'false'>
+                      <UML:Link.connection>
+                        <UML:LinkEnd xmi.id = 'I336d0490m1090af41c3bmm6e7b' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ecd'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                        <UML:LinkEnd xmi.id = 'I336d0490m1090af41c3bmm6e7a' isSpecification = 'false'>
+                          <UML:LinkEnd.instance>
+                            <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ebc'/>
+                          </UML:LinkEnd.instance>
+                        </UML:LinkEnd>
+                      </UML:Link.connection>
+                    </UML:Link>
+                  </UML:Instance.ownedLink>
+                </UML:Object>
+                <UML:Object xmi.id = 'I336d0490m1090af41c3bmm6ebc' name = 'client' visibility = 'public'
+                  isSpecification = 'false'>
+                  <UML:Instance.classifier>
+                    <UML:Class xmi.idref = 'Im2d596f98m10363d93b95mm3948'/>
+                  </UML:Instance.classifier>
+                  <UML:Instance.linkEnd>
+                    <UML:LinkEnd xmi.idref = 'I336d0490m1090af41c3bmm6e7a'/>
+                  </UML:Instance.linkEnd>
+                </UML:Object>
+                <UML:Message xmi.id = 'I336d0490m1090af41c3bmm6e6f' name = 'Message_2' isSpecification = 'false'>
+                  <UML:Message.conformingStimulus>
+                    <UML:Stimulus xmi.idref = 'I336d0490m1090af41c3bmm6e6e'/>
+                  </UML:Message.conformingStimulus>
+                </UML:Message>
+                <UML:Stimulus xmi.id = 'I336d0490m1090af41c3bmm6e6e' name = 'init' isSpecification = 'false'>
+                  <UML:Stimulus.sender>
+                    <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ecd'/>
+                  </UML:Stimulus.sender>
+                  <UML:Stimulus.receiver>
+                    <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ebc'/>
+                  </UML:Stimulus.receiver>
+                  <UML:Stimulus.communicationLink>
+                    <UML:Link xmi.idref = 'I336d0490m1090af41c3bmm6e7c'/>
+                  </UML:Stimulus.communicationLink>
+                  <UML:Stimulus.dispatchAction>
+                    <UML:CallAction xmi.idref = 'I336d0490m1090af41c3bmm6e6d'/>
+                  </UML:Stimulus.dispatchAction>
+                </UML:Stimulus>
+                <UML:CallAction xmi.id = 'I336d0490m1090af41c3bmm6e6d' name = 'init' isSpecification = 'false'
+                  isAsynchronous = 'false'>
+                  <UML:CallAction.operation>
+                    <UML:Operation xmi.idref = 'Im19d38ba1m1038378dc94mm6ba4'/>
+                  </UML:CallAction.operation>
+                </UML:CallAction>
+                <UML:Stimulus xmi.id = 'I336d0490m1090af41c3bmm6e14' name = 'getInstance'
+                  isSpecification = 'false'>
+                  <UML:Stimulus.sender>
+                    <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ebc'/>
+                  </UML:Stimulus.sender>
+                  <UML:Stimulus.receiver>
+                    <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ebc'/>
+                  </UML:Stimulus.receiver>
+                  <UML:Stimulus.dispatchAction>
+                    <UML:CallAction xmi.idref = 'I336d0490m1090af41c3bmm6e13'/>
+                  </UML:Stimulus.dispatchAction>
+                </UML:Stimulus>
+                <UML:CallAction xmi.id = 'I336d0490m1090af41c3bmm6e13' name = 'instance'
+                  isSpecification = 'false' isAsynchronous = 'false'>
+                  <UML:Action.script>
+                    <UML:ActionExpression xmi.id = 'I336d0490m1090af41c3bmm6dfa' language = 'java'
+                      body = 'if (instance == nul) { instance = this; }'/>
+                  </UML:Action.script>
+                </UML:CallAction>
+                <UML:Stimulus xmi.id = 'I336d0490m1090af41c3bmm6db8' name = 'loadSettings'
+                  isSpecification = 'false'>
+                  <UML:Stimulus.sender>
+                    <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ebc'/>
+                  </UML:Stimulus.sender>
+                  <UML:Stimulus.receiver>
+                    <UML:Object xmi.idref = 'I336d0490m1090af41c3bmm6ebc'/>
+                  </UML:Stimulus.receiver>
+                  <UML:Stimulus.dispatchAction>
+                    <UML:CallAction xmi.idref = 'I336d0490m1090af41c3bmm6db7'/>
+                  </UML:Stimulus.dispatchAction>
+                </UML:Stimulus>
+                <UML:CallAction xmi.id = 'I336d0490m1090af41c3bmm6db7' name = 'loadSettings'
+                  isSpecification = 'false' isAsynchronous = 'false'/>
+                <UML:CallAction xmi.id = 'I336d0490m1090af41c3bmm6d50' name = 'loadSettings'
+                  isSpecification = 'false' isAsynchronous = 'false'/>
+              </UML:Namespace.ownedElement>
+            </UML:Collaboration>
           </UML:Namespace.ownedElement>
         </UML:Package>
         <UML:Stereotype xmi.id = 'Im2d596f98m10363d93b95mm369a' name = 'process'
@@ -3602,6 +3721,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
           isAbstract = 'false'>
           <UML:Stereotype.baseClass>Component</UML:Stereotype.baseClass>
         </UML:Stereotype>
+        <UML:Actor xmi.id = 'I336d0490m1090af41c3bmm6f36' name = 'AppletViewer'
+          visibility = 'public' isSpecification = 'false' isRoot = 'false' isLeaf = 'false'
+          isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
   </XMI.content>
