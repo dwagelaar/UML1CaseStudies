@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Jan 27 10:08:39 CET 2006'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Mon Jan 30 15:39:37 CET 2006'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -325,11 +325,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt;</UML:Tagg
               <UML:Classifier.feature>
                 <UML:Operation xmi.id = 'Im19d38ba1m1038378dc94mm6ba4' name = 'init' visibility = 'public'
                   isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
-                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                  <UML:ModelElement.stereotype>
-                    <UML:Stereotype xmi.idref = 'I694706b7m1039ca3fd82mm6754'/>
-                  </UML:ModelElement.stereotype>
-                </UML:Operation>
+                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
                 <UML:Operation xmi.id = 'Im2bb370d5m103f9739fb5mm529d' name = 'start' visibility = 'public'
                   isSpecification = 'false' ownerScope = 'instance' isQuery = 'false' concurrency = 'sequential'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
