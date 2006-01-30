@@ -458,6 +458,8 @@ rule MergeException {
 -- model-specific helpers begin
 -- ======================================================================
 
+helper def : inExpressions : Set(UML!Expression) = UML!Expression.allInstancesFrom('IN');
+	
 helper def : AppletMIDlet : UML!Class = 'midlet.AppletMIDlet'.qClass();
 helper def : oclBoolean : UML!DataType = 'Boolean'.dataType();
 helper def : oclString : UML!DataType = 'String'.dataType();
@@ -497,9 +499,8 @@ helper context UML!ModelElement def : taggedValue(name : String) : String =
 	self.taggedValue->select(t|t.type.name = name)
 			->first().dataValue->asSequence()->first();
 
-helper context UML!Method def : isSingletonInitMethod() : Boolean =
+helper context UML!Method def : isAppletInitMethod() : Boolean =
 	if self.specification.name = 'init' then
-		self.owner.isSingleton() and
     	self.owner.isApplet()
 	else
 		false
@@ -591,27 +592,31 @@ rule AppletClassWithoutInit {
 		specification <- op)
 }
 
-rule Class {
-    from s : UML!Class (
-    	if thisModule.inElements->includes(s) then
-			s.oclIsTypeOf(UML!Class) and
-			not s.isApplet()
+rule AppletInitProcedureExpression {
+    from s : UML!ProcedureExpression (
+		if thisModule.inExpressions->includes(s) then
+    		s.method().isAppletInitMethod()
 		else false endif)
-    to t : UML!Class mapsTo s (
-		namespace <- s.namespace,
+    to t : UML!ProcedureExpression mapsTo s (
+        language <- s.language,
+        body <- s.method().owner.isSingleton().
+			javaMIDletInitBody() + '\n' + s.body)
+}
+
+rule Model {
+    from s : UML!Model
+    to t : UML!Model mapsTo s (
         isLeaf <- s.isLeaf,
         isRoot <- s.isRoot,
         visibility <- s.visibility,
         name <- s.name,
         isSpecification <- s.isSpecification,
         isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
         templateParameter <- s.templateParameter,
+        elementImport <- s.elementImport,
         comment <- s.comment,
-        feature <- s.feature,
         ownedElement <- s.ownedElement,
         taggedValue <- s.taggedValue,
-        powertypeRange <- s.powertypeRange,
         clientDependency <- s.clientDependency,
         constraint <- s.constraint,
         targetFlow <- s.targetFlow,
@@ -620,25 +625,24 @@ rule Class {
         sourceFlow <- s.sourceFlow)
 }
 
-rule AppletInitProcedureExpression {
-    from s : UML!ProcedureExpression (
-		if thisModule.inElements->includes(s) then
-    		s.method().isSingletonInitMethod()
-		else false endif)
-    to t : UML!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- s.method().owner.isSingleton().
-			javaMIDletInitBody() + '\n' + s.body)
-}
-
-rule ProcedureExpression {
-    from s : UML!ProcedureExpression (
-		if thisModule.inElements->includes(s) then
-    		not s.method().isSingletonInitMethod()
-    	else false endif)
-    to t : UML!ProcedureExpression mapsTo s (
-        language <- s.language,
-        body <- s.body)
+rule StateMachine {
+    from s : UML!StateMachine (s.oclIsTypeOf(UML!StateMachine))
+    to t : UML!StateMachine mapsTo s (
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        submachineState <- s.submachineState,
+        comment <- s.comment,
+        top <- s.top,
+        taggedValue <- s.taggedValue,
+        transitions <- s.transitions,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow,
+		"context" <- s."context")
 }
 
 -- ======================================================================

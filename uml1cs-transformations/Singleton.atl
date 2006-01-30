@@ -79,24 +79,20 @@ rule SingletonClass {
 		body <- 'null')
 }
 
-rule Class {
-    from s : UML!Class (s.oclIsTypeOf(UML!Class) and
-    	not s.isSingleton())
-    to t : UML!Class mapsTo s (
-		namespace <- s.namespace,
+rule Model {
+    from s : UML!Model
+    to t : UML!Model mapsTo s (
         isLeaf <- s.isLeaf,
         isRoot <- s.isRoot,
         visibility <- s.visibility,
         name <- s.name,
         isSpecification <- s.isSpecification,
         isAbstract <- s.isAbstract,
-        isActive <- s.isActive,
         templateParameter <- s.templateParameter,
+        elementImport <- s.elementImport,
         comment <- s.comment,
-        feature <- s.feature,
         ownedElement <- s.ownedElement,
         taggedValue <- s.taggedValue,
-        powertypeRange <- s.powertypeRange,
         clientDependency <- s.clientDependency,
         constraint <- s.constraint,
         targetFlow <- s.targetFlow,
@@ -104,7 +100,27 @@ rule Class {
         stereotype <- s.stereotype,
         sourceFlow <- s.sourceFlow)
 }
-	
+
+rule StateMachine {
+    from s : UML!StateMachine (s.oclIsTypeOf(UML!StateMachine))
+    to t : UML!StateMachine mapsTo s (
+        visibility <- s.visibility,
+        name <- s.name,
+        isSpecification <- s.isSpecification,
+        templateParameter <- s.templateParameter,
+        submachineState <- s.submachineState,
+        comment <- s.comment,
+        top <- s.top,
+        taggedValue <- s.taggedValue,
+        transitions <- s.transitions,
+        clientDependency <- s.clientDependency,
+        constraint <- s.constraint,
+        targetFlow <- s.targetFlow,
+        stereotype <- s.stereotype,
+        sourceFlow <- s.sourceFlow,
+		"context" <- s."context")
+}
+
 -- ======================================================================
 -- transformation rules end
 -- ======================================================================
