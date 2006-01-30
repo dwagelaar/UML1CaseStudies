@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="atl-commandline/copydep" default="all">
+	<target name="cleandep">
+		<delete verbose="true">
+			<fileset dir=".">
+				<include name="common.jar"/>
+				<include name="ecore*.jar"/>
+				<include name="runtime.jar"/>
+				<include name="*4atl.jar"/>
+				<include name="ebnf*.jar"/>
+				<include name="vm.jar"/>
+				<include name="*mdr*.jar"/>
+				<include name="jmi*.jar"/>
+				<include name="mof.jar"/>
+				<include name="openide*.jar"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="copydep" depends="cleandep">
+		<copy tofile="common.jar" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.emf.common_*.jar"/>
+			</fileset>
+		</copy>
+		<copy tofile="ecore.jar" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.emf.ecore_*.jar"/>
+			</fileset>
+		</copy>
+		<copy tofile="ecore.xmi.jar" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.emf.ecore.xmi_*.jar"/>
+			</fileset>
+		</copy>
+		<copy tofile="runtime.jar" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.core.runtime_*.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="." flatten="true" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.atl.eclipse.engine_*/**/ebnfinjector.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="." flatten="true" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.atl.engine.vm_*/**/vm.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="." flatten="true" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.atl.engine.repositories.emf4atl_*/**/emf4atl.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="." flatten="true" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.atl.engine.repositories.mdr4atl_*/**/*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="all" depends="copydep"/>
+</project>
