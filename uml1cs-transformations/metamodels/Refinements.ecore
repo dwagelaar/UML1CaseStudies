@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="refinements"
+    nsURI="platform:/resource/uml1cs-transformations/metamodels/Refinements.ecore"
+    nsPrefix="refinements">
+  <eClassifiers xsi:type="ecore:EClass" name="RefinementConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="first" lowerBound="1" eType="#//AssociationAttributesRefinement"
+        containment="true" eOpposite="#//AssociationAttributesRefinement/root"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationAttributesRefinement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="#//RefinementConfiguration"
+        eOpposite="#//RefinementConfiguration/first"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1" eType="#//AccessorsRefinement"
+        containment="true" eOpposite="#//AccessorsRefinement/prev"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationAttributes" eSuperTypes="#//AssociationAttributesRefinement #//Java1Refinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Java2AssociationAttributes" eSuperTypes="#//AssociationAttributesRefinement #//Java2Refinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AccessorsRefinement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//AssociationAttributesRefinement"
+        eOpposite="#//AssociationAttributesRefinement/next"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1" eType="#//ObserverRefinement"
+        containment="true" eOpposite="#//ObserverRefinement/prev"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Accessors" eSuperTypes="#//AccessorsRefinement #//Java1Refinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Java2Accessors" eSuperTypes="#//AccessorsRefinement #//Java2Refinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ObserverRefinement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//AccessorsRefinement"
+        eOpposite="#//AccessorsRefinement/next"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1" eType="#//Singleton"
+        containment="true" eOpposite="#//Singleton/prev"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Observer" eSuperTypes="#//ObserverRefinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JavaObserver" eSuperTypes="#//ObserverRefinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AppletRefinement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//Singleton"
+        eOpposite="#//Singleton/next"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1" eType="#//AsyncMethods"
+        containment="true" eOpposite="#//AsyncMethods/prev"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Applet" eSuperTypes="#//AppletRefinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MIDlet" eSuperTypes="#//AppletRefinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Singleton">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//ObserverRefinement"
+        eOpposite="#//ObserverRefinement/next"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1" eType="#//AppletRefinement"
+        containment="true" eOpposite="#//AppletRefinement/prev"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsyncMethods">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//AppletRefinement"
+        eOpposite="#//AppletRefinement/next"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1" eType="#//DataTypesRefinement"
+        containment="true" eOpposite="#//DataTypesRefinement/prev"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypesRefinement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//AsyncMethods"
+        eOpposite="#//AsyncMethods/next"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1" eType="#//CodeGenerator"
+        containment="true" eOpposite="#//CodeGenerator/prev"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypes" eSuperTypes="#//DataTypesRefinement #//Java1Refinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Java2DataTypes" eSuperTypes="#//DataTypesRefinement #//Java2Refinement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Java1Refinement" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Java2Refinement" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CodeGenerator" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//DataTypesRefinement"
+        eOpposite="#//DataTypesRefinement/next"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UMLtoJava" eSuperTypes="#//CodeGenerator"/>
+</ecore:EPackage>
