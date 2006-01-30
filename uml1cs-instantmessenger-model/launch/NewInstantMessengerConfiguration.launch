@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.atl.eclipse.adt.launching.atlTransformation">
+<mapAttribute key="Model Handler">
+<mapEntry key="CONFIG" value="EMF"/>
+<mapEntry key="OUT" value=""/>
+<mapEntry key="MOF" value="EMF"/>
+<mapEntry key="IN" value=""/>
+</mapAttribute>
+<stringAttribute key="ATL File Name" value="/uml1cs-instantmessenger-model/configurations/NewConfiguration.atl"/>
+<mapAttribute key="Libs"/>
+<booleanAttribute key="Mode Debug" value="false"/>
+<mapAttribute key="ModelType">
+<mapEntry key="CONFIG" value="METAMODELOUTPUT"/>
+<mapEntry key="OUT" value="MODELOUTPUT"/>
+<mapEntry key="MOF" value="METAMODELINPUT"/>
+<mapEntry key="IN" value="MODELINPUT"/>
+</mapAttribute>
+<mapAttribute key="Path">
+<mapEntry key="CONFIG" value="/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeatures.ecore"/>
+<mapEntry key="OUT" value="/uml1cs-instantmessenger-model/configurations/NewConfiguration.ecore"/>
+<mapEntry key="MOF" value="#EMF"/>
+<mapEntry key="IN" value="/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeatures.ecore"/>
+</mapAttribute>
+<stringAttribute key="Project Name" value="uml1cs-instantmessenger-model"/>
+<mapAttribute key="Output">
+<mapEntry key="OUT" value="CONFIG"/>
+</mapAttribute>
+<mapAttribute key="Input">
+<mapEntry key="IN" value="MOF"/>
+</mapAttribute>
+<booleanAttribute key="AllowInterModelReferences" value="true"/>
+</launchConfiguration>

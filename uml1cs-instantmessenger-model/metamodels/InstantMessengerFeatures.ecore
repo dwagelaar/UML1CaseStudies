@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="im"
+    nsURI="platform:/resource/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeatures.ecore"
+    nsPrefix="im">
+  <eClassifiers xsi:type="ecore:EClass" name="InstantMessagingClient">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
+        upperBound="-1" eType="#//Network" containment="true" eOpposite="#//Network/client"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userInterface" lowerBound="1"
+        upperBound="-1" eType="#//UserInterface" containment="true" eOpposite="#//UserInterface/client"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refinementConfiguration"
+        lowerBound="1" eType="ecore:EClass ../../uml1cs-transformations/metamodels/Refinements.ecore#//RefinementConfiguration"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Jabber" eSuperTypes="#//Network">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transport" lowerBound="1"
+        eType="#//JabberTransport" containment="true" eOpposite="#//JabberTransport/jabber"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultJabber" eSuperTypes="#//JabberTransport"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MEJabber" eSuperTypes="#//JabberTransport"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SMS" eSuperTypes="#//Network"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Local" eSuperTypes="#//Network"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Swing" eSuperTypes="#//UserInterface"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AWT" eSuperTypes="#//UserInterface"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LCDUI" eSuperTypes="#//UserInterface"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Network" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="client" lowerBound="1"
+        eType="#//InstantMessagingClient" eOpposite="#//InstantMessagingClient/network"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JabberTransport" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="jabber" lowerBound="1"
+        eType="#//Jabber" defaultValueLiteral="" eOpposite="#//Jabber/transport"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="client" lowerBound="1"
+        eType="#//InstantMessagingClient" eOpposite="#//InstantMessagingClient/userInterface"/>
+  </eClassifiers>
+</ecore:EPackage>

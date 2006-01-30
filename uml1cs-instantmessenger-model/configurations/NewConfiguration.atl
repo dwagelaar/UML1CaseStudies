@@ -1,0 +1,10 @@
+-- $Id$
+-- Creates a NewConfiguration.ecore file with a root InstantMessagingClient element.
+module NewConfiguration;
+
+create OUT : CONFIG from IN : MOF;
+
+rule NewConfiguration {
+	from s : MOF!EClass (s.name = 'InstantMessagingClient')
+	to t : CONFIG!InstantMessagingClient mapsTo s
+}
