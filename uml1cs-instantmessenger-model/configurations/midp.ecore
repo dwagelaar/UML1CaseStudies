@@ -17,7 +17,7 @@
             <next xsi:type="refinements:MIDlet">
               <next>
                 <next xsi:type="refinements:DataTypes">
-                  <next xsi:type="refinements:UMLtoJava"/>
+                  <next xsi:type="refinements:UMLtoJava" targetPath="../../uml1cs-instantmessenger-midp/src"/>
                 </next>
               </next>
             </next>
@@ -26,4 +26,5 @@
       </next>
     </first>
   </refinementConfiguration>
+  <packaging xsi:type="im:MIDletJar"/>
 </im:InstantMessagingClient>

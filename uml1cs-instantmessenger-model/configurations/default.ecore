@@ -16,7 +16,7 @@
             <next xsi:type="refinements:Applet">
               <next>
                 <next xsi:type="refinements:DataTypes">
-                  <next xsi:type="refinements:UMLtoJava"/>
+                  <next xsi:type="refinements:UMLtoJava" targetPath="../../uml1cs-instantmessenger-default/src"/>
                 </next>
               </next>
             </next>
@@ -25,4 +25,5 @@
       </next>
     </first>
   </refinementConfiguration>
+  <packaging xsi:type="im:WebApplet"/>
 </im:InstantMessagingClient>

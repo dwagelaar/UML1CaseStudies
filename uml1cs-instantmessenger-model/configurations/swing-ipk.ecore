@@ -26,5 +26,5 @@
       </next>
     </first>
   </refinementConfiguration>
-  <packaging xsi:type="im:WebApplet"/>
+  <packaging xsi:type="im:Ipkg"/>
 </im:InstantMessagingClient>

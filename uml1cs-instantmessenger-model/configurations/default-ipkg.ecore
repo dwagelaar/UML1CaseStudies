@@ -8,16 +8,15 @@
   </network>
   <network xsi:type="im:Local"/>
   <userInterface xsi:type="im:AWT"/>
-  <userInterface xsi:type="im:Swing"/>
   <refinementConfiguration>
-    <first xsi:type="refinements:Java2AssociationAttributes">
-      <next xsi:type="refinements:Java2Accessors">
+    <first xsi:type="refinements:AssociationAttributes">
+      <next xsi:type="refinements:Accessors">
         <next xsi:type="refinements:JavaObserver">
           <next>
             <next xsi:type="refinements:Applet">
               <next>
-                <next xsi:type="refinements:Java2DataTypes">
-                  <next xsi:type="refinements:UMLtoJava" targetPath="../../uml1cs-instantmessenger-swing/src"/>
+                <next xsi:type="refinements:DataTypes">
+                  <next xsi:type="refinements:UMLtoJava" targetPath="../../uml1cs-instantmessenger-default/src"/>
                 </next>
               </next>
             </next>
@@ -26,5 +25,5 @@
       </next>
     </first>
   </refinementConfiguration>
-  <packaging xsi:type="im:WebApplet"/>
+  <packaging xsi:type="im:Ipkg"/>
 </im:InstantMessagingClient>
