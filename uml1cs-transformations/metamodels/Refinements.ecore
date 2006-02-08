@@ -4,6 +4,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="refinements"
     nsURI="platform:/resource/uml1cs-transformations/metamodels/Refinements.ecore"
     nsPrefix="refinements">
+  <eAnnotations source="ContextConstraint"/>
   <eClassifiers xsi:type="ecore:EClass" name="RefinementConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="first" lowerBound="1" eType="#//AssociationAttributesRefinement"
         containment="true" eOpposite="#//AssociationAttributesRefinement/root"/>
@@ -16,11 +17,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationAttributes" eSuperTypes="#//AssociationAttributesRefinement #//Java1Refinement">
     <eAnnotations source="http://local/RefinementConstraints.owl#AssociationAttributesPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Java2AssociationAttributes" eSuperTypes="#//AssociationAttributesRefinement #//Java2Refinement">
     <eAnnotations source="http://local/RefinementConstraints.owl#Java2AssociationAttributesPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AccessorsRefinement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//AssociationAttributesRefinement"
@@ -30,11 +31,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Accessors" eSuperTypes="#//AccessorsRefinement #//Java1Refinement">
     <eAnnotations source="http://local/RefinementConstraints.owl#AccessorsPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Java2Accessors" eSuperTypes="#//AccessorsRefinement #//Java2Refinement">
     <eAnnotations source="http://local/RefinementConstraints.owl#Java2AccessorsPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ObserverRefinement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//AccessorsRefinement"
@@ -44,11 +45,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Observer" eSuperTypes="#//ObserverRefinement">
     <eAnnotations source="http://local/RefinementConstraints.owl#ObserverPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JavaObserver" eSuperTypes="#//ObserverRefinement">
     <eAnnotations source="http://local/RefinementConstraints.owl#JavaObserverPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AppletRefinement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//Singleton"
@@ -57,14 +58,14 @@
         containment="true" eOpposite="#//AsyncMethods/prev"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Applet" eSuperTypes="#//AppletRefinement">
-    <eAnnotations source="http://local/RefinementConstraints.owl#AppletPlatform" references="#//ContextConstraint"/>
+    <eAnnotations source="http://local/RefinementConstraints.owl#AppletPlatform" references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MIDlet" eSuperTypes="#//AppletRefinement">
-    <eAnnotations source="http://local/RefinementConstraints.owl#MIDletPlatform" references="#//ContextConstraint"/>
+    <eAnnotations source="http://local/RefinementConstraints.owl#MIDletPlatform" references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Singleton">
     <eAnnotations source="http://local/RefinementConstraints.owl#SingletonPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//ObserverRefinement"
         eOpposite="#//ObserverRefinement/next"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1" eType="#//AppletRefinement"
@@ -72,7 +73,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AsyncMethods">
     <eAnnotations source="http://local/RefinementConstraints.owl#AsyncMethodsPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="prev" lowerBound="1" eType="#//AppletRefinement"
         eOpposite="#//AppletRefinement/next"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="next" lowerBound="1" eType="#//DataTypesRefinement"
@@ -86,11 +87,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataTypes" eSuperTypes="#//DataTypesRefinement #//Java1Refinement">
     <eAnnotations source="http://local/RefinementConstraints.owl#DataTypesPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Java2DataTypes" eSuperTypes="#//DataTypesRefinement #//Java2Refinement">
     <eAnnotations source="http://local/RefinementConstraints.owl#Java2DataTypesPlatform"
-        references="#//ContextConstraint"/>
+        references=" #//%ContextConstraint%"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Java1Refinement" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Java2Refinement" abstract="true"/>
@@ -101,7 +102,6 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UMLtoJava" eSuperTypes="#//CodeGenerator">
-    <eAnnotations source="http://local/RefinementConstraints.owl#JavaPlatform" references="#//ContextConstraint"/>
+    <eAnnotations source="http://local/RefinementConstraints.owl#JavaPlatform" references=" #//%ContextConstraint%"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContextConstraint" abstract="true"/>
 </ecore:EPackage>
