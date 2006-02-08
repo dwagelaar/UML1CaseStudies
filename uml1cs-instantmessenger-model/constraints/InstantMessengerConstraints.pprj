@@ -1,4 +1,4 @@
-; Tue Feb 07 19:39:58 CET 2006
+; Wed Feb 08 14:21:00 CET 2006
 ; 
 ;+ (version "3.1.1")
 ;+ (build "Build 216")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[InstantMessengerConstraints_ProjectKB_Instance_59]
-		[InstantMessengerConstraints_ProjectKB_Instance_60]
-		[InstantMessengerConstraints_ProjectKB_Instance_61]
-		[InstantMessengerConstraints_ProjectKB_Instance_62]
-		[InstantMessengerConstraints_ProjectKB_Instance_63]))
+		[InstantMessengerConstraints_ProjectKB_Instance_54]
+		[InstantMessengerConstraints_ProjectKB_Instance_55]
+		[InstantMessengerConstraints_ProjectKB_Instance_56]
+		[InstantMessengerConstraints_ProjectKB_Instance_57]
+		[InstantMessengerConstraints_ProjectKB_Instance_58]))
 
 ([CLSES_TAB] of  Widget
 
@@ -466,9 +466,29 @@
 ([InstantMessengerConstraints_ProjectKB_Instance_53] of  Property_List
 )
 
-([InstantMessengerConstraints_ProjectKB_Instance_59] of  String
+([InstantMessengerConstraints_ProjectKB_Instance_54] of  String
 
 	(name "owl:Class")
+	(string_value "%3ANAME"))
+
+([InstantMessengerConstraints_ProjectKB_Instance_55] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([InstantMessengerConstraints_ProjectKB_Instance_56] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([InstantMessengerConstraints_ProjectKB_Instance_57] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([InstantMessengerConstraints_ProjectKB_Instance_58] of  String
+
+	(name "owl:Thing")
 	(string_value "%3ANAME"))
 
 ([InstantMessengerConstraints_ProjectKB_Instance_6] of  Widget
@@ -476,26 +496,6 @@
 	(is_hidden TRUE)
 	(property_list [InstantMessengerConstraints_ProjectKB_Instance_7])
 	(widget_class_name "JessTab.JessTab"))
-
-([InstantMessengerConstraints_ProjectKB_Instance_60] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([InstantMessengerConstraints_ProjectKB_Instance_61] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([InstantMessengerConstraints_ProjectKB_Instance_62] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([InstantMessengerConstraints_ProjectKB_Instance_63] of  String
-
-	(name "owl:Thing")
-	(string_value "%3ANAME"))
 
 ([InstantMessengerConstraints_ProjectKB_Instance_7] of  Property_List
 )
@@ -539,16 +539,6 @@
 
 ([KB_024013_Instance_5] of  Property_List
 )
-
-([KB_072535_Instance_0] of  String
-
-	(name "owl_file_name")
-	(string_value "InstantMessengerConstraints.owl"))
-
-([KB_072535_Instance_1] of  String
-
-	(name "SwitchableClassDefinitionType")
-	(string_value "edu.stanford.smi.protegex.owl.ui.cls.LogicClassDefinitionWidget"))
 
 ([KB_140180_Instance_0] of  Widget
 
@@ -892,6 +882,16 @@
 
 ([KB_221055_Instance_71] of  Property_List
 )
+
+([KB_221424_Instance_0] of  String
+
+	(name "owl_file_name")
+	(string_value "InstantMessengerConstraints.owl"))
+
+([KB_221424_Instance_1] of  String
+
+	(name "SwitchableClassDefinitionType")
+	(string_value "edu.stanford.smi.protegex.owl.ui.cls.LogicClassDefinitionWidget"))
 
 ([KB_301165_Instance_1013] of  Widget
 
@@ -8293,8 +8293,8 @@
 		[KB_307200_Instance_22]
 		[KB_307200_Instance_23]
 		[OWL_ProjectKB_Instance_3]
-		[KB_072535_Instance_0]
-		[KB_072535_Instance_1]))
+		[KB_221424_Instance_0]
+		[KB_221424_Instance_1]))
 
 ([STANDARD_CLASS_FORM_WIDGET] of  Widget
 

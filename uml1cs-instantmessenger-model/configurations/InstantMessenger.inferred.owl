@@ -29,10 +29,10 @@
       <owl:Ontology rdf:about="http://ssel.vub.ac.be/codamos/2005/01/operatingsystems.owl"/>
     </owl:imports>
     <owl:imports>
-      <owl:Ontology rdf:about="http://www.cs.kuleuven.be/~davy/owl/Draco.owl"/>
+      <owl:Ontology rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl"/>
     </owl:imports>
     <owl:imports>
-      <owl:Ontology rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl"/>
+      <owl:Ontology rdf:about="http://www.cs.kuleuven.be/~davy/owl/Draco.owl"/>
     </owl:imports>
     <owl:imports>
       <owl:Ontology rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl"/>
@@ -122,9 +122,6 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#SMSPlatform">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#JavaPlatform"/>
-    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
         <owl:onProperty>
@@ -135,6 +132,9 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#JavaPlatform"/>
+    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#ObserverPlatform"/>
     </owl:equivalentClass>
@@ -240,7 +240,6 @@
       <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
       <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
       <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
-      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#SwingPlatform"/>
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#Java2AssociationAttributesPlatform"/>
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#Java2AccessorsPlatform"/>
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
@@ -256,9 +255,6 @@
     </rdfs:subClassOf>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#Java2DataTypesPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#SwingPlatform"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/01/operatingsystems.owl#Qt">
@@ -478,20 +474,20 @@
             </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#CLDCJavaUtil"/>
             </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
             </owl:onProperty>
-          </owl:Restriction>
-          <owl:Restriction>
             <owl:someValuesFrom>
               <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#StreamJavaIO"/>
             </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
-            </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -622,6 +618,25 @@
       <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/01/operatingsystems.owl#CAB"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#DracoPlatform">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#JavaPlatform"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.cs.kuleuven.be/~davy/owl/Draco.owl#Draco"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/RefinementConstraints.owl#JavaPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://local/RefinementConstraints.owl#SingletonPlatform"/>
+  </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#MegaByte">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#IntegerValue"/>
@@ -703,12 +718,12 @@
             </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
-            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#CLDCJavaUtil"/>
             </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+            </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom>
@@ -760,12 +775,12 @@
             </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaNet"/>
-            </owl:someValuesFrom>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
             </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaNet"/>
+            </owl:someValuesFrom>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -872,10 +887,10 @@
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#WebAppletPlatform"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#WebAppletPlatform"/>
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaxMicroeditionMedia">
@@ -916,10 +931,10 @@
   <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#WebAppletPlatform">
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JDK"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JDK"/>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:subClassOf>
@@ -935,16 +950,19 @@
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#EnvironmentalCondition"/>
   </owl:Class>
   <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#SwingPlatform">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+    </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
-            <owl:someValuesFrom>
-              <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaxSwing"/>
-            </owl:someValuesFrom>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
             </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaxSwing"/>
+            </owl:someValuesFrom>
           </owl:Restriction>
           <owl:Restriction>
             <owl:someValuesFrom>
@@ -965,9 +983,6 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
-    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Joules">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
@@ -1061,14 +1076,6 @@
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#AssociationAttributesPlatform"/>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://local/InstantMessengerConstraints.owl#SMSPlatform"/>
-    <owl:equivalentClass rdf:resource="http://local/RefinementConstraints.owl#DataTypesPlatform"/>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/RefinementConstraints.owl#ObserverPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://local/RefinementConstraints.owl#AsyncMethodsPlatform"/>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
@@ -1091,6 +1098,14 @@
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+    <owl:equivalentClass rdf:resource="http://local/RefinementConstraints.owl#DataTypesPlatform"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/RefinementConstraints.owl#ObserverPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://local/RefinementConstraints.owl#AsyncMethodsPlatform"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#AccessorsPlatform"/>
     </rdfs:subClassOf>
@@ -1219,20 +1234,20 @@
             </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#CLDCJavaLang"/>
             </owl:someValuesFrom>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
-            </owl:onProperty>
           </owl:Restriction>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
-            </owl:onProperty>
             <owl:someValuesFrom>
               <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#CLDCJavaUtil"/>
             </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
+            </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -1392,11 +1407,15 @@
       <owl:Class rdf:about="#midp/instantmessenger.jadIntersection"/>
       <owl:Class rdf:about="#java2/ipk/instantmessenger_1.0-0_noarch.ipkIntersection"/>
       <owl:Class rdf:about="#java2/applet/Intersection"/>
+      <owl:Class rdf:about="#draco/gui.scriptIntersection"/>
     </owl:intersectionOf>
     <rdfs:subClassOf rdf:resource="#java2/applet/Intersection"/>
     <rdfs:subClassOf rdf:resource="#midp/instantmessenger.jadIntersection"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#java2/ipk/instantmessenger_1.0-0_noarch.ipkIntersection"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#draco/gui.scriptIntersection"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#StringValue">
@@ -1767,7 +1786,6 @@
       <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
       <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
       <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
-      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#SwingPlatform"/>
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#Java2AssociationAttributesPlatform"/>
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#Java2AccessorsPlatform"/>
       <owl:Class rdf:about="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
@@ -1779,7 +1797,6 @@
       <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#IpkgPlatform"/>
     </owl:intersectionOf>
     <rdfs:subClassOf rdf:resource="http://local/RefinementConstraints.owl#Java2DataTypesPlatform"/>
-    <rdfs:subClassOf rdf:resource="http://local/InstantMessengerConstraints.owl#SwingPlatform"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#default/ipk/instantmessenger_1.0-0_noarch.ipkIntersection"/>
     </rdfs:subClassOf>
@@ -1804,6 +1821,25 @@
   <owl:Class rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#Hour">
     <rdfs:subClassOf rdf:resource="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Units.owl#FloatValue"/>
   </owl:Class>
+  <owl:Class rdf:about="#draco/gui.scriptIntersection">
+    <owl:intersectionOf rdf:parseType="Collection">
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+      <owl:Class rdf:about="http://local/RefinementConstraints.owl#Java2AssociationAttributesPlatform"/>
+      <owl:Class rdf:about="http://local/RefinementConstraints.owl#Java2AccessorsPlatform"/>
+      <owl:Class rdf:about="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
+      <owl:Class rdf:about="http://local/RefinementConstraints.owl#Java2DataTypesPlatform"/>
+      <owl:Class rdf:about="http://local/RefinementConstraints.owl#JavaPlatform"/>
+      <owl:Class rdf:about="http://local/InstantMessengerConstraints.owl#DracoPlatform"/>
+    </owl:intersectionOf>
+    <rdfs:subClassOf rdf:resource="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessengerConstraints.owl#DracoPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/RefinementConstraints.owl#Java2DataTypesPlatform"/>
+    <rdfs:subClassOf rdf:resource="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+  </owl:Class>
   <owl:Class rdf:about="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaIO">
     <rdfs:subClassOf rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#StreamJavaIO"/>
   </owl:Class>
@@ -1822,10 +1858,10 @@
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaxMicroeditionLCDUI"/>
             <owl:onProperty>
               <owl:ObjectProperty rdf:about="http://www.cs.kuleuven.be/~distrinet/projects/CoDAMoS/2005/01/Context.owl#providesSoftware"/>
             </owl:onProperty>
-            <owl:someValuesFrom rdf:resource="http://ssel.vub.ac.be/codamos/2005/04/java.owl#JavaxMicroeditionLCDUI"/>
           </owl:Restriction>
           <owl:Restriction>
             <owl:onProperty>
