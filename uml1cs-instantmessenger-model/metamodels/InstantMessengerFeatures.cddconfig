@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cddconfig:ConstraintSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cddconfig="http://ssel.vub.ac.be/cddtoolkit/cddconfig">
+  <ontology>../constraints/InstantMessengerConstraints.owl</ontology>
+  <ontology>../../uml1cs-transformations/constraints/RefinementConstraints.owl</ontology>
+  <options target="InstantMessagingClient">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
+  </options>
+  <options target="Jabber">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
+  </options>
+  <options target="DefaultJabber">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
+  </options>
+  <options target="MEJabber">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#MEJabberPlatform"/>
+  </options>
+  <options target="SMS">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#SMSPlatform"/>
+  </options>
+  <options target="Local">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
+  </options>
+  <options target="Swing">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#SwingPlatform"/>
+  </options>
+  <options target="AWT">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+  </options>
+  <options target="LCDUI">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#LCDUIPlatform"/>
+  </options>
+  <options target="WebApplet">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#WebAppletPlatform"/>
+  </options>
+  <options target="Ipkg">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#IpkgPlatform"/>
+  </options>
+  <options target="MIDletJar">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#MIDletPlatform"/>
+  </options>
+  <options target="AssociationAttributes">
+    <constraint resource="http://local/RefinementConstraints.owl#AssociationAttributesPlatform"/>
+  </options>
+  <options target="Java2AssociationAttributes">
+    <constraint resource="http://local/RefinementConstraints.owl#Java2AssociationAttributesPlatform"/>
+  </options>
+  <options target="Accessors">
+    <constraint resource="http://local/RefinementConstraints.owl#AccessorsPlatform"/>
+  </options>
+  <options target="Java2Accessors">
+    <constraint resource="http://local/RefinementConstraints.owl#Java2AccessorsPlatform"/>
+  </options>
+  <options target="Observer">
+    <constraint resource="http://local/RefinementConstraints.owl#ObserverPlatform"/>
+  </options>
+  <options target="JavaObserver">
+    <constraint resource="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
+  </options>
+  <options target="Applet">
+    <constraint resource="http://local/RefinementConstraints.owl#AppletPlatform"/>
+  </options>
+  <options target="MIDlet">
+    <constraint resource="http://local/RefinementConstraints.owl#MIDletPlatform"/>
+  </options>
+  <options target="Singleton">
+    <constraint resource="http://local/RefinementConstraints.owl#SingletonPlatform"/>
+  </options>
+  <options target="AsyncMethods">
+    <constraint resource="http://local/RefinementConstraints.owl#AsyncMethodsPlatform"/>
+  </options>
+  <options target="DataTypes">
+    <constraint resource="http://local/RefinementConstraints.owl#DataTypesPlatform"/>
+  </options>
+  <options target="Java2DataTypes">
+    <constraint resource="http://local/RefinementConstraints.owl#Java2DataTypesPlatform"/>
+  </options>
+  <options target="UMLtoJava">
+    <constraint resource="http://local/RefinementConstraints.owl#JavaPlatform"/>
+  </options>
+</cddconfig:ConstraintSpace>

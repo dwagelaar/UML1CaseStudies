@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cddconfig:ConstraintSpace xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:cddconfig="http://ssel.vub.ac.be/cddtoolkit/cddconfig">
+  <ontology>../constraints/InstantMessengerConstraints.owl</ontology>
+  <ontology>../../uml1cs-transformations/constraints/RefinementConstraints.owl</ontology>
+  <options target="default/ipk/instantmessenger_1.0-0_noarch.ipk">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AssociationAttributesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AccessorsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#SingletonPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AppletPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AsyncMethodsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#DataTypesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#JavaPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#IpkgPlatform"/>
+  </options>
+  <options target="default/applet/">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AssociationAttributesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AccessorsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#SingletonPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AppletPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AsyncMethodsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#DataTypesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#JavaPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#WebAppletPlatform"/>
+  </options>
+  <options target="midp/instantmessenger.jad">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#MEJabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#SMSPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#LCDUIPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AssociationAttributesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AccessorsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#ObserverPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#SingletonPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#MIDletPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AsyncMethodsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#DataTypesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#JavaPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#MIDletPlatform"/>
+  </options>
+  <options target="java2/ipk/instantmessenger_1.0-0_noarch.ipk">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#SwingPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#Java2AssociationAttributesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#Java2AccessorsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#SingletonPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AppletPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AsyncMethodsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#Java2DataTypesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#JavaPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#IpkgPlatform"/>
+  </options>
+  <options target="java2/applet/">
+    <constraint resource="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#SwingPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#Java2AssociationAttributesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#Java2AccessorsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#JavaObserverPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#SingletonPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AppletPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#AsyncMethodsPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#Java2DataTypesPlatform"/>
+    <constraint resource="http://local/RefinementConstraints.owl#JavaPlatform"/>
+    <constraint resource="http://local/InstantMessengerConstraints.owl#WebAppletPlatform"/>
+  </options>
+</cddconfig:ConstraintSpace>

@@ -2,7 +2,7 @@
 <im:InstantMessagingClient xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:im="platform:/resource/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeatures.ecore"
-    xmlns:refinements="platform:/resource/uml1cs-transformations/metamodels/Refinements.ecore">
+    xmlns:refinements="platform:/resource/uml1cs-transformations/metamodels/Refinements.ecore" target="java2/applet/">
   <network xsi:type="im:Jabber">
     <transport xsi:type="im:DefaultJabber"/>
   </network>
