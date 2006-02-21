@@ -29,6 +29,7 @@ import java.util.StringTokenizer;
 
 import org.atl.commandline.engine.AtlLauncher;
 import org.atl.commandline.engine.AtlModelHandler;
+import org.atl.engine.repositories.emf4atl.ASMEMFModel;
 import org.atl.engine.vm.nativelib.ASMModel;
 
 /**
@@ -157,6 +158,7 @@ public class Main implements Runnable {
             if (metaModel == null || !metapath.equals(paths.get(metaid))) {
                 System.out.println("Input metamodel " + metaid + " @ " + amh + " not yet loaded - loading from " + metapath);
                 metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
+                metaModel.setIsTarget(false);
                 in.put(metaid, metaModel);
             }
         }
@@ -168,6 +170,9 @@ public class Main implements Runnable {
                 !metaid.equals(inputModel.getMetamodel().getName())) {
             System.out.println("Loading input model " + modelid + " from " + modelpath);
             inputModel = amh.loadModel(modelid, metaModel, new FileInputStream(modelpath));
+            inputModel.setIsTarget(false);
+            if (inputModel instanceof ASMEMFModel)
+                ((ASMEMFModel)inputModel).setCheckSameModel(false);
             modelCache.put(modelid, inputModel);
         }
         System.out.println("Using input model " + inputModel);
@@ -204,6 +209,7 @@ public class Main implements Runnable {
             if (metaModel == null || !metapath.equals(paths.get(metaid))) {
                 System.out.println("Loading output metamodel " + metaid + " @ " + amh + " from " + metapath);
                 metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
+                metaModel.setIsTarget(false);
                 in.put(metaid, metaModel);
             }
         }
@@ -211,6 +217,8 @@ public class Main implements Runnable {
         System.out.println("Using output metamodel " + metaModel);
         System.out.println("Creating new model " + modelid + " for output");
         outputModel = amh.newModel(modelid, metaModel);
+        if (outputModel instanceof ASMEMFModel)
+            ((ASMEMFModel)outputModel).setCheckSameModel(false);
         out.put(modelid, outputModel);
         paths.put(modelid, modelpath);
         paths.put(metaid, metapath);
