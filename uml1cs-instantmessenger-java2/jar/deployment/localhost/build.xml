@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DeployInstantMessenger" default="all">
+	<property name="deploy.path" value="/srv/www/lighttpd/cddtoolkit/instantmessenger/java2/applet"/>
+
+	<target name="deploy">
+		<copy todir="${deploy.path}">
+			<fileset dir="../../">
+				<include name="im.jar"/>
+				<include name="index.html"/>
+				<include name="MicroJabberWookie.jar"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="all" depends="deploy"/>
+</project>
