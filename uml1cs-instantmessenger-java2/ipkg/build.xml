@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Swing IPKG builder" default="all">
+<project name="Java2 IPKG builder" default="all">
 	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
 	<property name="deploy.path" value="/var/www/html/cddtoolkit/instantmessenger/java2/ipk"/>
 	<property name="ipk.name" value="instantmessenger"/>
