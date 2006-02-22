@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="MIDPInstantMessenger" default="all">
-	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
-	<property name="deploy.path" value="/var/www/html/cddtoolkit/instantmessenger/midp"/>
 	<property name="src.dir" value="build/src"/>
 	<property name="bin.dir" value="build/bin"/>
 	<property name="midlet.name" value="instantmessenger"/>
@@ -91,16 +89,5 @@ MicroEdition-Profile: ${midlet.profile}
 </echo>
 	</target>
 
-	<target name="deploy" depends="jad">
-		<exec dir="." executable="rsync" logError="true">
-			<arg line="-rlvuzC"/>
-			<arg line="--exclude=*.sh"/>
-			<arg line="--exclude=build.xml"/>
-			<arg line="--exclude=build/*"/>
-			<arg line="."/>
-			<arg line="${deploy.host}:${deploy.path}/"/>
-		</exec>
-	</target>
-	
-	<target name="all" depends="deploy"/>
+	<target name="all" depends="jar"/>
 </project>
