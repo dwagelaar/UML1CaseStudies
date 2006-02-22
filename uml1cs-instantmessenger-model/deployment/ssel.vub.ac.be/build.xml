@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DeployCDDConfig" default="all">
+	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
+	<property name="deploy.path" value="/var/www/html/cddtoolkit/instantmessenger"/>
+
+	<target name="deploy">
+		<exec dir="../../configurations" executable="rsync" logError="true">
+			<arg line="-lvuzC"/>
+			<arg line="InstantMessenger.cddconfig"/>
+			<arg line="InstantMessenger.inferred.owl"/>
+			<arg line="${deploy.host}:${deploy.path}/"/>
+		</exec>
+	</target>
+
+	<target name="all" depends="deploy"/>
+</project>

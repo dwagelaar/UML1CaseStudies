@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DeployCDDConfig" default="all">
+	<property name="deploy.path" value="/srv/www/lighttpd/cddtoolkit/instantmessenger"/>
+
+	<target name="deploy">
+		<copy todir="/srv/www/lighttpd/cddtoolkit/instantmessenger">
+	  		<fileset dir="../../configurations">
+	  			<include name="*.cddconfig"/>
+	  			<include name="*.inferred.owl"/>
+	  		</fileset>
+	  	</copy>
+	</target>
+
+	<target name="all" depends="deploy"/>
+</project>
