@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Swing IPKG builder" default="all">
-	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
-	<property name="deploy.path" value="/var/www/html/cddtoolkit/instantmessenger/default/ipk"/>
 	<property name="ipk.name" value="instantmessenger"/>
 	<property name="ipk.version" value="1.0-0"/>
 	<property name="ipk.arch" value="noarch"/>
@@ -71,24 +69,5 @@ Description: ${ipk.description}
 		</tar>
 	</target>
 	
-	<target name="deploy" depends="ipk">
-		<exec dir="." executable="rsync" logError="true">
-			<arg line="-rlvuzC"/>
-			<arg line="--exclude=*/"/>
-			<arg line="--exclude=build.xml"/>
-			<arg line="."/>
-			<arg line="${deploy.host}:${deploy.path}/"/>
-		</exec>
-	</target>
-	
-	<target name="fixFiles" depends="deploy">
-		<exec dir="." executable="ssh" logError="true">
-			<arg line="${deploy.host}"/>
-			<arg line="chown -R :ssel ${deploy.path};"/>
-			<arg line="find ${deploy.path} -type d | xargs chmod 775;"/>
-			<arg line="find ${deploy.path} -type f | xargs chmod 664"/>
-		</exec>
-	</target>
-	
-	<target name="all" depends="fixFiles"/>
+	<target name="all" depends="ipk"/>
 </project>
