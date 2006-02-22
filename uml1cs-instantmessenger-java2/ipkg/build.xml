@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Swing IPKG builder" default="all">
+	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
+	<property name="deploy.path" value="/var/www/html/cddtoolkit/instantmessenger/java2/ipk"/>
+	<property name="ipk.name" value="instantmessenger"/>
+	<property name="ipk.version" value="1.0-0"/>
+	<property name="ipk.arch" value="noarch"/>
+	<property name="ipk.depends" value="jeode"/>
+	<property name="ipk.maintainer" value="Dennis Wagelaar &lt;dennis.wagelaar@vub.ac.be&gt;"/>
+	<property name="ipk.priority" value="optional"/>
+	<property name="ipk.section" value="extras"/>
+	<property name="ipk.cardinst" value="enabled"/>
+	<property name="ipk.description" value="Instant Messenger case study for Model-Driven Development.&#013; Supports the Jabber protocol for now."/>
+	<property name="ipk.installed-size" value="640KB"/>
+	
+	<target name="clean">
+        <delete dir="build"/>
+    </target>
+
+	<target name="prepare" depends="clean">
+	    <mkdir dir="build/data/opt/QtPalmtop/java/${ipk.name}"/>
+	    <copy todir="build/data/opt/QtPalmtop/java/${ipk.name}">
+	      	<fileset dir="../jar">
+	      		<include name="**"/>
+	      		<exclude name="build.xml"/>
+	      		<exclude name="runim"/>
+	    	</fileset>
+	    </copy>
+	    <copy todir="build">
+	      	<fileset dir="resources"/>
+	    </copy>
+	</target>
+
+	<target name="data" depends="prepare">
+		<tar destfile="build/data.tar.gz" compression="gzip">
+			<tarfileset dir="build/data" prefix="./" username="root" group="qpe" uid="0" gid="500">
+				<exclude name="**/bin/**"/>
+			</tarfileset>
+			<tarfileset dir="build/data" prefix="./" username="root" group="qpe" uid="0" gid="500" mode="755">
+				<include name="**/bin/**"/>
+			</tarfileset>
+		</tar>
+	</target>
+	
+	<target name="control" depends="data">
+		<echo file="build/control/control">Package: ${ipk.name}
+Version: ${ipk.version}
+Architecture: ${ipk.arch}
+Depends: ${ipk.depends}
+Priority: ${ipk.priority}
+Section: ${ipk.section}
+Maintainer: ${ipk.maintainer}
+Cardinst: ${ipk.cardinst}
+Installed-Size: ${ipk.installed-size}
+Description: ${ipk.description}
+</echo>
+		<tar destfile="build/control.tar.gz" compression="gzip">
+			<tarfileset dir="build/control" prefix="./" username="root" group="qpe" uid="0" gid="500"/>
+		</tar>
+	</target>
+	
+	<target name="ipk" depends="control">
+		<echo file="build/debian-binary">2.0
+</echo>
+		<tar destfile="${ipk.name}_${ipk.version}_${ipk.arch}.ipk" compression="gzip">
+			<tarfileset dir="build" prefix="./" username="root" group="qpe" uid="0" gid="500">
+				<include name="debian-binary"/>
+				<include name="data.tar.gz"/>
+				<include name="control.tar.gz"/>
+			</tarfileset>
+		</tar>
+	</target>
+	
+	<target name="deploy" depends="ipk">
+		<exec dir="." executable="rsync" logError="true">
+			<arg line="-rlvuzC"/>
+			<arg line="--exclude=*/"/>
+			<arg line="--exclude=build.xml"/>
+			<arg line="."/>
+			<arg line="${deploy.host}:${deploy.path}/"/>
+		</exec>
+	</target>
+	
+	<target name="fixFiles" depends="deploy">
+		<exec dir="." executable="ssh" logError="true">
+			<arg line="${deploy.host}"/>
+			<arg line="chown -R :ssel ${deploy.path};"/>
+			<arg line="find ${deploy.path} -type d | xargs chmod 775;"/>
+			<arg line="find ${deploy.path} -type f | xargs chmod 664"/>
+		</exec>
+	</target>
+	
+	<target name="all" depends="fixFiles"/>
+</project>

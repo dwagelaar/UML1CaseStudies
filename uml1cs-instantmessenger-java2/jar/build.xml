@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DefaultInstantMessenger" default="all">
+	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
+	<property name="deploy.path" value="/var/www/html/cddtoolkit/instantmessenger/java2/applet"/>
+	<property name="jabberwookie.path" value="../../uml1cs-microjabberwookie/jar/"/>
+	<property name="certificate.path" value="../../local/certificate.p12"/>
+
+	<target name="clean">
+        <delete>
+        	<fileset dir=".">
+	       		<include name="*.jar"/>
+        	</fileset>
+        </delete>
+    </target>
+
+	<target name="jabberwookie" depends="clean">
+		<copy file="${jabberwookie.path}MicroJabberWookie.jar" todir="."/>
+	</target>
+	
+    <target name="jar" depends="clean">
+        <jar destfile="im.jar" basedir="../bin">
+        	<include name="**"/>
+        	<manifest>
+        		<attribute name="Main-Class" value="sun.applet.AppletViewer"/>
+        		<attribute name="Class-Path" value="MicroJabberWookie.jar"/>
+        	</manifest>
+        </jar>
+    </target>
+	
+	<target name="jar-sign" depends="jar">
+		<signjar jar="im.jar" 
+			alias="dennis.wagelaar@vub.ac.be"
+			keystore="${certificate.path}"
+			storetype="pkcs12"
+			storepass="${passphrase}"/>
+	</target>
+
+	<target name="deploy" depends="jabberwookie,jar-sign">
+		<exec dir="." executable="rsync" logError="true">
+			<arg line="-rlvuzC"/>
+			<arg line="--exclude=runim"/>
+			<arg line="--exclude=build.xml"/>
+			<arg line="."/>
+			<arg line="${deploy.host}:${deploy.path}/"/>
+		</exec>
+	</target>
+	
+	<target name="fixFiles" depends="deploy">
+		<exec dir="." executable="ssh" logError="true">
+			<arg line="${deploy.host}"/>
+			<arg line="chown -R :ssel ${deploy.path};"/>
+			<arg line="find ${deploy.path} -type d | xargs chmod 775;"/>
+			<arg line="find ${deploy.path} -type f | xargs chmod 664"/>
+		</exec>
+	</target>
+	
+	<target name="all" depends="fixFiles"/>
+</project>
