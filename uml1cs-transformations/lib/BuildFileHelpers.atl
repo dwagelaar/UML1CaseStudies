@@ -1,0 +1,182 @@
+-- $Id$
+-- Helper methods for generating build.xml files.
+library BuildFileHelpers;
+
+helper context String def : configString(ignore : Sequence(String)) : String =
+	'-- code generation configuration\n' +
+	'library config;\n\n' +
+	'helper context String def : path() : String =\n' +
+	'	\'' + self.targetPath() + '/\' + self;\n\n' +
+	'helper context String def : ignore() : Boolean =\n' +
+	ignore->iterate(e; acc : String = '    false'|
+	 	acc + ' or self.startsWith(\'' + e + '\')') + ';\n';
+	
+helper context String def : header() : String =
+	'<?xml version="1.0" encoding="UTF-8"?>\n' +
+	'<project name="' + self + '" default="all">\n' +
+	'    <import file="../common.xml"/>\n' +
+	'    <property name="target.path" value="' + self.targetPath() + '"/>\n\n' +
+	'    <target name="clean">\n' +
+	'        <delete>\n' +
+    '            <fileset dir="${target.path}"/>\n' +
+	'        </delete>\n' +
+	'    </target>\n\n' +
+	'    <target name="transform" depends="clean">\n' +
+	'        <atl>\n';
+    
+helper context String def : targetPath() : String =
+	DSL!CodeGenerator.allInstances()->collect(e|e.targetPath)->first();
+
+helper context String def : footer() : String =
+	'        </atl>\n' +
+	'    </target>\n\n' +
+	'    <target name="all" depends="transform"/>\n' +
+	'</project>';
+
+helper context DSL!RefinementConfiguration def : body(input : String) : String =
+	input.AssociationAttributesToString() +
+	input.Java2AssociationAttributesToString() +
+	input.AccessorsToString() +
+	input.Java2AccessorsToString() +
+	input.ObserverToString() +
+	input.JavaObserverToString() +
+	input.SingletonToString() +
+	input.AppletToString() +
+	input.MIDletToString() +
+	input.AsyncMethodsToString() +
+	input.DataTypesToString() +
+	input.Java2DataTypesToString() +
+	input.UMLtoJavaToString();
+	
+helper context String def : comment() : String =
+	'            <!-- ' + self + ' -->\n';
+
+helper context String def : argLine() : String =
+	'            <arg line="' + self + '"/>\n';
+
+helper context String def : argTrans() : String =
+	'--trans ${transf.uri}' + self + '.asm';
+
+helper context String def : argInUML() : String =
+	'--in IN=' + self + '.ecore UML=${mmodel.uml} EMF';
+
+helper context String def : argMergeUML() : String =
+	'--in MERGE=' + self + '.ecore UML=${mmodel.uml} EMF';
+
+helper context String def : argOutUML() : String =
+	'--out OUT=' + self + '.ecore UML=${mmodel.uml} EMF';
+
+helper context String def : atlMergeCommand(trans : String, input : String, merge : String, output : String, useJavaLib : Boolean) : String =
+	self.comment() +
+	trans.argTrans().argLine() +
+	input.argInUML().argLine() +
+	merge.argMergeUML().argLine() +
+	output.argOutUML().argLine() +
+	'--lib MergeHelpers=${lib.merge}'.argLine() +
+	if useJavaLib then '--lib Java=${lib.java}'.argLine() else '' endif +
+	'--next'.argLine();
+
+helper context String def : atlCommand(trans : String, input : String, output : String, useJavaLib : Boolean) : String =
+	self.comment() +
+	trans.argTrans().argLine() +
+	input.argInUML().argLine() +
+	output.argOutUML().argLine() +
+	if useJavaLib then '--lib Java=${lib.java}'.argLine() else '' endif +
+	'--next'.argLine();
+
+helper context String def : atlGeneratorCommand(trans : String, input : String) : String =
+	self.comment() +
+	trans.argTrans().argLine() +
+	input.argInUML().argLine() +
+	'--lib Java=${lib.config}'.argLine();
+
+helper context String def : AssociationAttributesToString() : String =
+	if DSL!AssociationAttributes.allInstances()->isEmpty() then '' else
+	'refine AssociationAttributes'.atlMergeCommand(
+		'AssociationAttributes', self, '${rmodel.ocltypes}',
+		self + '-11', true)
+	endif;
+
+helper context String def : Java2AssociationAttributesToString() : String =
+	if DSL!Java2AssociationAttributes.allInstances()->isEmpty() then '' else
+	'refine Java2AssociationAttributes'.atlMergeCommand(
+		'Java2AssociationAttributes', self, '${rmodel.ocltypes}',
+		self + '-11', true)
+	endif;
+
+helper context String def : AccessorsToString() : String =
+	if DSL!Accessors.allInstances()->isEmpty() then '' else
+	'refine Accessors'.atlMergeCommand(
+		'Accessors', self + '-11', '${rmodel.ocltypes}',
+		self + '-12', true)
+	endif;
+
+helper context String def : Java2AccessorsToString() : String =
+	if DSL!Java2Accessors.allInstances()->isEmpty() then '' else
+	'refine Java2Accessors'.atlMergeCommand(
+		'Java2Accessors', self + '-11', '${rmodel.ocltypes}',
+		self + '-12', true)
+	endif;
+
+helper context String def : ObserverToString() : String =
+	if DSL!Observer.allInstances()->isEmpty() then '' else
+	'refine Observer'.atlMergeCommand(
+		'Observer', self + '-12', '${rmodel.observer}',
+		self + '-13', true)
+	endif;
+
+helper context String def : JavaObserverToString() : String =
+	if DSL!JavaObserver.allInstances()->isEmpty() then '' else
+	'refine JavaObserver'.atlMergeCommand(
+		'JavaObserver', self + '-12', '${rmodel.javatypes}',
+		self + '-13', true)
+	endif;
+
+helper context String def : SingletonToString() : String =
+	if DSL!Singleton.allInstances()->isEmpty() then '' else
+	'refine Singleton'.atlCommand(
+		'Singleton', self + '-13',
+		self + '-14', true)
+	endif;
+
+helper context String def : AppletToString() : String =
+	if DSL!Applet.allInstances()->isEmpty() then '' else
+	'refine Applet'.atlMergeCommand(
+		'Applet', self + '-14', '${rmodel.applet}',
+		self + '-15', true)
+	endif;
+
+helper context String def : MIDletToString() : String =
+	if DSL!MIDlet.allInstances()->isEmpty() then '' else
+	'refine MIDlet'.atlMergeCommand(
+		'MIDlet', self + '-14', '${rmodel.midlet}',
+		self + '-15', true)
+	endif;
+
+helper context String def : AsyncMethodsToString() : String =
+	if DSL!AsyncMethods.allInstances()->isEmpty() then '' else
+	'refine AsyncMethods'.atlCommand(
+		'AsyncMethods', self + '-15',
+		self + '-16', true)
+	endif;
+
+helper context String def : DataTypesToString() : String =
+	if DSL!DataTypes.allInstances()->isEmpty() then '' else
+	'refine DataTypes'.atlMergeCommand(
+		'DataTypes', self + '-16', '${rmodel.javatypes}',
+		self + '-17', true)
+	endif;
+
+helper context String def : Java2DataTypesToString() : String =
+	if DSL!Java2DataTypes.allInstances()->isEmpty() then '' else
+	'refine Java2DataTypes'.atlMergeCommand(
+		'Java2DataTypes', self + '-16', '${rmodel.javatypes}',
+		self + '-17', true)
+	endif;
+
+helper context String def : UMLtoJavaToString() : String =
+	if DSL!UMLtoJava.allInstances()->isEmpty() then '' else
+	'generate Java code'.atlGeneratorCommand(
+		'UMLtoJava', self + '-17')
+	endif;
+
