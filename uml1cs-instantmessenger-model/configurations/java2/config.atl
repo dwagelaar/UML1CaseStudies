@@ -1,0 +1,6 @@
+-- $Id: config.atl 3673 2006-02-17 12:01:50Z dwagelaa $
+-- code generation configuration
+library config;
+
+helper context String def : path() : String =
+	'../../outmodels/java2/' + self;

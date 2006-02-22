@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <im:InstantMessagingClient xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:im="platform:/resource/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeatures.ecore"
-    xmlns:refinements="platform:/resource/uml1cs-transformations/metamodels/Refinements.ecore" target="midp/instantmessenger.jad">
+    xmlns:im="platform:/resource/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeaturesPlusRefinements.ecore" target="midp/instantmessenger.jad">
   <network xsi:type="im:Jabber">
     <transport xsi:type="im:MEJabber"/>
   </network>
@@ -10,14 +9,14 @@
   <network xsi:type="im:SMS"/>
   <userInterface xsi:type="im:LCDUI"/>
   <refinementConfiguration>
-    <first xsi:type="refinements:AssociationAttributes">
-      <next xsi:type="refinements:Accessors">
-        <next xsi:type="refinements:Observer">
+    <first xsi:type="im:AssociationAttributes">
+      <next xsi:type="im:Accessors">
+        <next xsi:type="im:Observer">
           <next>
-            <next xsi:type="refinements:MIDlet">
+            <next xsi:type="im:MIDlet">
               <next>
-                <next xsi:type="refinements:DataTypes">
-                  <next xsi:type="refinements:UMLtoJava" targetPath="../../uml1cs-instantmessenger-midp/src"/>
+                <next xsi:type="im:DataTypes">
+                  <next xsi:type="im:UMLtoJava" targetPath="../../../uml1cs-instantmessenger-midp/src"/>
                 </next>
               </next>
             </next>

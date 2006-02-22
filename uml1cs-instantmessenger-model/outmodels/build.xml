@@ -4,6 +4,7 @@
 	<target name="all">
 		<parallel>
 			<ant dir="default"/>
+			<ant dir="java2"/>
 			<ant dir="midp"/>
 			<ant dir="swing"/>
 		</parallel>

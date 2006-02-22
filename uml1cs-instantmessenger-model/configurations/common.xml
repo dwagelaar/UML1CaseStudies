@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="InstantMessengerConfig">
+	<property name="atlcommandline.path" value="../../../uml1cs-atlcommandline/"/>
+	<property name="transf.path" value="../../../uml1cs-transformations/"/>
+	<property name="transf.genbuildfile" value="file:../GenerateBuildFile.asm"/>
+	<property name="lib.config" value="file:config.asm"/>
+	<property name="lib.buildfile" value="file:${transf.path}lib/BuildFileHelpers.asm"/>
+	<property name="mmodel.path" value="../../metamodels/"/>
+	<property name="mmodel.dsl" value="${mmodel.path}InstantMessengerFeaturesPlusRefinements.ecore"/>
+
+	<path id="atl.class.path">
+		<fileset dir="${atlcommandline.path}lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<macrodef name="atl">
+		<element name="args" implicit="true"/>
+		<sequential>
+			<java fork="true" failonerror="true" classname="org.atl.commandline.Main">
+				<classpath refid="atl.class.path"/>
+				<args/>
+			</java>
+		</sequential>
+	</macrodef>
+</project>

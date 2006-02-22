@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MIDPInstantMessenger" default="all">
+	<import file="../common.xml"/>
+	<property name="target.path" value="../../outmodels/midp/"/>
+
+	<target name="clean">
+	    <delete>
+    		<fileset dir="${target.path}"/>
+	    </delete>
+	</target>
+	
+	<target name="transform" depends="clean">
+		<atl>
+			<arg line="--trans ${transf.genbuildfile}"/>
+			<arg line="--in IN=midp.ecore DSL=${mmodel.dsl} EMF"/>
+			<arg line="--lib BuildFileHelpers=${lib.buildfile}"/>
+			<arg line="--lib config=${lib.config}"/>
+		</atl>
+	</target>
+
+	<target name="all" depends="transform"/>
+</project>

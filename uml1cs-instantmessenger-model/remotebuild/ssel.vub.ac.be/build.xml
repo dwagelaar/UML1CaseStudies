@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="DeployCDDToolkitFeature" default="all">
+<project name="Remote Execute" default="all">
+	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
+	<property name="deploy.path" value="UML1CaseStudies"/>
+	<property name="exec.path" value="${deploy.path}/uml1cs-instantmessenger-model/outmodels/"/>
+
 	<target name="send">
 		<exec dir="../../../" executable="rsync" logError="true">
 			<arg line="-rlvuzC"/>
 			<arg line="--delete"/>
 			<arg line="."/>
-			<arg line="dwagelaa@ssel.vub.ac.be:UML1CaseStudies/"/>
+			<arg line="${deploy.host}:${deploy.path}/"/>
 		</exec>
 	</target>
 	
 	<target name="execute" depends="send">
 		<exec dir="." executable="ssh" logError="true">
-			<arg line="dwagelaa@ssel.vub.ac.be"/>
-			<arg line="cd UML1CaseStudies/uml1cs-instantmessenger-model/outmodels/ &amp;&amp; ant"/>
+			<arg line="${deploy.host}"/>
+			<arg line="cd ${exec.path} &amp;&amp; ant"/>
 		</exec>
 	</target>
 	
 	<target name="retrieve" depends="execute">
 		<exec dir="../../../" executable="rsync" logError="true">
 			<arg line="-rlvuzC"/>
-			<arg line="dwagelaa@ssel.vub.ac.be:UML1CaseStudies/"/>
+			<arg line="${deploy.host}:${deploy.path}/"/>
 			<arg line="."/>
 		</exec>
 	</target>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<im:InstantMessagingClient xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:im="platform:/resource/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeaturesPlusRefinements.ecore" target="java2/ipk/instantmessenger_1.0-0_noarch.ipk">
+  <network xsi:type="im:Jabber">
+    <transport xsi:type="im:DefaultJabber"/>
+  </network>
+  <network xsi:type="im:Local"/>
+  <userInterface xsi:type="im:AWT"/>
+  <refinementConfiguration>
+    <first xsi:type="im:Java2AssociationAttributes">
+      <next xsi:type="im:Java2Accessors">
+        <next xsi:type="im:JavaObserver">
+          <next>
+            <next xsi:type="im:Applet">
+              <next>
+                <next xsi:type="im:Java2DataTypes">
+                  <next xsi:type="im:UMLtoJava" targetPath="../../../uml1cs-instantmessenger-java2/src"/>
+                </next>
+              </next>
+            </next>
+          </next>
+        </next>
+      </next>
+    </first>
+  </refinementConfiguration>
+  <packaging xsi:type="im:Ipkg"/>
+</im:InstantMessagingClient>

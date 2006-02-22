@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="default/applet/" default="all">
+<project name="java2/applet/" default="all">
     <import file="../common.xml"/>
-    <property name="target.path" value="../../../uml1cs-instantmessenger-default/src"/>
+    <property name="target.path" value="../../../uml1cs-instantmessenger-java2/src"/>
 
     <target name="clean">
         <delete>
@@ -39,16 +39,16 @@
             <arg line="--out OUT=im-Local.ecore UML=${mmodel.uml} EMF"/>
             <arg line="--lib MergeHelpers=${lib.merge}"/>
             <arg line="--next"/>
-            <!-- refine AssociationAttributes -->
-            <arg line="--trans ${transf.uri}AssociationAttributes.asm"/>
+            <!-- refine Java2AssociationAttributes -->
+            <arg line="--trans ${transf.uri}Java2AssociationAttributes.asm"/>
             <arg line="--in IN=im-Local.ecore UML=${mmodel.uml} EMF"/>
             <arg line="--in MERGE=${rmodel.ocltypes}.ecore UML=${mmodel.uml} EMF"/>
             <arg line="--out OUT=im-Local-11.ecore UML=${mmodel.uml} EMF"/>
             <arg line="--lib MergeHelpers=${lib.merge}"/>
             <arg line="--lib Java=${lib.java}"/>
             <arg line="--next"/>
-            <!-- refine Accessors -->
-            <arg line="--trans ${transf.uri}Accessors.asm"/>
+            <!-- refine Java2Accessors -->
+            <arg line="--trans ${transf.uri}Java2Accessors.asm"/>
             <arg line="--in IN=im-Local-11.ecore UML=${mmodel.uml} EMF"/>
             <arg line="--in MERGE=${rmodel.ocltypes}.ecore UML=${mmodel.uml} EMF"/>
             <arg line="--out OUT=im-Local-12.ecore UML=${mmodel.uml} EMF"/>
@@ -83,8 +83,8 @@
             <arg line="--out OUT=im-Local-16.ecore UML=${mmodel.uml} EMF"/>
             <arg line="--lib Java=${lib.java}"/>
             <arg line="--next"/>
-            <!-- refine DataTypes -->
-            <arg line="--trans ${transf.uri}DataTypes.asm"/>
+            <!-- refine Java2DataTypes -->
+            <arg line="--trans ${transf.uri}Java2DataTypes.asm"/>
             <arg line="--in IN=im-Local-16.ecore UML=${mmodel.uml} EMF"/>
             <arg line="--in MERGE=${rmodel.javatypes}.ecore UML=${mmodel.uml} EMF"/>
             <arg line="--out OUT=im-Local-17.ecore UML=${mmodel.uml} EMF"/>

@@ -1,0 +1,139 @@
+-- $Id$
+-- Generates a build.xml file and a config.atl file
+-- for an instant messenger product configuration.
+query GenerateBuildFile = DSL!InstantMessagingClient.allInstances()->collect(e|
+	e.toString().writeTo('build.xml'.path()) and
+	e.toConfigString().writeTo('config.atl'.path()));
+
+uses BuildFileHelpers;
+uses config;
+
+helper context DSL!InstantMessagingClient def : toString() : String =
+	self.header() +
+	self.body() +
+	self.footer();
+
+helper context DSL!InstantMessagingClient def : toConfigString() : String =
+	self.target.configString(Sequence{'java', 'ocl', 'com'});
+
+helper context DSL!InstantMessagingClient def : header() : String =
+	self.target.header();
+
+helper context DSL!InstantMessagingClient def : footer() : String =
+	self.target.footer();
+
+helper context DSL!InstantMessagingClient def : body() : String =
+	thisModule.AWTToString() +
+	thisModule.SwingToString() +
+	thisModule.LCDUIToString() +
+	thisModule.JabberToString() +
+	thisModule.DefaultJabberToString() +
+	thisModule.MEJabberToString() +
+	thisModule.LocalToString() +
+	thisModule.SMSToString() +
+	self.refinementConfiguration.body(thisModule.SMSModel());
+
+helper context String def : comment() : String =
+	'            <!-- ' + self + ' -->\n';
+
+helper def : argLine(arg : String) : String =
+	'            <arg line="' + arg + '"/>\n';
+
+helper context String def : mergeCommand(input : String, merge : String, output : String) : String =
+	self.atlMergeCommand('MergeModel', input, '${model.path}' + merge, output, false);
+
+helper def : AWTModel() : String =
+	if DSL!AWT.allInstances()->isEmpty() then '${model.path}InstantMessengerModel'
+	else 'im-AWT' endif;
+
+helper def : SwingModel() : String =
+	if DSL!Swing.allInstances()->isEmpty() then thisModule.AWTModel()
+	else 'im-Swing' endif;
+
+helper def : LCDUIModel() : String =
+	if DSL!LCDUI.allInstances()->isEmpty() then thisModule.SwingModel()
+	else 'im-LCDUI' endif;
+
+helper def : JabberModel() : String =
+	if DSL!Jabber.allInstances()->isEmpty() then thisModule.LCDUIModel()
+	else 'im-Jabber' endif;
+
+helper def : DefaultJabberModel() : String =
+	if DSL!DefaultJabber.allInstances()->isEmpty() then thisModule.JabberModel()
+	else 'im-DefaultJabber' endif;
+
+helper def : MEJabberModel() : String =
+	if DSL!MEJabber.allInstances()->isEmpty() then thisModule.DefaultJabberModel()
+	else 'im-MEJabber' endif;
+
+helper def : LocalModel() : String =
+	if DSL!Local.allInstances()->isEmpty() then thisModule.MEJabberModel()
+	else 'im-Local' endif;
+
+helper def : SMSModel() : String =
+	if DSL!SMS.allInstances()->isEmpty() then thisModule.LocalModel()
+	else 'im-SMS' endif;
+
+helper def : AWTToString() : String =
+	if DSL!AWT.allInstances()->isEmpty() then '' else
+	'merge AWT'.mergeCommand(
+		'${model.path}InstantMessengerModel', 
+		'InstantMessengerAWT',
+		thisModule.AWTModel())
+	endif;
+
+helper def : SwingToString() : String =
+	if DSL!Swing.allInstances()->isEmpty() then '' else
+	'merge Swing'.mergeCommand(
+		thisModule.AWTModel(), 
+		'InstantMessengerSwing',
+		thisModule.SwingModel())
+	endif;
+
+helper def : LCDUIToString() : String =
+	if DSL!LCDUI.allInstances()->isEmpty() then '' else
+	'merge LCDUI'.mergeCommand(
+		thisModule.SwingModel(), 
+		'InstantMessengerLCDUI',
+		thisModule.LCDUIModel())
+	endif;
+
+helper def : JabberToString() : String =
+	if DSL!Jabber.allInstances()->isEmpty() then '' else
+	'merge Jabber'.mergeCommand(
+		thisModule.LCDUIModel(), 
+		'InstantMessengerJabber',
+		thisModule.JabberModel())
+	endif;
+
+helper def : DefaultJabberToString() : String =
+	if DSL!DefaultJabber.allInstances()->isEmpty() then '' else
+	'merge DefaultJabber'.mergeCommand(
+		thisModule.JabberModel(), 
+		'InstantMessengerDefaultJabber',
+		thisModule.DefaultJabberModel())
+	endif;
+
+helper def : MEJabberToString() : String =
+	if DSL!MEJabber.allInstances()->isEmpty() then '' else
+	'merge MEJabber'.mergeCommand(
+		thisModule.DefaultJabberModel(), 
+		'InstantMessengerMEJabber',
+		thisModule.MEJabberModel())
+	endif;
+
+helper def : LocalToString() : String =
+	if DSL!Local.allInstances()->isEmpty() then '' else
+	'merge Local'.mergeCommand(
+		thisModule.MEJabberModel(), 
+		'InstantMessengerLocal',
+		thisModule.LocalModel())
+	endif;
+
+helper def : SMSToString() : String =
+	if DSL!SMS.allInstances()->isEmpty() then '' else
+	'merge SMS'.mergeCommand(
+		thisModule.LocalModel(), 
+		'InstantMessengerSMS',
+		thisModule.SMSModel())
+	endif;
