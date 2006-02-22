@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SwingInstantMessenger" default="all">
+	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
+	<property name="deploy.path" value="/var/www/html/cddtoolkit/instantmessenger/swing/applet"/>
 	<property name="jabberwookie.path" value="../../uml1cs-microjabberwookie/jar/"/>
 	<property name="certificate.path" value="../../local/certificate.p12"/>
 
-    <target name="clean">
+	<target name="clean">
         <delete>
         	<fileset dir=".">
 	       		<include name="*.jar"/>
@@ -33,16 +35,24 @@
 			storepass="${passphrase}"/>
 	</target>
 
-	<target name="deploy" depends="jar-sign,jabberwookie">
-		<scp todir="dwagelaa@ssel.vub.ac.be:/var/www/html/cddtoolkit/instantmessenger/java2/applet"
-			 keyfile="${user.home}/.ssh/id_rsa"
-			 passphrase="${passphrase}">
-			<fileset dir=".">
-				<exclude name="build.xml"/>
-				<exclude name="runim"/>
-			</fileset>
-		</scp>
+	<target name="deploy" depends="jabberwookie,jar-sign">
+		<exec dir="." executable="rsync" logError="true">
+			<arg line="-rlvuzC"/>
+			<arg line="--exclude=runim"/>
+			<arg line="--exclude=build.xml"/>
+			<arg line="."/>
+			<arg line="${deploy.host}:${deploy.path}/"/>
+		</exec>
 	</target>
 	
-	<target name="all" depends="deploy"/>
+	<target name="fixFiles" depends="deploy">
+		<exec dir="." executable="ssh" logError="true">
+			<arg line="${deploy.host}"/>
+			<arg line="chown -R :ssel ${deploy.path};"/>
+			<arg line="find ${deploy.path} -type d | xargs chmod 775;"/>
+			<arg line="find ${deploy.path} -type f | xargs chmod 664"/>
+		</exec>
+	</target>
+	
+	<target name="all" depends="fixFiles"/>
 </project>
