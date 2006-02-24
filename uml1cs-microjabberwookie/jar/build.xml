@@ -3,7 +3,7 @@
     <target name="clean">
         <delete>
         	<fileset dir=".">
-	       		<include name="im.jar"/>
+	       		<include name="MicroJabberWookie.jar"/>
         	</fileset>
         </delete>
     </target>
