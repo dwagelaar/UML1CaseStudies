@@ -16,5 +16,9 @@
 	<classpathentry kind="lib" path="lib/openide-util.jar"/>
 	<classpathentry kind="lib" path="lib/runtime.jar"/>
 	<classpathentry kind="lib" path="lib/vm.jar"/>
+	<classpathentry kind="lib" path="lib/antlr.jar"/>
+	<classpathentry kind="lib" path="lib/ATL-importer.jar"/>
+	<classpathentry kind="lib" path="lib/ebnfextractor.jar"/>
+	<classpathentry kind="lib" path="lib/org.atl.eclipse.engine.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

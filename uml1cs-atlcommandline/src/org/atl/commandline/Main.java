@@ -27,8 +27,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import org.atl.commandline.engine.AtlLauncher;
-import org.atl.commandline.engine.AtlModelHandler;
+import org.atl.eclipse.engine.AtlLauncher;
+import org.atl.eclipse.engine.AtlModelHandler;
 import org.atl.engine.repositories.emf4atl.ASMEMFModel;
 import org.atl.engine.vm.nativelib.ASMModel;
 

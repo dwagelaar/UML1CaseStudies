@@ -3,6 +3,9 @@
 	<target name="cleandep">
 		<delete verbose="true">
 			<fileset dir=".">
+				<include name="antlr.jar"/>
+				<include name="ATL-importer.jar"/>
+				<include name="*engine.jar"/>
 				<include name="common.jar"/>
 				<include name="ecore*.jar"/>
 				<include name="runtime.jar"/>
@@ -40,7 +43,7 @@
 		</copy>
 		<copy todir="." flatten="true" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
-				<include name="org.atl.eclipse.engine_*/**/ebnfinjector.jar"/>
+				<include name="org.atl.eclipse.engine_*/**/*.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="." flatten="true" verbose="true">
