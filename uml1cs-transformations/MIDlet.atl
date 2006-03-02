@@ -604,7 +604,8 @@ rule AppletInitProcedureExpression {
 }
 
 rule Model {
-    from s : UML!Model
+    from s : UML!Model (
+    	thisModule.inElements->includes(s))
     to t : UML!Model mapsTo s (
         isLeaf <- s.isLeaf,
         isRoot <- s.isRoot,
@@ -626,7 +627,8 @@ rule Model {
 }
 
 rule StateMachine {
-    from s : UML!StateMachine (s.oclIsTypeOf(UML!StateMachine))
+    from s : UML!StateMachine (s.oclIsTypeOf(UML!StateMachine) and
+    	thisModule.inElements->includes(s))
     to t : UML!StateMachine mapsTo s (
         visibility <- s.visibility,
         name <- s.name,
