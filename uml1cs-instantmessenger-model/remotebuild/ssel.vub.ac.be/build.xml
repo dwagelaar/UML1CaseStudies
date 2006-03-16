@@ -16,7 +16,7 @@
 	<target name="execute" depends="send">
 		<exec dir="." executable="ssh" logError="true">
 			<arg line="${deploy.host}"/>
-			<arg line="cd ${exec.path} &amp;&amp; ant"/>
+			<arg line="cd ${exec.path} &amp;&amp; nice ant"/>
 		</exec>
 	</target>
 	
