@@ -1,9 +1,0 @@
-MIDlet-1: instantmessenger, instantmessenger.png, im.InstantMessagingClient
-MIDlet-Jar-Size: 91029
-MIDlet-Jar-URL: instantmessenger.jar
-MIDlet-Name: instantmessenger
-MIDlet-Permissions: javax.microedition.io.Connector.socket
-MIDlet-Vendor: Vrije Universiteit Brussel
-MIDlet-Version: 1.0
-MicroEdition-Configuration: CLDC-1.0
-MicroEdition-Profile: MIDP-1.0
