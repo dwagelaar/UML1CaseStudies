@@ -17,7 +17,7 @@
 		<copy file="${jabberwookie.path}MicroJabberWookie.jar" todir="."/>
 	</target>
 	
-    <target name="jar" depends="clean">
+    <target name="jar" depends="jabberwookie">
         <jar destfile="im.jar" basedir="../bin">
         	<include name="**"/>
         	<manifest>
