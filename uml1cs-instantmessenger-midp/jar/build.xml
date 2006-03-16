@@ -89,5 +89,5 @@ MicroEdition-Profile: ${midlet.profile}
 </echo>
 	</target>
 
-	<target name="all" depends="jar"/>
+	<target name="all" depends="jad"/>
 </project>
