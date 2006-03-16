@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns="http://local/Refinements.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xml:base="http://local/Refinements.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Java1Refinement">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Refinement"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ObserverAndJavaObserver">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="JavaObserver"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="implies"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Observer"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="InvalidRefinementConfiguration"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#JavaObserver">
+    <rdfs:subClassOf rdf:resource="#Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:ID="MIDlet">
+    <rdfs:subClassOf rdf:resource="#Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:ID="CompleteRefinementConfiguration">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="RefinementConfiguration"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="UMLtoJava"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <owl:Class rdf:ID="Accessors"/>
+                  <owl:Class rdf:ID="Java2Accessors"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <owl:Class rdf:ID="Applet"/>
+                  <owl:Class rdf:about="#MIDlet"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <owl:Class rdf:ID="AssociationAttributes"/>
+                  <owl:Class rdf:ID="Java2AssociationAttributes"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="AsyncMethods"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <owl:Class rdf:ID="DataTypes"/>
+                  <owl:Class rdf:ID="Java2DataTypes"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                  <owl:Class rdf:about="#JavaObserver"/>
+                  <owl:Class rdf:about="#Observer"/>
+                </owl:unionOf>
+              </owl:Class>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Singleton"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Accessors">
+    <rdfs:subClassOf rdf:resource="#Java1Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Java2Accessors">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Java2Refinement"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Java2DataTypes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Java2Refinement"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Java2AssociationAttributes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Java2Refinement"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Java1AndJava2">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Java1Refinement"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="#Java2Refinement"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#InvalidRefinementConfiguration"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#UMLtoJava">
+    <rdfs:subClassOf rdf:resource="#Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Applet">
+    <rdfs:subClassOf rdf:resource="#Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Java2Refinement">
+    <rdfs:subClassOf rdf:resource="#Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:about="#InvalidRefinementConfiguration">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RefinementConfiguration"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#RefinementConfiguration">
+    <rdfs:subClassOf rdf:resource="#Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:ID="AppletAndMIDlet">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#Applet"/>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="#implies"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="#MIDlet"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#InvalidRefinementConfiguration"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AssociationAttributes">
+    <rdfs:subClassOf rdf:resource="#Java1Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Observer">
+    <rdfs:subClassOf rdf:resource="#Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ImpliesInvalidConfiguration">
+    <rdfs:subClassOf rdf:resource="#InvalidRefinementConfiguration"/>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#implies"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#InvalidRefinementConfiguration"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#AsyncMethods">
+    <rdfs:subClassOf rdf:resource="#Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Singleton">
+    <rdfs:subClassOf rdf:resource="#Refinement"/>
+  </owl:Class>
+  <owl:Class rdf:about="#DataTypes">
+    <rdfs:subClassOf rdf:resource="#Java1Refinement"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="directlyImplies">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#implies"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#implies">
+    <rdfs:domain rdf:resource="#Refinement"/>
+    <rdfs:range rdf:resource="#Refinement"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </owl:ObjectProperty>
+  <AssociationAttributes rdf:ID="AssociationAttributes_20"/>
+  <Accessors rdf:ID="Accessors_19">
+    <directlyImplies rdf:resource="#AssociationAttributes_20"/>
+  </Accessors>
+  <DataTypes rdf:ID="DataTypes_14">
+    <directlyImplies>
+      <AsyncMethods rdf:ID="AsyncMethods_15">
+        <directlyImplies>
+          <Singleton rdf:ID="Singleton_16">
+            <directlyImplies>
+              <Applet rdf:ID="Applet_17">
+                <directlyImplies>
+                  <JavaObserver rdf:ID="JavaObserver_18">
+                    <directlyImplies rdf:resource="#Accessors_19"/>
+                  </JavaObserver>
+                </directlyImplies>
+              </Applet>
+            </directlyImplies>
+          </Singleton>
+        </directlyImplies>
+      </AsyncMethods>
+    </directlyImplies>
+  </DataTypes>
+  <UMLtoJava rdf:ID="UMLtoJava_7">
+    <directlyImplies rdf:resource="#DataTypes_14"/>
+  </UMLtoJava>
+  <RefinementConfiguration rdf:ID="im1">
+    <directlyImplies rdf:resource="#UMLtoJava_7"/>
+  </RefinementConfiguration>
+  <RefinementConfiguration rdf:ID="im2">
+    <directlyImplies rdf:resource="#UMLtoJava_7"/>
+    <directlyImplies>
+      <MIDlet rdf:ID="MIDlet_21"/>
+    </directlyImplies>
+  </RefinementConfiguration>
+  <AssociationAttributes rdf:ID="associationAttributes_1"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 2.1, Build 284)  http://protege.stanford.edu -->
