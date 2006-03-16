@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="InstantMessenger" default="all">
+
+	<target name="all">
+		<parallel>
+			<ant dir="default"/>
+			<ant dir="java2"/>
+			<ant dir="midp"/>
+			<ant dir="swing"/>
+		</parallel>
+	</target>
+</project>
