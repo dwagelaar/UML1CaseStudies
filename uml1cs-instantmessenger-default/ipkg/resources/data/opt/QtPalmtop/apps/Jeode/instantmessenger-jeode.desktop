@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Instant Messenger
 Comment=Instant Messenger
-Exec=run_im
-Icon=instantmessenger
+Exec=run_im-jeode
+Icon=instantmessenger-jeode
 Type=Application
 CanFastLoad=0
 HidePrivilige=1

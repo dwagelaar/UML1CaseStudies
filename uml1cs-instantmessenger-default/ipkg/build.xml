@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Swing IPKG builder" default="all">
-	<property name="ipk.name" value="instantmessenger"/>
+	<property name="ipk.name" value="instantmessenger-jeode"/>
 	<property name="ipk.version" value="1.0-0"/>
 	<property name="ipk.arch" value="noarch"/>
 	<property name="ipk.depends" value="jeode"/>
@@ -8,7 +8,7 @@
 	<property name="ipk.priority" value="optional"/>
 	<property name="ipk.section" value="extras"/>
 	<property name="ipk.cardinst" value="enabled"/>
-	<property name="ipk.description" value="Instant Messenger case study for Model-Driven Development.&#013; Supports the Jabber protocol for now."/>
+	<property name="ipk.description" value="Instant Messenger case study for Model-Driven Development.&#010; Supports the Jabber protocol for now."/>
 	<property name="ipk.installed-size" value="640KB"/>
 	
 	<target name="clean">
@@ -22,6 +22,7 @@
 	      		<include name="**"/>
 	      		<exclude name="build.xml"/>
 	      		<exclude name="runim"/>
+	      		<exclude name="deployment/**"/>
 	    	</fileset>
 	    </copy>
 	    <copy todir="build">
