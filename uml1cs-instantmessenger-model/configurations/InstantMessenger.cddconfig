@@ -63,7 +63,7 @@
     <constraint resource="http://local/RefinementConstraints.owl#JavaPlatform"/>
     <constraint resource="http://local/InstantMessengerConstraints.owl#WebAppletPlatform"/>
   </options>
-  <options target="java2/ipk/instantmessenger_1.0-0_noarch.ipk">
+  <options target="java2/ipk/instantmessenger-j2me-pp_1.0-0_noarch.ipk">
     <constraint resource="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
     <constraint resource="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
     <constraint resource="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
@@ -95,7 +95,7 @@
     <constraint resource="http://local/RefinementConstraints.owl#JavaPlatform"/>
     <constraint resource="http://local/InstantMessengerConstraints.owl#WebAppletPlatform"/>
   </options>
-  <options target="default/ipk/instantmessenger_1.0-0_noarch.ipk">
+  <options target="default/ipk/instantmessenger-jeode_1.0-0_noarch.ipk">
     <constraint resource="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
     <constraint resource="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
     <constraint resource="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
