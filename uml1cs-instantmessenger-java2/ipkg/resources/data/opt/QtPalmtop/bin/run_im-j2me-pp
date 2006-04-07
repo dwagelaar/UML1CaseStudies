@@ -1,3 +1,3 @@
-IM_PATH=$QPEDIR/java/instantmessenger
+IM_PATH=$QPEDIR/java/instantmessenger-j2me-pp
 cd $IM_PATH
 $QPEDIR/j2me/bin/cvm -XappName=$0 -Djava.security.policy=java.policy.applet -appletviewer index.html

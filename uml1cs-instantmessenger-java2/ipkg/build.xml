@@ -2,7 +2,7 @@
 <project name="Java2 IPKG builder" default="all">
 	<property name="deploy.host" value="dwagelaa@ssel.vub.ac.be"/>
 	<property name="deploy.path" value="/var/www/html/cddtoolkit/instantmessenger/java2/ipk"/>
-	<property name="ipk.name" value="instantmessenger"/>
+	<property name="ipk.name" value="instantmessenger-j2me-pp"/>
 	<property name="ipk.version" value="1.0-0"/>
 	<property name="ipk.arch" value="noarch"/>
 	<property name="ipk.depends" value="personal-profile-for-zaurus"/>
@@ -10,7 +10,7 @@
 	<property name="ipk.priority" value="optional"/>
 	<property name="ipk.section" value="extras"/>
 	<property name="ipk.cardinst" value="enabled"/>
-	<property name="ipk.description" value="Instant Messenger case study for Model-Driven Development.&#013; Supports the Jabber protocol for now."/>
+	<property name="ipk.description" value="Instant Messenger case study for Model-Driven Development.&#010; Supports the Jabber protocol for now."/>
 	<property name="ipk.installed-size" value="640KB"/>
 	
 	<target name="clean">
@@ -24,6 +24,7 @@
 	      		<include name="**"/>
 	      		<exclude name="build.xml"/>
 	      		<exclude name="runim"/>
+	      		<exclude name="deployment/**"/>
 	    	</fileset>
 	    </copy>
 	    <copy todir="build">

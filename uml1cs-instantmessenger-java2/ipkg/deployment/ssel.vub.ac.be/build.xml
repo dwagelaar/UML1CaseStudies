@@ -6,7 +6,7 @@
 	<target name="deploy">
 		<exec dir="../../" executable="rsync" logError="true">
 			<arg line="-lvuzC"/>
-			<arg line="instantmessenger_1.0-0_noarch.ipk"/>
+			<arg line="instantmessenger-j2me-pp_1.0-0_noarch.ipk"/>
 			<arg line="${deploy.host}:${deploy.path}/"/>
 		</exec>
 	</target>
