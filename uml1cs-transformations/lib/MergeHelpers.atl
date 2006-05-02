@@ -90,7 +90,7 @@ helper context UML!StructuralFeature def : notInSourceModel() : Boolean =
 		true
 	else
 		self.owner.fromSourceModel().feature->select(f|
-			f.name=self.name and f.oclIsKindOf(UML!StructuralFeature))
+			f.name=self.name and f.oclIsKindOf(UML!StructuralFeature))->isEmpty()
 	endif;
 
 ------------------------------- Operation -------------------------------
