@@ -19,7 +19,10 @@
  */
 package org.atl.commandline;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,10 +30,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import org.atl.eclipse.engine.AtlEMFModelHandler;
 import org.atl.eclipse.engine.AtlLauncher;
 import org.atl.eclipse.engine.AtlModelHandler;
 import org.atl.engine.repositories.emf4atl.ASMEMFModel;
+import org.atl.engine.repositories.mdr4atl.AtlMDRModelHandler;
 import org.atl.engine.vm.nativelib.ASMModel;
+import org.eclipse.emf.common.util.URI;
 
 /**
  * Command-line interface to the ATLAS transformation engine.
@@ -52,12 +58,30 @@ public class Main implements Runnable {
     public HashMap paths = new HashMap();
     public HashMap modelCache = new HashMap();
     public HashMap handlers = new HashMap();
+
+    private static URI cwd = 
+        URI.createURI("file:" + new File(".").getAbsolutePath());
     
     private int argPos = 0;
+
+    public static AtlModelHandler getDefaultHandler(String repository) {
+        AtlModelHandler amh = null;
+        try {
+            amh = AtlModelHandler.getDefault(repository);
+        } catch (Throwable e) {
+            if ("MDR".equals(repository)) {
+                AtlModelHandler.registerDefaultHandler("MDR", new AtlMDRModelHandler());
+                amh = AtlModelHandler.getDefault(repository);
+            } else {
+                throw new RuntimeException(e);
+            }
+        }
+        return amh;
+    }
     
     public static void main(String[] args) {
-        int argsLeft = args.length;
         Main main = new Main();
+        int argsLeft = args.length;
         do {
             argsLeft = main.parseArgs(args);
             if (argsLeft > -1)
@@ -68,6 +92,34 @@ public class Main implements Runnable {
         } else {
             System.exit(0);
         }
+    }
+    
+    /**
+     * Loads a model via URI if possible, via InputStream otherwise.
+     * @param amh The model handler to use.
+     * @param modelId The ATL model ID.
+     * @param metaModel The ATL meta-model.
+     * @param uri The URI of the model to load.
+     * @return The loaded ATL model.
+     */
+    public static ASMModel loadModel(AtlModelHandler amh, String modelId, ASMModel metaModel, String uri)
+    throws FileNotFoundException {
+        ASMModel model = null;
+        if (amh instanceof AtlEMFModelHandler) {
+            URI absURI = URI.createURI(uri).resolve(cwd);
+            model = ((AtlEMFModelHandler)amh).loadModel(
+                    modelId, metaModel, absURI);
+            try {
+                Method getReferencedExtents = model.getClass().getMethod("getReferencedExtents", null);
+                System.out.println("Referenced extents: " +
+                        getReferencedExtents.invoke(model, null));
+            } catch (Exception e) {
+                System.out.println("The EMF4ATL version used does not support referenced extents (multiple-file models)");
+            }
+        } else {
+            model = amh.loadModel(modelId, metaModel, new FileInputStream(uri));
+        }
+        return model;
     }
     
     /**
@@ -146,7 +198,7 @@ public class Main implements Runnable {
         String metaid = metamdl.nextToken();
         String metapath = metamdl.nextToken();
 
-        AtlModelHandler amh = AtlModelHandler.getDefault(repository);
+        AtlModelHandler amh = getDefaultHandler(repository);
         ASMModel metaModel;
         ASMModel inputModel;
         if (metaid.equals("MOF")) {
@@ -157,7 +209,7 @@ public class Main implements Runnable {
             metaModel = (ASMModel) in.get(metaid);
             if (metaModel == null || !metapath.equals(paths.get(metaid))) {
                 System.out.println("Input metamodel " + metaid + " @ " + amh + " not yet loaded - loading from " + metapath);
-                metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
+                metaModel = loadModel(amh, metaid, amh.getMof(), metapath);
                 metaModel.setIsTarget(false);
                 in.put(metaid, metaModel);
             }
@@ -169,7 +221,7 @@ public class Main implements Runnable {
                 !modelpath.equals(paths.get(modelid)) || 
                 !metaid.equals(inputModel.getMetamodel().getName())) {
             System.out.println("Loading input model " + modelid + " from " + modelpath);
-            inputModel = amh.loadModel(modelid, metaModel, new FileInputStream(modelpath));
+            inputModel = loadModel(amh, modelid, metaModel, modelpath);
             inputModel.setIsTarget(false);
             if (inputModel instanceof ASMEMFModel)
                 ((ASMEMFModel)inputModel).setCheckSameModel(false);
@@ -197,7 +249,7 @@ public class Main implements Runnable {
         String metaid = metamdl.nextToken();
         String metapath = metamdl.nextToken();
 
-        AtlModelHandler amh = AtlModelHandler.getDefault(repository);
+        AtlModelHandler amh = getDefaultHandler(repository);
         ASMModel metaModel;
         ASMModel outputModel;
         if (metaid.equals("MOF")) {
@@ -208,7 +260,7 @@ public class Main implements Runnable {
             metaModel = (ASMModel) in.get(metaid);
             if (metaModel == null || !metapath.equals(paths.get(metaid))) {
                 System.out.println("Loading output metamodel " + metaid + " @ " + amh + " from " + metapath);
-                metaModel = amh.loadModel(metaid, amh.getMof(), new FileInputStream(metapath));
+                metaModel = loadModel(amh, metaid, amh.getMof(), metapath);
                 metaModel.setIsTarget(false);
                 in.put(metaid, metaModel);
             }
@@ -262,7 +314,7 @@ public class Main implements Runnable {
                 String mName = (String)i.next();
                 ASMModel currentOutModel = (ASMModel)out.get(mName);
                 String mmName = currentOutModel.getMetamodel().getName();
-                AtlModelHandler.getDefault((String)handlers.get(mmName)).saveModel(currentOutModel, (String) paths.get(mName));
+                getDefaultHandler((String)handlers.get(mmName)).saveModel(currentOutModel, (String) paths.get(mName));
                 System.out.println("Wrote " + (String) paths.get(mName));
                 modelCache.put(mName, currentOutModel);
                 i.remove();
