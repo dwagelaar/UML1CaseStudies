@@ -3,4 +3,12 @@ library Config;
 
 -- adapt the following helper to reflect your file path
 helper context String def : path() : String =
-	'/home/dwagelaa/UML1CaseStudies/uml1cs-transformations/' + self;
+	'/home/dwagelaa/UML1CaseStudies/uml1cs-transformations/QName' + self;
+
+-- adapt the following inclusion condition for your specific model
+helper context MOF14!Class def : inclusionCondition() : Boolean =
+	not (self.container.name = 'Diagram_Interchange');
+
+-- select whether or not to use fully qualified meta-class names (<package>::<class>)
+helper context MOF14!ModelElement def : useQualifiedName() : Boolean =
+	true;
