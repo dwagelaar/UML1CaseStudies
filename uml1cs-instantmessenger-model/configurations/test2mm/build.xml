@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SwingInstantMessenger" default="all">
+	<import file="../common.xml"/>
+	<property name="target.path" value="../../outmodels/test2mm/"/>
+
+	<target name="clean">
+	    <delete>
+    		<fileset dir="${target.path}"/>
+	    </delete>
+	</target>
+	
+	<target name="transform" depends="clean">
+		<am3.loadModel 
+			name="DSL" path="file:../../metamodels/InstantMessengerFeatures.ecore"
+			metamodel="MOF" modelhandler="EMF"/>
+		<am3.loadModel
+			name="IN" path="test2metamodels.ecore"
+			metamodel="DSL" modelHandler="EMF"/>
+		<am3.atl path="${transf.genbuildfile}">
+			<inmodel name="IN"/>
+			<library name="config" path="${lib.config}"/>
+		</am3.atl>
+	</target>
+
+	<target name="all" depends="oldtransform"/>
+
+	<target name="oldtransform" depends="clean">
+		<atl>
+			<arg line="--trans ${transf.genbuildfile}"/>
+			<arg line="--in IN=test2metamodels.ecore DSL=../../metamodels/InstantMessengerFeatures.ecore EMF"/>
+			<arg line="--lib BuildFileHelpers=${lib.buildfile}"/>
+			<arg line="--lib config=${lib.config}"/>
+		</atl>
+	</target>
+</project>

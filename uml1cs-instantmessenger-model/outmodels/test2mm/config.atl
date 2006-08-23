@@ -1,0 +1,8 @@
+-- code generation configuration
+library config;
+
+helper context String def : path() : String =
+	'/tmp/src/' + self;
+
+helper context String def : ignore() : Boolean =
+    false or self.startsWith('java') or self.startsWith('ocl') or self.startsWith('com');

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="testam3" default="all">
+	<property name="project.path" value="/uml1cs-instantmessenger-model"/>
+	<property name="current.path" value="${project.path}/outmodels/testam3"/>
+	<property name="transf.path" value="/uml1cs-transformations/"/>
+	<property name="mm.path" value="${transf.path}/metamodels"/>
+
+	<target name="loadModels">
+		<am3.loadModel modelHandler="MDR" name="INMODEL" metamodel="MOF" path="${mm.path}/M2_DiagramInterchangeModel.xmi"/>
+		<am3.loadModel modelHandler="EMF" name="OUTMODEL" metamodel="MOF" path="${mm.path}/M2_DiagramInterchangeModel.ecore"/>
+		<am3.loadModel modelHandler="MDR" name="IN" metamodel="INMODEL" path="${project.path}/models/InstantMessengerModel.xmi"/>
+	</target>
+
+    <target name="transform" depends="loadModels">
+		<am3.atl path="${transf.path}/ModelCopy.atl" allowInterModelReferences="false">
+			<inmodel name="INMODEL" model="INMODEL"/>
+			<inmodel name="IN" model="IN"/>
+			<inmodel name="OUTMODEL" model="OUTMODEL"/>
+			<outmodel name="OUT" model="OUT" metamodel="OUTMODEL" path="/${ant.project.name}/outmodels/testam3/outModel.ecore"/>
+		</am3.atl>
+		<am3.saveModel model="OUT" path="${current.path}/outModel.ecore"/>
+    </target>
+
+    <target name="all" depends="transform"/>
+</project>
