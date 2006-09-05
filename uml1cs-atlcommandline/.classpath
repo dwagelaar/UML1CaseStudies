@@ -19,6 +19,8 @@
 	<classpathentry kind="lib" path="lib/antlr.jar"/>
 	<classpathentry kind="lib" path="lib/ATL-importer.jar"/>
 	<classpathentry kind="lib" path="lib/ebnfextractor.jar"/>
-	<classpathentry kind="lib" path="lib/org.atl.eclipse.engine.jar"/>
+	<classpathentry sourcepath="/org.atl.eclipse.engine/src" kind="lib" path="lib/org.atl.eclipse.engine.jar"/>
+	<classpathentry kind="lib" path="lib/resources.jar"/>
+	<classpathentry kind="lib" path="lib/equinox.common.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

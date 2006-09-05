@@ -9,6 +9,8 @@
 				<include name="common.jar"/>
 				<include name="ecore*.jar"/>
 				<include name="runtime.jar"/>
+				<include name="equinox.common.jar"/>
+				<include name="resources.jar"/>
 				<include name="*4atl.jar"/>
 				<include name="ebnf*.jar"/>
 				<include name="vm.jar"/>
@@ -41,19 +43,31 @@
 				<include name="org.eclipse.core.runtime_*.jar"/>
 			</fileset>
 		</copy>
+		<copy tofile="equinox.common.jar" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.equinox.common_*.jar"/>
+			</fileset>
+		</copy>
+		<copy tofile="resources.jar" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.core.resources_*.jar"/>
+			</fileset>
+		</copy>
 		<copy todir="." flatten="true" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
 				<include name="org.atl.eclipse.engine_*/**/*.jar"/>
 			</fileset>
 		</copy>
-		<copy todir="." flatten="true" verbose="true">
+		<copy tofile="vm.jar" flatten="true" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
 				<include name="org.atl.engine.vm_*/**/vm.jar"/>
+				<include name="org.atl.engine.vm_*.jar"/>
 			</fileset>
 		</copy>
-		<copy todir="." flatten="true" verbose="true">
+		<copy tofile="emf4atl.jar" flatten="true" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
 				<include name="org.atl.engine.repositories.emf4atl_*/**/emf4atl.jar"/>
+				<include name="org.atl.engine.repositories.emf4atl_*.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="." flatten="true" verbose="true">
