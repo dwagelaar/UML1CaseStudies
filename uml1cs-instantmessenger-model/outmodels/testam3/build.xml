@@ -2,7 +2,7 @@
 <project name="testam3" default="all">
 	<property name="project.path" value="/uml1cs-instantmessenger-model"/>
 	<property name="current.path" value="${project.path}/outmodels/testam3"/>
-	<property name="transf.path" value="/uml1cs-transformations/"/>
+	<property name="transf.path" value="/uml1cs-transformations"/>
 	<property name="mm.path" value="${transf.path}/metamodels"/>
 
 	<target name="loadModels">
@@ -12,7 +12,7 @@
 	</target>
 
     <target name="transform" depends="loadModels">
-		<am3.atl path="${transf.path}/ModelCopy.atl" allowInterModelReferences="false">
+		<am3.atl path="${transf.path}/ModelCopy.atl">
 			<inmodel name="INMODEL" model="INMODEL"/>
 			<inmodel name="IN" model="IN"/>
 			<inmodel name="OUTMODEL" model="OUTMODEL"/>

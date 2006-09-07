@@ -506,7 +506,7 @@
           participatingInstance="//@ownedElement.15/@ownedElement.7/@ownedElement.1 //@ownedElement.15/@ownedElement.7/@ownedElement.2 //@ownedElement.15/@ownedElement.7/@ownedElement.3">
         <interactionInstanceSet name="Collaboration_Instance_Set_2"/>
       </ownedElement>
-      <ownedElement xsi:type="uml:Object" name="message" linkEnd="//@ownedElement.15/@ownedElement.7/@ownedElement.3/@ownedLink.0/@connection.1 //@ownedElement.15/@ownedElement.7/@ownedElement.1/@ownedLink.0/@connection.0"
+      <ownedElement xsi:type="uml:Object" name="message" linkEnd="//@ownedElement.15/@ownedElement.7/@ownedElement.1/@ownedLink.0/@connection.0 //@ownedElement.15/@ownedElement.7/@ownedElement.3/@ownedLink.0/@connection.1"
           classifier="//@ownedElement.15/@ownedElement.2/@ownedElement.13">
         <ownedLink name="">
           <connection instance="//@ownedElement.15/@ownedElement.7/@ownedElement.1"/>
@@ -556,7 +556,7 @@
           <connection instance="//@ownedElement.15/@ownedElement.8/@ownedElement.2"/>
         </ownedLink>
       </ownedElement>
-      <ownedElement xsi:type="uml:Object" name="client" linkEnd="//@ownedElement.15/@ownedElement.8/@ownedElement.2/@ownedLink.0/@connection.0 //@ownedElement.15/@ownedElement.8/@ownedElement.1/@ownedLink.0/@connection.1"
+      <ownedElement xsi:type="uml:Object" name="client" linkEnd="//@ownedElement.15/@ownedElement.8/@ownedElement.1/@ownedLink.0/@connection.1 //@ownedElement.15/@ownedElement.8/@ownedElement.2/@ownedLink.0/@connection.0"
           classifier="//@ownedElement.15/@ownedElement.0">
         <ownedLink name="">
           <connection instance="//@ownedElement.15/@ownedElement.8/@ownedElement.2"/>
