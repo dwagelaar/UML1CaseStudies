@@ -29,6 +29,15 @@
 	<property name="out.pre" value="--out OUT="/>
 	<property name="out.post" value=".ecore OUTMODEL=${mmodel.uml} EMF"/>
 	
+	<target name="MDRtoMDRtest">
+		<atl>
+			<!-- InstantMessengerAWT -->
+			<arg line="${trans}"/>
+			<arg line="${in.pre}InstantMessengerAWT${in.post}"/>
+			<arg line="${out.pre}InstantMessengerAWT-copy.xmi OUTMODEL=${mmodel.mdruml} MDR"/>
+		</atl>
+	</target>
+	
 	<target name="toEcore">
 		<atl>
 			<!-- InstantMessengerAWT -->
