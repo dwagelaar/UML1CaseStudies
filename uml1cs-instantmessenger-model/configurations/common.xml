@@ -6,7 +6,7 @@
 	<property name="lib.config" value="file:config.asm"/>
 	<property name="lib.buildfile" value="file:${transf.path}lib/BuildFileHelpers.asm"/>
 	<property name="mmodel.path" value="../../metamodels/"/>
-	<property name="mmodel.dsl" value="${mmodel.path}InstantMessengerFeaturesPlusRefinements.ecore"/>
+	<property name="mmodel.dsl" value="${mmodel.path}InstantMessengerFeatures.ecore"/>
 
 	<path id="atl.class.path">
 		<fileset dir="${atlcommandline.path}lib">

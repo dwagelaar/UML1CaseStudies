@@ -5,8 +5,9 @@
     nsURI="platform:/resource/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeatures.ecore"
     nsPrefix="im">
   <eClassifiers xsi:type="ecore:EClass" name="InstantMessagingClient">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#InstantMessagingClientPlatform"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
         upperBound="-1" eType="#//Network" containment="true" eOpposite="#//Network/client"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="userInterface" lowerBound="1"
@@ -20,38 +21,46 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Jabber" eSuperTypes="#//Network">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#JabberPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#JabberPlatform"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="transport" lowerBound="1"
         eType="#//JabberTransport" containment="true" eOpposite="#//JabberTransport/jabber"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultJabber" eSuperTypes="#//JabberTransport">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#DefaultJabberPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MEJabber" eSuperTypes="#//JabberTransport">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#MEJabberPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#MEJabberPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SMS" eSuperTypes="#//Network">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#SMSPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#SMSPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Local" eSuperTypes="#//Network">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#LocalPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#LocalPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Swing" eSuperTypes="#//UserInterface">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#SwingPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#SwingPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AWT" eSuperTypes="#//UserInterface">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#AWTPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#AWTPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LCDUI" eSuperTypes="#//UserInterface">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#LCDUIPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#LCDUIPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Network" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="client" lowerBound="1"
@@ -70,15 +79,18 @@
         eType="#//InstantMessagingClient" eOpposite="#//InstantMessagingClient/packaging"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WebApplet" eSuperTypes="#//Packaging">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#WebAppletPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#WebAppletPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Ipkg" eSuperTypes="#//Packaging">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#IpkgPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#IpkgPlatform"/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MIDletJar" eSuperTypes="#//Packaging">
-    <eAnnotations source="http://local/InstantMessengerConstraints.owl#MIDletPlatform"
-        references="../../uml1cs-transformations/metamodels/Refinements.ecore#//%ContextConstraint%"/>
+    <eAnnotations source="CDDToolkit">
+      <details key="ContextConstraint" value="http://local/InstantMessengerConstraints.owl#MIDletPlatform"/>
+    </eAnnotations>
   </eClassifiers>
 </ecore:EPackage>

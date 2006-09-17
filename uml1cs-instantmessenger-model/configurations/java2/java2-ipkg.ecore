@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <im:InstantMessagingClient xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:im="platform:/resource/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeaturesPlusRefinements.ecore" target="java2/ipk/instantmessenger-j2me-pp_1.0-0_noarch.ipk">
+    xmlns:im="platform:/resource/uml1cs-instantmessenger-model/metamodels/InstantMessengerFeatures.ecore"
+    xmlns:refinements="platform:/resource/uml1cs-transformations/metamodels/Refinements.ecore" target="java2/ipk/instantmessenger-j2me-pp_1.0-0_noarch.ipk">
   <network xsi:type="im:Jabber">
     <transport xsi:type="im:DefaultJabber"/>
   </network>
   <network xsi:type="im:Local"/>
   <userInterface xsi:type="im:AWT"/>
   <refinementConfiguration>
-    <first xsi:type="im:Java2AssociationAttributes">
-      <next xsi:type="im:Java2Accessors">
-        <next xsi:type="im:JavaObserver">
+    <first xsi:type="refinements:Java2AssociationAttributes">
+      <next xsi:type="refinements:Java2Accessors">
+        <next xsi:type="refinements:JavaObserver">
           <next>
-            <next xsi:type="im:Applet">
+            <next xsi:type="refinements:Applet">
               <next>
-                <next xsi:type="im:Java2DataTypes">
-                  <next xsi:type="im:UMLtoJava" targetPath="../../../uml1cs-instantmessenger-java2/src"/>
+                <next xsi:type="refinements:Java2DataTypes">
+                  <next xsi:type="refinements:UMLtoJava" targetPath="../../../uml1cs-instantmessenger-java2/src"/>
                 </next>
               </next>
             </next>
