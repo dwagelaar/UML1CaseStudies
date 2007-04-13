@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="lib/ebnfinjector.jar"/>
 	<classpathentry kind="lib" path="lib/ecore.jar"/>
 	<classpathentry kind="lib" path="lib/ecore.xmi.jar"/>
-	<classpathentry sourcepath="/org.atl.engine.repositories.emf4atl/src" kind="lib" path="lib/emf4atl.jar"/>
+	<classpathentry kind="lib" path="lib/emf4atl.jar" sourcepath="/org.eclipse.m2m.atl.drivers.emf4atl/src"/>
 	<classpathentry kind="lib" path="lib/jmi.jar"/>
 	<classpathentry kind="lib" path="lib/jmiutils.jar"/>
 	<classpathentry kind="lib" path="lib/mdr4atl.jar"/>
@@ -19,8 +19,8 @@
 	<classpathentry kind="lib" path="lib/antlr.jar"/>
 	<classpathentry kind="lib" path="lib/ATL-importer.jar"/>
 	<classpathentry kind="lib" path="lib/ebnfextractor.jar"/>
-	<classpathentry sourcepath="/org.atl.eclipse.engine/src" kind="lib" path="lib/org.atl.eclipse.engine.jar"/>
 	<classpathentry kind="lib" path="lib/resources.jar"/>
 	<classpathentry kind="lib" path="lib/equinox.common.jar"/>
+	<classpathentry kind="lib" path="lib/engine.jar" sourcepath="/org.eclipse.m2m.atl.engine/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

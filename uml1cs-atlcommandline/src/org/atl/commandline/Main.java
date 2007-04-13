@@ -30,13 +30,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import org.atl.eclipse.engine.AtlEMFModelHandler;
-import org.atl.eclipse.engine.AtlLauncher;
-import org.atl.eclipse.engine.AtlModelHandler;
-import org.atl.engine.repositories.emf4atl.ASMEMFModel;
-import org.atl.engine.repositories.mdr4atl.AtlMDRModelHandler;
-import org.atl.engine.vm.nativelib.ASMModel;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.m2m.atl.drivers.emf4atl.ASMEMFModel;
+import org.eclipse.m2m.atl.drivers.mdr4atl.AtlMDRModelHandler;
+import org.eclipse.m2m.atl.engine.AtlEMFModelHandler;
+import org.eclipse.m2m.atl.engine.AtlLauncher;
+import org.eclipse.m2m.atl.engine.AtlModelHandler;
+import org.eclipse.m2m.atl.engine.vm.nativelib.ASMModel;
 
 /**
  * Command-line interface to the ATLAS transformation engine.
