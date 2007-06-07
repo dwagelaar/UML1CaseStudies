@@ -24,6 +24,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,6 +50,7 @@ public class Main implements Runnable {
         "[--in <id>=<model> <id>=<metamodel> <MDR|EMF>] " +
         "[--out <id>=<model> <id>=<metamodel> <MDR|EMF>] " +
         "[--lib <id>=<library url>] " +
+        "[--superimpose <transformation url>] " +
         "--next --trans ...";
     
     public URL trans = null;
@@ -58,6 +60,7 @@ public class Main implements Runnable {
     public HashMap paths = new HashMap();
     public HashMap modelCache = new HashMap();
     public HashMap handlers = new HashMap();
+    public ArrayList superimpose = new ArrayList();
 
     private static URI cwd = 
         URI.createURI("file:" + new File(".").getAbsolutePath());
@@ -163,6 +166,10 @@ public class Main implements Runnable {
                     i++;
                     logStrings(new String[] { args[i-1], args[i] });
                     addLib(args[i]);
+                } else if (args[i].equals("--superimpose")) {
+                    i++;
+                    logStrings(new String[] { args[i-1], args[i] });
+                    superimpose.add(new URL(args[i]));
                 } else if (args[i].equals("--next")) {
                     i++;
                     argPos = i;
@@ -307,7 +314,7 @@ public class Main implements Runnable {
             }
             Map params = Collections.EMPTY_MAP;
             AtlLauncher myLauncher = AtlLauncher.getDefault();
-            myLauncher.launch(trans, libs, models, params);
+            myLauncher.launch(trans, libs, models, params, superimpose);
             System.out.println("Model transformation done");
             // save output models
             for(Iterator i = out.keySet().iterator(); i.hasNext() ; ) {
