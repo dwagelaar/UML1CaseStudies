@@ -22,5 +22,7 @@
 	<classpathentry kind="lib" path="lib/resources.jar"/>
 	<classpathentry kind="lib" path="lib/equinox.common.jar"/>
 	<classpathentry kind="lib" path="lib/engine.jar" sourcepath="/org.eclipse.m2m.atl.engine/src"/>
+	<classpathentry kind="lib" path="lib/equinox.registry.jar"/>
+	<classpathentry kind="lib" path="lib/osgi.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -9,8 +9,10 @@
 				<include name="common.jar"/>
 				<include name="ecore*.jar"/>
 				<include name="runtime.jar"/>
+				<include name="equinox.registry.jar"/>
 				<include name="equinox.common.jar"/>
 				<include name="resources.jar"/>
+				<include name="osgi.jar"/>
 				<include name="*4atl.jar"/>
 				<include name="ebnf*.jar"/>
 				<include name="vm.jar"/>
@@ -43,6 +45,11 @@
 				<include name="org.eclipse.core.runtime_*.jar"/>
 			</fileset>
 		</copy>
+		<copy tofile="equinox.registry.jar" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.equinox.registry_*.jar"/>
+			</fileset>
+		</copy>
 		<copy tofile="equinox.common.jar" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
 				<include name="org.eclipse.equinox.common_*.jar"/>
@@ -51,6 +58,11 @@
 		<copy tofile="resources.jar" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
 				<include name="org.eclipse.core.resources_3.2.2*.jar"/>
+			</fileset>
+		</copy>
+		<copy tofile="osgi.jar" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.osgi_3.2.2*.jar"/>
 			</fileset>
 		</copy>
 		<copy todir="." flatten="true" verbose="true">
