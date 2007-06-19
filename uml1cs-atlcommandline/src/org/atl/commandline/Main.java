@@ -275,7 +275,7 @@ public class Main implements Runnable {
         handlers.put(metaid, repository);
         System.out.println("Using output metamodel " + metaModel);
         System.out.println("Creating new model " + modelid + " for output");
-        outputModel = amh.newModel(modelid, metaModel);
+        outputModel = amh.newModel(modelid, modelpath, metaModel);
         if (outputModel instanceof ASMEMFModel)
             ((ASMEMFModel)outputModel).setCheckSameModel(false);
         out.put(modelid, outputModel);
