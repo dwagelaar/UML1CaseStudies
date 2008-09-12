@@ -4,7 +4,6 @@
 		<delete verbose="true">
 			<fileset dir=".">
 				<include name="antlr.jar"/>
-				<include name="ATL-importer.jar"/>
 				<include name="*engine.jar"/>
 				<include name="common.jar"/>
 				<include name="ecore*.jar"/>
@@ -14,7 +13,6 @@
 				<include name="resources.jar"/>
 				<include name="osgi.jar"/>
 				<include name="*4atl.jar"/>
-				<include name="ebnf*.jar"/>
 				<include name="vm.jar"/>
 				<include name="*mdr*.jar"/>
 				<include name="jmi*.jar"/>
@@ -25,6 +23,11 @@
 	</target>
 	
 	<target name="copydep" depends="cleandep">
+		<copy tofile="antlr.jar" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.antlr.runtime_*.jar"/>
+			</fileset>
+		</copy>
 		<copy tofile="common.jar" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
 				<include name="org.eclipse.emf.common_*.jar"/>
@@ -57,34 +60,36 @@
 		</copy>
 		<copy tofile="resources.jar" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
-				<include name="org.eclipse.core.resources_3.2.2*.jar"/>
+				<include name="org.eclipse.core.resources_*.jar"/>
 			</fileset>
 		</copy>
 		<copy tofile="osgi.jar" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
-				<include name="org.eclipse.osgi_3.2.2*.jar"/>
-			</fileset>
-		</copy>
-		<copy todir="." flatten="true" verbose="true">
-			<fileset dir="${eclipse.home}/plugins">
-				<include name="org.eclipse.m2m.atl.engine_*/**/*.jar"/>
-				<exclude name="org.eclipse.m2m.atl.engine_*/**/*engine.jar"/>
+				<include name="org.eclipse.osgi_*.jar"/>
 			</fileset>
 		</copy>
 		<copy tofile="engine.jar" flatten="true" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
-				<include name="org.eclipse.m2m.atl.engine_*/**/*engine.jar"/>
+				<include name="org.eclipse.m2m.atl.engine_*.jar"/>
 			</fileset>
 		</copy>
 		<copy tofile="vm.jar" flatten="true" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
-				<include name="org.eclipse.m2m.atl.engine.vm_*/**/*vm.jar"/>
 				<include name="org.eclipse.m2m.atl.engine.vm_*.jar"/>
 			</fileset>
 		</copy>
+		<copy tofile="dsls.jar" flatten="true" verbose="true">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.m2m.atl.dsls_*.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="." flatten="true" verbose="true">
+			<zipfileset src="dsls.jar">
+				<include name="**/*.jar"/>
+			</zipfileset>
+		</copy>
 		<copy tofile="emf4atl.jar" flatten="true" verbose="true">
 			<fileset dir="${eclipse.home}/plugins">
-				<include name="org.eclipse.m2m.atl.drivers.emf4atl_*/**/*emf4atl.jar"/>
 				<include name="org.eclipse.m2m.atl.drivers.emf4atl_*.jar"/>
 			</fileset>
 		</copy>

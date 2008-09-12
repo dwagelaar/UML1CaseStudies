@@ -22,7 +22,6 @@ package org.atl.commandline;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,10 +32,11 @@ import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.m2m.atl.drivers.emf4atl.ASMEMFModel;
+import org.eclipse.m2m.atl.drivers.emf4atl.EMFModelLoader;
 import org.eclipse.m2m.atl.drivers.mdr4atl.AtlMDRModelHandler;
-import org.eclipse.m2m.atl.engine.AtlEMFModelHandler;
 import org.eclipse.m2m.atl.engine.AtlLauncher;
 import org.eclipse.m2m.atl.engine.AtlModelHandler;
+import org.eclipse.m2m.atl.engine.vm.ModelLoader;
 import org.eclipse.m2m.atl.engine.vm.nativelib.ASMModel;
 
 /**
@@ -53,14 +53,14 @@ public class Main implements Runnable {
         "[--superimpose <transformation url>] " +
         "--next --trans ...";
     
-    public URL trans = null;
-    public Map in = new HashMap();
-    public HashMap out = new HashMap();
-    public HashMap libs = new HashMap();
-    public HashMap paths = new HashMap();
-    public HashMap modelCache = new HashMap();
-    public HashMap handlers = new HashMap();
-    public ArrayList superimpose = new ArrayList();
+    private URL trans = null;
+    private Map in = new HashMap();
+    private HashMap out = new HashMap();
+    private HashMap libs = new HashMap();
+    private HashMap paths = new HashMap();
+    private HashMap modelCache = new HashMap();
+    private HashMap loaders = new HashMap();
+    private ArrayList superimpose = new ArrayList();
 
     private static URI cwd = 
         URI.createURI("file:" + new File(".").getAbsolutePath());
@@ -81,7 +81,16 @@ public class Main implements Runnable {
         }
         return amh;
     }
-    
+
+    public ModelLoader getModelLoader(AtlModelHandler amh) {
+    	ModelLoader ml = (ModelLoader) loaders.get(amh);
+    	if (ml == null) {
+    		ml = amh.createModelLoader();
+    		loaders.put(amh, ml);
+    	}
+    	return ml;
+    }
+
     public static void main(String[] args) {
         Main main = new Main();
         int argsLeft = args.length;
@@ -99,28 +108,21 @@ public class Main implements Runnable {
     
     /**
      * Loads a model via URI if possible, via InputStream otherwise.
-     * @param amh The model handler to use.
+     * @param ml The model loader to use.
      * @param modelId The ATL model ID.
      * @param metaModel The ATL meta-model.
      * @param uri The URI of the model to load.
      * @return The loaded ATL model.
      */
-    public static ASMModel loadModel(AtlModelHandler amh, String modelId, ASMModel metaModel, String uri)
+    public static ASMModel loadModel(ModelLoader ml, String modelId, ASMModel metaModel, String uri)
     throws FileNotFoundException {
         ASMModel model = null;
-        if (amh instanceof AtlEMFModelHandler) {
+        if (ml instanceof EMFModelLoader) {
             URI absURI = URI.createURI(uri).resolve(cwd);
-            model = ((AtlEMFModelHandler)amh).loadModel(
+            model = ((EMFModelLoader)ml).loadModel(
                     modelId, metaModel, absURI);
-            try {
-                Method getReferencedExtents = model.getClass().getMethod("getReferencedExtents", null);
-                System.out.println("Referenced extents: " +
-                        getReferencedExtents.invoke(model, null));
-            } catch (Exception e) {
-                System.out.println("The EMF4ATL version used does not support referenced extents (multiple-file models)");
-            }
         } else {
-            model = amh.loadModel(modelId, metaModel, new FileInputStream(uri));
+            model = ml.loadModel(modelId, metaModel, new FileInputStream(uri));
         }
         return model;
     }
@@ -206,30 +208,28 @@ public class Main implements Runnable {
         String metapath = metamdl.nextToken();
 
         AtlModelHandler amh = getDefaultHandler(repository);
+        ModelLoader ml = getModelLoader(amh);
         ASMModel metaModel;
         ASMModel inputModel;
         if (metaid.equals("MOF")) {
             System.out.println("Input metamodel is MOF - using built-in metamodel");
-            metaModel = amh.getMof();
+            metaModel = ml.getMOF();
         }
         else {
             metaModel = (ASMModel) in.get(metaid);
             if (metaModel == null || !metapath.equals(paths.get(metaid))) {
                 System.out.println("Input metamodel " + metaid + " @ " + amh + " not yet loaded - loading from " + metapath);
-                metaModel = loadModel(amh, metaid, amh.getMof(), metapath);
-                metaModel.setIsTarget(false);
+                metaModel = loadModel(ml, metaid, ml.getMOF(), metapath);
                 in.put(metaid, metaModel);
             }
         }
-        handlers.put(metaid, repository);
         System.out.println("Using input metamodel " + metaModel);
         inputModel = (ASMModel) modelCache.get(modelid);
         if (inputModel == null || 
                 !modelpath.equals(paths.get(modelid)) || 
                 !metaid.equals(inputModel.getMetamodel().getName())) {
             System.out.println("Loading input model " + modelid + " from " + modelpath);
-            inputModel = loadModel(amh, modelid, metaModel, modelpath);
-            inputModel.setIsTarget(false);
+            inputModel = loadModel(ml, modelid, metaModel, modelpath);
             if (inputModel instanceof ASMEMFModel)
                 ((ASMEMFModel)inputModel).setCheckSameModel(false);
             modelCache.put(modelid, inputModel);
@@ -257,25 +257,24 @@ public class Main implements Runnable {
         String metapath = metamdl.nextToken();
 
         AtlModelHandler amh = getDefaultHandler(repository);
+        ModelLoader ml = getModelLoader(amh);
         ASMModel metaModel;
         ASMModel outputModel;
         if (metaid.equals("MOF")) {
             System.out.println("Output metamodel is MOF - using built-in metamodel");
-            metaModel = amh.getMof();
+            metaModel = ml.getMOF();
         }
         else {
             metaModel = (ASMModel) in.get(metaid);
             if (metaModel == null || !metapath.equals(paths.get(metaid))) {
                 System.out.println("Loading output metamodel " + metaid + " @ " + amh + " from " + metapath);
-                metaModel = loadModel(amh, metaid, amh.getMof(), metapath);
-                metaModel.setIsTarget(false);
+                metaModel = loadModel(ml, metaid, ml.getMOF(), metapath);
                 in.put(metaid, metaModel);
             }
         }
-        handlers.put(metaid, repository);
         System.out.println("Using output metamodel " + metaModel);
         System.out.println("Creating new model " + modelid + " for output");
-        outputModel = amh.newModel(modelid, modelpath, metaModel);
+        outputModel = ml.newModel(modelid, modelpath, metaModel);
         if (outputModel instanceof ASMEMFModel)
             ((ASMEMFModel)outputModel).setCheckSameModel(false);
         out.put(modelid, outputModel);
@@ -313,15 +312,15 @@ public class Main implements Runnable {
                 models.put(mName, out.get(mName));
             }
             Map params = Collections.EMPTY_MAP;
+            Map options = Collections.EMPTY_MAP;
             AtlLauncher myLauncher = AtlLauncher.getDefault();
-            myLauncher.launch(trans, libs, models, params, superimpose);
+            myLauncher.launch(trans, libs, models, params, superimpose, options);
             System.out.println("Model transformation done");
             // save output models
             for(Iterator i = out.keySet().iterator(); i.hasNext() ; ) {
                 String mName = (String)i.next();
                 ASMModel currentOutModel = (ASMModel)out.get(mName);
-                String mmName = currentOutModel.getMetamodel().getName();
-                getDefaultHandler((String)handlers.get(mmName)).saveModel(currentOutModel, (String) paths.get(mName));
+                currentOutModel.getModelLoader().save(currentOutModel, (String) paths.get(mName));
                 System.out.println("Wrote " + (String) paths.get(mName));
                 modelCache.put(mName, currentOutModel);
                 i.remove();

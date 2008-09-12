@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/common.jar"/>
-	<classpathentry kind="lib" path="lib/ebnfinjector.jar"/>
 	<classpathentry kind="lib" path="lib/ecore.jar"/>
 	<classpathentry kind="lib" path="lib/ecore.xmi.jar"/>
 	<classpathentry kind="lib" path="lib/emf4atl.jar" sourcepath="/org.eclipse.m2m.atl.drivers.emf4atl/src"/>
@@ -16,13 +15,16 @@
 	<classpathentry kind="lib" path="lib/openide-util.jar"/>
 	<classpathentry kind="lib" path="lib/runtime.jar"/>
 	<classpathentry kind="lib" path="lib/vm.jar"/>
-	<classpathentry kind="lib" path="lib/antlr.jar"/>
-	<classpathentry kind="lib" path="lib/ATL-importer.jar"/>
-	<classpathentry kind="lib" path="lib/ebnfextractor.jar"/>
 	<classpathentry kind="lib" path="lib/resources.jar"/>
 	<classpathentry kind="lib" path="lib/equinox.common.jar"/>
 	<classpathentry kind="lib" path="lib/engine.jar" sourcepath="/org.eclipse.m2m.atl.engine/src"/>
 	<classpathentry kind="lib" path="lib/equinox.registry.jar"/>
 	<classpathentry kind="lib" path="lib/osgi.jar"/>
+	<classpathentry kind="lib" path="lib/antlr.jar"/>
+	<classpathentry kind="lib" path="lib/ACG-parser.jar"/>
+	<classpathentry kind="lib" path="lib/ATL-parser.jar"/>
+	<classpathentry kind="lib" path="lib/dsls.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.gmt.tcs.extractor.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.gmt.tcs.injector.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
